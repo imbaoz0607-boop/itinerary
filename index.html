@@ -115,8 +115,7 @@
 }
 
  .heroFlightCard{
- background:#ffffff; /* 航班卡片改回白色，與福岡版一致 */
- background:var(--bg); /* 與頁面底色一致 */
+ background:#ffffff; /* 航班卡片維持白色卡片層次 */
  border:1px solid var(--line);
  border-radius:24px;
  padding:16px 18px;
@@ -666,11 +665,6 @@
  font-size:15px;
  flex:0 0 auto;
  }
- .tabBtn{
- min-height:44px;
- padding:0 16px;
- font-size:15px;
- }
  /* keep two columns on mobile so flights stay side-by-side */
  .heroFlights{grid-template-columns:repeat(2,minmax(0,1fr));}
  .dayCardHeader{
@@ -743,9 +737,9 @@
  <a class="tabBtn" href="#day3" data-target="day3">Day 3</a>
  <a class="tabBtn" href="#day4" data-target="day4">Day 4</a>
  <a class="tabBtn" href="#day5" data-target="day5">Day 5</a>
- <a class="tabBtn" href="#day6" data-target="day6">Day 6</a>
  <a class="tabBtn" href="#memoPanel" data-target="memoPanel">Memo</a>
  <a class="tabBtn" href="day-editor.html">單日編輯器</a>
+ <a class="tabBtn" href="#" id="addDayBtn">＋新增 Day</a>
  </nav>
 
  <div class="tabsDivider"></div>
@@ -942,34 +936,7 @@
  </div>
  </section>
 
- <section class="card daySection pagePanel" id="day6">
- <div class="dayCardHeader">
- <div class="dayHeaderMain">
- <div class="dayIndex">6</div>
- <h2 class="dayTitle">東京 → 台北｜回程</h2>
- </div>
- <div class="dayDate">04/24（五）</div>
- </div>
-
- <div class="dayBody">
- <div class="timeline">
- <div class="tRow">
- <div class="time">17:40</div>
- <div class="place">
- <p class="placeTitle">抵達成田機場 T2</p>
- <p class="meta">預留報到、退稅、安檢與出境時間。</p>
- </div>
- </div>
- <div class="tRow">
- <div class="time">20:40</div>
- <div class="place">
- <p class="placeTitle">JX805 起飛返回台北</p>
- <p class="meta">NRT → TPE，預計 23:20 抵達。</p>
- </div>
- </div>
- </div>
- </div>
- </section>
+ 
  </section>
 
  </main>
@@ -996,6 +963,7 @@
  const galleryImages = Array.from(document.querySelectorAll('.gItem img'));
  const tabButtons = document.querySelectorAll('.tabBtn[data-target]');
  const pagePanels = document.querySelectorAll('.pagePanel');
+ const addDayBtn = document.getElementById('addDayBtn');
 
  let currentIndex = -1;
  let startX = 0;
@@ -1045,16 +1013,19 @@
  }
 
  function activateTab(targetId, updateHash){
- tabButtons.forEach(btn=>{
- btn.classList.toggle('active', btn.dataset.target===targetId);
+ const tabs = document.querySelectorAll('.tabBtn[data-target]');
+ const panels = document.querySelectorAll('.pagePanel');
+
+ tabs.forEach(btn=>{
+  btn.classList.toggle('active', btn.dataset.target===targetId);
  });
 
- pagePanels.forEach(panel=>{
- panel.classList.toggle('active', panel.id===targetId);
+ panels.forEach(panel=>{
+  panel.classList.toggle('active', panel.id===targetId);
  });
 
  if(updateHash){
- history.replaceState(null,'','#'+targetId);
+  history.replaceState(null,'','#'+targetId);
  }
  }
 
@@ -1104,6 +1075,100 @@
  if(Math.abs(diff) < 40) return;
  if(diff>0) nextImage();
  else prevImage();
+ });
+
+
+ /* === 自動填入旅行日期設定 === */
+ const tripConfig = {
+  tripName: '東京旅行', /* 旅行名稱只需要改這裡 */
+  startDate: '2026-04-20', /* 旅行開始日 */
+};
+
+ function formatDate(date){
+  const d = new Date(date);
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  const w = ['日','一','二','三','四','五','六'][d.getDay()];
+  return `${m}/${day}（${w}）`;
+ }
+
+ function applyAutoDates(){
+  const start = new Date(tripConfig.startDate);
+  const days = document.querySelectorAll('.daySection');
+  days.forEach((section,i)=>{
+   const d = new Date(start);
+   d.setDate(start.getDate()+i);
+   const el = section.querySelector('.dayDate');
+   if(el && (el.textContent.includes('請填日期') || el.textContent.trim()==='')){
+    el.textContent = formatDate(d);
+   }
+  });
+ }
+
+ applyAutoDates();
+
+ /* === 自動套用旅行名稱 === */
+ function applyTripName(){
+  if(tripConfig.tripName){
+   document.title = tripConfig.tripName + '｜行程';
+
+   const dayTitles = document.querySelectorAll('.daySection .dayTitle');
+   dayTitles.forEach((el,i)=>{
+    if(i>0 && el.textContent.includes('Day')){
+     el.textContent = tripConfig.tripName + '｜Day ' + (i+1) + ' 行程';
+    }
+   });
+  }
+ }
+
+ applyTripName();
+
+ /* === 自動新增 Day === */
+ addDayBtn && addDayBtn.addEventListener('click',function(e){
+ e.preventDefault();
+
+ const daySections = Array.from(document.querySelectorAll('.daySection'));
+ const last = daySections[daySections.length-1];
+ const newIndex = daySections.length + 1;
+
+ const clone = last.cloneNode(true);
+ clone.id = 'day'+newIndex;
+
+ const indexEl = clone.querySelector('.dayIndex');
+ if(indexEl) indexEl.textContent = newIndex;
+
+ const titleEl = clone.querySelector('.dayTitle');
+ if(titleEl) titleEl.textContent = '東京｜Day '+newIndex+' 行程';
+
+ const dateEl = clone.querySelector('.dayDate');
+ if(dateEl) dateEl.textContent = '請填日期';
+
+ const timeline = clone.querySelector('.timeline');
+ if(timeline){
+ timeline.innerHTML = `
+ <div class="tRow">
+ <div class="time">09:00</div>
+ <div class="place">
+ <p class="placeTitle">請填入 Day ${newIndex} 第一個行程</p>
+ <p class="meta">新增行程可複製這一列 tRow。</p>
+ </div>
+ </div>`;
+ }
+
+ document.querySelector('.tabShell').appendChild(clone);
+
+ const tab = document.createElement('a');
+ tab.className = 'tabBtn';
+ tab.href = '#day'+newIndex;
+ tab.dataset.target = 'day'+newIndex;
+ tab.textContent = 'Day '+newIndex;
+
+ document.querySelector('.topTabs').insertBefore(tab, addDayBtn);
+
+ tab.addEventListener('click',function(ev){
+ ev.preventDefault();
+ activateTab('day'+newIndex,true);
+ });
  });
 })();
 </script>
