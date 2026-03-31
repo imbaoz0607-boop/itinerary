@@ -339,7 +339,9 @@
  padding:4px 0 6px;
  scroll-snap-type:x proximity;
  -webkit-overflow-scrolling:touch;
- }
+ touch-action:pan-x; /* 鎖定為水平滑動，避免與頁面滑動衝突 */
+ overscroll-behavior-x:contain; /* 防止滑動觸發頁面切換 */
+}
 
  
 
@@ -604,22 +606,26 @@
  gap:10px;
  }
 
- .lbImg{
- display:block;
- max-width:100%;
- max-height:min(78vh, 900px);
- border-radius:18px;
- box-shadow:0 20px 50px rgba(0,0,0,.28);
- background:#fff;
+ .lbNav{
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ z-index:2;
+ border:none;
+ width:46px;
+ height:46px;
+ border-radius:999px;
+ background:rgba(255,255,255,.92);
+ font-size:26px;
+ cursor:pointer;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ box-shadow:var(--shadow);
  }
 
- .lbCaption{
- color:#fff;
- font-size:14px;
- text-align:center;
- line-height:1.5;
- padding:0 8px;
- }
+ .lbPrev{left:-6px;}
+ .lbNext{right:-6px;}
 
  .lbClose{
  position:absolute;
@@ -972,20 +978,28 @@
  <div class="lbBackdrop" data-close="lightbox"></div>
  <div class="lbInner" role="dialog" aria-modal="true" aria-label="圖片預覽">
  <button class="lbClose" type="button" id="lbClose" aria-label="關閉圖片">×</button>
+ <button class="lbNav lbPrev" id="lbPrev" aria-label="上一張">‹</button>
  <img class="lbImg" id="lbImg" alt="放大圖片">
+ <button class="lbNav lbNext" id="lbNext" aria-label="下一張">›</button>
  <div class="lbCaption" id="lbCaption"></div>
  </div>
  </div>
 
  <script>
- (function(){
+(function(){
  const modal = document.getElementById('lightbox');
  const modalImg = document.getElementById('lbImg');
  const modalCaption = document.getElementById('lbCaption');
  const closeBtn = document.getElementById('lbClose');
- const galleryImages = document.querySelectorAll('.gItem img');
+ const prevBtn = document.getElementById('lbPrev');
+ const nextBtn = document.getElementById('lbNext');
+ const galleryImages = Array.from(document.querySelectorAll('.gItem img'));
  const tabButtons = document.querySelectorAll('.tabBtn[data-target]');
  const pagePanels = document.querySelectorAll('.pagePanel');
+
+ let currentIndex = -1;
+ let startX = 0;
+ let endX = 0;
 
  function getCaption(img){
  const item = img.closest('.gItem');
@@ -993,70 +1007,105 @@
  return cap ? cap.textContent.trim() : (img.alt || '');
  }
 
- function openLightbox(img){
+ function showImage(index){
+ if(index < 0 || index >= galleryImages.length) return;
+ currentIndex = index;
+ const img = galleryImages[index];
  modalImg.src = img.currentSrc || img.src;
  modalImg.alt = img.alt || '';
  modalCaption.textContent = getCaption(img);
+ }
+
+ function openLightbox(img){
+ const index = galleryImages.indexOf(img);
+ showImage(index);
  modal.classList.add('open');
- modal.setAttribute('aria-hidden', 'false');
+ modal.setAttribute('aria-hidden','false');
  document.body.style.overflow = 'hidden';
  }
 
  function closeLightbox(){
  modal.classList.remove('open');
- modal.setAttribute('aria-hidden', 'true');
+ modal.setAttribute('aria-hidden','true');
  modalImg.removeAttribute('src');
- modalCaption.textContent = '';
- document.body.style.overflow = '';
+ modalCaption.textContent='';
+ document.body.style.overflow='';
+ }
+
+ function nextImage(){
+ if(currentIndex < galleryImages.length-1){
+ showImage(currentIndex+1);
+ }
+ }
+
+ function prevImage(){
+ if(currentIndex > 0){
+ showImage(currentIndex-1);
+ }
  }
 
  function activateTab(targetId, updateHash){
- tabButtons.forEach(function(btn){
- btn.classList.toggle('active', btn.dataset.target === targetId);
+ tabButtons.forEach(btn=>{
+ btn.classList.toggle('active', btn.dataset.target===targetId);
  });
 
- pagePanels.forEach(function(panel){
- panel.classList.toggle('active', panel.id === targetId);
+ pagePanels.forEach(panel=>{
+ panel.classList.toggle('active', panel.id===targetId);
  });
 
  if(updateHash){
- history.replaceState(null, '', '#' + targetId);
+ history.replaceState(null,'','#'+targetId);
  }
  }
 
- galleryImages.forEach(function(img){
- img.addEventListener('click', function(){
+ galleryImages.forEach(function(img,i){
+ img.loading = 'lazy';
+ img.addEventListener('click',function(){
  openLightbox(img);
  });
  });
 
  tabButtons.forEach(function(btn){
- btn.addEventListener('click', function(e){
+ btn.addEventListener('click',function(e){
  e.preventDefault();
- activateTab(btn.dataset.target, true);
+ activateTab(btn.dataset.target,true);
  });
  });
 
  const initialHash = window.location.hash ? window.location.hash.slice(1) : '';
- const hasInitialPanel = Array.from(pagePanels).some(function(panel){
- return panel.id === initialHash;
- });
+ const hasInitialPanel = Array.from(pagePanels).some(p=>p.id===initialHash);
  activateTab(hasInitialPanel ? initialHash : 'day1', false);
 
- modal.addEventListener('click', function(e){
- if(e.target === modal || e.target.dataset.close === 'lightbox'){
+ modal.addEventListener('click',function(e){
+ if(e.target===modal || e.target.dataset.close==='lightbox'){
  closeLightbox();
  }
  });
 
- closeBtn.addEventListener('click', closeLightbox);
+ closeBtn.addEventListener('click',closeLightbox);
+ prevBtn.addEventListener('click',prevImage);
+ nextBtn.addEventListener('click',nextImage);
 
- document.addEventListener('keydown', function(e){
- if(e.key === 'Escape' && modal.classList.contains('open')){
- closeLightbox();
- }
+ document.addEventListener('keydown',function(e){
+ if(!modal.classList.contains('open')) return;
+ if(e.key==='Escape') closeLightbox();
+ if(e.key==='ArrowRight') nextImage();
+ if(e.key==='ArrowLeft') prevImage();
  });
- })();
- </script>
+
+ /* swipe support */
+ modalImg.addEventListener('touchstart',e=>{
+ startX = e.touches[0].clientX;
+ });
+
+ modalImg.addEventListener('touchend',e=>{
+ endX = e.changedTouches[0].clientX;
+ const diff = startX-endX;
+ if(Math.abs(diff) < 40) return;
+ if(diff>0) nextImage();
+ else prevImage();
+ });
+})();
+</script>
 </body>
 </html>
