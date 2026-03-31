@@ -1127,6 +1127,22 @@
  addDayBtn && addDayBtn.addEventListener('click',function(e){
  e.preventDefault();
 
+ /* Shift+Click（桌機）或 雙擊（手機） 可刪除最後一個新增 Day */
+ if(e.shiftKey || e.detail===2){
+  const days = Array.from(document.querySelectorAll('.daySection'));
+  if(days.length<=5) return; /* 保留原始 Day1~Day5 */
+
+  const last = days[days.length-1];
+  const lastId = last.id;
+  last.remove();
+
+  const tab = document.querySelector(`.tabBtn[data-target="${lastId}"]`);
+  if(tab) tab.remove();
+
+  activateTab('day5',true);
+  return;
+ }
+
  const daySections = Array.from(document.querySelectorAll('.daySection'));
  const last = daySections[daySections.length-1];
  const newIndex = daySections.length + 1;
@@ -1138,10 +1154,16 @@
  if(indexEl) indexEl.textContent = newIndex;
 
  const titleEl = clone.querySelector('.dayTitle');
- if(titleEl) titleEl.textContent = '東京｜Day '+newIndex+' 行程';
+ if(titleEl) titleEl.textContent = tripConfig.tripName + '｜Day '+newIndex+' 行程';
 
  const dateEl = clone.querySelector('.dayDate');
- if(dateEl) dateEl.textContent = '請填日期';
+
+ if(dateEl){
+  const start = new Date(tripConfig.startDate);
+  const d = new Date(start);
+  d.setDate(start.getDate() + (newIndex-1));
+  dateEl.textContent = formatDate(d);
+ }
 
  const timeline = clone.querySelector('.timeline');
  if(timeline){
@@ -1163,13 +1185,14 @@
  tab.dataset.target = 'day'+newIndex;
  tab.textContent = 'Day '+newIndex;
 
- document.querySelector('.topTabs').insertBefore(tab, addDayBtn);
+ const memoTab = document.querySelector('.tabBtn[data-target="memoPanel"]');
+ document.querySelector('.topTabs').insertBefore(tab, memoTab);
 
  tab.addEventListener('click',function(ev){
  ev.preventDefault();
  activateTab('day'+newIndex,true);
  });
- });
+});
 })();
 </script>
 </body>
