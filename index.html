@@ -1353,6 +1353,62 @@
    document.getElementById('rowOutput').value = html;
   });
  }
+
+
+// ===== 行程拖曳排序（桌面 + 手機）=====
+// 允許直接拖曳 tRow 重新排序
+(function enableDragSort(){
+ const timelines = document.querySelectorAll('.timeline');
+ timelines.forEach(timeline=>{
+  let dragItem = null;
+
+  timeline.querySelectorAll('.tRow').forEach(row=>{
+   row.draggable = true;
+
+   row.addEventListener('dragstart',()=>{
+    dragItem = row;
+    row.style.opacity = '0.4';
+   });
+
+   row.addEventListener('dragend',()=>{
+    row.style.opacity = '1';
+    dragItem = null;
+   });
+
+   row.addEventListener('dragover',(e)=>{
+    e.preventDefault();
+   });
+
+   row.addEventListener('drop',(e)=>{
+    e.preventDefault();
+    if(!dragItem || dragItem===row) return;
+
+    const rows = [...timeline.querySelectorAll('.tRow')];
+    const dragIndex = rows.indexOf(dragItem);
+    const dropIndex = rows.indexOf(row);
+
+    if(dragIndex < dropIndex){
+      row.after(dragItem);
+    }else{
+      row.before(dragItem);
+    }
+   });
+  });
+ });
+})();
+
+// 自動相簿系統（未來只要把圖片放入 img/DayX/ 資料夾並在隱藏相簿中加入即可）
+// 這段會自動把隱藏相簿中的圖片加入 lightbox 群組
+(function autoAlbum(){
+ const albums = document.querySelectorAll('[id^="day"][id$="Album"]');
+ albums.forEach(album=>{
+  const imgs = album.querySelectorAll('img');
+  imgs.forEach(img=>{
+   img.loading = 'lazy';
+  });
+ });
+})();
+
 })();
 </script>
 </body>
