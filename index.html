@@ -1044,7 +1044,17 @@
  
  </section>
 
- </main>
+ 
+
+<!-- Day1 隱藏相簿（只給 lightbox 使用，不顯示在行程表） -->
+<div id="day1Album" style="display:none">
+ <img src="1.jpg" alt="利木津巴士班次資訊">
+ <img src="2.jpg" alt="成田機場 T2 巴士乘車位置圖">
+ <img src="3.jpg" alt="Skyliner 乘車方向指示">
+ <img src="4.jpg" alt="N'EX 成田特快方向指示">
+</div>
+
+</main>
 
  <div class="lbModal" id="lightbox" aria-hidden="true">
  <div class="lbBackdrop" data-close="lightbox"></div>
@@ -1065,87 +1075,86 @@
  const closeBtn = document.getElementById('lbClose');
  const prevBtn = document.getElementById('lbPrev');
  const nextBtn = document.getElementById('lbNext');
- const galleryImages = Array.from(document.querySelectorAll('.gItem img'));
  const tabButtons = document.querySelectorAll('.tabBtn[data-target]');
  const pagePanels = document.querySelectorAll('.pagePanel');
  const addDayBtn = document.getElementById('addDayBtn');
-
  let currentIndex = -1;
+ let currentGroup = [];
  let startX = 0;
  let endX = 0;
 
  function getCaption(img){
- const item = img.closest('.gItem');
- const cap = item ? item.querySelector('.gCaption') : null;
- return cap ? cap.textContent.trim() : (img.alt || '');
+  const item = img.closest('.gItem');
+  const cap = item ? item.querySelector('.gCaption') : null;
+  return cap ? cap.textContent.trim() : (img.alt || '');
  }
 
  function showImage(index){
- if(index < 0 || index >= galleryImages.length) return;
- currentIndex = index;
- const img = galleryImages[index];
- modalImg.src = img.currentSrc || img.src;
- modalImg.alt = img.alt || '';
- modalCaption.textContent = getCaption(img);
+  if(index < 0 || index >= currentGroup.length) return;
+  currentIndex = index;
+  const img = currentGroup[index];
+  modalImg.src = img.currentSrc || img.src;
+  modalImg.alt = img.alt || '';
+  modalCaption.textContent = getCaption(img);
  }
 
  function openLightbox(img){
- const index = galleryImages.indexOf(img);
- showImage(index);
- modal.classList.add('open');
- modal.setAttribute('aria-hidden','false');
- document.body.style.overflow = 'hidden';
+  const row = img.closest('.galleryRow');
+  if(!row) return;
+  currentGroup = Array.from(row.querySelectorAll('img'));
+  currentIndex = currentGroup.indexOf(img);
+  showImage(currentIndex);
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
  }
 
  function closeLightbox(){
- modal.classList.remove('open');
- modal.setAttribute('aria-hidden','true');
- modalImg.removeAttribute('src');
- modalCaption.textContent='';
- document.body.style.overflow='';
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  modalImg.removeAttribute('src');
+  modalCaption.textContent = '';
+  document.body.style.overflow = '';
  }
 
  function nextImage(){
- if(currentIndex < galleryImages.length-1){
- showImage(currentIndex+1);
- }
+  if(currentIndex < currentGroup.length - 1){
+   showImage(currentIndex + 1);
+  }
  }
 
  function prevImage(){
- if(currentIndex > 0){
- showImage(currentIndex-1);
- }
+  if(currentIndex > 0){
+   showImage(currentIndex - 1);
+  }
  }
 
  function activateTab(targetId, updateHash){
- const tabs = document.querySelectorAll('.tabBtn[data-target]');
- const panels = document.querySelectorAll('.pagePanel');
+  tabButtons.forEach(btn=>{
+   btn.classList.toggle('active', btn.dataset.target === targetId);
+  });
 
- tabs.forEach(btn=>{
-  btn.classList.toggle('active', btn.dataset.target===targetId);
- });
+  pagePanels.forEach(panel=>{
+   panel.classList.toggle('active', panel.id === targetId);
+  });
 
- panels.forEach(panel=>{
-  panel.classList.toggle('active', panel.id===targetId);
- });
-
- if(updateHash){
-  history.replaceState(null,'','#'+targetId);
- }
+  if(updateHash){
+   history.replaceState(null,'','#'+targetId);
+  }
  }
 
- galleryImages.forEach(function(img,i){
- img.loading = 'lazy';
- img.addEventListener('click',function(){
- openLightbox(img);
- });
+ document.querySelectorAll('.galleryRow img').forEach(function(img){
+  img.loading = 'lazy';
+  img.addEventListener('click',function(){
+   openLightbox(img);
+  });
  });
 
  tabButtons.forEach(function(btn){
- btn.addEventListener('click',function(e){
- e.preventDefault();
- activateTab(btn.dataset.target,true);
- });
+  btn.addEventListener('click',function(e){
+   e.preventDefault();
+   activateTab(btn.dataset.target,true);
+  });
  });
 
  const initialHash = window.location.hash ? window.location.hash.slice(1) : '';
@@ -1153,9 +1162,9 @@
  activateTab(hasInitialPanel ? initialHash : 'day1', false);
 
  modal.addEventListener('click',function(e){
- if(e.target===modal || e.target.dataset.close==='lightbox'){
- closeLightbox();
- }
+  if(e.target === modal || e.target.dataset.close === 'lightbox'){
+   closeLightbox();
+  }
  });
 
  closeBtn.addEventListener('click',closeLightbox);
@@ -1163,31 +1172,28 @@
  nextBtn.addEventListener('click',nextImage);
 
  document.addEventListener('keydown',function(e){
- if(!modal.classList.contains('open')) return;
- if(e.key==='Escape') closeLightbox();
- if(e.key==='ArrowRight') nextImage();
- if(e.key==='ArrowLeft') prevImage();
+  if(!modal.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowRight') nextImage();
+  if(e.key === 'ArrowLeft') prevImage();
  });
 
- /* swipe support */
  modalImg.addEventListener('touchstart',e=>{
- startX = e.touches[0].clientX;
+  startX = e.touches[0].clientX;
  });
 
  modalImg.addEventListener('touchend',e=>{
- endX = e.changedTouches[0].clientX;
- const diff = startX-endX;
- if(Math.abs(diff) < 40) return;
- if(diff>0) nextImage();
- else prevImage();
+  endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+  if(Math.abs(diff) < 40) return;
+  if(diff > 0) nextImage();
+  else prevImage();
  });
 
-
- /* === 自動填入旅行日期設定 === */
  const tripConfig = {
-  tripName: '東京旅行', /* 旅行名稱只需要改這裡 */
-  startDate: '2026-04-20', /* 旅行開始日 */
-};
+  tripName: '東京旅行',
+  startDate: '2026-04-20',
+ };
 
  function formatDate(date){
   const d = new Date(date);
@@ -1212,14 +1218,12 @@
 
  applyAutoDates();
 
- /* === 自動套用旅行名稱 === */
  function applyTripName(){
   if(tripConfig.tripName){
    document.title = tripConfig.tripName + '｜行程';
-
    const dayTitles = document.querySelectorAll('.daySection .dayTitle');
    dayTitles.forEach((el,i)=>{
-    if(i>0 && el.textContent.includes('Day')){
+    if(i > 0 && el.textContent.includes('Day')){
      el.textContent = tripConfig.tripName + '｜Day ' + (i+1) + ' 行程';
     }
    });
@@ -1228,79 +1232,77 @@
 
  applyTripName();
 
- /* === 自動新增 Day === */
- addDayBtn && addDayBtn.addEventListener('click',function(e){
- e.preventDefault();
+ if(addDayBtn){
+  addDayBtn.addEventListener('click',function(e){
+   e.preventDefault();
 
- /* Shift+Click（桌機）或 雙擊（手機） 可刪除最後一個新增 Day */
- if(e.shiftKey || e.detail===2){
-  const days = Array.from(document.querySelectorAll('.daySection'));
-  if(days.length<=5) return; /* 保留原始 Day1~Day5 */
+   if(e.shiftKey || e.detail===2){
+    const days = Array.from(document.querySelectorAll('.daySection'));
+    if(days.length<=5) return;
 
-  const last = days[days.length-1];
-  const lastId = last.id;
-  last.remove();
+    const last = days[days.length-1];
+    const lastId = last.id;
+    last.remove();
 
-  const tab = document.querySelector(`.tabBtn[data-target="${lastId}"]`);
-  if(tab) tab.remove();
+    const tab = document.querySelector(`.tabBtn[data-target="${lastId}"]`);
+    if(tab) tab.remove();
 
-  activateTab('day5',true);
-  return;
+    activateTab('day5',true);
+    return;
+   }
+
+   const daySections = Array.from(document.querySelectorAll('.daySection'));
+   const last = daySections[daySections.length-1];
+   const newIndex = daySections.length + 1;
+
+   const clone = last.cloneNode(true);
+   clone.id = 'day'+newIndex;
+
+   const indexEl = clone.querySelector('.dayIndex');
+   if(indexEl) indexEl.textContent = newIndex;
+
+   const titleEl = clone.querySelector('.dayTitle');
+   if(titleEl) titleEl.textContent = tripConfig.tripName + '｜Day '+newIndex+' 行程';
+
+   const dateEl = clone.querySelector('.dayDate');
+   if(dateEl){
+    const start = new Date(tripConfig.startDate);
+    const d = new Date(start);
+    d.setDate(start.getDate() + (newIndex-1));
+    dateEl.textContent = formatDate(d);
+   }
+
+   const timeline = clone.querySelector('.timeline');
+   if(timeline){
+    timeline.innerHTML = `
+    <div class="tRow">
+     <div class="time">09:00</div>
+     <div class="place">
+      <p class="placeTitle">請填入 Day ${newIndex} 第一個行程</p>
+      <p class="meta">新增行程可複製這一列 tRow。</p>
+     </div>
+    </div>`;
+   }
+
+   clone.classList.remove('active');
+   document.querySelector('.tabShell').appendChild(clone);
+
+   const tab = document.createElement('a');
+   tab.className = 'tabBtn';
+   tab.href = '#day'+newIndex;
+   tab.dataset.target = 'day'+newIndex;
+   tab.textContent = 'Day '+newIndex;
+
+   const memoTab = document.querySelector('.tabBtn[data-target="memoPanel"]');
+   document.querySelector('.topTabs').insertBefore(tab, memoTab);
+
+   tab.addEventListener('click',function(ev){
+    ev.preventDefault();
+    activateTab('day'+newIndex,true);
+   });
+  });
  }
 
- const daySections = Array.from(document.querySelectorAll('.daySection'));
- const last = daySections[daySections.length-1];
- const newIndex = daySections.length + 1;
-
- const clone = last.cloneNode(true);
- clone.id = 'day'+newIndex;
-
- const indexEl = clone.querySelector('.dayIndex');
- if(indexEl) indexEl.textContent = newIndex;
-
- const titleEl = clone.querySelector('.dayTitle');
- if(titleEl) titleEl.textContent = tripConfig.tripName + '｜Day '+newIndex+' 行程';
-
- const dateEl = clone.querySelector('.dayDate');
-
- if(dateEl){
-  const start = new Date(tripConfig.startDate);
-  const d = new Date(start);
-  d.setDate(start.getDate() + (newIndex-1));
-  dateEl.textContent = formatDate(d);
- }
-
- const timeline = clone.querySelector('.timeline');
- if(timeline){
- timeline.innerHTML = `
- <div class="tRow">
- <div class="time">09:00</div>
- <div class="place">
- <p class="placeTitle">請填入 Day ${newIndex} 第一個行程</p>
- <p class="meta">新增行程可複製這一列 tRow。</p>
- </div>
- </div>`;
- }
-
- document.querySelector('.tabShell').appendChild(clone);
-
- const tab = document.createElement('a');
- tab.className = 'tabBtn';
- tab.href = '#day'+newIndex;
- tab.dataset.target = 'day'+newIndex;
- tab.textContent = 'Day '+newIndex;
-
- const memoTab = document.querySelector('.tabBtn[data-target="memoPanel"]');
- document.querySelector('.topTabs').insertBefore(tab, memoTab);
-
- tab.addEventListener('click',function(ev){
- ev.preventDefault();
- activateTab('day'+newIndex,true);
- });
-});
-
-
- /* === 單日行程生成器 === */
  const buildBtn = document.getElementById('buildRow');
  if(buildBtn){
   buildBtn.addEventListener('click',()=>{
@@ -1319,7 +1321,6 @@
    document.getElementById('rowOutput').value = html;
   });
  }
-
 })();
 </script>
 </body>
