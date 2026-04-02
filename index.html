@@ -1369,22 +1369,22 @@
  btnRow.style.gap = '8px';
 
  function makeBtn(label){
-  const b=document.createElement('button');
-  b.textContent=label;
-  b.style.padding='8px 12px';
-  b.style.border='1px solid var(--line)';
-  b.style.borderRadius='10px';
-  b.style.background='#fff';
-  b.style.cursor='pointer';
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.textContent = label;
+  b.style.padding = '8px 12px';
+  b.style.border = '1px solid var(--line)';
+  b.style.borderRadius = '10px';
+  b.style.background = '#fff';
+  b.style.cursor = 'pointer';
   return b;
  }
 
- const exportDayBtn = makeBtn('匯出目前 Day HTML');
- const exportAllBtn = makeBtn('匯出全部行程 HTML');
- const downloadDayBtn = makeBtn('下載 Day HTML');
- const downloadAllBtn = makeBtn('下載全部 HTML');
+ const exportDayBtn = makeBtn('複製目前 Day HTML');
+ const exportAllBtn = makeBtn('複製全部行程 HTML');
+ const copyPageBtn = makeBtn('複製完整頁面 HTML');
 
- btnRow.append(exportDayBtn,exportAllBtn,downloadDayBtn,downloadAllBtn);
+ btnRow.append(exportDayBtn, exportAllBtn, copyPageBtn);
 
  const body = editor.querySelector('.dayBody');
  body.appendChild(btnRow);
@@ -1392,63 +1392,54 @@
  const output = document.getElementById('rowOutput');
 
  function getActiveTimeline(){
-   const activeDay = document.querySelector('.daySection.active');
-   if(!activeDay) return null;
-   return activeDay.querySelector('.timeline');
+  const activeDay = document.querySelector('.daySection.active');
+  if(!activeDay) return null;
+  return activeDay.querySelector('.timeline');
  }
 
- exportDayBtn.addEventListener('click',()=>{
-   const timeline=getActiveTimeline();
-   if(!timeline) return;
-   output.value = timeline.innerHTML.trim();
-   output.scrollTop = 0;
-   alert('HTML 已輸出到下方框內');
- });
+ async function copyText(text, successMessage){
+  output.value = text;
+  output.scrollTop = 0;
 
- exportAllBtn.addEventListener('click',()=>{
-   const days=document.querySelectorAll('.daySection');
-   let html='';
+  try{
+   await navigator.clipboard.writeText(text);
+  }catch(err){
+   output.focus();
+   output.select();
+   document.execCommand('copy');
+  }
 
-   days.forEach(day=>{
-     const id=day.id;
-     const timeline=day.querySelector('.timeline');
-     if(timeline){
-       html += `\n<!-- ${id} -->\n${timeline.innerHTML.trim()}\n`;
-     }
-   });
-
-   output.value=html.trim();
-   output.scrollTop = 0;
-   alert('全部行程 HTML 已輸出');
- });
-
- function downloadFile(name,content){
-   const blob=new Blob([content],{type:'text/html'});
-   const a=document.createElement('a');
-   a.href=URL.createObjectURL(blob);
-   a.download=name;
-   a.click();
+  alert(successMessage);
  }
 
- downloadDayBtn.addEventListener('click',()=>{
-   const timeline=getActiveTimeline();
-   if(!timeline) return;
-   downloadFile('day.html',timeline.innerHTML.trim());
+ exportDayBtn.addEventListener('click', async ()=>{
+  const timeline = getActiveTimeline();
+  if(!timeline) return;
+  const html = timeline.innerHTML.trim();
+  await copyText(html, '目前 Day HTML 已複製');
  });
 
- downloadAllBtn.addEventListener('click',()=>{
-   const days=document.querySelectorAll('.daySection');
-   let html='';
+ exportAllBtn.addEventListener('click', async ()=>{
+  const days = document.querySelectorAll('.daySection');
+  let html = '';
 
-   days.forEach(day=>{
-     const id=day.id;
-     const timeline=day.querySelector('.timeline');
-     if(timeline){
-       html += `\n<!-- ${id} -->\n${timeline.innerHTML.trim()}\n`;
-     }
-   });
+  days.forEach(day=>{
+   const id = day.id;
+   const timeline = day.querySelector('.timeline');
+   if(timeline){
+    html += `
+<!-- ${id} -->
+${timeline.innerHTML.trim()}
+`;
+   }
+  });
 
-   downloadFile('itinerary.html',html.trim());
+  await copyText(html.trim(), '全部行程 HTML 已複製');
+ });
+
+ copyPageBtn.addEventListener('click', async ()=>{
+  const fullHTML = document.documentElement.outerHTML;
+  await copyText(fullHTML, '完整 HTML 已複製，可直接貼回主行程檔');
  });
 })();
 
