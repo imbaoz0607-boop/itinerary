@@ -1490,7 +1490,7 @@ ${timeline.innerHTML.trim()}
 
   timeline.querySelectorAll('.tRow').forEach(r=>{
     r.setAttribute('draggable','true');
-    r.style.cursor = 'grab';
+    // r.style.cursor = 'grab'; // 移除固定 grab 游標，避免滑鼠一直顯示拖曳狀態
   });
  });
 })();
