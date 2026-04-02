@@ -408,12 +408,21 @@
 .transportLine{display:inline-flex;align-items:center;gap:6px;min-width:0}
 .transportLine a{font-size:16px;text-decoration:none}
 
-/* 讓子收合層與「交通資訊」左邊對齊 */
+/* 交通子項目樣式（更像設定列表） */
 .infoContent > details.infoBox{
  margin-left:0;
  margin-right:0;
- border-left:0;
- border-right:0;
+ border:0;
+ background:transparent;
+}
+
+.infoContent > details.infoBox > summary{
+ padding:10px 0;
+ border-bottom:1px solid var(--line);
+}
+
+.infoContent > details.infoBox:last-child > summary{
+ border-bottom:none;
 }
 
  .chev{
@@ -850,6 +859,20 @@
  <ul class="notes">
  <li>京成 Skyliner：成田機場 → 上野 約 41 分鐘。</li>
  <li>可線上購買 e-ticket 或查時刻表。</li>
+ </ul>
+ </div>
+ </details>
+
+ <details class="infoBox">
+ <summary>
+ <span class="summaryText transportLine"><span>Metro</span><a href="https://www.tokyometro.jp/en/index.html" target="_blank">🚇</a></span>
+ <span class="chev">⌄</span>
+ </summary>
+ <div class="infoContent">
+ <ul class="notes">
+ <li>東京 Metro / 都營地下鐵為東京市區主要交通工具。</li>
+ <li>赤坂附近主要站：赤坂、赤坂見附、溜池山王。</li>
+ <li>可使用 Suica / PASMO 直接搭乘。</li>
  </ul>
  </div>
  </details>
