@@ -1365,58 +1365,90 @@
  const btnRow = document.createElement('div');
  btnRow.style.marginTop = '14px';
  btnRow.style.display = 'flex';
+ btnRow.style.flexWrap = 'wrap';
  btnRow.style.gap = '8px';
 
- const exportDayBtn = document.createElement('button');
- exportDayBtn.textContent = '匯出目前 Day HTML';
- exportDayBtn.style.padding = '8px 12px';
- exportDayBtn.style.border = '1px solid var(--line)';
- exportDayBtn.style.borderRadius = '10px';
- exportDayBtn.style.background = '#fff';
- exportDayBtn.style.cursor = 'pointer';
+ function makeBtn(label){
+  const b=document.createElement('button');
+  b.textContent=label;
+  b.style.padding='8px 12px';
+  b.style.border='1px solid var(--line)';
+  b.style.borderRadius='10px';
+  b.style.background='#fff';
+  b.style.cursor='pointer';
+  return b;
+ }
 
- const exportAllBtn = document.createElement('button');
- exportAllBtn.textContent = '匯出全部行程 HTML';
- exportAllBtn.style.padding = '8px 12px';
- exportAllBtn.style.border = '1px solid var(--line)';
- exportAllBtn.style.borderRadius = '10px';
- exportAllBtn.style.background = '#fff';
- exportAllBtn.style.cursor = 'pointer';
+ const exportDayBtn = makeBtn('匯出目前 Day HTML');
+ const exportAllBtn = makeBtn('匯出全部行程 HTML');
+ const downloadDayBtn = makeBtn('下載 Day HTML');
+ const downloadAllBtn = makeBtn('下載全部 HTML');
 
- btnRow.appendChild(exportDayBtn);
- btnRow.appendChild(exportAllBtn);
+ btnRow.append(exportDayBtn,exportAllBtn,downloadDayBtn,downloadAllBtn);
 
  const body = editor.querySelector('.dayBody');
  body.appendChild(btnRow);
 
  const output = document.getElementById('rowOutput');
 
- exportDayBtn.addEventListener('click',()=>{
+ function getActiveTimeline(){
    const activeDay = document.querySelector('.daySection.active');
-   if(!activeDay) return;
+   if(!activeDay) return null;
+   return activeDay.querySelector('.timeline');
+ }
 
-   const timeline = activeDay.querySelector('.timeline');
+ exportDayBtn.addEventListener('click',()=>{
+   const timeline=getActiveTimeline();
    if(!timeline) return;
-
    output.value = timeline.innerHTML.trim();
+   output.scrollTop = 0;
+   alert('HTML 已輸出到下方框內');
  });
 
  exportAllBtn.addEventListener('click',()=>{
-   const days = document.querySelectorAll('.daySection');
-   let html = '';
+   const days=document.querySelectorAll('.daySection');
+   let html='';
 
    days.forEach(day=>{
-     const id = day.id;
-     const timeline = day.querySelector('.timeline');
+     const id=day.id;
+     const timeline=day.querySelector('.timeline');
      if(timeline){
-       html += `
-<!-- ${id} -->
-${timeline.innerHTML.trim()}
-`;
+       html += `\n<!-- ${id} -->\n${timeline.innerHTML.trim()}\n`;
      }
    });
 
-   output.value = html.trim();
+   output.value=html.trim();
+   output.scrollTop = 0;
+   alert('全部行程 HTML 已輸出');
+ });
+
+ function downloadFile(name,content){
+   const blob=new Blob([content],{type:'text/html'});
+   const a=document.createElement('a');
+   a.href=URL.createObjectURL(blob);
+   a.download=name;
+   a.click();
+ }
+
+ downloadDayBtn.addEventListener('click',()=>{
+   const timeline=getActiveTimeline();
+   if(!timeline) return;
+   downloadFile('day.html',timeline.innerHTML.trim());
+ });
+
+ downloadAllBtn.addEventListener('click',()=>{
+   const days=document.querySelectorAll('.daySection');
+   let html='';
+
+   days.forEach(day=>{
+     const id=day.id;
+     const timeline=day.querySelector('.timeline');
+     if(timeline){
+       html += `\n<!-- ${id} -->\n${timeline.innerHTML.trim()}\n`;
+     }
+   });
+
+   downloadFile('itinerary.html',html.trim());
  });
 })();
 
