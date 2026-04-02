@@ -128,7 +128,6 @@
  font-weight:800;
  color:#1f2430;
  }
-
  .heroFlightList{
  margin:0;
  padding-left:1.15em;
@@ -1505,6 +1504,15 @@ ${timeline.innerHTML.trim()}
   imgs.forEach(img=>{
    img.loading = 'lazy';
   });
+ });
+})();
+
+// ===== 自動讓外部連結開新分頁 =====
+(function autoExternalLinks(){
+ const links = document.querySelectorAll('a[href^="http"]');
+ links.forEach(link=>{
+  link.setAttribute('target','_blank');
+  link.setAttribute('rel','noopener');
  });
 })();
 
