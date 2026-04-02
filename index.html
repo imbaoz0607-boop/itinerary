@@ -1161,7 +1161,12 @@
   }
  }
 
+ let lastDayId = 'day1';
+
  function activateTab(targetId, updateHash){
+  if(targetId.startsWith('day')){
+   lastDayId = targetId;
+  }
   tabButtons.forEach(btn=>{
    btn.classList.toggle('active', btn.dataset.target === targetId);
   });
@@ -1392,9 +1397,15 @@
  const output = document.getElementById('rowOutput');
 
  function getActiveTimeline(){
+  // 如果現在在 Day 頁面
   const activeDay = document.querySelector('.daySection.active');
-  if(!activeDay) return null;
-  return activeDay.querySelector('.timeline');
+  if(activeDay) return activeDay.querySelector('.timeline');
+
+  // 如果現在在「單日編輯器」，使用最後查看的 Day
+  const lastDay = document.getElementById(lastDayId);
+  if(lastDay) return lastDay.querySelector('.timeline');
+
+  return null;
  }
 
  async function copyText(text, successMessage){
