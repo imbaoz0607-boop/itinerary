@@ -43,7 +43,7 @@
  border:1px solid var(--line);
  border-radius:28px;
  box-shadow:var(--shadow);
- overflow:hidden;
+ overflow:visible; /* 防止桌面版文字被裁切 */
  }
 .topTabs{
  display:flex;
@@ -407,6 +407,14 @@
  .summaryText{min-width:0;}
 .transportLine{display:inline-flex;align-items:center;gap:6px;min-width:0}
 .transportLine a{font-size:16px;text-decoration:none}
+
+/* 讓子收合層與「交通資訊」左邊對齊 */
+.infoContent > details.infoBox{
+ margin-left:0;
+ margin-right:0;
+ border-left:0;
+ border-right:0;
+}
 
  .chev{
  color:var(--muted);
