@@ -1131,7 +1131,7 @@
 
  function openLightbox(img){
   const row = img.closest('.galleryRow');
-  if(!row) return;
+  if(!row || !row.draggable) return;
   currentGroup = Array.from(row.querySelectorAll('img'));
   currentIndex = currentGroup.indexOf(img);
   showImage(currentIndex);
@@ -1488,9 +1488,26 @@ ${timeline.innerHTML.trim()}
    }
   });
 
-  timeline.querySelectorAll('.tRow').forEach(r=>{
-    r.setAttribute('draggable','flase');
-    // r.style.cursor = 'grab'; // 移除固定 grab 游標，避免滑鼠一直顯示拖曳狀態
+  timeline.querySelectorAll('.tRow').forEach(row=>{
+    row.draggable = false;
+
+    const handle = row.querySelector('.time');
+    if(!handle) return;
+
+    handle.style.cursor = 'grab';
+    handle.style.userSelect = 'none';
+
+    handle.addEventListener('mousedown',()=>{
+      row.draggable = true;
+    });
+
+    handle.addEventListener('mouseup',()=>{
+      row.draggable = false;
+    });
+
+    handle.addEventListener('mouseleave',()=>{
+      row.draggable = false;
+    });
   });
  });
 })();
