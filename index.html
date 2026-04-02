@@ -1355,44 +1355,44 @@
  }
 
 
-// ===== 行程拖曳排序（桌面 + 手機）=====
-// 允許直接拖曳 tRow 重新排序
+// ===== 行程拖曳排序（桌面）=====
 (function enableDragSort(){
  const timelines = document.querySelectorAll('.timeline');
  timelines.forEach(timeline=>{
   let dragItem = null;
 
-  timeline.querySelectorAll('.tRow').forEach(row=>{
-   row.draggable = true;
+  timeline.addEventListener('dragstart',e=>{
+   const row = e.target.closest('.tRow');
+   if(!row) return;
+   dragItem = row;
+   row.style.opacity = '0.4';
+   e.dataTransfer.effectAllowed = 'move';
+  });
 
-   row.addEventListener('dragstart',()=>{
-    dragItem = row;
-    row.style.opacity = '0.4';
-   });
+  timeline.addEventListener('dragend',e=>{
+   const row = e.target.closest('.tRow');
+   if(row) row.style.opacity = '1';
+   dragItem = null;
+  });
 
-   row.addEventListener('dragend',()=>{
-    row.style.opacity = '1';
-    dragItem = null;
-   });
+  timeline.addEventListener('dragover',e=>{
+   e.preventDefault();
+   const row = e.target.closest('.tRow');
+   if(!row || !dragItem || row===dragItem) return;
 
-   row.addEventListener('dragover',(e)=>{
-    e.preventDefault();
-   });
+   const rect = row.getBoundingClientRect();
+   const offset = e.clientY - rect.top;
 
-   row.addEventListener('drop',(e)=>{
-    e.preventDefault();
-    if(!dragItem || dragItem===row) return;
+   if(offset > rect.height/2){
+     row.after(dragItem);
+   }else{
+     row.before(dragItem);
+   }
+  });
 
-    const rows = [...timeline.querySelectorAll('.tRow')];
-    const dragIndex = rows.indexOf(dragItem);
-    const dropIndex = rows.indexOf(row);
-
-    if(dragIndex < dropIndex){
-      row.after(dragItem);
-    }else{
-      row.before(dragItem);
-    }
-   });
+  timeline.querySelectorAll('.tRow').forEach(r=>{
+    r.setAttribute('draggable','true');
+    r.style.cursor = 'grab';
   });
  });
 })();
