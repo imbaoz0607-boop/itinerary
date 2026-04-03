@@ -1131,7 +1131,7 @@
 
  function openLightbox(img){
   const row = img.closest('.galleryRow');
-  if(!row || !row.draggable) return;
+  if(!row) return;
   currentGroup = Array.from(row.querySelectorAll('img'));
   currentIndex = currentGroup.indexOf(img);
   showImage(currentIndex);
