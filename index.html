@@ -931,7 +931,7 @@
  <div class="gallery" style="margin-left:0;margin-right:0">
  <div class="galleryRow" role="list">
  <div class="gItem" role="listitem">
- <img src="./img/Day1/1.jpg" alt="成田機場 T2 巴士乘車位置圖">
+ 
  </div>
  
  </div>
@@ -946,17 +946,17 @@
  </summary>
  <div class="infoContent">
  <ul class="notes">
-<li>成田機場T2→京成上野出站→經地下連通道→至地鐵銀座線(往澀谷方向)→赤坂見附(1號出口)→OMO3東京赤坂。</li>
+<li>成田機場T2→京成上野出站→經地下連通道→至地鐵銀座線(往澀谷方向)→赤坂見附(10號出口)→OMO3東京赤坂。</li>
  <li><a href="https://www.keisei.co.jp/keisei/tetudou/skyliner/e-ticket/zht/" target="_blank" style="text-decoration:underline">官網購票</a> 💰2,310</li>
  </ul>
 
  <div class="gallery" style="margin-left:0;margin-right:0">
  <div class="galleryRow" role="list">
  <div class="gItem" role="listitem">
- <img src="./img/Day1/2.jpg" alt="Skyliner 乘車流程說明">
+ 
  </div>
  <div class="gItem" role="listitem">
- <img src="./img/Day1/3.jpg" alt="Skyliner 乘車方向指示">
+ 
  </div>
  </div>
  </div>
@@ -971,7 +971,7 @@
  </summary>
   <div class="infoContent">
  <ul class="notes">
- <li>成田機場T2→東京站→轉地鐵丸ノ內線(往池袋)→赤坂見附(104號出口)→OMO3東京赤坂。</li>
+ <li>成田機場T2→東京站→轉地鐵丸ノ內線(往池袋)→赤坂見附(10號出口)→OMO3東京赤坂。</li>
  <li><a href="https://www.eki-net.com/zh-CHT/jreast-train-reservation/Top/Index" target="_blank" style="text-decoration:underline">官網購票</a></li>
  <li>可使用 Suica / PASMO 直接搭乘。</li>
  </ul>
@@ -979,7 +979,7 @@
  <div class="gallery" style="margin-left:0;margin-right:0">
  <div class="galleryRow" role="list">
  <div class="gItem" role="listitem">
- <img src="./img/Day1/4.jpg" alt="N'EX 成田特快方向指示">
+ 
  </div>
  </div>
  </div>
@@ -1125,10 +1125,15 @@
 
 <!-- Day1 隱藏相簿（只給 lightbox 使用，不顯示在行程表） -->
 <div id="day1Album" style="display:none">
- <img src="./img/Day1/1.jpg" alt="成田機場 T2 巴士乘車位置圖">
- <img src="./img/Day1/2.jpg" alt="Skyliner 乘車流程說明">
- <img src="./img/Day1/3.jpg" alt="Skyliner 乘車方向指示">
- <img src="./img/Day1/4.jpg" alt="N'EX 成田特快方向指示">
+ <!-- Day1 圖片放置規則（建議） -->
+ <!-- 檔案位置：img/Day1/ -->
+ <!-- 檔名：1.jpg、2.jpg、3.jpg... 依順序增加 -->
+ <!-- 範例： -->
+ <!--
+ <img src="./img/Day1/1.jpg" alt="利木津巴士乘車處">
+ <img src="./img/Day1/2.jpg" alt="Skyliner 月台指示">
+ <img src="./img/Day1/3.jpg" alt="京成上野轉乘路線">
+ -->
 </div>
 
 <!-- Day2 隱藏相簿（之後這一天的圖片也統一放這裡，不顯示在行程表） -->
@@ -1590,16 +1595,106 @@ ${timeline.innerHTML.trim()}
  });
 })();
 
-// 自動相簿系統（未來只要把圖片放入 img/DayX/ 資料夾並在隱藏相簿中加入即可）
-// 這段會自動把隱藏相簿中的圖片加入 lightbox 群組
+// ===== 行程圖片自動分配系統 =====
+// Day1 圖片規則：
+// 1.jpg → 利木津巴士
+// 2.jpg 3.jpg → Skyliner
+// 4.jpg → N'EX
 (function autoAlbum(){
- const albums = document.querySelectorAll('[id^="day"][id$="Album"]');
- albums.forEach(album=>{
-  const imgs = album.querySelectorAll('img');
-  imgs.forEach(img=>{
-   img.loading = 'lazy';
-  });
+ const loadImg = (src, alt)=>{
+  const img = new Image();
+  img.src = src;
+  img.alt = alt || '';
+  img.loading = 'lazy';
+  return img;
+ };
+
+ // Day1 galleries
+ const day1 = document.querySelector('#day1');
+ if(day1){
+  const galleries = day1.querySelectorAll('.galleryRow');
+
+  // 利木津
+  if(galleries[0]){
+   const g = galleries[0];
+   const img = loadImg('./img/Day1/1.jpg','利木津巴士乘車處');
+   img.onload = ()=>{
+    const item = document.createElement('div');
+    item.className = 'gItem';
+    item.appendChild(img);
+    g.appendChild(item);
+   };
+  }
+
+  // Skyliner (2,3)
+  if(galleries[1]){
+   [2,3].forEach(i=>{
+    const img = loadImg(`./img/Day1/${i}.jpg`,`Skyliner 圖片${i}`);
+    img.onload = ()=>{
+     const item = document.createElement('div');
+     item.className = 'gItem';
+     item.appendChild(img);
+     galleries[1].appendChild(item);
+    };
+   });
+  }
+
+  // NEX
+  if(galleries[2]){
+   const img = loadImg('./img/Day1/4.jpg','NEX 指示');
+   img.onload = ()=>{
+    const item = document.createElement('div');
+    item.className = 'gItem';
+    item.appendChild(img);
+    galleries[2].appendChild(item);
+   };
+  }
+ }
+})();
+
+// ===== 下一班車自動標示系統 =====
+(function highlightNextTrains(){
+ const rows = Array.from(document.querySelectorAll('.infoContent table tr')).slice(1);
+ if(!rows.length) return;
+
+ const now = new Date();
+ const nowMin = now.getHours()*60 + now.getMinutes();
+
+ const groups = {
+  skyliner:[],
+  nex:[],
+  bus:[]
+ };
+
+ rows.forEach(row=>{
+  const tds = row.querySelectorAll('td');
+  if(tds.length<4) return;
+
+  const time = tds[0].textContent.trim();
+  const [h,m] = time.split(':').map(Number);
+  const minutes = h*60+m;
+
+  const type = tds[3].textContent;
+
+  const item = {row,minutes};
+
+  if(type.includes('Skyliner')) groups.skyliner.push(item);
+  if(type.includes("N'EX")) groups.nex.push(item);
+  if(type.includes('利木津')) groups.bus.push(item);
  });
+
+ function markNext(list){
+  const next = list.find(i=>i.minutes>=nowMin);
+  if(next){
+   const td = next.row.querySelectorAll('td')[3];
+   td.innerHTML += ' ⭐';
+   next.row.style.background='#fff9e8';
+  }
+ }
+
+ markNext(groups.skyliner);
+ markNext(groups.nex);
+ markNext(groups.bus);
 })();
 
 // ===== 自動讓外部連結開新分頁 =====
