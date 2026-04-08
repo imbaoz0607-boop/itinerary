@@ -1657,8 +1657,8 @@ ${timeline.innerHTML.trim()}
  const rows = Array.from(document.querySelectorAll('.infoContent table tr')).slice(1);
  if(!rows.length) return;
 
- const now = new Date();
- const nowMin = now.getHours()*60 + now.getMinutes();
+ // 基準時間固定為 16:00（抵達成田後預估可搭車時間）
+ const nowMin = 16*60;
 
  const groups = {
   skyliner:[],
