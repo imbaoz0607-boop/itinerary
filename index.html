@@ -1686,15 +1686,14 @@ ${timeline.innerHTML.trim()}
  nextThree.forEach((item,index)=>{
   const td = item.row.querySelectorAll('td')[3];
 
-  // 第一名：建議搭乘
+  // 第一班：最建議（⭐ + 綠色 + 粗體）
   if(index===0){
-   td.innerHTML += ' ⭐ 建議搭乘';
+   td.innerHTML += ' ⭐';
    item.row.style.background = '#e8f7e8';
    item.row.style.fontWeight = '700';
   }
-  // 其他兩班：備用
+  // 第2、第3班：僅黃色提示（不加⭐）
   else{
-   td.innerHTML += ' ⭐';
    item.row.style.background = '#fff9e8';
   }
  });
