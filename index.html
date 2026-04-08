@@ -792,13 +792,15 @@
 <tr><td>19:00</td><td>赤坂見附</td><td>21:15</td><td>🚌 利木津巴士</td></tr>
 </table>
 <p style="margin-top:8px;color:#7a736b;">備註</p>
-<div class="noteImages">
-<img src="Day1/5.jpg" />
-<img src="Day1/6.jpg" />
-<img src="Day1/7.jpg" />
-<img src="Day1/8.jpg" />
-<img src="Day1/9.jpg" />
-<img src="Day1/10.jpg" />
+<div class="gallery" style="margin-left:0;margin-right:0">
+ <div class="galleryRow noteImages" role="list">
+  <div class="gItem" role="listitem"><img src="Day1/5.jpg" alt="note"></div>
+  <div class="gItem" role="listitem"><img src="Day1/6.jpg" alt="note"></div>
+  <div class="gItem" role="listitem"><img src="Day1/7.jpg" alt="note"></div>
+  <div class="gItem" role="listitem"><img src="Day1/8.jpg" alt="note"></div>
+  <div class="gItem" role="listitem"><img src="Day1/9.jpg" alt="note"></div>
+  <div class="gItem" role="listitem"><img src="Day1/10.jpg" alt="note"></div>
+ </div>
 </div>
 </div>
 </details>
@@ -1328,44 +1330,6 @@ ${timeline.innerHTML.trim()}
     });
   });
  });
-})();
-// ===== 行程圖片自動分配系統 =====
-// Day1 圖片規則：
-// 1.jpg → 利木津巴士
-// 2.jpg 3.jpg → Skyliner
-// 4.jpg → N'EX
-(function autoAlbum(){
- const loadImg=(src,alt)=>{const img=new Image();img.src=src;img.alt=alt||'';img.loading='lazy';return img};
- const day1=document.querySelector('#day1');
- if(!day1) return;
- const galleries=day1.querySelectorAll('.galleryRow');
- // 利木津
- if(galleries[0]){
-  const img=loadImg('Day1/1.jpg','利木津巴士');
-  img.onload=()=>{const item=document.createElement('div');item.className='gItem';item.appendChild(img);galleries[0].appendChild(item)}
- }
- // Skyliner
- if(galleries[1]){
-  [2,3].forEach(i=>{
-   const img=loadImg(`Day1/${i}.jpg`,`Skyliner ${i}`);
-   img.onload=()=>{const item=document.createElement('div');item.className='gItem';item.appendChild(img);galleries[1].appendChild(item)}
-  })
- }
- // NEX
- if(galleries[2]){
-  const img=loadImg('Day1/4.jpg','NEX');
-  img.onload=()=>{const item=document.createElement('div');item.className='gItem';item.appendChild(img);galleries[2].appendChild(item)}
- }
- // 備註圖片自動掃描 5~20
- const noteBox=document.querySelector('.noteImages');
- if(noteBox){
-  for(let i=5;i<=20;i++){
-   const img=new Image();
-   img.src=`Day1/${i}.jpg`;
-   img.loading='lazy';
-   img.onload=()=>noteBox.appendChild(img);
-  }
- }
 })();
 // ===== 下一班車自動標示系統（抓最接近的 3 個班次，不分交通工具） =====
 (function highlightNextTrains(){
