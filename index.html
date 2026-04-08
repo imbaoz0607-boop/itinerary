@@ -1652,19 +1652,17 @@ ${timeline.innerHTML.trim()}
  }
 })();
 
-// ===== 下一班車自動標示系統 =====
+// ===== 下一班車自動標示系統（抓最接近的 3 個班次，不分交通工具） =====
 (function highlightNextTrains(){
  const rows = Array.from(document.querySelectorAll('.infoContent table tr')).slice(1);
  if(!rows.length) return;
 
- // 基準時間固定為 16:00（抵達成田後預估可搭車時間）
- const nowMin = 16*60;
+ // 基準時間為 16:00，但如果實際時間更晚則使用實際時間
+ const now = new Date();
+ const realNowMin = now.getHours()*60 + now.getMinutes();
+ const nowMin = Math.max(16*60, realNowMin);
 
- const groups = {
-  skyliner:[],
-  nex:[],
-  bus:[]
- };
+ const list = [];
 
  rows.forEach(row=>{
   const tds = row.querySelectorAll('td');
@@ -1672,29 +1670,24 @@ ${timeline.innerHTML.trim()}
 
   const time = tds[0].textContent.trim();
   const [h,m] = time.split(':').map(Number);
-  const minutes = h*60+m;
+  const minutes = h*60 + m;
 
-  const type = tds[3].textContent;
-
-  const item = {row,minutes};
-
-  if(type.includes('Skyliner')) groups.skyliner.push(item);
-  if(type.includes("N'EX")) groups.nex.push(item);
-  if(type.includes('利木津')) groups.bus.push(item);
+  if(minutes >= nowMin){
+   list.push({row,minutes});
+  }
  });
 
- function markNext(list){
-  const next = list.find(i=>i.minutes>=nowMin);
-  if(next){
-   const td = next.row.querySelectorAll('td')[3];
-   td.innerHTML += ' ⭐';
-   next.row.style.background='#fff9e8';
-  }
- }
+ // 按時間排序
+ list.sort((a,b)=>a.minutes-b.minutes);
 
- markNext(groups.skyliner);
- markNext(groups.nex);
- markNext(groups.bus);
+ // 取最接近的三班
+ const nextThree = list.slice(0,3);
+
+ nextThree.forEach(item=>{
+  const td = item.row.querySelectorAll('td')[3];
+  td.innerHTML += ' ⭐';
+  item.row.style.background = '#fff9e8';
+ });
 })();
 
 // ===== 自動讓外部連結開新分頁 =====
