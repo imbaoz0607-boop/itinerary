@@ -1683,10 +1683,20 @@ ${timeline.innerHTML.trim()}
  // 取最接近的三班
  const nextThree = list.slice(0,3);
 
- nextThree.forEach(item=>{
+ nextThree.forEach((item,index)=>{
   const td = item.row.querySelectorAll('td')[3];
-  td.innerHTML += ' ⭐';
-  item.row.style.background = '#fff9e8';
+
+  // 第一名：建議搭乘
+  if(index===0){
+   td.innerHTML += ' ⭐ 建議搭乘';
+   item.row.style.background = '#e8f7e8';
+   item.row.style.fontWeight = '700';
+  }
+  // 其他兩班：備用
+  else{
+   td.innerHTML += ' ⭐';
+   item.row.style.background = '#fff9e8';
+  }
  });
 })();
 
