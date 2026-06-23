@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -213,7 +214,7 @@
   gap: 6px;
   padding: 6px 10px;
   background: var(--chip);
-  border-radius: 999px;
+  border-radius: 9999px;
   color: #5f5448;
   font-size: 13px;
  }
@@ -522,19 +523,19 @@
   <section class="hero" id="memo">
    <div class="heroFlights">
     <section class="heroFlightCard" aria-label="去程航班資訊">
-     <h2 class="heroFlightTitle">✈️ 去程（04/20 一）JX802</h2>
+     <h2 class="heroFlightTitle">✈️ 去程（09/26）CI220</h2>
      <ul class="heroFlightList">
-      <li>⏰ 預計 <strong>07:40</strong> 抵達機場</li>
-      <li>🛫 <strong>10:40</strong>　出發 TPE 桃園國際機場（第一航廈）</li>
-      <li>🛬 <strong>15:05</strong>　抵達 NRT 成田機場（第二航廈）</li>
+      <li>🛫 <strong>09:00</strong> 台北松山機場 T1</li>
+      <li>🛬 <strong>13:10</strong> 東京羽田機場 T3</li>
+      <li>⏱️ 飛行時間：約 3 小時 10 分</li>
      </ul>
     </section>
     <section class="heroFlightCard" aria-label="回程航班資訊">
-     <h2 class="heroFlightTitle">✈️ 回程（04/24 五）JX805</h2>
+     <h2 class="heroFlightTitle">✈️ 回程（10/03）CI221</h2>
      <ul class="heroFlightList">
-      <li>⏰ 預計 <strong>17:40</strong> 抵達機場</li>
-      <li>🛫 <strong>20:40</strong>　出發 NRT 成田機場（第二航廈）</li>
-      <li>🛬 <strong>23:20</strong>　抵達 TPE 桃園國際機場（第一航廈）</li>
+      <li>🛫 <strong>14:30</strong> 東京羽田機場 T3</li>
+      <li>🛬 <strong>16:55</strong> 台北松山機場 T1</li>
+      <li>⏱️ 飛行時間：約 3 小時 25 分</li>
      </ul>
     </section>
    </div>
@@ -546,30 +547,13 @@
     <a class="tabBtn" href="#day3" data-target="day3">Day 3</a>
     <a class="tabBtn" href="#day4" data-target="day4">Day 4</a>
     <a class="tabBtn" href="#day5" data-target="day5">Day 5</a>
+    <a class="tabBtn" href="#day6" data-target="day6">Day 6</a>
+    <a class="tabBtn" href="#day7" data-target="day7">Day 7</a>
+    <a class="tabBtn" href="#day8" data-target="day8">Day 8</a>
     <a class="tabBtn" href="#memoPanel" data-target="memoPanel">Memo</a>
-    <a class="tabBtn" href="#editorPanel" data-target="editorPanel">單日編輯器</a>
-    <a class="tabBtn" href="#" id="addDayBtn">＋新增 Day</a>
    </nav>
    <div class="tabsDivider"></div>
-   <section class="card pagePanel" id="editorPanel">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">E</div>
-      <h2 class="dayTitle">單日行程編輯器</h2>
-     </div>
-     <div class="dayDate">Quick Builder</div>
-    </div>
-    <div class="dayBody">
-     <p class="meta">輸入時間與地點後按「生成行程」，會自動產生 tRow HTML，可貼回任一天。</p>
-     <div style="display:grid;gap:10px;max-width:420px;margin-top:10px;">
-      <input id="editTime" placeholder="時間，例如 09:00" style="padding:8px;border:1px solid var(--line);border-radius:8px;">
-      <input id="editPlace" placeholder="地點，例如 淺草寺" style="padding:8px;border:1px solid var(--line);border-radius:8px;">
-      <input id="editMeta" placeholder="說明，例如 逛雷門、仲見世" style="padding:8px;border:1px solid var(--line);border-radius:8px;">
-      <button id="buildRow" style="padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;">生成行程</button>
-     </div>
-     <textarea id="rowOutput" style="margin-top:12px;width:100%;height:140px;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:monospace"></textarea>
-    </div>
-   </section>
+   
    <section class="card pagePanel" id="memoPanel">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
@@ -594,7 +578,7 @@
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">1</div>
-      <h2 class="dayTitle">抵達東京｜入住OMO3 東京赤坂 </h2>
+      <h2 class="dayTitle">抵達東京｜入住JR東日本大都會大飯店 大井町TRACKS </h2>
      </div>
      <div class="dayDate">04/20（一）</div>
     </div>
@@ -620,96 +604,35 @@
          <div class="infoContent">
           <details class="infoBox">
            <summary>
-            <span class="summaryText">🕒參考時刻表</span>
+            <span class="summaryText">🚆 羽田機場T3 ➔ 大井町站 轉乘路線</span>
             <span class="chev">⌄</span>
            </summary>
            <div class="infoContent">
-            <table>
-             <tr><th>T2出發</th><th>下車站</th><th>抵達</th><th>交通工具</th></tr>
-             <tr><td>16:02</td><td>京成上野</td><td>16:43</td><td>🚄 Skyliner 46</td></tr>
-             <tr><td>16:10</td><td>赤坂見附</td><td>18:35</td><td>🚌 利木津巴士</td></tr>
-             <tr><td>16:16</td><td>東京</td><td>17:16</td><td>🚆 N'EX 34</td></tr>
-             <tr><td>16:22</td><td>京成上野</td><td>17:03</td><td>🚄 Skyliner 48</td></tr>
-             <tr><td>16:30</td><td>赤坂見附</td><td>18:45</td><td>🚌 利木津巴士</td></tr>
-             <tr><td>16:42</td><td>京成上野</td><td>17:23</td><td>🚄 Skyliner 50</td></tr>
-             <tr><td>16:44</td><td>東京</td><td>17:43</td><td>🚆 N'EX 36</td></tr>
-             <tr><td>17:02</td><td>京成上野</td><td>17:43</td><td>🚄 Skyliner 52</td></tr>
-             <tr><td>17:16</td><td>東京</td><td>18:16</td><td>🚆 N'EX 38</td></tr>
-             <tr><td>17:20</td><td>赤坂見附</td><td>19:45</td><td>🚌 利木津巴士</td></tr>
-             <tr><td>17:22</td><td>京成上野</td><td>18:04</td><td>🚄 Skyliner 54</td></tr>
-             <tr><td>17:43</td><td>京成上野</td><td>18:26</td><td>🚄 Skyliner 56</td></tr>
-             <tr><td>17:44</td><td>東京</td><td>18:43</td><td>🚆 N'EX 40</td></tr>
-             <tr><td>18:03</td><td>京成上野</td><td>18:47</td><td>🚄 Skyliner 58</td></tr>
-             <tr><td>19:00</td><td>赤坂見附</td><td>21:15</td><td>🚌 利木津巴士</td></tr>
-            </table>
-           </div>
-          </details>
-          <details class="infoBox"> 
-           <summary>
-            <span class="summaryText">🚌 利木津巴士</span>
-            <span class="chev">⌄</span>
-           </summary>
-           <div class="infoContent">
-            <ul class="notes">
-             <li>成田T2→赤坂見附→OMO3東京赤坂 </li>
-             <li><a href="https://www.limousinebus.co.jp/zh-tw/" target="_blank" style="text-decoration:underline">官網購票</a> 💰¥3,600、第二航廈的巴士(Limousine Bus)購票處在1樓入境大廳(Arrival Hall)，南口(A)或北口(B)的橘色櫃檯巴士售票櫃檯或自動售票機購票。</li>
-            </ul>
-            <div class="gallery" style="margin-left:0;margin-right:0">
-             <div class="galleryRow" role="list">
-              <div class="gItem" role="listitem"><img src="Day1/1.jpg" alt="利木津巴士"></div>
-             </div>
+            <div style="font-size:16px; line-height:1.9;">
+             <div>🚆 ⌄</div>
+             <div style="margin-top:6px;">羽田機場T3</div>
+             <div style="margin-left:18px;">→ 京急線 → 品川 → 轉 JR京濱東北線 → 大井町站</div>
+             <div style="margin-left:18px;">→ 單軌電車 → 濱松町 → 轉 JR京濱東北線 → 大井町站</div>
+            </div>
+
+            <div style="margin-top:14px;">
+             <img src="01.jpg" style="width:100%; border-radius:12px; border:1px solid #e3e6ee;" alt="交通路線">
             </div>
            </div>
           </details>
           <details class="infoBox">
            <summary>
-            <span class="summaryText">🚄 Skyliner ＋銀座線</span>
+            <span class="summaryText">🚆 </span>
             <span class="chev">⌄</span>
            </summary>
            <div class="infoContent">
             <ul class="notes">
-             <li>成田機場T2→京成上野出站→經地下連通道→銀座線上野站(往澀谷方向)→赤坂見附G05→10出口→OMO3東京赤坂。</li>
-             <li><a href="https://www.keisei.co.jp/keisei/tetudou/skyliner/e-ticket/zht/" target="_blank" style="text-decoration:underline">官網購票</a> 💰2,310</li>
+             <li></li>
+             <li></li>
+             <li></li>
             </ul>
-            <div class="gallery" style="margin-left:0;margin-right:0">
-             <div class="galleryRow" role="list">
-              <div class="gItem" role="listitem"><img src="Day1/2.jpg" alt="Skyliner"></div>
-              <div class="gItem" role="listitem"><img src="Day1/3.jpg" alt="Skyliner"></div>
-             </div>
-            </div>
            </div>
           </details>
-          <details class="infoBox">
-           <summary>
-            <span class="summaryText">🚆 成田特快(N'EX) ＋丸ノ內線</span>
-            <span class="chev">⌄</span>
-           </summary>
-           <div class="infoContent">
-            <ul class="notes">
-             <li>成田機場T2→東京站→轉地鐵丸之內線(往池袋)→赤坂見附M13→10出口→OMO3東京赤坂。</li>
-             <li><a href="https://www.eki-net.com/zh-CHT/jreast-train-reservation/Top/Index" target="_blank" style="text-decoration:underline">官網購票</a></li>
-             <li>抵達後使用QR Code於售票機取票。</li>
-            </ul>
-            <div class="gallery" style="margin-left:0;margin-right:0">
-             <div class="galleryRow" role="list">
-              <div class="gItem" role="listitem"><img src="Day1/4.jpg" alt="NEX sign"></div>
-              <div class="gItem" role="listitem"><img src="Day1/5.jpg" alt="QR ticket machine"></div>
-              <div class="gItem" role="listitem"><img src="Day1/6.jpg" alt="NEX ticket"></div>
-             </div>
-            </div>
-           </div>
-          </details>
-          <div class="gallery" style="margin-left:0;margin-right:0">
-           <p class="galleryTitle">📷10出口</p>
-           <div class="galleryRow noteImages" role="list">
-            <div class="gItem" role="listitem"><img src="Day1/7.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/8.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/9.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/10.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/11.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/12.jpg" alt="note"></div>
-           </div>
-          </div>
          </div>
         </details>
        </div>
@@ -717,14 +640,14 @@
       <div class="tRow">
        <div class="time">18:00</div>
        <div class="place">
-        <p class="placeTitle">入住 OMO3 東京赤坂 <a class="btn" href="https://hoshinoresorts.com/zh_tw/hotels/omo3tokyoakasaka/">🔗官網</a></p>
+        <p class="placeTitle">入住 JR東日本大都會大飯店 大井町TRACKS <a class="btn" href="https://hoshinoresorts.com/zh_tw/hotels/omo3tokyoakasaka/">🔗官網</a></p>
         <p class="meta">先放行李、稍作休息，之後可安排赤坂周邊晚餐或散步</p>
         <div class="gallery">
          <p class="galleryTitle">📷 飯店 / 周邊示意</p>
          <div class="galleryRow" role="list">
           <div class="gItem" role="listitem">
-           <img src="Day1/13.jpg" alt="OMO3 東京赤坂">
-           <div class="gCaption">OMO3 東京赤坂</div>
+           <img src="Day1/13.jpg" alt="JR東日本大都會大飯店 大井町TRACKS">
+           <div class="gCaption">JR東日本大都會大飯店 大井町TRACKS</div>
           </div>
           <div class="gItem" role="listitem">
            <img src="Day1/14.jpg" alt="赤坂周邊地圖">
@@ -829,6 +752,40 @@
      </div>
     </div>
    </section>
+
+   <section class="card daySection pagePanel" id="day6">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">6</div>
+      <h2 class="dayTitle">東京｜Day 6 行程</h2>
+     </div>
+     <div class="dayDate"></div>
+    </div>
+    <div class="dayBody"></div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day7">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">7</div>
+      <h2 class="dayTitle">東京｜Day 7 行程</h2>
+     </div>
+     <div class="dayDate"></div>
+    </div>
+    <div class="dayBody"></div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day8">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">8</div>
+      <h2 class="dayTitle">東京｜Day 8 行程</h2>
+     </div>
+     <div class="dayDate"></div>
+    </div>
+    <div class="dayBody"></div>
+   </section>
+
   </section>
  </main>
  <div class="lbModal" id="lightbox" aria-hidden="true">
@@ -853,7 +810,7 @@
   const nextBtn = document.getElementById('lbNext');
   const tabButtons = document.querySelectorAll('.tabBtn[data-target]');
   const pagePanels = document.querySelectorAll('.pagePanel');
-  const addDayBtn = document.getElementById('addDayBtn');
+  
   
   // 狀態變數
   let currentIndex = -1;
@@ -961,7 +918,7 @@
   // ===== 行程日期與標題設定 =====
   const tripConfig = {
    tripName: '東京旅行',
-   startDate: '2026-04-20',
+   startDate: '2026-09-26',
   };
 
   function formatDate(date) {
@@ -978,7 +935,7 @@
     const d = new Date(start);
     d.setDate(start.getDate() + i);
     const el = section.querySelector('.dayDate');
-    if (el && (el.textContent.includes('請填日期') || el.textContent.trim() === '')) {
+    if (el) {
      el.textContent = formatDate(d);
     }
    });
@@ -996,152 +953,11 @@
   }
 
   applyAutoDates();
+
+  
   applyTripName();
 
-  // ===== 動態新增 Day =====
-  if (addDayBtn) {
-   addDayBtn.addEventListener('click', e => {
-    e.preventDefault();
-    const daySections = Array.from(document.querySelectorAll('.daySection'));
-    
-    // Shift鍵或雙擊刪除最後一天
-    if (e.shiftKey || e.detail === 2) {
-     if (daySections.length <= 5) return;
-     const last = daySections[daySections.length - 1];
-     const tab = document.querySelector(`.tabBtn[data-target="${last.id}"]`);
-     last.remove();
-     if (tab) tab.remove();
-     activateTab('day5', true);
-     return;
-    }
-    
-    const last = daySections[daySections.length - 1];
-    const newIndex = daySections.length + 1;
-    const clone = last.cloneNode(true);
-    clone.id = 'day' + newIndex;
-    
-    const indexEl = clone.querySelector('.dayIndex');
-    if (indexEl) indexEl.textContent = newIndex;
-    
-    const titleEl = clone.querySelector('.dayTitle');
-    if (titleEl) titleEl.textContent = tripConfig.tripName + '｜Day ' + newIndex + ' 行程';
-    
-    const dateEl = clone.querySelector('.dayDate');
-    if (dateEl) {
-     const start = new Date(tripConfig.startDate);
-     const d = new Date(start);
-     d.setDate(start.getDate() + (newIndex - 1));
-     dateEl.textContent = formatDate(d);
-    }
-    
-    const timeline = clone.querySelector('.timeline');
-    if (timeline) {
-     timeline.innerHTML = `
-     <div class="tRow">
-      <div class="time">09:00</div>
-      <div class="place">
-       <p class="placeTitle">請填入 Day ${newIndex} 第一個行程</p>
-       <p class="meta">新增行程可複製這一列 tRow。</p>
-      </div>
-     </div>`;
-    }
-    
-    clone.classList.remove('active');
-    document.querySelector('.tabShell').appendChild(clone);
-    
-    const tab = document.createElement('a');
-    tab.className = 'tabBtn';
-    tab.href = '#day' + newIndex;
-    tab.dataset.target = 'day' + newIndex;
-    tab.textContent = 'Day ' + newIndex;
-    
-    const memoTab = document.querySelector('.tabBtn[data-target="memoPanel"]');
-    document.querySelector('.topTabs').insertBefore(tab, memoTab);
-    
-    tab.addEventListener('click', ev => {
-     ev.preventDefault();
-     activateTab('day' + newIndex, true);
-    });
-   });
-  }
-
-  // ===== 單日編輯器生成功能 =====
-  const buildBtn = document.getElementById('buildRow');
-  if (buildBtn) {
-   buildBtn.addEventListener('click', () => {
-    const t = document.getElementById('editTime').value || '09:00';
-    const p = document.getElementById('editPlace').value || '地點';
-    const m = document.getElementById('editMeta').value || '';
-    const html = `<div class="tRow">\n <div class="time">${t}</div>\n <div class="place">\n <p class="placeTitle">${p}</p>\n <p class="meta">${m}</p>\n </div>\n</div>`;
-    document.getElementById('rowOutput').value = html;
-   });
-  }
-
-  // ===== 匯出目前 HTML 功能 =====
-  const editor = document.getElementById('editorPanel');
-  if (editor) {
-   const btnRow = document.createElement('div');
-   btnRow.style.cssText = 'margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;';
-   
-   const makeBtn = label => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.textContent = label;
-    b.style.cssText = 'padding:8px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; cursor:pointer;';
-    return b;
-   };
-   
-   const exportDayBtn = makeBtn('複製目前 Day HTML');
-   const exportAllBtn = makeBtn('複製全部行程 HTML');
-   const copyPageBtn = makeBtn('複製完整頁面 HTML');
-   btnRow.append(exportDayBtn, exportAllBtn, copyPageBtn);
-   editor.querySelector('.dayBody').appendChild(btnRow);
-   const output = document.getElementById('rowOutput');
-
-   function getActiveTimeline() {
-    const activeDay = document.querySelector('.daySection.active');
-    if (activeDay) return activeDay.querySelector('.timeline');
-    const lastDay = document.getElementById(lastDayId);
-    if (lastDay) return lastDay.querySelector('.timeline');
-    return null;
-   }
-
-   async function copyText(text, successMessage) {
-    output.value = text;
-    output.scrollTop = 0;
-    try {
-     await navigator.clipboard.writeText(text);
-    } catch (err) {
-     output.focus();
-     output.select();
-     document.execCommand('copy');
-    }
-    alert(successMessage);
-   }
-
-   exportDayBtn.addEventListener('click', async () => {
-    const timeline = getActiveTimeline();
-    if (!timeline) return;
-    await copyText(timeline.innerHTML.trim(), '目前 Day HTML 已複製');
-   });
-
-   exportAllBtn.addEventListener('click', async () => {
-    let html = '';
-    document.querySelectorAll('.daySection').forEach(day => {
-     const timeline = day.querySelector('.timeline');
-     if (timeline) {
-      html += `\n\n${timeline.innerHTML.trim()}\n`;
-     }
-    });
-    await copyText(html.trim(), '全部行程 HTML 已複製');
-   });
-
-   copyPageBtn.addEventListener('click', async () => {
-    await copyText(document.documentElement.outerHTML, '完整 HTML 已複製，可直接貼回主行程檔');
-   });
-  }
-
-  // ===== 行程拖曳排序 =====
+// ===== 行程拖曳排序 =====
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -1224,4 +1040,4 @@
  })();
  </script>
 </body>
-</html>
+</html>⌄
