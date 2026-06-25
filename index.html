@@ -283,9 +283,10 @@
   border-radius: 999px;
  }
  .gItem {
-  width: 100%;
+  flex: 0 0 auto;
+  width: 180px;
   scroll-snap-align: start;
- }
+}
  .gItem img,
  .gItem a.pdfLink {
   display: block;
@@ -579,7 +580,7 @@
       <div class="dayIndex">1</div>
       <h2 class="dayTitle">抵達東京｜入住JR東日本大都會大飯店 大井町TRACKS </h2>
      </div>
-     <div class="dayDate">04/20（一）</div>
+     <div class="dayDate"></div>
     </div>
     <div class="dayBody">
      <div class="timeline">
@@ -613,15 +614,15 @@
             </ul>
             <div class="gallery" style="margin-left:0; margin-right:0; margin-top:10px;">
                <div class="galleryRow" role="list">
-                <div class="gItem" role="listitem" style="width:100%;">
-                 <img src="Day1/01.jpg" alt="羽田機場至大井町交通路線圖" style="cursor:zoom-in;">
-                </div>
-                <div class="gItem" role="listitem" style="width:100%;">
-                 <img src="Day1/02.jpg" alt="羽田機場至大井町交通路線圖2" style="cursor:zoom-in;">
-                </div>
-               </div>
+  <div class="gItem" role="listitem">
+    <img src="01.jpg" alt="路線圖1" onerror="this.style.display='none'">
+  </div>
+  <div class="gItem" role="listitem">
+    <img src="02.jpg" alt="路線圖2" onerror="this.style.display='none'">
+  </div>
+</div>
+<div style="padding:8px 2px 0;color:#7a736b;font-size:13px;">01.jpg、02.jpg</div>
               </div>
-            </ul>
            </div>
           </details>
 
@@ -650,7 +651,7 @@
          <p class="galleryTitle">📷 飯店 / 周邊示意</p>
          <div class="galleryRow" role="list">
           <div class="gItem" role="listitem">
-           <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 大井町TRACKS">
+           <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 大井町TRACKS" onerror="this.onerror=null;this.src='01.jpg'">
            <div class="gCaption">JR東日本大都會大飯店 大井町TRACKS</div>
           </div>
           
@@ -819,144 +820,50 @@
   let endX = 0;
   let lastDayId = 'day1';
 
-  // ===== Lightbox 圖片預覽功能 =====
-  function getCaption(img) {
-   const item = img.closest('.gItem');
-   const cap = item ? item.querySelector('.gCaption') : null;
-   return cap ? cap.textContent.trim() : (img.alt || '');
-  }
+  // ===== 自動相簿（Day1） =====
+  const gallery = document.getElementById('gallery-day1');
+  if (gallery) {
+    const max = 20; // 嘗試 01~20
+    for (let i = 1; i <= max; i++) {
+      const num = String(i).padStart(2, '0');
+      const img = new Image();
 
-  function showImage(index) {
-   if (index < 0 || index >= currentGroup.length) return;
-   currentIndex = index;
-   const img = currentGroup[index];
-   modalImg.src = img.currentSrc || img.src;
-   modalImg.alt = img.alt || '';
-   modalCaption.textContent = getCaption(img);
-  }
+      // 先嘗試正式路徑（真實網站）
+      img.src = `Day1/${num}.jpg`;
+      img.alt = `Day1-${num}`;
+      img.loading = 'lazy';
 
-  function openLightbox(img) {
-   const row = img.closest('.galleryRow');
-   currentGroup = Array.from(row.querySelectorAll('img'));
-   currentIndex = currentGroup.indexOf(img);
-   showImage(currentIndex);
-   modal.classList.add('open');
-   modal.setAttribute('aria-hidden', 'false');
-   document.body.style.overflow = 'hidden';
- }
+      // 若失敗（Canvas 環境），自動改同層
+      img.onerror = () => {
+        img.onerror = null;
+        img.src = `${num}.jpg`;
+      };
 
-  function closeLightbox() {
-   modal.classList.remove('open');
-   modal.setAttribute('aria-hidden', 'true');
-   modalImg.removeAttribute('src');
-   modalCaption.textContent = '';
-   document.body.style.overflow = '';
-  }
-
-  function nextImage() {
-   if (!currentGroup.length) return;
-   const next = (currentIndex + 1) % currentGroup.length;
-   showImage(next);
- }
-
-  function prevImage() {
-   if (!currentGroup.length) return;
-   const prev = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
-   showImage(prev);
- }
-
-  document.querySelectorAll('.gallery img, .galleryRow img').forEach(img => {
-   img.loading = 'lazy';
-   img.addEventListener('click', () => openLightbox(img));
-  });
-
-  modal.addEventListener('click', e => {
-   if (e.target === modal || e.target.dataset.close === 'lightbox') closeLightbox();
-  });
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', prevImage);
-  nextBtn.addEventListener('click', nextImage);
-
-  document.addEventListener('keydown', e => {
-   if (!modal.classList.contains('open')) return;
-   if (e.key === 'Escape') closeLightbox();
-   if (e.key === 'ArrowRight') nextImage();
-   if (e.key === 'ArrowLeft') prevImage();
-  });
-
-  modalImg.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-  modalImg.addEventListener('touchend', e => {
-   endX = e.changedTouches[0].clientX;
-   const diff = startX - endX;
-   if (Math.abs(diff) < 40) return;
-   if (diff > 0) nextImage();
-   else prevImage();
-  });
-
-  // ===== 頁籤切換功能 =====
-  function activateTab(targetId, updateHash) {
-   if (targetId.startsWith('day')) lastDayId = targetId;
-   
-   tabButtons.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.target === targetId);
-   });
-   pagePanels.forEach(panel => {
-    panel.classList.toggle('active', panel.id === targetId);
-   });
-   
-   if (updateHash) history.replaceState(null, '', '#' + targetId);
-  }
-
-  tabButtons.forEach(btn => {
-   btn.addEventListener('click', e => {
-    e.preventDefault();
-    activateTab(btn.dataset.target, true);
-   });
-  });
-
-  const initialHash = window.location.hash ? window.location.hash.slice(1) : '';
-  const hasInitialPanel = Array.from(pagePanels).some(p => p.id === initialHash);
-  activateTab(hasInitialPanel ? initialHash : 'day1', false);
-
-  // ===== 行程日期與標題設定 =====
-  const tripConfig = {
-   tripName: '東京旅行',
-   startDate: '2026-09-26',
-  };
-
-  function formatDate(date) {
-   const d = new Date(date);
-   const m = String(d.getMonth() + 1).padStart(2, '0');
-   const day = String(d.getDate()).padStart(2, '0');
-   const w = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
-   return `${m}/${day}（${w}）`;
-  }
-
-  function applyAutoDates() {
-   const start = new Date(tripConfig.startDate);
-   document.querySelectorAll('.daySection').forEach((section, i) => {
-    const d = new Date(start);
-    d.setDate(start.getDate() + i);
-    const el = section.querySelector('.dayDate');
-    if (el) {
-     el.textContent = formatDate(d);
+      img.onload = () => {
+        const wrap = document.createElement('div');
+        wrap.className = 'gItem';
+        wrap.setAttribute('role', 'listitem');
+        wrap.appendChild(img);
+        gallery.appendChild(wrap);
+        img.addEventListener('click', () => openLightbox(img));
+      };
     }
-   });
   }
 
   function applyTripName() {
-   if (tripConfig.tripName) {
+  if (window.tripConfig && tripConfig.tripName) {
     document.title = tripConfig.tripName + '｜行程';
     document.querySelectorAll('.daySection .dayTitle').forEach((el, i) => {
-     if (i > 0 && el.textContent.includes('Day')) {
-      el.textContent = tripConfig.tripName + '｜Day ' + (i + 1) + ' 行程';
-     }
+      if (i > 0 && el.textContent.includes('Day')) {
+        el.textContent = tripConfig.tripName + '｜Day ' + (i + 1) + ' 行程';
+      }
     });
-   }
   }
+}
 
-  applyAutoDates();
-  applyTripName();
+// 安全執行
+if (typeof applyAutoDates === 'function') applyAutoDates();
+applyTripName();
 
 // ===== 行程拖曳排序 =====
   document.querySelectorAll('.timeline').forEach(timeline => {
