@@ -269,14 +269,12 @@
  }
  .galleryRow {
   display: flex;
+  flex-direction: column; /* 改成上下排列 */
   gap: 10px;
-  overflow-x: auto;
+  overflow: visible; /* 不再左右滑動 */
   padding: 4px 0 6px;
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-x; 
-  overscroll-behavior-x: contain; 
- }
+}
+
  .galleryRow::-webkit-scrollbar { height: 8px; }
  .galleryRow::-webkit-scrollbar-thumb {
   background: #d8cfc3;
@@ -838,15 +836,13 @@
   }
 
   function openLightbox(img) {
-   const row = img.closest('.galleryRow') || img.closest('.gallery');
-   if (!row) return;
-   currentGroup = Array.from(row.querySelectorAll('img'));
-   currentIndex = currentGroup.indexOf(img);
+   currentGroup = [img]; // 每次只顯示單張，不做左右切換
+   currentIndex = 0;
    showImage(currentIndex);
    modal.classList.add('open');
    modal.setAttribute('aria-hidden', 'false');
    document.body.style.overflow = 'hidden';
-  }
+ }
 
   function closeLightbox() {
    modal.classList.remove('open');
@@ -856,13 +852,9 @@
    document.body.style.overflow = '';
   }
 
-  function nextImage() {
-   if (currentIndex < currentGroup.length - 1) showImage(currentIndex + 1);
-  }
+  function nextImage() {}
 
-  function prevImage() {
-   if (currentIndex > 0) showImage(currentIndex - 1);
-  }
+  function prevImage() {}
 
   document.querySelectorAll('.gallery img, .galleryRow img').forEach(img => {
    img.loading = 'lazy';
