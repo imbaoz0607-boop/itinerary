@@ -269,11 +269,13 @@
  }
  .galleryRow {
   display: flex;
-  flex-direction: column; /* 改成上下排列 */
   gap: 10px;
-  overflow: visible; /* 不再左右滑動 */
+  overflow-x: auto;
   padding: 4px 0 6px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
 }
+
 
  .galleryRow::-webkit-scrollbar { height: 8px; }
  .galleryRow::-webkit-scrollbar-thumb {
@@ -281,8 +283,7 @@
   border-radius: 999px;
  }
  .gItem {
-  flex: 0 0 auto;
-  width: 180px;
+  width: 100%;
   scroll-snap-align: start;
  }
  .gItem img,
@@ -609,7 +610,8 @@
             <ul class="notes" style="font-size:15px; line-height:1.9;">
              <li><strong>機場T3</strong> → 京急線 → 品川 → 轉 JR京濱東北線 → <strong>大井町站</strong></li>
              <li><strong>機場T3</strong> → 單軌電車 → 濱松町 → 轉 JR京濱東北線 → <strong>大井町站</strong></li>
-             <div class="gallery" style="margin-left:0; margin-right:0; margin-top:10px;">
+            </ul>
+            <div class="gallery" style="margin-left:0; margin-right:0; margin-top:10px;">
                <div class="galleryRow" role="list">
                 <div class="gItem" role="listitem" style="width:100%;">
                  <img src="Day1/01.jpg" alt="羽田機場至大井町交通路線圖" style="cursor:zoom-in;">
@@ -619,7 +621,6 @@
                 </div>
                </div>
               </div>
-             </li>
             </ul>
            </div>
           </details>
@@ -835,8 +836,9 @@
   }
 
   function openLightbox(img) {
-   currentGroup = [img]; // 每次只顯示單張，不做左右切換
-   currentIndex = 0;
+   const row = img.closest('.galleryRow');
+   currentGroup = Array.from(row.querySelectorAll('img'));
+   currentIndex = currentGroup.indexOf(img);
    showImage(currentIndex);
    modal.classList.add('open');
    modal.setAttribute('aria-hidden', 'false');
@@ -851,9 +853,17 @@
    document.body.style.overflow = '';
   }
 
-  function nextImage() {}
+  function nextImage() {
+   if (!currentGroup.length) return;
+   const next = (currentIndex + 1) % currentGroup.length;
+   showImage(next);
+ }
 
-  function prevImage() {}
+  function prevImage() {
+   if (!currentGroup.length) return;
+   const prev = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+   showImage(prev);
+ }
 
   document.querySelectorAll('.gallery img, .galleryRow img').forEach(img => {
    img.loading = 'lazy';
