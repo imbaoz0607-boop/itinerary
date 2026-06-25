@@ -224,11 +224,11 @@
  }
  .tRow {
   display: grid;
-  grid-template-columns: 74px minmax(0, 1fr);
+  grid-template-columns: 74px minmax(0,1fr);
   gap: 12px;
   align-items: start;
   padding: 10px 0;
-  border-top: 1px dashed var(--line);
+  border-top: none;
  }
  .tRow:first-child {
   border-top: none;
@@ -309,7 +309,8 @@
   margin-top: 12px;
   margin-left: calc(-74px - 12px);
   margin-right: -16px;
-  border: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 0; 
   border-left: 0;
   border-right: 0;
   border-radius: 0;
@@ -351,8 +352,8 @@
  }
  .infoContent > details.infoBox > summary {
   padding: 10px 0;
-  border-bottom: 1px solid var(--line);
- }
+  border-bottom: none;
+}
  .infoContent > details.infoBox:last-child > summary { border-bottom: none; }
  .chev {
   color: var(--muted);
