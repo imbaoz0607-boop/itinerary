@@ -296,10 +296,14 @@
   background: #faf8f4;
  }
  .gItem img {
-  aspect-ratio: auto; 
-  object-fit: contain; 
+  width: 100%;
+  aspect-ratio: 4 / 3; /* 統一比例 */
+  object-fit: cover; /* 填滿並裁切 */
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #faf8f4;
   cursor: zoom-in;
- }
+}
  .gCaption {
   margin-top: 6px;
   color: var(--muted);
@@ -615,13 +619,13 @@
             <div class="gallery" style="margin-left:0; margin-right:0; margin-top:10px;">
                <div class="galleryRow" role="list">
   <div class="gItem" role="listitem">
-    <img src="01.jpg" alt="路線圖1" onerror="this.style.display='none'">
+    <img src="./01.jpg" alt="路線圖1">
   </div>
   <div class="gItem" role="listitem">
-    <img src="02.jpg" alt="路線圖2" onerror="this.style.display='none'">
+    <img src="./02.jpg" alt="路線圖2">
   </div>
 </div>
-<div style="padding:8px 2px 0;color:#7a736b;font-size:13px;">01.jpg、02.jpg</div>
+
               </div>
            </div>
           </details>
@@ -651,7 +655,7 @@
          <p class="galleryTitle">📷 飯店 / 周邊示意</p>
          <div class="galleryRow" role="list">
           <div class="gItem" role="listitem">
-           <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 大井町TRACKS" onerror="this.onerror=null;this.src='01.jpg'">
+           <img src="./Day1/01.jpg" alt="JR東日本大都會大飯店 大井町TRACKS">
            <div class="gCaption">JR東日本大都會大飯店 大井町TRACKS</div>
           </div>
           
@@ -820,35 +824,7 @@
   let endX = 0;
   let lastDayId = 'day1';
 
-  // ===== 自動相簿（Day1） =====
-  const gallery = document.getElementById('gallery-day1');
-  if (gallery) {
-    const max = 20; // 嘗試 01~20
-    for (let i = 1; i <= max; i++) {
-      const num = String(i).padStart(2, '0');
-      const img = new Image();
-
-      // 先嘗試正式路徑（真實網站）
-      img.src = `Day1/${num}.jpg`;
-      img.alt = `Day1-${num}`;
-      img.loading = 'lazy';
-
-      // 若失敗（Canvas 環境），自動改同層
-      img.onerror = () => {
-        img.onerror = null;
-        img.src = `${num}.jpg`;
-      };
-
-      img.onload = () => {
-        const wrap = document.createElement('div');
-        wrap.className = 'gItem';
-        wrap.setAttribute('role', 'listitem');
-        wrap.appendChild(img);
-        gallery.appendChild(wrap);
-        img.addEventListener('click', () => openLightbox(img));
-      };
-    }
-  }
+  
 
   function applyTripName() {
   if (window.tripConfig && tripConfig.tripName) {
