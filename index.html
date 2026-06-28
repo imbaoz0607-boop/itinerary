@@ -267,7 +267,6 @@
   font-size: 15px;
   font-weight: 700;
  }
- /* ✅ iOS：橫向滑動（恢復你原本版本） */
 .galleryRow{
   display:flex;
   flex-direction:row;
@@ -279,21 +278,9 @@
   touch-action: pan-x;
   overscroll-behavior-x: contain;
 }
-.galleryRow::-webkit-scrollbar{height:8px}
-.galleryRow::-webkit-scrollbar-thumb{background:rgba(17,24,39,.12);border-radius:999px}
-.galleryRow::-webkit-track{background:transparent}
 .galleryRow::-webkit-scrollbar { display: none; }
 
-.galleryRow::-webkit-scrollbar { display: none; }
-
-
- .galleryRow::-webkit-scrollbar { height: 8px; }
- .galleryRow::-webkit-scrollbar-thumb {
-  background: #d8cfc3;
-  border-radius: 999px;
- }
- /* ✅ 卡片尺寸 + 比例（恢復原本設計） */
-.gItem{
+ .gItem{
   flex:0 0 auto;
   width:160px;
   aspect-ratio:4/3;
@@ -304,30 +291,21 @@
   background:#faf8f4;
   box-shadow:0 4px 12px rgba(0,0,0,.06);
   scroll-snap-align:start;
-}
- .gItem img,
- .gItem a.pdfLink {
+ }
+ .gItem img {
   display: block;
   width: 100%;
+  height:100%;
+  object-fit:cover;
   border-radius: 14px;
   border: 1px solid var(--line);
   background: #faf8f4;
+  transition: box-shadow 0.2s ease;
  }
- .gItem img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-
-
-.gItem img:hover {
+ .gItem img:hover {
   box-shadow: 0 8px 20px rgba(0,0,0,.12);
-}
+ }
 
-
- /* ✅ 半透明文字標籤（恢復） */
 .gItem[data-caption]::after{
   content: attr(data-caption);
   position:absolute;
@@ -455,36 +433,44 @@
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 0;
   z-index: 9999;
  }
  .lbModal.open { display: flex; }
  .lbBackdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.72);
+  background: rgba(0,0,0,.85);
  }
- .lbImg { max-width: 100%; max-height: 90vh; object-fit: contain; touch-action: none; transform-origin: center center; } 
+ .lbImg { 
+  max-width: 100%; 
+  max-height: 100vh; 
+  object-fit: contain; 
+  touch-action: none; 
+  transition: transform 0.1s ease-out;
+  user-select: none;
+  -webkit-user-drag: none;
+ } 
  .lbInner {
   position: relative;
   z-index: 1;
-  width: min(100%, 980px);
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  overflow: hidden;
  }
  .lbNav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 10;
   border: none;
   width: 46px;
   height: 46px;
   border-radius: 999px;
-  background: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.85);
   font-size: 26px;
   cursor: pointer;
   display: flex;
@@ -492,27 +478,42 @@
   justify-content: center;
   box-shadow: var(--shadow);
  }
- .lbPrev { left: -6px; }
- .lbNext { right: -6px; }
+ .lbPrev { left: 14px; }
+ .lbNext { right: 14px; }
  .lbClose {
   position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
   border: none;
   border-radius: 999px;
-  min-width: 42px;
-  min-height: 42px;
-  padding: 0 12px;
-  font-size: 22px;
-  line-height: 1;
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
   cursor: pointer;
-  background: rgba(255,255,255,.96);
+  background: rgba(255,255,255,.85);
   color: #2d2a26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: var(--shadow);
  }
+ .lbCaption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 10;
+  pointer-events: none;
+  max-width: 85%;
+  text-align: center;
+ }
  
- /* --- 響應式合併 --- */
  @media (max-width: 640px) {
   .heroFlights {
    grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -552,10 +553,7 @@
    padding-right: 12px;
   }
   .gItem { width: 156px; }
-  .flightMid { grid-template-columns: 1fr; gap: 10px; }
-  .airportCol.isRight, .flightRoute { text-align: left; }
-  .airportCode { font-size: 24px; }
-  .infoContent table { font-size: 13px; }
+  .lbNav { display: none; } /* 手機版隱藏左右箭頭，純靠手勢滑動 */
  }
  </style>
 </head>
@@ -643,8 +641,6 @@
     <span class="chev">⌄</span>
   </summary>
   <div class="infoContent">
-
-    <!-- 🚆 電車 -->
     <details class="infoBox">
       <summary>
         <span class="summaryText">🚆搭乘電車</span>
@@ -655,19 +651,12 @@
           <li>機場T3 → 京急線 → 品川 → 轉 JR京濱東北線 → 大井町站</li>
           <li>機場T3 → 單軌電車 → 濱松町 → 轉 JR京濱東北線 → 大井町站</li>
         </ul>
-
         <div class="galleryRow" role="list">
-  <div class="gItem">
-    <img src="Day1/01.jpg" alt="路線圖1">
-  </div>
-  <div class="gItem">
-    <img src="Day1/02.jpg" alt="路線圖2">
-  </div>
-</div>
+          <div class="gItem"><img src="Day1/01.jpg" alt="電車路線圖 1"></div>
+          <div class="gItem"><img src="Day1/02.jpg" alt="電車路線圖 2"></div>
+        </div>
       </div>
     </details>
-
-    <!-- 🚌 公車 -->
     <details class="infoBox">
       <summary>
         <span class="summaryText">🚌搭乘機場巴士</span>
@@ -679,7 +668,6 @@
         </ul>
       </div>
     </details>
-
   </div>
 </details>
        </div>
@@ -693,10 +681,8 @@
          <p class="galleryTitle">📷 飯店 / 周邊示意</p>
          <div class="galleryRow" role="list">
           <div class="gItem" role="listitem">
-           <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 大井町TRACKS">
-           <div class="gCaption">JR東日本大都會大飯店 大井町TRACKS</div>
+           <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 外觀">
           </div>
-          
          </div>
         </div>
         <details class="infoBox">
@@ -716,125 +702,12 @@
      </div>
     </div>
    </section>
-   <section class="card daySection pagePanel" id="day2">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">2</div>
-      <h2 class="dayTitle">東京｜Day 2 行程</h2>
-     </div>
-     <div class="dayDate">04/21（二）</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">09:00</div>
-       <div class="place">
-        <p class="placeTitle">請填入 Day 2 第一個行程</p>
-        <p class="meta">可在這裡填地點、交通、預估停留時間。</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <section class="card daySection pagePanel" id="day3">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">3</div>
-      <h2 class="dayTitle">東京｜Day 3 行程</h2>
-     </div>
-     <div class="dayDate">04/22（三）</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">09:00</div>
-       <div class="place">
-        <p class="placeTitle">請填入 Day 3 第一個行程</p>
-        <p class="meta">之後直接複製 tRow 新增更多行程即可。</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <section class="card daySection pagePanel" id="day4">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">4</div>
-      <h2 class="dayTitle">東京｜Day 4 行程</h2>
-     </div>
-     <div class="dayDate">04/23（四）</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">09:00</div>
-       <div class="place">
-        <p class="placeTitle">請填入 Day 4 第一個行程</p>
-        <p class="meta">這一頁也做成和上面一樣的日行程卡格式。</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <section class="card daySection pagePanel" id="day5">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">5</div>
-      <h2 class="dayTitle">東京｜Day 5 行程</h2>
-     </div>
-     <div class="dayDate">04/24（五）</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">09:00</div>
-       <div class="place">
-        <p class="placeTitle">請填入 Day 5 第一個行程</p>
-        <p class="meta">可視需要加入相簿、收合層、地圖按鈕。</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-
-   <section class="card daySection pagePanel" id="day6">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">6</div>
-      <h2 class="dayTitle">東京｜Day 6 行程</h2>
-     </div>
-     <div class="dayDate"></div>
-    </div>
-    <div class="dayBody"></div>
-   </section>
-
-   <section class="card daySection pagePanel" id="day7">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">7</div>
-      <h2 class="dayTitle">東京｜Day 7 行程</h2>
-     </div>
-     <div class="dayDate"></div>
-    </div>
-    <div class="dayBody"></div>
-   </section>
-
-   <section class="card daySection pagePanel" id="day8">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">8</div>
-      <h2 class="dayTitle">東京｜Day 8 行程</h2>
-     </div>
-     <div class="dayDate"></div>
-    </div>
-    <div class="dayBody"></div>
-   </section>
-
   </section>
  </main>
+
  <div class="lbModal" id="lightbox" aria-hidden="true">
   <div class="lbBackdrop" data-close="lightbox"></div>
-  <div class="lbInner" role="dialog" aria-modal="true" aria-label="圖片預覽">
+  <div class="lbInner">
    <button class="lbClose" type="button" id="lbClose" aria-label="關閉圖片">×</button>
    <button class="lbNav lbPrev" id="lbPrev" aria-label="上一張">‹</button>
    <img class="lbImg" id="lbImg" alt="放大圖片">
@@ -845,54 +718,11 @@
 
  <script>
  (function(){
-  // ===== 全自動相簿（Day1~Day8 + GitHub/本地/Canvas 全支援） =====
-  function mountGallery(row){
-    const day = row.getAttribute('data-day') || 'Day1';
-    let list = (row.getAttribute('data-images')||'').split(',').map(s=>s.trim()).filter(Boolean);
-
-    // 若沒寫 data-images → 自動抓 01~20
-    if(list.length === 0){
-      for(let i=1;i<=20;i++){
-        list.push(String(i).padStart(2,'0') + '.jpg');
-      }
-    }
-
-    
-
-    list.forEach(name=>{
-      let loaded = false;
-
-      function tryLoad(i){
-        const bases = [`./${day}/`,`./`];
-        if(i >= bases.length) return;
-
-        const img = new Image();
-        img.alt = name;
-        img.loading = 'lazy';
-        img.src = bases[i] + name;
-
-        img.onload = ()=>{
-          if(loaded) return;
-          loaded = true;
-
-          const wrap = document.createElement('div');
-          wrap.className = 'gItem';
-          wrap.setAttribute('role','listitem');
-          wrap.appendChild(img);
-          row.appendChild(wrap);
-          img.addEventListener('click', ()=> openLightbox(img));
-        };
-
-        img.onerror = ()=>{
-          tryLoad(i+1);
-        };
-      }
-
-      tryLoad(0);
-    });
-  }
-
-  // document.querySelectorAll('.galleryRow').forEach(mountGallery);
+  // 傳統綁定點擊事件至既有圖片
+  document.querySelectorAll('.galleryRow img').forEach(img => {
+    img.removeAttribute('onclick'); // 防呆
+    img.addEventListener('click', () => openLightbox(img));
+  });
 
   // DOM 元素宣告
   const modal = document.getElementById('lightbox');
@@ -912,9 +742,7 @@
     currentIndex = currentGroup.indexOf(img);
     showImage(currentIndex);
     modal.classList.add('open');
-    // reset zoom
-    scale = 1; lastScale = 1; startDist = 0; startX = 0; startY = 0; dx = 0; dy = 0;
-    applyTransform();
+    resetTransform();
   }
 
   function showImage(i){
@@ -922,7 +750,11 @@
     currentIndex = i;
     const img = currentGroup[i];
     modalImg.src = img.src;
-    modalCaption.textContent = img.alt || '';
+    
+    // 優先抓取父層或祖先層的 data-caption 屬性，若無則抓 alt
+    const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
+    modalCaption.textContent = captionText;
+    modalCaption.style.display = captionText ? 'block' : 'none';
   }
 
   function nextImage(){
@@ -937,88 +769,117 @@
   nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
   prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
 
-  
+  // ===== 高級移動端手勢：點擊兩下放大 + 雙指縮放 + 左右滑動切換 =====
+  let scale = 1, lastScale = 1;
+  let startDist = 0;
+  let startX = 0, startY = 0;
+  let currentX = 0, currentY = 0;
+  let translateX = 0, translateY = 0;
+  let lastTranslateX = 0, lastTranslateY = 0;
+  let lastTap = 0;
+  let isDragging = false;
+  let touchMode = 'none'; // 'none' | 'pan' | 'pinch'
 
-  function applyTripName() {
-  if (window.tripConfig && tripConfig.tripName) {
-    document.title = tripConfig.tripName + '｜行程';
-    document.querySelectorAll('.daySection .dayTitle').forEach((el, i) => {
-      if (i > 0 && el.textContent.includes('Day')) {
-        el.textContent = tripConfig.tripName + '｜Day ' + (i + 1) + ' 行程';
+  function getDist(touches){
+    return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+  }
+
+  function applyTransform(animate = false){
+    modalImg.style.transition = animate ? 'transform 0.25s ease-out' : 'none';
+    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  }
+
+  function resetTransform(){
+    scale = 1; lastScale = 1;
+    translateX = 0; translateY = 0;
+    lastTranslateX = 0; lastTranslateY = 0;
+    applyTransform(true);
+  }
+
+  modalInner = document.querySelector('.lbInner');
+
+  modalInner.addEventListener('touchstart', (e)=>{
+    if (e.touches.length === 1) {
+      // 單指模式：準備滑動或拖曳
+      touchMode = 'pan';
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isDragging = true;
+    } else if (e.touches.length === 2) {
+      // 雙指模式：縮放
+      touchMode = 'pinch';
+      startDist = getDist(e.touches);
+      lastScale = scale;
+    }
+  }, {passive: true});
+
+  modalInner.addEventListener('touchmove', (e)=>{
+    if (touchMode === 'pinch' && e.touches.length === 2) {
+      e.preventDefault();
+      const dist = getDist(e.touches);
+      scale = Math.min(4, Math.max(1, lastScale * (dist / startDist)));
+      applyTransform();
+    } 
+    else if (touchMode === 'pan' && isDragging && e.touches.length === 1) {
+      currentX = e.touches[0].clientX;
+      currentY = e.touches[0].clientY;
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+
+      if (scale > 1) {
+        // 放大狀態：在邊界內自由拖曳看細節
+        translateX = lastTranslateX + diffX;
+        translateY = lastTranslateY + diffY;
+        applyTransform();
+      } else {
+        // 未放大狀態：允許左右滑動切換圖片
+        if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
+          e.preventDefault();
+          modalImg.style.transform = `translateX(${diffX}px) scale(1)`;
+        }
       }
-    });
-  }
-}
+    }
+  }, {passive: false});
 
-// 安全執行
-if (typeof applyAutoDates === 'function') applyAutoDates();
-applyTripName();
-
-// ===== 手勢（正確單張圖片縮放版） =====
-let scale = 1, lastScale = 1, startDist = 0;
-let dx = 0, dy = 0;
-let lastTap = 0;
-
-function getDist(touches){
-  const dx = touches[0].clientX - touches[1].clientX;
-  const dy = touches[0].clientY - touches[1].clientY;
-  return Math.hypot(dx, dy);
-}
-
-function applyTransform(){
-  // ⭐ 只縮放圖片本身，不影響整個畫面
-  modalImg.style.transform = `scale(${scale})`;
-}
-
-function resetTransform(){
-  scale = 1;
-  lastScale = 1;
-  modalImg.style.transform = 'scale(1)';
-}
-
-// 雙指開始
-modalImg.addEventListener('touchstart', (e)=>{
-  if (e.touches.length === 2){
-    startDist = getDist(e.touches);
-    lastScale = scale;
-  }
-}, {passive:false});
-
-// 雙指縮放（只影響圖片）
-modalImg.addEventListener('touchmove', (e)=>{
-  if (e.touches.length === 2){
-    e.preventDefault();
-    const dist = getDist(e.touches);
-    const ratio = dist / startDist;
-    scale = Math.min(4, Math.max(1, lastScale * ratio));
-    applyTransform();
-  }
-}, {passive:false});
-
-// 雙擊放大（單張圖片）
-modalImg.addEventListener('touchend', ()=>{
-  const now = Date.now();
-
-  if (now - lastTap < 300){
-    if (scale === 1){
-      scale = 2;
-    } else {
-      resetTransform();
+  modalInner.addEventListener('touchend', (e)=>{
+    if (touchMode === 'pan' && isDragging) {
+      isDragging = false;
+      const diffX = currentX - startX;
+      
+      if (scale === 1) {
+        // 未放大狀態：判定左右翻頁滑動臨界值（50px）
+        if (diffX > 60) {
+          prevImage();
+        } else if (diffX < -60) {
+          nextImage();
+        }
+        resetTransform();
+      } else {
+        // 放大狀態：紀錄拖曳最終定位點
+        lastTranslateX = translateX;
+        lastTranslateY = translateY;
+      }
+    }
+    
+    // 雙擊兩下放大/縮小邏輯
+    const now = Date.now();
+    if (now - lastTap < 300 && e.touches.length === 0) {
+      if (scale === 1) {
+        scale = 2.5;
+        // 雙擊時自動對焦到點擊大致中央位置
+        applyTransform(true);
+      } else {
+        resetTransform();
+      }
       lastTap = 0;
+      touchMode = 'none';
       return;
     }
-    applyTransform();
-    lastTap = 0;
-    return;
-  }
+    lastTap = now;
+    touchMode = 'none';
+  });
 
-  lastTap = now;
-
-  // 防止縮太小殘留
-  if (scale < 1.01) resetTransform();
-});
-
-// ===== 行程拖曳排序 =====
+  // ===== 行程拖曳排序 =====
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -1060,37 +921,6 @@ modalImg.addEventListener('touchend', ()=>{
     handle.addEventListener('mouseleave', () => row.draggable = false);
    });
   });
-
-  // ===== 下一班車自動標示系統 =====
-  const rows = Array.from(document.querySelectorAll('.infoContent table tr')).slice(1);
-  if (rows.length) {
-   const now = new Date();
-   const realNowMin = now.getHours() * 60 + now.getMinutes();
-   const nowMin = Math.max(16 * 60, realNowMin);
-   const list = [];
-   
-   rows.forEach(row => {
-    const tds = row.querySelectorAll('td');
-    if (tds.length < 4) return;
-    const [h, m] = tds[0].textContent.trim().split(':').map(Number);
-    const minutes = h * 60 + m;
-    if (minutes >= nowMin) list.push({ row, minutes });
-   });
-   
-   list.sort((a, b) => a.minutes - b.minutes);
-   const nextThree = list.slice(0, 3);
-   
-   nextThree.forEach((item, index) => {
-    const td = item.row.querySelectorAll('td')[3];
-    if (index === 0) {
-     td.innerHTML += ' ⭐';
-     item.row.style.background = '#e8f7e8';
-     item.row.style.fontWeight = '700';
-    } else {
-     item.row.style.background = '#fff9e8';
-    }
-   });
-  }
 
   // ===== 自動讓外部連結開新分頁 =====
   document.querySelectorAll('a[href^="http"]').forEach(link => {
