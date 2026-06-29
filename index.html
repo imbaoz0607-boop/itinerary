@@ -30,13 +30,14 @@
   margin: 0 auto;
   padding: 20px 14px 48px;
  }
- .hero, .tabShell { margin-bottom: 18px; }
+ .hero { margin-bottom: 18px; }
  .tabShell {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 28px;
   box-shadow: var(--shadow);
   overflow: visible; 
+  margin-bottom: 18px;
  }
  .topTabs {
   display: flex;
@@ -267,7 +268,7 @@
   font-size: 15px;
   font-weight: 700;
  }
-.galleryRow{
+ .galleryRow{
   display:flex;
   flex-direction:row;
   gap:12px;
@@ -277,8 +278,8 @@
   -webkit-overflow-scrolling: touch;
   touch-action: pan-x;
   overscroll-behavior-x: contain;
-}
-.galleryRow::-webkit-scrollbar { display: none; }
+ }
+ .galleryRow::-webkit-scrollbar { display: none; }
 
  .gItem{
   flex:0 0 auto;
@@ -297,16 +298,14 @@
   width: 100%;
   height:100%;
   object-fit:cover;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: #faf8f4;
+  /* 移除重複的 border、border-radius 和 background，交給外層 .gItem 控制即可 */
   transition: box-shadow 0.2s ease;
  }
  .gItem img:hover {
   box-shadow: 0 8px 20px rgba(0,0,0,.12);
  }
 
-.gItem[data-caption]::after{
+ .gItem[data-caption]::after{
   content: attr(data-caption);
   position:absolute;
   left:8px; right:8px; bottom:8px;
@@ -323,7 +322,7 @@
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
   overflow:hidden;
-}
+ }
  details.infoBox {
   margin-top: 12px;
   margin-left: calc(-74px - 12px);
@@ -372,7 +371,7 @@
  .infoContent > details.infoBox > summary {
   padding: 10px 0;
   border-bottom: none;
-}
+ }
  .infoContent > details.infoBox:last-child > summary { border-bottom: none; }
  .chev {
   color: var(--muted);
@@ -649,11 +648,13 @@
       <div class="infoContent">
         <ul class="notes" style="font-size:15px; line-height:1.9;">
           <li>機場T3 → 京急線 → 品川 → 轉 JR京濱東北線 → 大井町站</li>
+          <li>👉 京急線位置：出關後往「地下B1」方向（往下）</li>
           <li>機場T3 → 單軌電車 → 濱松町 → 轉 JR京濱東北線 → 大井町站</li>
+          <li>👉 單軌電車位置：出關後往「3F」方向（往上）</li>
         </ul>
         <div class="galleryRow" role="list">
-          <div class="gItem"><img src="Day1/01.jpg" alt=""></div>
-          <div class="gItem"><img src="Day1/02.jpg" alt=""></div>
+          <div class="gItem" role="listitem"><img src="Day1/01.jpg" alt=""></div>
+          <div class="gItem" role="listitem"><img src="Day1/02.jpg" alt=""></div>
         </div>
       </div>
     </details>
@@ -796,22 +797,22 @@
     applyTransform(true);
   }
 
-  modalInner = document.querySelector('.lbInner');
+  // 加上 const 修正未宣告變數的問題
+  const modalInner = document.querySelector('.lbInner');
 
+  // 修改為 passive: false，確保在未放大時，滑動翻頁能成功 preventDefault 且不引發網頁上下晃動
   modalInner.addEventListener('touchstart', (e)=>{
     if (e.touches.length === 1) {
-      // 單指模式：準備滑動或拖曳
       touchMode = 'pan';
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
       isDragging = true;
     } else if (e.touches.length === 2) {
-      // 雙指模式：縮放
       touchMode = 'pinch';
       startDist = getDist(e.touches);
       lastScale = scale;
     }
-  }, {passive: true});
+  }, {passive: false});
 
   modalInner.addEventListener('touchmove', (e)=>{
     if (touchMode === 'pinch' && e.touches.length === 2) {
@@ -827,12 +828,10 @@
       const diffY = currentY - startY;
 
       if (scale > 1) {
-        // 放大狀態：在邊界內自由拖曳看細節
         translateX = lastTranslateX + diffX;
         translateY = lastTranslateY + diffY;
         applyTransform();
       } else {
-        // 未放大狀態：允許左右滑動切換圖片
         if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
           e.preventDefault();
           modalImg.style.transform = `translateX(${diffX}px) scale(1)`;
@@ -847,7 +846,6 @@
       const diffX = currentX - startX;
       
       if (scale === 1) {
-        // 未放大狀態：判定左右翻頁滑動臨界值（50px）
         if (diffX > 60) {
           prevImage();
         } else if (diffX < -60) {
@@ -855,18 +853,15 @@
         }
         resetTransform();
       } else {
-        // 放大狀態：紀錄拖曳最終定位點
         lastTranslateX = translateX;
         lastTranslateY = translateY;
       }
     }
     
-    // 雙擊兩下放大/縮小邏輯
     const now = Date.now();
     if (now - lastTap < 300 && e.touches.length === 0) {
       if (scale === 1) {
         scale = 2.5;
-        // 雙擊時自動對焦到點擊大致中央位置
         applyTransform(true);
       } else {
         resetTransform();
