@@ -83,7 +83,7 @@
   height: 1px;
   background: var(--line);
  }
-.daySection { scroll-margin-top: 18px; }
+ .daySection { scroll-margin-top: 18px; }
  .heroTitleCard {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -223,7 +223,7 @@
   flex-direction: column;
   gap: 12px;
  }
-.tRow {
+ .tRow {
   display: grid;
   grid-template-columns: 74px minmax(0,1fr);
   gap: 12px;
@@ -459,7 +459,7 @@
   justify-content: center;
   overflow: hidden;
  }
-.lbNav {
+ .lbNav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -524,7 +524,7 @@
    padding: 14px 12px;
    scroll-padding-inline: 12px;
   }
- .tabBtn {
+  .tabBtn {
    min-height: 44px;
    padding: 0 16px;
    font-size: 15px;
@@ -542,7 +542,7 @@
   .card { padding: 16px 12px; }
   .tRow { grid-template-columns: 1fr; gap: 6px; }
   .time { font-size: 14px; }
- .gallery, details.infoBox {
+  .gallery, details.infoBox {
    margin-left: -12px;
    margin-right: -12px;
   }
@@ -669,8 +669,8 @@
         <ul class="notes">
           <li>乘車地點：第 3 航廈的 1 樓 10 號公車站</li>
           <li>單程票價：成人 800 円</li>
-          <li>建議班次：16:20 出發 → 約 17:00 抵達（最穩）</li>
-          <li>備用班次：15:20 / 17:05</li>
+          <li>建議班次：14:05 或 15:05 出發 → 直達大井町站（與出關時間最契合）</li>
+          <li>備用班次：16:05 / 16:50 / 17:40</li>
         </ul>
 
         <table>
@@ -682,264 +682,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>14:20</td><td>14:57</td><td></td></tr>
-            <tr><td>15:20</td><td>15:54</td><td></td></tr>
-            <tr><td>16:20</td><td>16:57</td><td></td></tr>
-            <tr><td>17:05</td><td>17:42</td><td></td></tr>
-            <tr><td>17:55</td><td>18:32</td><td></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </details>
-
-  </div>
-</details>
-  </div>
-</details>
-       </div>
-      </div>
-      <div class="tRow">
-       <div class="time">18:00</div>
-       <div class="place">
-        <p class="placeTitle">入住 JR東日本大都會大飯店 大井町TRACKS <a class="btn" href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a></p>
-        <p class="meta">先放行李、稍作休息，之後可安排大井町周邊晚餐或散步</p>
-        <div class="gallery">
-         <p class="galleryTitle">📷 飯店 / 周邊示意</p>
-         <div class="galleryRow" role="list">
-          <div class="gItem" role="listitem">
-           <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 外觀">
-          </div>
-         </div>
-        </div>
-        <details class="infoBox">
-         <summary>
-          <span class="summaryText">🏨 入住提醒</span>
-          <span class="chev">⌄</span>
-         </summary>
-         <div class="infoContent">
-          <ul class="notes">
-           <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
-           <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
-          </ul>
-         </div>
-        </details>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-  </section>
- </main>
-
- <div class="lbModal" id="lightbox" aria-hidden="true">
-  <div class="lbBackdrop" data-close="lightbox"></div>
-  <div class="lbInner">
-   <button class="lbClose" type="button" id="lbClose" aria-label="關閉圖片">×</button>
-   <button class="lbNav lbPrev" id="lbPrev" aria-label="上一張">‹</button>
-   <img class="lbImg" id="lbImg" alt="放大圖片">
-   <button class="lbNav lbNext" id="lbNext" aria-label="下一張">›</button>
-   <div class="lbCaption" id="lbCaption"></div>
-  </div>
- </div>
-
- <script>
- (function(){
-  document.querySelectorAll('.galleryRow img').forEach(img => {
-    img.removeAttribute('onclick');
-    img.addEventListener('click', () => openLightbox(img));
-  });
-
-  const modal = document.getElementById('lightbox');
-  const modalImg = document.getElementById('lbImg');
-  const modalCaption = document.getElementById('lbCaption');
- const closeBtn = document.getElementById('lbClose');
-  const prevBtn = document.getElementById('lbPrev');
-  const nextBtn = document.getElementById('lbNext');
-
-  let currentIndex = -1;
-  let currentGroup = [];
-
-  function openLightbox(img){
-    const row = img.closest('.galleryRow');
-    currentGroup = Array.from(row.querySelectorAll('img'));
-    currentIndex = currentGroup.indexOf(img);
-    showImage(currentIndex);
-    modal.classList.add('open');
-    resetTransform();
-  }
-
-  function showImage(i){
-    if(i<0 || i>=currentGroup.length) return;
-    currentIndex = i;
-    const img = currentGroup[i];
-    modalImg.src = img.src;
-    
-    const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
-    modalCaption.textContent = captionText;
-    modalCaption.style.display = captionText ? 'block' : 'none';
-  }
-
-  function nextImage(){
-    showImage((currentIndex+1)%currentGroup.length);
-  }
-
-  function prevImage(){
-    showImage((currentIndex-1+currentGroup.length)%currentGroup.length);
-  }
-
-  closeBtn.onclick = ()=> { modal.classList.remove('open'); resetTransform(); };
-  nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
-  prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
-
-  let scale = 1, lastScale = 1;
-  let startDist = 0;
-  let startX = 0, startY = 0;
-  let currentX = 0, currentY = 0;
-  let translateX = 0, translateY = 0;
-  let lastTranslateX = 0, lastTranslateY = 0;
-  let lastTap = 0;
-  let isDragging = false;
-  let touchMode = 'none';
-
-  function getDist(touches){
-    return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
-  }
-
-  function applyTransform(animate = false){
-    modalImg.style.transition = animate ? 'transform 0.25s ease-out' : 'none';
-    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-  }
-
-  function resetTransform(){
-    scale = 1; lastScale = 1;
-    translateX = 0; translateY = 0;
-    lastTranslateX = 0; lastTranslateY = 0;
-    applyTransform(true);
-  }
-
-  const modalInner = document.querySelector('.lbInner');
-
-  modalInner.addEventListener('touchstart', (e)=>{
-    if (e.touches.length === 1) {
-      touchMode = 'pan';
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      isDragging = true;
-    } else if (e.touches.length === 2) {
-      touchMode = 'pinch';
-      startDist = getDist(e.touches);
-      lastScale = scale;
-    }
-  }, {passive: false});
-
-  modalInner.addEventListener('touchmove', (e)=>{
-    if (touchMode === 'pinch' && e.touches.length === 2) {
-      e.preventDefault();
-      const dist = getDist(e.touches);
-      scale = Math.min(4, Math.max(1, lastScale * (dist / startDist)));
-      applyTransform();
-    } 
-    else if (touchMode === 'pan' && isDragging && e.touches.length === 1) {
-      currentX = e.touches[0].clientX;
-      currentY = e.touches[0].clientY;
-      const diffX = currentX - startX;
-      const diffY = currentY - startY;
-
-      if (scale > 1) {
-        translateX = lastTranslateX + diffX;
-        translateY = lastTranslateY + diffY;
-        applyTransform();
-      } else {
-        if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
-          e.preventDefault();
-          modalImg.style.transform = `translateX(${diffX}px) scale(1)`;
-        }
-      }
-    }
-  }, {passive: false});
-
-  modalInner.addEventListener('touchend', (e)=>{
-    if (touchMode === 'pan' && isDragging) {
-      isDragging = false;
-      const diffX = currentX - startX;
-      
-      if (scale === 1) {
-        if (diffX > 60) {
-          prevImage();
-        } else if (diffX < -60) {
-          nextImage();
-        }
-        resetTransform();
-      } else {
-        lastTranslateX = translateX;
-        lastTranslateY = translateY;
-      }
-    }
-    
-    const now = Date.now();
-    if (now - lastTap < 300 && e.touches.length === 0) {
-      if (scale === 1) {
-        scale = 2.5;
-        applyTransform(true);
-      } else {
-        resetTransform();
-      }
-      lastTap = 0;
-      touchMode = 'none';
-      return;
-    }
-    lastTap = now;
-    touchMode = 'none';
-  });
-
-  document.querySelectorAll('.timeline').forEach(timeline => {
-   let dragItem = null;
-   
-   timeline.addEventListener('dragstart', e => {
-    const row = e.target.closest('.tRow');
-    if (!row) return;
-    dragItem = row;
-    row.style.opacity = '0.4';
-    e.dataTransfer.effectAllowed = 'move';
-   });
-   
-   timeline.addEventListener('dragend', e => {
-    const row = e.target.closest('.tRow');
-    if (row) row.style.opacity = '1';
-    dragItem = null;
-   });
-   
-   timeline.addEventListener('dragover', e => {
-    e.preventDefault();
-    const row = e.target.closest('.tRow');
-    if (!row || !dragItem || row === dragItem) return;
-    const rect = row.getBoundingClientRect();
-    const offset = e.clientY - rect.top;
-    if (offset > rect.height / 2) {
-     row.after(dragItem);
-    } else {
-     row.before(dragItem);
-    }
-   });
-
-   timeline.querySelectorAll('.tRow').forEach(row => {
-    row.draggable = false;
-    const handle = row.querySelector('.time');
-    if (!handle) return;
-    handle.style.cursor = 'grab';
-    handle.style.userSelect = 'none';
-   handle.addEventListener('mousedown', () => row.draggable = true);
-    handle.addEventListener('mouseup', () => row.draggable = false);
-    handle.addEventListener('mouseleave', () => row.draggable = false);
-   });
-  });
-
-  document.querySelectorAll('a[href^="http"]').forEach(link => {
-   link.setAttribute('target', '_blank');
-   link.setAttribute('rel', 'noopener');
-  });
-
- })();
- </script>
-</body>
-</html>
+            <tr><td>14:05</td><td>14:57</td><td>京急巴士</td></tr>
+            <tr><td>15:05</td><td>15:54</td><td>京急巴士</td></tr>
+            <tr>
