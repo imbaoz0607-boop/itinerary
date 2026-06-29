@@ -3,7 +3,7 @@
 <head>
  <meta charset="utf-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1" />
- <title>東京｜主行程模板 v5</title>
+ <title>東京｜主行程模板 v5.1 (優化版)</title>
  <style>
  :root {
   --bg: #f1f3f7; 
@@ -298,7 +298,6 @@
   width: 100%;
   height:100%;
   object-fit:cover;
-  /* 移除重複的 border、border-radius 和 background，交給外層 .gItem 控制即可 */
   transition: box-shadow 0.2s ease;
  }
  .gItem img:hover {
@@ -423,7 +422,7 @@
  }
  .infoContent tr:hover td { background: #fafbff; }
  .infoContent td:last-child {
-  text-align: left;
+  text-align: center; /* 修正對齊，使其與th標頭對齊更美觀 */
   font-weight: 600;
  }
  .lbModal {
@@ -552,7 +551,7 @@
    padding-right: 12px;
   }
   .gItem { width: 156px; }
-  .lbNav { display: none; } /* 手機版隱藏左右箭頭，純靠手勢滑動 */
+  .lbNav { display: none; }
  }
  </style>
 </head>
@@ -561,7 +560,7 @@
   <section class="hero" id="memo">
    <div class="heroFlights">
     <section class="heroFlightCard" aria-label="去程航班資訊">
-     <h2 class="heroFlightTitle">✈️ 去程9/26(六）CI220</h2>
+     <h2 class="heroFlightTitle">✈️ 去程09/26(六）CI220</h2>
      <ul class="heroFlightList">
       <li>🛫 <strong>09:00</strong> 台北松山機場 T1</li>
       <li>🛬 <strong>13:10</strong> 東京羽田機場 T3</li>
@@ -623,17 +622,17 @@
     <div class="dayBody">
      <div class="timeline">
       <div class="tRow">
-       <div class="time">07:40</div>
+       <div class="time">13:10</div>
        <div class="place">
         <p class="placeTitle">抵達東京羽田機場 T3</p>
-        <p class="meta">待填</p>
+        <p class="meta">降落後依指標辦理入境檢疫、證照查驗並提取行李。</p>
        </div>
       </div>
       <div class="tRow">
-       <div class="time">16:00</div>
+       <div class="time">14:15</div>
        <div class="place">
         <p class="placeTitle">入境、領行李後前往東京市區</p>
-        <p class="meta">待填</p>
+        <p class="meta">出海關後即為2樓入境大廳，可自由選擇最適合的交通方式。</p>
         <details class="infoBox">
   <summary>
     <span class="summaryText">交通資訊</span>
@@ -643,53 +642,51 @@
 
     <details class="infoBox">
       <summary>
-        <span class="summaryText">🚆搭乘電車</span>
+        <span class="summaryText">🚆搭乘電車（免換樓層，皆在海關出關後的 2 樓）</span>
         <span class="chev">⌄</span>
       </summary>
       <div class="infoContent">
         <ul class="notes" style="font-size:15px; line-height:1.9;">
-          <li>搭乘「京急線」→ 品川 → 轉JR京濱東北線 → 大井町站<br>
-            </li>
-          <li>搭乘「單軌電車」→ 濱松町 → 轉JR京濱東北線 → 大井町站<br>
-            </li>
+          <li><strong>🔴 京急線（出關後往「右」手邊走）：</strong>搭乘「京急機場線」→ 品川站 → 轉乘「JR京濱東北線（往大船方向，1站）」→ 大井町站</li>
+          <li><strong>🔵 東京單軌電車（出關後往「左」手邊走）：</strong>搭乘「單軌電車」→ 濱松町站 → 轉乘「JR京濱東北線（往大船方向）」→ 大井町站</li>
         </ul>
         <div class="galleryRow" role="list">
-          <div class="gItem" data-caption=""><img src="Day1/01.jpg"></div>
-          <div class="gItem" data-caption=""><img src="Day1/02.jpg"></div>
-          <div class="gItem" data-caption=""><img src="Day1/03.jpg"></div>
+          <div class="gItem" data-caption="電車動線圖"><img src="Day1/01.jpg"></div>
+          <div class="gItem" data-caption="機場指標位置"><img src="Day1/02.jpg"></div>
+          <div class="gItem" data-caption="路線圖"><img src="Day1/03.jpg"></div>
         </div>
       </div>
     </details>
 
     <details class="infoBox">
       <summary>
-        <span class="summaryText">🚌搭乘機場巴士</span>
+        <span class="summaryText">🚌搭乘機場直達巴士（一車直達，最輕鬆省力）</span>
         <span class="chev">⌄</span>
       </summary>
       <div class="infoContent">
         <ul class="notes">
-          <li>乘車地點：第 3 航廈的 1 樓 10 號公車站</li>
-          <li>單程票價：成人 800 円</li>
+          <li><strong>乘車地點：</strong>第 3 航廈 1 樓的 10 號公車站</li>
+          <li><strong>單程票價：</strong>成人 800 円（可刷交通 IC 卡）</li>
+          <li><strong>推薦班次：</strong>首選 14:05 或 15:05 發車之班次（出關時間最契合）</li>
+          <li><strong>優點：</strong>大行李可直接放進巴士下層行李廂，免去在品川站內搬行李擠電車的痛苦。</li>
         </ul>
 
         <table>
           <thead>
             <tr>
-              <th>出發（T3）</th>
-              <th>抵達（大井町）</th>
-              <th>備註</th>
+              <th>出發（第 3 航廈）</th>
+              <th>抵達（大井町站）</th>
+              <th>客運公司</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>14:20</td><td>14:57</td><td></td></tr>
-            <tr><td>15:20</td><td>15:54</td><td></td></tr>
-            <tr><td>16:20</td><td>16:57</td><td></td></tr>
-            <tr><td>17:05</td><td>17:42</td><td></td></tr>
-            <tr><td>17:55</td><td>18:32</td><td></td></tr>
+            <tr><td>14:05</td><td>14:57</td><td>京急巴士</td></tr>
+            <tr><td>15:05</td><td>15:54</td><td>京急巴士</td></tr>
+            <tr><td>16:05</td><td>16:57</td><td>京急巴士</td></tr>
+            <tr><td>16:50</td><td>17:42</td><td>東急巴士</td></tr>
+            <tr><td>17:40</td><td>18:32</td><td>京急巴士</td></tr>
           </tbody>
         </table>
-
-        
       </div>
     </details>
 
@@ -719,8 +716,8 @@
          </summary>
          <div class="infoContent">
           <ul class="notes">
-           <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
-           <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+           <li>大井町周邊有大型超市 Ito-Yokado 購物極方便，回房前可以去採購水果與零食。</li>
+           <li>若有預訂晚餐餐廳，可以直接在下方新增時間欄位（tRow）。</li>
           </ul>
          </div>
         </details>
@@ -745,13 +742,11 @@
 
  <script>
  (function(){
-  // 傳統綁定點擊事件至既有圖片
   document.querySelectorAll('.galleryRow img').forEach(img => {
-    img.removeAttribute('onclick'); // 防呆
+    img.removeAttribute('onclick');
     img.addEventListener('click', () => openLightbox(img));
   });
 
-  // DOM 元素宣告
   const modal = document.getElementById('lightbox');
   const modalImg = document.getElementById('lbImg');
   const modalCaption = document.getElementById('lbCaption');
@@ -759,7 +754,6 @@
   const prevBtn = document.getElementById('lbPrev');
   const nextBtn = document.getElementById('lbNext');
 
-  // 狀態變數
   let currentIndex = -1;
   let currentGroup = [];
 
@@ -778,7 +772,6 @@
     const img = currentGroup[i];
     modalImg.src = img.src;
     
-    // 優先抓取父層或祖先層的 data-caption 屬性，若無則抓 alt
     const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
     modalCaption.textContent = captionText;
     modalCaption.style.display = captionText ? 'block' : 'none';
@@ -796,7 +789,6 @@
   nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
   prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
 
-  // ===== 高級移動端手勢：點擊兩下放大 + 雙指縮放 + 左右滑動切換 =====
   let scale = 1, lastScale = 1;
   let startDist = 0;
   let startX = 0, startY = 0;
@@ -805,7 +797,7 @@
   let lastTranslateX = 0, lastTranslateY = 0;
   let lastTap = 0;
   let isDragging = false;
-  let touchMode = 'none'; // 'none' | 'pan' | 'pinch'
+  let touchMode = 'none';
 
   function getDist(touches){
     return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
@@ -823,10 +815,8 @@
     applyTransform(true);
   }
 
-  // 加上 const 修正未宣告變數的問題
   const modalInner = document.querySelector('.lbInner');
 
-  // 修改為 passive: false，確保在未放大時，滑動翻頁能成功 preventDefault 且不引發網頁上下晃動
   modalInner.addEventListener('touchstart', (e)=>{
     if (e.touches.length === 1) {
       touchMode = 'pan';
@@ -900,7 +890,6 @@
     touchMode = 'none';
   });
 
-  // ===== 行程拖曳排序 =====
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -943,7 +932,6 @@
    });
   });
 
-  // ===== 自動讓外部連結開新分頁 =====
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
