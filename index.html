@@ -667,26 +667,26 @@
       </summary>
       <div class="infoContent">
         <ul class="notes">
-          <li>乘車地點：第 3 航廈的 1 樓 10 號公車站 [cite: 76]</li>
-          <li>單程票價：成人 800 円 [cite: 50]</li>
-          <li>建議班次：14:05 或 15:05 出發 → 直達大井町站（與出關時間最契合） [cite: 121, 191]</li>
-          <li>備用班次：16:05 / 16:50 / 17:40 [cite: 122, 123]</li>
+          <li>乘車地點：第 3 航廈的 1 樓 10 號公車站</li>
+          <li>單程票價：成人 800 円</li>
+          <li>建議班次：14:05 或 15:05 出發 → 直達大井町站（與出關時間最契合）</li>
+          <li>備用班次：16:05 / 16:50 / 17:40</li>
         </ul>
 
         <table>
           <thead>
             <tr>
-              <th>出發（T3） [cite: 117]</th>
-              <th>抵達（大井町） [cite: 120]</th>
+              <th>出發（T3）</th>
+              <th>抵達（大井町）</th>
               <th>備註</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>14:05 [cite: 121]</td><td>14:57 [cite: 121]</td><td>京急巴士 [cite: 121]</td></tr>
-            <tr><td>15:05 [cite: 121]</td><td>15:54 [cite: 121]</td><td>京急巴士 [cite: 121]</td></tr>
-            <tr><td>16:05 [cite: 122]</td><td>16:57 [cite: 122]</td><td>京急巴士 [cite: 122]</td></tr>
-            <tr><td>16:50 [cite: 122]</td><td>17:42 [cite: 123]</td><td>東急巴士 [cite: 122]</td></tr>
-            <tr><td>17:40 [cite: 123]</td><td>18:32 [cite: 123]</td><td>京急巴士 [cite: 123]</td></tr>
+            <tr><td>14:05</td><td>14:57</td><td>京急巴士</td></tr>
+            <tr><td>15:05</td><td>15:54</td><td>京急巴士</td></tr>
+            <tr><td>16:05</td><td>16:57</td><td>京急巴士</td></tr>
+            <tr><td>16:50</td><td>17:42</td><td>東急巴士</td></tr>
+            <tr><td>17:40</td><td>18:32</td><td>京急巴士</td></tr>
           </tbody>
         </table>
       </div>
@@ -862,7 +862,7 @@
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
       const diffX = currentX - startX;
-      
+       
       if (scale === 1) {
         if (diffX > 60) {
           prevImage();
@@ -872,10 +872,10 @@
         resetTransform();
       } else {
         lastTranslateX = translateX;
-        lastTranslateY = translateY;
+       lastTranslateY = translateY;
       }
     }
-    
+     
     const now = Date.now();
     if (now - lastTap < 300 && e.touches.length === 0) {
       if (scale === 1) {
