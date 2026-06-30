@@ -30,7 +30,7 @@
   margin: 0 auto;
   padding: 20px 14px 48px;
  }
- .hero { margin-bottom: 18px; }
+ .hero { margin-bottom: 14px; }
  .tabShell {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -92,32 +92,34 @@
   box-shadow: var(--shadow);
   margin-bottom: 14px;
  }
+ 
+ /* ===== 航班卡片改為福岡版樣式 ===== */
  .heroFlights {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: stretch;
+  gap: 12px;
  }
  .heroFlightCard {
-  background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 16px 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, .03);
  }
  .heroFlightTitle {
-  margin: 0 0 10px;
-  font-size: 18px;
-  line-height: 1.35;
-  font-weight: 800;
-  color: #1f2430;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--text);
  }
  .heroFlightList {
-  margin: 0;
-  padding-left: 1.15em;
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
  }
  .heroFlightList li + li { margin-top: 4px; }
- .heroFlightList strong { font-size: 15px; }
+ .heroFlightList strong { font-weight: 700; }
+ 
  .title {
   margin: 0;
   font-size: clamp(24px, 4vw, 34px);
@@ -164,7 +166,7 @@
   align-items: center;
   gap: 14px;
   min-width: 0;
- }
+  }
  .dayIndex {
   display: inline-flex;
   align-items: center;
@@ -192,7 +194,7 @@
   font-weight: 800;
   color: #16253b;
   letter-spacing: .4px;
-  white-space: nowrap;
+ White-space: nowrap;
  }
  .dayBody { padding: 18px 16px; }
  .dayTitle {
@@ -554,7 +556,6 @@
   .lbNav { display: none; }
  }
 
- /* 完美左對齊黑科技：強迫指定的折疊方塊與相片畫廊打破兩欄限制，完全貼齊最左側邊緣 */
  .tRow-alignLeft {
   display: block !important; 
   width: 100%;
@@ -580,22 +581,22 @@
  <main class="container">
   <section class="hero" id="memo">
    <div class="heroFlights">
-    <section class="heroFlightCard" aria-label="去程航班資訊">
+    <div class="heroFlightCard">
      <h2 class="heroFlightTitle">✈️ 去程9/26(六）CI220</h2>
      <ul class="heroFlightList">
-      <li>🛫 <strong>9:00</strong><br>松山機場 T1</li>
-      <li>🛬 <strong>13:10</strong><br>羽田機場 T3</li>
-      <li>⏱️ 飛行時間：約 3 小時 10 分</li>
+      <li>🛫 <strong>9:00</strong> 松山機場 T1</li>
+      <li>🛬 <strong>13:10</strong> 羽田機場 T3</li>
+      <li>⏰ 飛行時間：約 3 小時 10 分</li>
      </ul>
-    </section>
-    <section class="heroFlightCard" aria-label="回程航班資訊">
+    </div>
+    <div class="heroFlightCard">
      <h2 class="heroFlightTitle">✈️ 回程10/03(六）CI221</h2>
      <ul class="heroFlightList">
-      <li>🛫 <strong>14:30</strong><br>羽田機場 T3</li>
-      <li>🛬 <strong>16:55</strong><br>松山機場 T1</li>
-      <li>⏱️ 飛行時間：約 3 小時 25 分</li>
+      <li>🛫 <strong>14:30</strong> 羽田機場 T3</li>
+      <li>🛬 <strong>16:55</strong> 松山機場 T1</li>
+      <li>⏰ 飛行時間：約 3 小時 25 分</li>
      </ul>
-    </section>
+    </div>
    </div>
   </section>
   <section class="tabShell">
@@ -690,8 +691,8 @@
              </summary>
              <div class="infoContent">
                <ul class="notes">
-                 <li>乘車地點：第3航廈1樓10號公車站 [cite: 11]</li>
-                 <li>單程票價：成人800円 [cite: 11]</li>
+                 <li>乘車地點：第3航廈1樓10號公車站</li>
+                 <li>單程票價：成人800円</li>
                </ul>
                <table>
                  <thead>
@@ -702,11 +703,11 @@
                    </tr>
                  </thead>
                  <tbody>
-                   <tr><td>14:05</td><td>14:57</td><td>京急巴士 [cite: 2, 6]</td></tr>
-                   <tr><td>15:05</td><td>15:54</td><td>京急巴士 [cite: 2, 6]</td></tr>
-                   <tr><td>16:05</td><td>16:57</td><td>京急巴士 [cite: 2, 6]</td></tr>
-                   <tr><td>16:50</td><td>17:42</td><td>東急巴士 [cite: 2, 6]</td></tr>
-                   <tr><td>17:40</td><td>18:32</td><td>京急巴士 [cite: 2, 6]</td></tr>
+                   <tr><td>14:05</td><td>14:57</td><td>京急巴士</td></tr>
+                   <tr><td>15:05</td><td>15:54</td><td>京急巴士</td></tr>
+                   <tr><td>16:05</td><td>16:57</td><td>京急巴士</td></tr>
+                   <tr><td>16:50</td><td>17:42</td><td>東急巴士</td></tr>
+                   <tr><td>17:40</td><td>18:32</td><td>京急巴士</td></tr>
                  </tbody>
                </table>
              </div>
@@ -720,7 +721,7 @@
        <div class="time">18:00</div>
        <div class="place">
         <p class="placeTitle">入住 JR東日本大都會大飯店 大井町TRACKS <a class="btn" href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a></p>
-        <p class="meta">先放行李、稍作休息，之後可安排大井町周邊晚餐或散步</p>
+        <p class="meta">先放行李、稍作休息，之後可安排大井町周邊晚餐 or 散步</p>
        </div>
       </div>
 
