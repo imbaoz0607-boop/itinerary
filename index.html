@@ -554,23 +554,19 @@
   .lbNav { display: none; }
  }
 
- /* 終極修正：打破 infoBox 在 tRow 中的寬度限制，使其完美貼齊左側邊緣 */
- .timeline-fullWidth {
-  grid-column: 1 / -1;
-  width: 100% !important;
+ /* 完美對齊黑科技：讓特定的摺疊盒打破 Grid 的限制，名正言順向左靠齊時間邊界 */
+ .tRow-alignLeft {
+  display: block !important; /* 消除原本 Grid 對寬度的干擾 */
+  width: 100%;
+  padding: 10px 0;
  }
- .timeline-fullWidth details.infoBox {
-  margin-left: 0 !important;
+ .tRow timeline-fullWidth {
+  width: 100%;
+ }
+ .tRow-alignLeft details.infoBox {
+  margin-left: 0 !important;   /* 移除原本 -74px -12px 的推移偏移量 */
   margin-right: 0 !important;
-  border-radius: 0;
- }
- .timeline-fullWidth details.infoBox > summary {
-  padding-left: 14px !important;
-  padding-right: 14px !important;
- }
- .timeline-fullWidth .infoContent {
-  padding-left: 14px !important;
-  padding-right: 14px !important;
+  width: 100% !important;      /* 強制滿版延伸到最左邊 */
  }
  </style>
 </head>
@@ -655,60 +651,60 @@
        </div>
       </div>
 
-      <div class="tRow timeline-fullWidth">
+      <div class="tRow tRow-alignLeft">
         <details class="infoBox">
-         <summary>
-          <span class="summaryText">交通資訊</span>
-          <span class="chev">⌄</span>
-         </summary>
-         <div class="infoContent">
-          <details class="infoBox">
-           <summary>
-            <span class="summaryText">🚆搭乘電車</span>
+          <summary>
+            <span class="summaryText">交通資訊</span>
             <span class="chev">⌄</span>
-           </summary>
-           <div class="infoContent">
-            <ul class="notes" style="font-size:15px; line-height:1.9;">
-             <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
-             <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町站<br></li>
-            </ul>
-            <div class="galleryRow" role="list">
-             <div class="gItem" data-caption="電車動線圖"><img src="Day1/01.jpg"></div>
-             <div class="gItem" data-caption="機場指標位置"><img src="Day1/02.jpg"></div>
-             <div class="gItem" data-caption="路線圖"><img src="Day1/03.jpg"></div>
-            </div>
-           </div>
-          </details>
+          </summary>
+          <div class="infoContent">
+            <details class="infoBox">
+              <summary>
+                <span class="summaryText">🚆搭乘電車</span>
+                <span class="chev">⌄</span>
+              </summary>
+              <div class="infoContent">
+                <ul class="notes" style="font-size:15px; line-height:1.9;">
+                  <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
+                  <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町站<br></li>
+                </ul>
+                <div class="galleryRow" role="list">
+                  <div class="gItem" data-caption="電車動線圖"><img src="Day1/01.jpg"></div>
+                  <div class="gItem" data-caption="機場指標位置"><img src="Day1/02.jpg"></div>
+                  <div class="gItem" data-caption="路線圖"><img src="Day1/03.jpg"></div>
+                </div>
+              </div>
+            </details>
 
-          <details class="infoBox">
-           <summary>
-            <span class="summaryText">🚌搭乘機場巴士</span>
-            <span class="chev">⌄</span>
-           </summary>
-           <div class="infoContent">
-            <ul class="notes">
-             <li>乘車地點：第3航廈1樓10號公車站 [cite: 76]</li>
-             <li>單程票價：成人800円 [cite: 50]</li>
-            </ul>
-            <table>
-             <thead>
-              <tr>
-               <th>出發（T3）</th>
-               <th>抵達（大井町）</th>
-               <th>備註</th>
-              </tr>
-             </thead>
-             <tbody>
-              <tr><td>14:05</td><td>14:57</td><td>京急巴士 [cite: 33]</td></tr>
-              <tr><td>15:05</td><td>15:54</td><td>京急巴士 [cite: 33]</td></tr>
-              <tr><td>16:05</td><td>16:57</td><td>京急巴士 [cite: 33]</td></tr>
-              <tr><td>16:50</td><td>17:42</td><td>東急巴士 [cite: 33]</td></tr>
-              <tr><td>17:40</td><td>18:32</td><td>京急巴士 [cite: 33]</td></tr>
-             </tbody>
-            </table>
-           </div>
-          </details>
-         </div>
+            <details class="infoBox">
+              <summary>
+                <span class="summaryText">🚌搭乘機場巴士</span>
+                <span class="chev">⌄</span>
+              </summary>
+              <div class="infoContent">
+                <ul class="notes">
+                  <li>乘車地點：第3航廈1樓10號公車站 [cite: 11]</li>
+                  <li>單程票價：成人800円 [cite: 11]</li>
+                </ul>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>出發（T3）</th>
+                      <th>抵達（大井町）</th>
+                      <th>備註</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>14:05</td><td>14:57</td><td>京急巴士 [cite: 2]</td></tr>
+                    <tr><td>15:05</td><td>15:54</td><td>京急巴士 [cite: 2]</td></tr>
+                    <tr><td>16:05</td><td>16:57</td><td>京急巴士 [cite: 2]</td></tr>
+                    <tr><td>16:50</td><td>17:42</td><td>東急巴士 [cite: 2]</td></tr>
+                    <tr><td>17:40</td><td>18:32</td><td>京急巴士 [cite: 2]</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </div>
         </details>
       </div>
 
@@ -728,18 +724,18 @@
        </div>
       </div>
 
-      <div class="tRow timeline-fullWidth">
+      <div class="tRow tRow-alignLeft">
         <details class="infoBox">
-         <summary>
-          <span class="summaryText">🏨 入住提醒</span>
-          <span class="chev">⌄</span>
-         </summary>
-         <div class="infoContent">
-          <ul class="notes">
-           <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
-           <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
-          </ul>
-         </div>
+          <summary>
+            <span class="summaryText">🏨 入住提醒</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="infoContent">
+            <ul class="notes">
+              <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
+              <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+            </ul>
+          </div>
         </details>
       </div>
 
@@ -880,7 +876,7 @@
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
       const diffX = currentX - startX;
-       
+      
       if (scale === 1) {
         if (diffX > 60) {
           prevImage();
@@ -944,8 +940,8 @@
     row.draggable = false;
     const handle = row.querySelector('.time');
     if (!handle) return;
-    handle.style.cursor = 'default';
-    
+    handle.style.cursor = 'grab';
+    handle.style.userSelect = 'none';
     handle.addEventListener('mousedown', () => row.draggable = true);
     handle.addEventListener('mouseup', () => row.draggable = false);
     handle.addEventListener('mouseleave', () => row.draggable = false);
