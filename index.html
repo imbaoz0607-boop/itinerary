@@ -554,19 +554,25 @@
   .lbNav { display: none; }
  }
 
- /* 完美對齊黑科技：讓特定的摺疊盒打破 Grid 的限制，名正言順向左靠齊時間邊界 */
+ /* 完美左對齊黑科技：強迫指定的折疊方塊與相片畫廊打破兩欄限制，完全貼齊最左側邊緣 */
  .tRow-alignLeft {
-  display: block !important; /* 消除原本 Grid 對寬度的干擾 */
+  display: block !important; 
   width: 100%;
   padding: 10px 0;
  }
- .tRow timeline-fullWidth {
-  width: 100%;
- }
  .tRow-alignLeft details.infoBox {
-  margin-left: 0 !important;   /* 移除原本 -74px -12px 的推移偏移量 */
+  margin-left: 0 !important;   
   margin-right: 0 !important;
-  width: 100% !important;      /* 強制滿版延伸到最左邊 */
+  width: 100% !important;      
+ }
+ .tRow-alignLeft .gallery-alignLeft {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+ }
+ .tRow-alignLeft .gallery-alignLeft .galleryTitle {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
  }
  </style>
 </head>
@@ -713,7 +719,11 @@
        <div class="place">
         <p class="placeTitle">入住 JR東日本大都會大飯店 大井町TRACKS <a class="btn" href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a></p>
         <p class="meta">先放行李、稍作休息，之後可安排大井町周邊晚餐或散步</p>
-        <div class="gallery">
+       </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="gallery gallery-alignLeft">
          <p class="galleryTitle">📷 飯店 / 周邊示意</p>
          <div class="galleryRow" role="list">
           <div class="gItem" role="listitem">
@@ -721,7 +731,6 @@
           </div>
          </div>
         </div>
-       </div>
       </div>
 
       <div class="tRow tRow-alignLeft">
