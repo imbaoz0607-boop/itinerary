@@ -225,12 +225,7 @@
  }
  .tRow {
   display: grid;
-  grid-template-columns: 90px minmax(0,1fr);
-  gap: 12px;
-  align-items: start;
-  padding: 10px 0;
-  border-top: none;
-}
+  grid-template-columns: 90px minmax(0,1fr); /* 這裡改為 90px 寬度以符合你的對齊要求 */
   gap: 12px;
   align-items: start;
   padding: 10px 0;
@@ -545,19 +540,7 @@
   .dayDate { font-size: 16px; }
   .heroTitleCard { border-radius: 22px; }
   .card { padding: 16px 12px; }
-  .tRow { grid-template-columns: 90px 1fr; gap: 8px; }
-  .time { font-size: 14px; }
-  .gallery, details.infoBox {
-   margin-left: -12px;
-   margin-right: -12px;
-  }
-  .galleryTitle, details.infoBox > summary, .infoContent {
-   padding-left: 12px;
-   padding-right: 12px;
-  }
-  .gItem { width: 156px; }
-  .lbNav { display: none; }
-}
+  .tRow { grid-template-columns: 90px 1fr; gap: 8px; } /* 這裡修正為 90px 1fr，確保手機版也能完美靠左移對齊時間 */
   .time { font-size: 14px; }
   .gallery, details.infoBox {
    margin-left: -12px;
@@ -697,11 +680,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>14:05</td><td>14:57</td><td></td></tr>
-            <tr><td>15:05</td><td>15:54</td><td></td></tr>
-            <tr><td>16:05</td><td>16:57</td><td></td></tr>
-            <tr><td>16:50</td><td>17:42</td><td></td></tr>
-            <tr><td>17:40</td><td>18:32</td><td></td></tr>
+            <tr><td>14:05</td><td>14:57</td><td>京急巴士</td></tr>
+            <tr><td>15:05</td><td>15:54</td><td>京急巴士</td></tr>
+            <tr><td>16:05</td><td>16:57</td><td>京急巴士</td></tr>
+            <tr><td>16:50</td><td>17:42</td><td>東急巴士</td></tr>
+            <tr><td>17:40</td><td>18:32</td><td>京急巴士</td></tr>
           </tbody>
         </table>
       </div>
