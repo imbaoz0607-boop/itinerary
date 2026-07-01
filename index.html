@@ -28,7 +28,7 @@
  .container {
   width: min(100%, 980px);
   margin: 0 auto;
-  padding: 20px 14px 48px;
+  padding: 22px 8px 26px; /* 同步福岡版外層總邊距 */
  }
  .hero { margin-bottom: 14px; }
  .tabShell {
@@ -93,7 +93,6 @@
   margin-bottom: 14px;
  }
  
- /* ===== 航班卡片改為福岡版樣式 ===== */
  .heroFlights {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -194,7 +193,7 @@
   font-weight: 800;
   color: #16253b;
   letter-spacing: .4px;
- White-space: nowrap;
+  white-space: nowrap;
  }
  .dayBody { padding: 18px 16px; }
  .dayTitle {
@@ -363,23 +362,6 @@
   line-height: 1;
  }
  .transportIcon:hover { background: #f1f3f7; }
- .infoContent > details.infoBox {
-  margin-left: 0;
-  margin-right: 0;
-  border: 0;
-  background: transparent;
- }
- .infoContent > details.infoBox > summary {
-  padding: 10px 0;
-  border-bottom: none;
- }
- .infoContent > details.infoBox:last-child > summary { border-bottom: none; }
- .chev {
-  color: var(--muted);
-  transition: transform .2s ease;
-  flex: 0 0 auto;
- }
- details[open] .chev { transform: rotate(180deg); }
  .infoContent {
   padding: 0 16px 14px;
   color: #4d463f;
@@ -514,12 +496,16 @@
   text-align: center;
  }
  
+ /* ===== 同步福岡版：手機端響應式極窄邊框設計 ===== */
  @media (max-width: 640px) {
+  .container { 
+   padding-left: 8px !important; 
+   padding-right: 8px !important; 
+  }
   .heroFlights {
    grid-template-columns: repeat(2, minmax(0, 1fr));
    gap: 10px;
   }
-  .container { padding-inline: 10px; }
   .tabShell { border-radius: 22px; }
   .topTabs {
    gap: 8px;
@@ -541,9 +527,16 @@
   .dayHeading { font-size: 18px; }
   .dayDate { font-size: 16px; }
   .heroTitleCard { border-radius: 22px; }
-  .card { padding: 16px 12px; }
-  .tRow { grid-template-columns: 90px 1fr; gap: 8px; }
+  
+  /* 時間軸壓縮比例修正 */
+  .card { padding: 12px !important; }
+  .tRow { 
+   grid-template-columns: 72px 1fr !important; 
+   gap: 8px !important; 
+   padding: 12px !important;
+  }
   .time { font-size: 14px; }
+  
   .gallery, details.infoBox {
    margin-left: -12px;
    margin-right: -12px;
