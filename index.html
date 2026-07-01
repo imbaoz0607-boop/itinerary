@@ -95,43 +95,29 @@
  
  .heroFlights {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-}
-.heroFlightCard {
+ }
+ .heroFlightCard {
   border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 14px 14px;
-  background: linear-gradient(135deg,#f8fbff,#f1f6ff);
-  box-shadow: var(--shadow);
-}
-.heroFlightTitle {
-  margin: 0 0 6px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #5b6b8c;
-}
-.heroFlightMain {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 800;
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-.heroFlightRoute {
-  font-size: 13px;
-  color: var(--muted);
-}
-.heroFlightTime {
-  display: flex;
-  justify-content: space-between;
+  border-radius: 16px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, .03);
+ }
+ .heroFlightTitle {
+  margin: 0;
   font-size: 14px;
-  margin-top: 6px;
-  font-weight: 600;
-}
-.heroFlightList { display:none; }
-.heroFlightList strong { font-weight:700; }
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--text);
+ }
+ .heroFlightList {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+ }
+ .heroFlightList li + li { margin-top: 3px; }
+ .heroFlightList strong { font-weight: 700; }
  
  .title {
   margin: 0;
@@ -241,7 +227,7 @@
   align-items: flex-start; /* 強制以頂部對齊 */
   padding: 6px 0;
   border-top: none;
- }
+}
  .tRow:first-child {
   border-top: none;
   padding-top: 0;
@@ -255,7 +241,7 @@
   align-items: flex-start;
   padding-top: 0; /* 移除舊補償 */
   transform: translateY(1px); /* 精準校正 iOS baseline 偏移 */
- }
+}
  .place { min-width: 0; }
  
  .placeTitle {
@@ -342,7 +328,7 @@
   overflow:hidden;
  }
  details.infoBox {
-  margin-top: 8px; /* 調整電腦版高度：讓同列行程與交通資訊之間的距離緊密一致 */
+  margin-top: 10px;
   margin-left: calc(-74px - 12px);
   margin-right: -16px;
   border-top: 1px solid var(--line);
@@ -558,19 +544,21 @@
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
   
-  /* 核心對齊修正：優化內邊距，讓 a 區塊（各列之間）的視覺空隙縮小 */
+  /* 核心對齊修正：統一手機網格寬度，維持上下對齊 */
   .tRow { 
-   display: grid !important; 
+   display: grid !important; /* 強制所有排版維持網格 */
    grid-template-columns: 72px 1fr !important; 
    gap: 6px !important; 
-   padding: 4px 2px !important; /* 修正：縮減上下 Padding 貼合視覺基準 */
+   padding: 6px 2px !important;
    align-items: start !important;
   }
-  .time { font-size: 13px; line-height: 1.1; display: flex; flex-direction: column; justify-content: flex-start; }
+  .time { font-size: 13px; }
   
+  /* 修正無時間標記格子的內容對齊位置，讓其精準落在右邊區塊 */
   .tRow-alignLeft {
    grid-template-columns: 72px 1fr !important;
   }
+  /* 將原本滿版爆出的組件，精準指定丟到 Grid 的第二欄(內容區) */
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft,
   .tRow-alignLeft .place {
@@ -580,10 +568,6 @@
    width: 100% !important;
   }
   
-  /* 修正：精準微調 b 區塊，使「交通資訊」與上方「待填」的距離，完全等同於 tRow 的間距 */
-  details.infoBox {
-   margin-top: 8px !important; 
-  }
   .gallery, details.infoBox {
    margin-left: -8px;
    margin-right: -8px;
@@ -627,35 +611,24 @@
    </div>
 
    <div class="heroFlights">
-
-  <div class="heroFlightCard">
-    <div class="heroFlightTitle">去程</div>
-    <div class="heroFlightMain">
-      <span>去&nbsp;09/26(六)</span>
-      <span>CI220</span>
+    <div class="heroFlightCard">
+     <h2 class="heroFlightTitle">✈️ 去程9/26(六) 華航CI220</h2>
+     <ul class="heroFlightList">
+      <li>⏰ <strong>預計 06:30</strong> 抵達機場</li>
+      <li>🛫 <strong>9:00</strong> 松山機場 T1</li>
+      <li>🛬 <strong>13:10</strong> 羽田機場 T3</li>
+     </ul>
     </div>
-    <div class="heroFlightTime">
-      <span>🛫 09:00 TSA</span>
-      <span>🛬 13:10 HND</span>
+    <div class="heroFlightCard">
+     <h2 class="heroFlightTitle">✈️ 回程10/03(六) 華航CI221</h2>
+     <ul class="heroFlightList">
+      <li>⏰ <strong>預計 11:30</strong> 抵達機場</li>
+      <li>🛫 <strong>14:30</strong> 羽田機場 T3</li>
+      <li>🛬 <strong>16:55</strong> 松山機場 T1</li>
+     </ul>
     </div>
-    <div class="heroFlightRoute">台北松山 → 東京羽田 T3</div>
-  </div>
-
-  <div class="heroFlightCard">
-    <div class="heroFlightTitle">回程</div>
-    <div class="heroFlightMain">
-      <span>回&nbsp;10/03(六)</span>
-      <span>CI221</span>
-    </div>
-    <div class="heroFlightTime">
-      <span>🛫 14:30 HND</span>
-      <span>🛬 16:55 TSA</span>
-    </div>
-    <div class="heroFlightRoute">東京羽田 T3 → 台北松山</div>
-  </div>
-
-</div>
-</section>
+   </div>
+  </section>
   <section class="tabShell">
    <nav class="topTabs" aria-label="行程頁籤">
     <a class="tabBtn active" href="#day1" data-target="day1">Day 1</a>
@@ -705,7 +678,7 @@
       <div class="tRow">
        <div class="time">13:10</div>
        <div class="place">
-        <p class="placeTitle">落地羽田HND第3航廈</p>
+        <p class="placeTitle">落地羽田機場第3航廈</p>
         <p class="meta">待填</p>
        </div>
       </div>
