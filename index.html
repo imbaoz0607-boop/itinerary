@@ -95,29 +95,43 @@
  
  .heroFlights {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 12px;
- }
- .heroFlightCard {
+}
+.heroFlightCard {
   border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 10px 12px;
-  background: rgba(255, 255, 255, .03);
- }
- .heroFlightTitle {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.4;
-  font-weight: 700;
-  color: var(--text);
- }
- .heroFlightList {
-  margin: 6px 0 0;
-  padding-left: 18px;
+  border-radius: 18px;
+  padding: 14px 14px;
+  background: linear-gradient(135deg,#f8fbff,#f1f6ff);
+  box-shadow: var(--shadow);
+}
+.heroFlightTitle {
+  margin: 0 0 6px;
   font-size: 13px;
- }
- .heroFlightList li + li { margin-top: 3px; }
- .heroFlightList strong { font-weight: 700; }
+  font-weight: 700;
+  color: #5b6b8c;
+}
+.heroFlightMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.heroFlightRoute {
+  font-size: 13px;
+  color: var(--muted);
+}
+.heroFlightTime {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 6px;
+  font-weight: 600;
+}
+.heroFlightList { display:none; }
+.heroFlightList strong { font-weight:700; }
  
  .title {
   margin: 0;
@@ -613,24 +627,35 @@
    </div>
 
    <div class="heroFlights">
-    <div class="heroFlightCard">
-     <h2 class="heroFlightTitle">去&nbsp;9/26(六) 華航CI220</h2>
-     <ul class="heroFlightList">
-      <li>⏰ <strong>預計 06:30</strong> 抵達機場</li>
-      <li>🛫 <strong>09:00</strong> 松山機場 T1</li>
-      <li>🛬 <strong>13:10</strong> 羽田機場 T3</li>
-     </ul>
+
+  <div class="heroFlightCard">
+    <div class="heroFlightTitle">去程</div>
+    <div class="heroFlightMain">
+      <span>去&nbsp;09/26(六)</span>
+      <span>CI220</span>
     </div>
-    <div class="heroFlightCard">
-     <h2 class="heroFlightTitle">回&nbsp;10/03(六) 華航CI221</h2>
-     <ul class="heroFlightList">
-      <li>⏰ <strong>預計 11:30</strong> 抵達機場</li>
-      <li>🛫 <strong>14:30</strong> 羽田機場 T3</li>
-      <li>🛬 <strong>16:55</strong> 松山機場 T1</li>
-     </ul>
+    <div class="heroFlightTime">
+      <span>🛫 09:00 TSA</span>
+      <span>🛬 13:10 HND</span>
     </div>
-   </div>
-  </section>
+    <div class="heroFlightRoute">台北松山 → 東京羽田 T3</div>
+  </div>
+
+  <div class="heroFlightCard">
+    <div class="heroFlightTitle">回程</div>
+    <div class="heroFlightMain">
+      <span>回&nbsp;10/03(六)</span>
+      <span>CI221</span>
+    </div>
+    <div class="heroFlightTime">
+      <span>🛫 14:30 HND</span>
+      <span>🛬 16:55 TSA</span>
+    </div>
+    <div class="heroFlightRoute">東京羽田 T3 → 台北松山</div>
+  </div>
+
+</div>
+</section>
   <section class="tabShell">
    <nav class="topTabs" aria-label="行程頁籤">
     <a class="tabBtn active" href="#day1" data-target="day1">Day 1</a>
