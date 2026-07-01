@@ -250,13 +250,8 @@
   font-weight: 700;
   line-height: 1.4;
  }
- .place p {
-  margin: 0 0 2px 0; /* 縮小段落底部的間距以利更緊密 */
- }
- .place p:last-child {
-  margin-bottom: 0;
- }
  .meta {
+  margin: 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.4;
@@ -333,7 +328,7 @@
   overflow:hidden;
  }
  details.infoBox {
-  margin-top: 4px; /* 調小與上方內容的間距，讓其更緊密 */
+  margin-top: 8px; /* 調整電腦版高度：讓同列行程與交通資訊之間的距離緊密一致 */
   margin-left: calc(-74px - 12px);
   margin-right: -16px;
   border-top: 1px solid var(--line);
@@ -549,21 +544,19 @@
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
   
-  /* 核心對齊修正：統一手機網格寬度，維持上下對齊 */
+  /* 核心對齊修正：優化內邊距，讓 a 區塊（各列之間）的視覺空隙縮小 */
   .tRow { 
-   display: grid !important; /* 強制所有排版維持網格 */
+   display: grid !important; 
    grid-template-columns: 72px 1fr !important; 
    gap: 6px !important; 
-   padding: 4px 2px !important; /* 微調上下內邊距 */
+   padding: 4px 2px !important; /* 修正：縮減上下 Padding 貼合視覺基準 */
    align-items: start !important;
   }
   .time { font-size: 13px; line-height: 1.1; display: flex; flex-direction: column; justify-content: flex-start; }
   
-  /* 修正無時間標記格子的內容對齊位置，讓其精準落在右邊區塊 */
   .tRow-alignLeft {
    grid-template-columns: 72px 1fr !important;
   }
-  /* 將原本滿版爆出的組件，精準指定丟到 Grid 的第二欄(內容區) */
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft,
   .tRow-alignLeft .place {
@@ -573,8 +566,9 @@
    width: 100% !important;
   }
   
+  /* 修正：精準微調 b 區塊，使「交通資訊」與上方「待填」的距離，完全等同於 tRow 的間距 */
   details.infoBox {
-   margin-top: 4px !important; /* 手機端同樣拉近間距 */
+   margin-top: 8px !important; 
   }
   .gallery, details.infoBox {
    margin-left: -8px;
