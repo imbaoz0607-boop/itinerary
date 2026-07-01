@@ -539,13 +539,30 @@
   
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
+  
+  /* 核心對齊修正：統一手機網格寬度，維持上下對齊 */
   .tRow { 
+   display: grid !important; /* 強制所有排版維持網格 */
    grid-template-columns: 72px 1fr !important; 
    gap: 6px !important; 
    padding: 6px 2px !important;
-   align-items: start !important; /* 核心修正：治好手機端「時間與內容」的高度落差 */
+   align-items: start !important;
   }
   .time { font-size: 13px; }
+  
+  /* 修正無時間標記格子的內容對齊位置，讓其精準落在右邊區塊 */
+  .tRow-alignLeft {
+   grid-template-columns: 72px 1fr !important;
+  }
+  /* 將原本滿版爆出的組件，精準指定丟到 Grid 的第二欄(內容區) */
+  .tRow-alignLeft details.infoBox,
+  .tRow-alignLeft .gallery-alignLeft,
+  .tRow-alignLeft .place {
+   grid-column: 2 !important; 
+   margin-left: 0 !important;   
+   margin-right: 0 !important;
+   width: 100% !important;
+  }
   
   .gallery, details.infoBox {
    margin-left: -8px;
@@ -560,6 +577,7 @@
   .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
 
+ /* 電腦版維持不變 */
  .tRow-alignLeft {
   display: block !important; 
   width: 100%;
@@ -662,7 +680,7 @@
       </div>
       
       <div class="tRow eRow tRow-alignLeft">
-       <div class="place" style="grid-column: 1 / -1;">
+       <div class="place">
         <details class="infoBox">
          <summary>
            <span class="summaryText">交通資訊</span>
@@ -748,7 +766,7 @@
           <div class="infoContent">
             <ul class="notes">
               <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
-              <li>若要接着排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+              <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
             </ul>
           </div>
         </details>
