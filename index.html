@@ -957,8 +957,8 @@
     row.draggable = false;
     const handle = row.querySelector('.time');
     if (!handle) return;
-    handle.style.cursor = 'grab';
-    handle.style.userSelect = 'none';
+    handle.style.cursor = 'default';
+    handle.style.userSelect = 'text';
     handle.addEventListener('mousedown', () => row.draggable = true);
     handle.addEventListener('mouseup', () => row.draggable = false);
     handle.addEventListener('mouseleave', () => row.draggable = false);
