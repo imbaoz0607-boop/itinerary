@@ -324,7 +324,7 @@
   overflow:hidden;
  }
  details.infoBox {
-  margin-top: 10px;
+  margin-top: 12px;
   margin-left: calc(-74px - 12px);
   margin-right: -16px;
   border-top: 1px solid var(--line);
@@ -338,7 +338,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -363,21 +363,21 @@
  }
  .transportIcon:hover { background: #f1f3f7; }
  .infoContent {
-  padding: 0 16px 12px;
+  padding: 0 16px 14px;
   color: #4d463f;
  }
  .btnRow {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 10px;
  }
  .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 26px;
-  padding: 2px 8px;
+  min-height: 28px;
+  padding: 4px 8px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #fff;
@@ -395,12 +395,12 @@
  .infoContent th {
   text-align: center;
   background: #f4f6fb;
-  padding: 6px 6px;
+  padding: 8px 6px;
   border-bottom: 1px solid var(--line);
   font-weight: 700;
  }
  .infoContent td {
-  padding: 6px 6px;
+  padding: 8px 6px;
   border-bottom: 1px solid var(--line);
   text-align: center;
  }
@@ -498,105 +498,70 @@
  
  /* ===== 手機端極致緊湊排版最佳化 ===== */
  @media (max-width: 640px) {
-  .container { 
-   padding-left: 4px !important;
-   padding-right: 4px !important; 
-   padding-top: 10px !important; 
+  .heroFlights { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    gap: 10px;
   }
-  .hero { margin-bottom: 8px; }   
-  .heroFlights {
-   grid-template-columns: repeat(2, minmax(0, 1fr));
-   gap: 6px;
-  }
-  .heroFlightCard {
-   padding: 8px 6px !important;  
-  }
-  .tabShell { border-radius: 18px; }
+  .container { padding-inline: 10px; }
+  .tabShell { border-radius: 22px; }
   .topTabs {
-   gap: 6px;
-   padding: 8px 6px;
-   scroll-padding-inline: 8px;
+    gap: 8px;
+    padding: 14px 12px;
+    scroll-padding-inline: 12px;
   }
   .tabBtn {
-   min-height: 36px;             
-   padding: 0 10px;
-   font-size: 13px;
-   flex: 0 0 auto;
+    min-height: 44px;
+    padding: 0 16px;
+    font-size: 15px;
+    flex: 0 0 auto;
   }
   .dayCardHeader {
-   flex-direction: column;
-   align-items: flex-start;
-   gap: 4px;
-   padding: 10px 10px 6px !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
-  .dayHeaderMain { gap: 10px; width: 100%; }
-  .dayIndex {
-   width: 42px; min-width: 42px; height: 38px;
-   border-radius: 12px; font-size: 15px;
-  }
-  .dayHeading { font-size: 16px; }
-  .dayDate { font-size: 14px; padding-left: 52px; } 
+  .dayHeaderMain { width: 100%; }
+  .dayHeading { font-size: 18px; }
+  .dayDate { font-size: 16px; }
+  .heroTitleCard { border-radius: 22px; }
+  .card { padding: 16px 12px; }
   
-  .card { padding: 6px !important; } 
-  .dayBody { padding: 8px 4px !important; }
-  
-  /* 核心對齊修正：統一手機網格寬度，維持上下對齊 */
+  /* 核心修正：手機端網格微調，強制左右起跑點切齊頭頂線 */
   .tRow { 
-   display: grid !important; /* 強制所有排版維持網格 */
-   grid-template-columns: 72px 1fr !important; 
-   gap: 6px !important; 
-   padding: 6px 2px !important;
-   align-items: start !important;
+    display: grid !important;
+    grid-template-columns: 90px 1fr !important; 
+    gap: 8px !important; 
+    align-items: start !important; /* 強制頭頂對齊 */
   }
-  .time { font-size: 13px; }
-  
-  /* 修正無時間標記格子的內容對齊位置，讓其精準落在右邊區塊 */
-  .tRow-alignLeft {
-   grid-template-columns: 72px 1fr !important;
+  .time { 
+    font-size: 14px; 
+    line-height: 1.4 !important; /* 統一時間行高 */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
-  /* 將原本滿版爆出的組件，精準指定丟到 Grid 的第二欄(內容區) */
-  .tRow-alignLeft details.infoBox,
-  .tRow-alignLeft .gallery-alignLeft,
-  .tRow-alignLeft .place {
-   grid-column: 2 !important; 
-   margin-left: 0 !important;   
-   margin-right: 0 !important;
-   width: 100% !important;
+  .placeTitle {
+    margin-top: 0 !important; /* 移除右側標題外距防止頂開高度 */
+    line-height: 1.4 !important;
   }
   
   .gallery, details.infoBox {
-   margin-left: -8px;
-   margin-right: -8px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
   .galleryTitle, details.infoBox > summary, .infoContent {
-   padding-left: 8px;
-   padding-right: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
-  .gItem { width: 130px; } 
+  .gItem { width: 156px; }
   .lbNav { display: none; }
-  .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
 
- /* 電腦版維持不變 */
- .tRow-alignLeft {
-  display: block !important; 
-  width: 100%;
-  padding: 6px 0;
- }
- .tRow-alignLeft details.infoBox {
-  margin-left: 0 !important;   
-  margin-right: 0 !important;
-  width: 100% !important;
- }
- .tRow-alignLeft .gallery-alignLeft {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  width: 100% !important;
- }
- .tRow-alignLeft .gallery-alignLeft .galleryTitle {
-  padding-left: 14px !important;
-  padding-right: 14px !important;
- }
+  /* 確保沒有因為重複宣告導致失效 */
+ .time { font-size: 14px; line-height: 1.4; }
+ .gallery, details.infoBox { margin-left: -12px; margin-right: -12px; }
+ .galleryTitle, details.infoBox > summary, .infoContent { padding-left: 12px; padding-right: 12px; }
+ .gItem { width: 156px; }
+ .lbNav { display: none; }
  </style>
 </head>
 <body>
@@ -679,15 +644,16 @@
        </div>
       </div>
       
-      <div class="tRow eRow tRow-alignLeft">
+      <div class="tRow eRow">
+       <div class="time">交通資訊</div>
        <div class="place">
-        <details class="infoBox">
-         <summary>
-           <span class="summaryText">交通資訊</span>
+        <details class="infoBox" style="margin-top:0;">
+         <summary style="padding-top:0; padding-bottom:8px;">
+           <span class="summaryText">查看交通動線詳情</span>
            <span class="chev">⌄</span>
          </summary>
-         <div class="infoContent">
-           <details class="infoBox">
+         <div class="infoContent" style="padding-left:0; padding-right:0;">
+           <details class="infoBox" style="margin-top:0;">
              <summary>
                <span class="summaryText">🚆搭乘電車</span>
                <span class="chev">⌄</span>
@@ -713,7 +679,7 @@
              <div class="infoContent">
                <ul class="notes">
                  <li>乘車地點：第3航廈1樓10號公車站</li>
-                 <li>單程票價：成人800円</li>
+                 <li>單程票價：成人 800円</li>
                </ul>
                <table>
                  <thead>
@@ -746,30 +712,35 @@
        </div>
       </div>
 
-      <div class="tRow tRow-alignLeft">
-        <div class="gallery gallery-alignLeft">
-         <p class="galleryTitle">📷 飯店 / 周邊示意</p>
-         <div class="galleryRow" role="list">
-          <div class="gItem" role="listitem">
-           <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 外觀">
+      <div class="tRow">
+        <div class="time">📷 飯店圖</div>
+        <div class="place">
+          <div class="gallery" style="margin-top:0; margin-left:0; margin-right:0;">
+           <div class="galleryRow" role="list">
+            <div class="gItem" role="listitem" style="width:100%; max-width:160px;">
+             <img src="Day1/01.jpg" alt="JR東日本大都會大飯店 外觀">
+            </div>
+           </div>
           </div>
-         </div>
         </div>
       </div>
 
-      <div class="tRow tRow-alignLeft">
-        <details class="infoBox">
-          <summary>
-            <span class="summaryText">🏨 入住提醒</span>
-            <span class="chev">⌄</span>
-          </summary>
-          <div class="infoContent">
-            <ul class="notes">
-              <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
-              <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
-            </ul>
-          </div>
-        </details>
+      <div class="tRow">
+        <div class="time">🏨 提醒</div>
+        <div class="place">
+          <details class="infoBox" style="margin-top:0;">
+            <summary style="padding-top:0; padding-bottom:8px;">
+              <span class="summaryText">查看入住提醒細節</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent" style="padding-left:0; padding-right:0;">
+              <ul class="notes" style="margin-top:0;">
+                <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
+                <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
       </div>
 
      </div>
@@ -791,11 +762,6 @@
 
  <script>
  (function(){
-  document.querySelectorAll('.galleryRow img').forEach(img => {
-    img.removeAttribute('onclick');
-    img.addEventListener('click', () => openLightbox(img));
-  });
-
   const modal = document.getElementById('lightbox');
   const modalImg = document.getElementById('lbImg');
   const modalCaption = document.getElementById('lbCaption');
@@ -803,8 +769,13 @@
   const prevBtn = document.getElementById('lbPrev');
   const nextBtn = document.getElementById('lbNext');
 
+  document.querySelectorAll('.galleryRow img').forEach(img => {
+    img.removeAttribute('onclick');
+    img.addEventListener('click', () => openLightbox(img));
+  });
+
   let currentIndex = -1;
-  let currentGroup = [];
+  let currentGroup = []; 
   function openLightbox(img){
     const row = img.closest('.galleryRow');
     currentGroup = Array.from(row.querySelectorAll('img'));
@@ -819,7 +790,6 @@
     currentIndex = i;
     const img = currentGroup[i];
     modalImg.src = img.src;
-    
     const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
     modalCaption.textContent = captionText;
     modalCaption.style.display = captionText ? 'block' : 'none';
@@ -846,6 +816,7 @@
   let lastTap = 0;
   let isDragging = false;
   let touchMode = 'none';
+
   function getDist(touches){
     return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
   }
@@ -875,6 +846,7 @@
       lastScale = scale;
     }
   }, {passive: false});
+
   modalInner.addEventListener('touchmove', (e)=>{
     if (touchMode === 'pinch' && e.touches.length === 2) {
       e.preventDefault();
@@ -887,7 +859,6 @@
       currentY = e.touches[0].clientY;
       const diffX = currentX - startX;
       const diffY = currentY - startY;
-
       if (scale > 1) {
         translateX = lastTranslateX + diffX;
         translateY = lastTranslateY + diffY;
@@ -900,11 +871,11 @@
       }
     }
   }, {passive: false});
+
   modalInner.addEventListener('touchend', (e)=>{
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
       const diffX = currentX - startX;
-      
       if (scale === 1) {
         if (diffX > 60) {
           prevImage();
@@ -917,7 +888,6 @@
         lastTranslateY = translateY;
       }
     }
-     
     const now = Date.now();
     if (now - lastTap < 300 && e.touches.length === 0) {
       if (scale === 1) {
@@ -933,9 +903,9 @@
     lastTap = now;
     touchMode = 'none';
   });
+
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
-   
    timeline.addEventListener('dragstart', e => {
     const row = e.target.closest('.tRow');
     if (!row) return;
@@ -943,13 +913,11 @@
     row.style.opacity = '0.4';
     e.dataTransfer.effectAllowed = 'move';
    });
-   
    timeline.addEventListener('dragend', e => {
     const row = e.target.closest('.tRow');
     if (row) row.style.opacity = '1';
     dragItem = null;
    });
-   
    timeline.addEventListener('dragover', e => {
     e.preventDefault();
     const row = e.target.closest('.tRow');
@@ -962,23 +930,21 @@
      row.before(dragItem);
     }
    });
-
    timeline.querySelectorAll('.tRow').forEach(row => {
     row.draggable = false;
     const handle = row.querySelector('.time');
     if (!handle) return;
-    handle.style.cursor = 'grab';
-    handle.style.userSelect = 'none';
+    handle.style.cursor = 'default';
     handle.addEventListener('mousedown', () => row.draggable = true);
     handle.addEventListener('mouseup', () => row.draggable = false);
     handle.addEventListener('mouseleave', () => row.draggable = false);
    });
   });
+
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
   });
-
  })();
  </script>
 </body>
