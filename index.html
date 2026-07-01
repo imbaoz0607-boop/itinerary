@@ -227,7 +227,7 @@
   align-items: flex-start; /* 強制以頂部對齊 */
   padding: 6px 0;
   border-top: none;
-}
+ }
  .tRow:first-child {
   border-top: none;
   padding-top: 0;
@@ -241,7 +241,7 @@
   align-items: flex-start;
   padding-top: 0; /* 移除舊補償 */
   transform: translateY(1px); /* 精準校正 iOS baseline 偏移 */
-}
+ }
  .place { min-width: 0; }
  
  .placeTitle {
@@ -250,8 +250,13 @@
   font-weight: 700;
   line-height: 1.4;
  }
+ .place p {
+  margin: 0 0 2px 0; /* 縮小段落底部的間距以利更緊密 */
+ }
+ .place p:last-child {
+  margin-bottom: 0;
+ }
  .meta {
-  margin: 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.4;
@@ -328,7 +333,7 @@
   overflow:hidden;
  }
  details.infoBox {
-  margin-top: 10px;
+  margin-top: 4px; /* 調小與上方內容的間距，讓其更緊密 */
   margin-left: calc(-74px - 12px);
   margin-right: -16px;
   border-top: 1px solid var(--line);
@@ -549,7 +554,7 @@
    display: grid !important; /* 強制所有排版維持網格 */
    grid-template-columns: 72px 1fr !important; 
    gap: 6px !important; 
-   padding: 6px 2px !important;
+   padding: 4px 2px !important; /* 微調上下內邊距 */
    align-items: start !important;
   }
   .time { font-size: 13px; line-height: 1.1; display: flex; flex-direction: column; justify-content: flex-start; }
@@ -568,6 +573,9 @@
    width: 100% !important;
   }
   
+  details.infoBox {
+   margin-top: 4px !important; /* 手機端同樣拉近間距 */
+  }
   .gallery, details.infoBox {
    margin-left: -8px;
    margin-right: -8px;
