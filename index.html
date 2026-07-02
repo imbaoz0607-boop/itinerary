@@ -250,8 +250,12 @@
   font-weight: 700;
   line-height: 1.4;
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+}
+.placeTitle a {
+  margin-left: auto; /* 推到最右邊 */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .placeTitle a {
   white-space: nowrap;
