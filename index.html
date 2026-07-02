@@ -679,7 +679,7 @@
        <div class="time">13:10</div>
        <div class="place">
         <p class="placeTitle">落地羽田機場第3航廈</p>
-        <p class="meta">待填</p>
+        <p class="meta"></p>
        </div>
       </div>
       
@@ -745,8 +745,8 @@
       <div class="tRow">
        <div class="time">18:00</div>
        <div class="place">
-        <p class="placeTitle">JR東日本大都會大飯店 大井町TRACKS <a class="btn" href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a></p>
-        <p class="meta">????</p>
+        <p class="placeTitle">JR東日本大都會大飯店大井町TRACKS <a class="btn" href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a></p>
+        <p class="meta">HOTEL METROPOLITAN OIMACHI TRACKS TOKYO</p>
        </div>
       </div>
 
@@ -971,8 +971,8 @@
     row.draggable = false;
     const handle = row.querySelector('.time');
     if (!handle) return;
-    handle.style.cursor = 'grab';
-    handle.style.userSelect = 'none';
+    handle.style.cursor = 'default';
+    handle.style.userSelect = 'text';
     handle.addEventListener('mousedown', () => row.draggable = true);
     handle.addEventListener('mouseup', () => row.draggable = false);
     handle.addEventListener('mouseleave', () => row.draggable = false);
