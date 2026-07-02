@@ -220,16 +220,14 @@
   flex-direction: column;
   gap: 8px;
  }
- 
- /* ===== 👑 核心優化：整合垂直置中與對齊修正 ===== */
  .tRow {
   display: grid;
   grid-template-columns: 90px minmax(0,1fr);
   gap: 12px;
-  align-items: center !important; /* 🌟 核心修正：強制讓左右兩側「水平對齊」不懸空 */
+  align-items: flex-start; /* 強制以頂部對齊 */
   padding: 6px 0;
   border-top: none;
- }
+}
  .tRow:first-child {
   border-top: none;
   padding-top: 0;
@@ -239,32 +237,13 @@
   color: #000;
   letter-spacing: .2px;
   line-height: 1.4;
-  display: inline-flex !important; /* 🌟 核心修正：讓時間文字轉為 Flex 容器 */
-  align-items: center !important;   /* 🌟 核心修正：讓時間內文字垂直居中 */
-  padding-top: 0;
-  transform: translateY(1px); 
- }
- .place { 
-  min-width: 0;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center; /* 🌟 核心修正：讓右側內容在高度較高時也能垂直居中 */
- }
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0; /* 移除舊補償 */
+  transform: translateY(1px); /* 精準校正 iOS baseline 偏移 */
+}
+ .place { min-width: 0; }
  
- /* 🌟 核心修正：徹底解決 Emoji / 圖示大小與高低不一的問題 */
- .tRow img, 
- .tRow span, 
- .time::before, 
- .place::before,
- .heroFlightTitle::before,
- .heroFlightList li::before {
-  display: inline-block;
-  vertical-align: middle;   /* 強制讓 Emoji 圖示與文字的基線對齊 */
-  font-size: 16px;          /* 統一手機端渲染 Emoji 的大小 */
-  max-height: 20px;
- }
- /* ============================================ */
-
  .placeTitle {
   margin: 0;
   font-size: 16px;
@@ -565,13 +544,13 @@
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
   
-  /* 核心對齊修正：統一手機網格寬度，維持上下與垂直居中對齊 */
+  /* 核心對齊修正：統一手機網格寬度，維持上下對齊 */
   .tRow { 
-   display: grid !important;
+   display: grid !important; /* 強制所有排版維持網格 */
    grid-template-columns: 72px 1fr !important; 
    gap: 6px !important; 
    padding: 6px 2px !important;
-   align-items: center !important; /* 🌟 手機版同步維持垂直靠中 */
+   align-items: start !important;
   }
   .time { font-size: 13px; }
   
@@ -583,7 +562,7 @@
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft,
   .tRow-alignLeft .place {
-   grid-column: 2 !important;
+   grid-column: 2 !important; 
    margin-left: 0 !important;   
    margin-right: 0 !important;
    width: 100% !important;
