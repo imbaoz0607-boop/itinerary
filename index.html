@@ -224,7 +224,7 @@
   display: grid;
   grid-template-columns: 90px minmax(0,1fr);
   gap: 12px;
-  align-items: flex-start; /* 強制以頂部對齊 */
+  align-items: center; /* 改成真正垂直置中（福岡作法） */
   padding: 6px 0;
   border-top: none;
 }
@@ -236,11 +236,13 @@
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.35; /* 與主標更接近 */
+  line-height: 1.35;
   display: flex;
-  align-items: flex-start;
-  padding-top: 3px; /* 再微調讓視覺完全貼齊 */
+  align-items: center; /* 垂直置中 */
+  justify-content: flex-start;
+  padding-top: 0; /* 移除所有微調 hack */
   transform: none;
+  height: 100%;
 }
  .place { min-width: 0; }
  
