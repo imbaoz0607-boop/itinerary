@@ -292,24 +292,19 @@
   font-weight: 700;
  }
  .galleryRow{
-  display:flex;
-  flex-direction:row;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap:10px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
-  overscroll-behavior-x: contain;
+  overflow: visible;
+  scroll-snap-type:none;
  }
  .galleryRow::-webkit-scrollbar { display: none; }
 
  .gItem{
-  flex:0 0 auto;
-  width:180px;
+  width:100%;
   aspect-ratio:4/3;
   position:relative;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
   border:1px solid var(--line);
   background:#faf8f4;
@@ -600,7 +595,7 @@ grid-template-columns: 68px 1fr !important;
    padding-left: 8px;
    padding-right: 8px;
   }
-  .gItem { width: 150px; } 
+  .gItem { width: 100%; } 
   .lbNav { display: none; }
   .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
@@ -630,6 +625,23 @@ grid-template-columns: 68px 1fr !important;
 .infoContent .galleryRow {
   margin-top: 12px;
   padding-top: 6px;
+}
+
+/* ✅ 交通資訊內圖片改成福岡版的大卡片尺寸 */
+.infoContent .galleryRow,
+.gallery-alignLeft .galleryRow {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.infoContent .galleryRow .gItem,
+.gallery-alignLeft .galleryRow .gItem {
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .infoContent .galleryRow,
+  .gallery-alignLeft .galleryRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
 }
  </style>
 </head>
