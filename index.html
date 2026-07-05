@@ -274,12 +274,6 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
- .meta {
-  margin: 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
- }
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
@@ -414,56 +408,34 @@
   font-size: 12px;
   line-height: 1;
  }
- .infoContent table {
+.infoContent table {
   width: 100%;
-  max-width: 260px; /* 限制寬度，避免拉太開 */
-  margin: 8px auto 0; /* 置中 */
+  max-width: 260px;
+  margin: 8px auto 0;
   border-collapse: collapse;
   font-size: 14px;
 }
 
-.infoContent th, .infoContent td {
-  padding: 6px 8px;
-  border-bottom: 1px solid var(--line);
-}
-
-.infoContent th {
-  background: #f4f6fb;
-  font-weight: 700;
-  text-align: center;
-}
-
-.infoContent td:first-child {
-  text-align: center;
-}
-
-.infoContent td:last-child {
-  text-align: center;
-  font-weight: 600;
-}
-
-.infoContent th, .infoContent td {
+.infoContent th, 
+.infoContent td {
   width: 50%;
   padding: 8px 6px;
   border-bottom: 1px solid var(--line);
+  text-align: center;
 }
 
-/* 標題列 */
 .infoContent th {
   background: #f4f6fb;
-  font-weight: 700;
+  font-weight: 600;
 }
 
-/* 左右對齊（關鍵修正） */
-.infoContent th {
-  text-align: center;
+.infoContent td:last-child {
   font-weight: 600;
 }
 
 .infoContent tr:hover td {
   background: #fafbff;
-}
- .lbModal {
+} .lbModal {
   position: fixed;
   inset: 0;
   display: none;
