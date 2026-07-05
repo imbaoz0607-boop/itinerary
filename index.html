@@ -239,8 +239,8 @@
   line-height: 1.4;
   display: flex;
   align-items: flex-start;
-  padding-top: 0; /* 移除舊補償 */
-  transform: translateY(1px); /* 精準校正 iOS baseline 偏移 */
+  padding-top: 0;
+  transform: none; /* 移除偏移，恢復真正對齊 */
 }
  .place { min-width: 0; }
  
@@ -720,7 +720,7 @@ grid-template-columns: 68px 1fr !important;
              <div class="infoContent">
                <ul class="notes" style="font-size:15px; line-height:1.7;">
                  <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
-                 <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町站<br></li>
+                 <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町<br></li>
                </ul>
                <div class="galleryRow" role="list">
                  <div class="gItem"><img src="Day1/01.jpg"></div>
