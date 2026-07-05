@@ -355,7 +355,7 @@
   margin-top: 10px;
   margin-left: calc(-74px - 12px);
   margin-right: -16px;
-  border-top: 1px solid var(--line);
+  border-top: none; /* ✅ 移除多餘分隔線 */
   border-bottom: 0; 
   border-left: 0;
   border-right: 0;
@@ -457,6 +457,7 @@
 /* 左右對齊（關鍵修正） */
 .infoContent th {
   text-align: center;
+  font-weight: 600;
 }
   font-weight: 600;
 }
@@ -651,7 +652,13 @@ grid-template-columns: 68px 1fr !important;
  .tRow-alignLeft .gallery-alignLeft .galleryTitle {
   padding-left: 14px !important;
   padding-right: 14px !important;
- }
+}
+
+/* ✅ 修正 gallery 與 table 間距 */
+.infoContent .galleryRow {
+  margin-top: 12px;
+  padding-top: 6px;
+}
  </style>
 </head>
 <body>
