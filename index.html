@@ -253,9 +253,17 @@
   align-items: flex-start;
 }
 .placeTitle a {
-  margin-left: auto; /* 推到最右邊 */
+  margin-left: auto;
   white-space: nowrap;
   flex-shrink: 0;
+  font-size: 12px; /* 縮小🔗 */
+  opacity: 0.8;
+}
+.meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px; /* 英文縮小一點 */
+  line-height: 1.4;
 }
 .placeTitle a {
   white-space: nowrap;
@@ -558,7 +566,7 @@
   /* 核心對齊修正：統一手機網格寬度，維持上下對齊 */
   .tRow { 
    display: grid !important; /* 強制所有排版維持網格 */
-grid-template-columns: 62px 1fr !important;
+grid-template-columns: 68px 1fr !important;
    gap: 3px !important; 
    padding: 6px 2px !important;
    align-items: start !important;
