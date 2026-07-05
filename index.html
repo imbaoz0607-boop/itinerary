@@ -242,8 +242,8 @@
   justify-content: flex-start;
   padding-top: 0;
   transform: none;
-  align-self: start;
-  margin-top: 1px; /* 精準校正：從2px → 1px */
+  align-self: start; /* 跟主標第一行對齊 */
+  margin-top: 2px; /* 視覺補償（貼齊文字基線） */
 }
  .place { min-width: 0; }
  
@@ -785,6 +785,12 @@ grid-template-columns: 68px 1fr !important;
                    <tr><td>17:40</td><td>18:32</td></tr>
                  </tbody>
                </table>
+
+               <div class="galleryRow" role="list">
+                 <div class="gItem"><img src="Day1/04.jpg" alt="羽田機場T3巴士乘車位置"></div>
+                 <div class="gItem"><img src="Day1/05.jpg" alt="大井町站巴士下車位置"></div>
+               </div>
+
              </div>
            </details>
          </div>
