@@ -276,7 +276,8 @@
 .meta {
   margin: 2px 0 0; 
   color: var(--muted);
-  font-size: 11px; /* 🚀 縮小一號（原12px），確保英文長地名在手機端也能完美單行顯示不換行 */
+  font-size: 10px; /* 🚀 完美修正：縮小至 10px 搭配強制不換行，杜絕 TOKYO 被擠下去的悲劇 */
+  white-space: nowrap;
   line-height: 1.35;
  }
  .notes {
