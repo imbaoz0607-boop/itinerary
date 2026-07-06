@@ -1,3 +1,5 @@
+加了外框的版本(cgatgpt跟github都是這個以加邊框的版本
+
 <!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -300,31 +302,37 @@
   font-size: 14px;
   font-weight: 700;
  }
- .galleryRow{
+.galleryRow{
   display:flex;
-  flex-direction:row;
-  gap:10px;
+  gap:12px;
+
   overflow-x:auto;
   overflow-y:hidden;
+
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling: touch;
+
+  padding-left:4px;   /* ⭐ 左邊呼吸空間（像福岡） */
 }
 
  .galleryRow::-webkit-scrollbar { display: none; }
 
- .gItem{
-  flex:0 0 auto;
-  width:185px;
-  aspect-ratio:4/3;
-  position:relative;
+.gItem{
+  flex: 0 0 auto;
+
+  width: 72vw;           /* ⭐ 核心：跟手機寬度走 */
+  max-width: 260px;      /* ⭐ 電腦不要爆大 */
+
+  aspect-ratio: 3 / 2;   /* ⭐ 福岡比例（更寬） */
+
   border-radius:16px;
   overflow:hidden;
   border:1px solid var(--line);
   background:#faf8f4;
-  box-shadow:0 4px 12px rgba(0,0,0,.06);
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+
   scroll-snap-align:start;
- }
- .gItem img {
+} .gItem img {
   display: block;
   width: 100%;
   height:100%;
