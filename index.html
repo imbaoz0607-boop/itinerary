@@ -200,7 +200,7 @@
   padding:12px 10px;
   background:#fff;
   box-shadow:0 6px 16px rgba(0,0,0,.04);
-}
+ }
  .dayTitle {
   margin: 0;
   font-size: 21px;
@@ -233,10 +233,10 @@
   display: grid;
   grid-template-columns: 90px minmax(0,1fr);
   gap: 12px;
-  align-items: start; /* 改為對齊第一行（關鍵） */
+  align-items: start;
   padding: 6px 0;
   border-top: none;
-}
+ }
  .tRow:first-child {
   border-top: none;
   padding-top: 0;
@@ -251,19 +251,19 @@
   justify-content: flex-start;
   padding-top: 0;
   transform: none;
-  align-self: start; /* 跟主標第一行對齊 */
-  margin-top: 2px; /* 視覺補償（貼齊文字基線） */
-}
+  align-self: start; 
+  margin-top: 2px; 
+ }
  .place { min-width: 0; }
  
  .placeTitle {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.35; /* 收一點行高讓基線更貼 */
+  line-height: 1.35; 
   display: flex;
   align-items: flex-start;
-}
+ }
 .placeTitle a {
   margin-left: 0;
   white-space: normal;
@@ -272,13 +272,13 @@
   opacity: 1;
   text-decoration: none;
   color: inherit;
-}
+ }
 .meta {
-  margin: 2px 0 0; /* 與主標距離微調 */
+  margin: 2px 0 0; 
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.35; /* 收一點讓整體更緊 */
-}
+  line-height: 1.35;
+ }
 .placeTitle a {
   white-space: nowrap;
   flex-shrink: 0;
@@ -303,32 +303,24 @@
 .galleryRow{
   display:flex;
   gap:12px;
-
   overflow-x:auto;
   overflow-y:hidden;
-
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling: touch;
-
-  padding-left:4px;   /* ⭐ 左邊呼吸空間（像福岡） */
+  padding-left:4px;   
 }
-
  .galleryRow::-webkit-scrollbar { display: none; }
 
 .gItem{
   flex: 0 0 auto;
-
-  width: 72vw;           /* ⭐ 核心：跟手機寬度走 */
-  max-width: 260px;      /* ⭐ 電腦不要爆大 */
-
-  aspect-ratio: 3 / 2;   /* ⭐ 福岡比例（更寬） */
-
+  width: 72vw;           
+  max-width: 260px;
+  aspect-ratio: 3 / 2;   
   border-radius:16px;
   overflow:hidden;
   border:1px solid var(--line);
   background:#faf8f4;
   box-shadow:0 6px 16px rgba(0,0,0,.08);
-
   scroll-snap-align:start;
 } .gItem img {
   display: block;
@@ -363,7 +355,7 @@
   margin-top: 10px;
   margin-left: calc(-74px - 12px);
   margin-right: -16px;
-  border-top: none; /* ✅ 移除多餘分隔線 */
+  border-top: none;
   border-bottom: 0; 
   border-left: 0;
   border-right: 0;
@@ -428,7 +420,7 @@
   margin: 8px auto 0;
   border-collapse: collapse;
   font-size: 14px;
-}
+ }
 
 .infoContent th, 
 .infoContent td {
@@ -436,7 +428,7 @@
   padding: 8px 6px;
   border-bottom: 1px solid var(--line);
   text-align: center;
-}
+ }
 
 .infoContent th {
   background: #f4f6fb;
@@ -445,7 +437,7 @@
 
 .infoContent td:last-child {
   font-weight: 600;
-}
+ }
 
 .infoContent tr:hover td {
   background: #fafbff;
@@ -582,25 +574,22 @@
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
   
-  /* 核心對齊修正：統一手機網格寬度，維持上下對齊 */
   .tRow { 
-   display: grid !important; /* 強制所有排版維持網格 */
-grid-template-columns: 68px 1fr !important;
+   display: grid !important;
+   grid-template-columns: 68px 1fr !important;
    gap: 3px !important; 
    padding: 6px 2px !important;
    align-items: start !important;
   }
   .time { font-size: 13px; }
   
-  /* 修正無時間標記格子的內容對齊位置，讓其精準落在右邊區塊 */
   .tRow-alignLeft {
    grid-template-columns: 72px 1fr !important;
   }
-  /* 將原本滿版爆出的組件，精準指定丟到 Grid 的第二欄(內容區) */
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft,
   .tRow-alignLeft .place {
-   grid-column: 2 !important; 
+   grid-column: 2 !important;
    margin-left: 0 !important;   
    margin-right: 0 !important;
    width: 100% !important;
@@ -614,15 +603,14 @@ grid-template-columns: 68px 1fr !important;
    padding-left: 8px;
    padding-right: 8px;
   }
-.gItem {
-  width: 78vw;
-  max-width: none;
-}
+  .gItem {
+   width: 46vw; /* ⭐ 這裡調小了！原為 78vw，讓手機版瀏覽更精緻好滑閱 */
+   max-width: none;
+  }
   .lbNav { display: none; }
   .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
 
- /* 電腦版維持不變 */
  .tRow-alignLeft {
   display: block !important; 
   width: 100%;
@@ -641,13 +629,12 @@ grid-template-columns: 68px 1fr !important;
  .tRow-alignLeft .gallery-alignLeft .galleryTitle {
   padding-left: 14px !important;
   padding-right: 14px !important;
-}
+ }
 
-/* ✅ 修正 gallery 與 table 間距 */
 .infoContent .galleryRow {
   margin-top: 12px;
   padding-top: 6px;
-}
+ }
 
 .infoContent .galleryRow .gItem,
 .gallery-alignLeft .galleryRow .gItem {
@@ -872,7 +859,6 @@ grid-template-columns: 68px 1fr !important;
   const closeBtn = document.getElementById('lbClose');
   const prevBtn = document.getElementById('lbPrev');
   const nextBtn = document.getElementById('lbNext');
-
   let currentIndex = -1;
   let currentGroup = [];
   function openLightbox(img){
@@ -1038,18 +1024,4 @@ grid-template-columns: 68px 1fr !important;
     const handle = row.querySelector('.time');
     if (!handle) return;
     handle.style.cursor = 'default';
-    handle.style.userSelect = 'text';
-    handle.addEventListener('mousedown', () => row.draggable = true);
-    handle.addEventListener('mouseup', () => row.draggable = false);
-    handle.addEventListener('mouseleave', () => row.draggable = false);
-   });
-  });
-  document.querySelectorAll('a[href^="http"]').forEach(link => {
-   link.setAttribute('target', '_blank');
-   link.setAttribute('rel', 'noopener');
-  });
-
- })();
- </script>
-</body>
-</html>
+    handle
