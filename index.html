@@ -293,6 +293,24 @@
   color: #000;
   padding: 6px 0;
 }
+.notes li .left {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.notes li a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+.notes li .type {
+  color: #000;
+  font-weight: 500;
+}
+.notes li .pin {
+  min-width: 60px;
+  text-align: right;
+}
 .notes li a {
   color: #000;
   text-decoration: none;
@@ -876,9 +894,9 @@
           <div class="infoContent">
             <div style="margin-bottom:10px;">OIMACHI TRACKS<a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a></div>
             <ul class="notes">
-              <li><a href="https://www.instagram.com/oimachi_yellow/">Yellow Oimachi</a><span>蛋包飯 📍316</span></li>
-              <li><a href="https://www.dategyu.jp/tw/menu/">ダテノギュウタン本舗</a><span>牛舌 📍410</span></li>
-              <li><a href="https://www.instagram.com/ooimachi.zeniba/">銭場精肉店</a><span>📍415</span></li>
+              <li><div class="left"><a href="https://www.instagram.com/oimachi_yellow/">Yellow Oimachi</a><span class="type">蛋包飯</span></div><span class="pin">📍316</span></li>
+              <li><div class="left"><a href="https://www.dategyu.jp/tw/menu/">ダテノギュウタン本舗</a><span class="type">牛舌</span></div><span class="pin">📍410</span></li>
+              <li><div class="left"><a href="https://www.instagram.com/ooimachi.zeniba/">銭場精肉店</a><span class="type">燒肉</span></div><span class="pin">📍415</span></li>
             </ul>
           </div>
         </details>
