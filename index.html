@@ -286,12 +286,9 @@
  .notes li + li { margin-top: 3px; }
  .gallery {
   margin-top: 10px;
-  margin-left: calc(-74px - 12px);
-  margin-right: -16px;
  }
  .galleryTitle {
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 4px;
   margin: 0 0 6px;
   font-size: 14px;
   font-weight: 700;
@@ -349,11 +346,13 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
  }
+
+/* ===== ⚙️ 核心修正：收合層完全緊貼大框不爆出 ===== */
  details.infoBox {
   margin-top: 10px;
-  margin-left: calc(-74px - 12px);
-  margin-right: -16px;
-  border-top: none;
+  margin-left: calc(-90px - 12px); /* 電腦版完美往左貼齊 timeline 的左邊框 */
+  margin-right: -10px;            /* 電腦版完美往右貼齊 timeline 的右邊框 */
+  border-top: 1px solid var(--line);
   border-bottom: 0; 
   border-left: 0;
   border-right: 0;
@@ -364,7 +363,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 10px 16px;
+  padding: 10px 16px 10px calc(90px + 12px); /* 讓文字完美與右邊內容對齊線重合 */
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -395,7 +394,7 @@
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 16px 12px;
+  padding: 0 16px 12px calc(90px + 12px); /* 內容也完美與排版線切齊 */
   color: #4d463f;
  }
  .btnRow {
@@ -421,7 +420,7 @@
 .infoContent table {
   width: 100%;
   max-width: 260px;
-  margin: 8px auto 0;
+  margin: 8px 0 0 0; /* 靠左與排版切齊 */
   border-collapse: collapse;
   font-size: 14px;
  }
@@ -443,34 +442,36 @@
   background: #fafbff;
 }
 
-/* 電貌版對齊用 */
+/* 內層巢狀收合盒修正（不需要重複扣掉左邊距） */
+.infoContent details.infoBox {
+  margin-left: 0;
+  margin-right: 0;
+  background: transparent;
+  border-top: none;
+}
+.infoContent details.infoBox > summary {
+  padding: 8px 0;
+}
+.infoContent details.infoBox .infoContent {
+  padding: 0 0 8px 0;
+}
+
+/* 電腦版對齊用 */
  .tRow-alignLeft {
   display: block !important; 
   width: 100%;
   padding: 6px 0;
  }
  .tRow-alignLeft details.infoBox {
-  margin-left: 0 !important;   
-  margin-right: 0 !important;
-  width: 100% !important;
+  margin-left: calc(-90px - 12px) !important;   
+  margin-right: -10px !important;
+  width: auto !important;
  }
  .tRow-alignLeft .gallery-alignLeft {
   margin-left: 0 !important;
   margin-right: 0 !important;
   width: 100% !important;
  }
- .tRow-alignLeft .gallery-alignLeft .galleryTitle {
-  padding-left: 14px !important;
-  padding-right: 14px !important;
- }
-.infoContent .galleryRow {
-  margin-top: 12px;
-  padding-top: 6px;
- }
-.infoContent .galleryRow .gItem,
-.gallery-alignLeft .galleryRow .gItem {
-  min-width: 0;
-}
 
 /* 燈箱 Modal */
 .lbModal {
@@ -617,25 +618,42 @@
   .tRow-alignLeft {
    grid-template-columns: 68px 1fr !important;
   }
+  
+  /* 手機版打破網格限制，直接完全塞滿外框線 */
   .tRow-alignLeft details.infoBox,
-  .tRow-alignLeft .gallery-alignLeft,
-  .tRow-alignLeft .place {
-   grid-column: 2 !important;
-   margin-left: 0 !important;   
-   margin-right: 0 !important;
-   width: 100% !important;
+  .tRow-alignLeft .gallery-alignLeft {
+   grid-column: 1 / span 2 !important; /* 從第 1 欄直接跨到第 2 欄，也就是滿版 */
+   margin-left: -10px !important;     /* 消除 padding，完美黏貼外框線 */
+   margin-right: -10px !important;
+   width: calc(100% + 20px) !important;
   }
   
-  .gallery, details.infoBox {
-   margin-left: -8px;
-   margin-right: -8px;
+  /* 手機版收合層文字縮排補償 */
+  details.infoBox {
+   margin-left: -10px !important;
+   margin-right: -10px !important;
+   width: calc(100% + 20px) !important;
   }
-  .galleryTitle, details.infoBox > summary, .infoContent {
-   padding-left: 8px;
-   padding-right: 8px;
+  details.infoBox > summary {
+   padding: 10px 12px 10px calc(68px + 5px) !important; /* 手機版貼齊右側內容線 */
   }
+  .infoContent {
+   padding: 0 12px 12px calc(68px + 5px) !important;
+  }
+  .infoContent details.infoBox {
+   width: 100% !important;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+  }
+  .infoContent details.infoBox > summary {
+   padding: 8px 0 !important;
+  }
+  .infoContent details.infoBox .infoContent {
+   padding: 0 0 8px 0 !important;
+  }
+  
   .gItem {
-   width: 60vw; /* ⭐ 完美保留：你最滿意的黃金中位數尺寸 */
+   width: 60vw; /* 完美保留：黃金中位數尺寸 */
    max-width: none;
   }
   .lbNav { display: none; }
