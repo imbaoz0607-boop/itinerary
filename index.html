@@ -154,7 +154,7 @@
   justify-content: space-between;
   gap: 14px;
   padding: 14px 18px 10px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: none; /* 🚀 完美修正（電腦版）：移除造成重複線的底部邊框 */
  }
  .dayHeaderMain {
   display: flex;
@@ -276,7 +276,7 @@
 .meta {
   margin: 2px 0 0; 
   color: var(--muted);
-  font-size: 10px; /* 🚀 完美修正：縮小至 10px 搭配強制不換行，杜絕 TOKYO 被擠下去的悲劇 */
+  font-size: 10px; 
   white-space: nowrap;
   line-height: 1.35;
  }
@@ -607,6 +607,7 @@
    align-items: flex-start;
    gap: 4px;
    padding: 10px 10px 6px !important;
+   border-bottom: none !important; /* 🚀 完美修正（手機版）：同步強制關閉底部灰色橫線，達成去線效果 */
   }
   .dayHeaderMain { gap: 10px; width: 100%; }
   .dayIndex {
@@ -787,9 +788,9 @@
              </summary>
              <div class="infoContent">
                <ul class="notes">
-                 <li>乘車地點：第3航廈1樓10號公車站</li>
-                 <li style="line-height: 1.5;">下車地點：大井町トラックス21番<br><span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;">（原 大井町駅西口3番）</span></li>
-                 <li>單程票價：成人800円</li>
+                 <li>乘車地點 : 第3航廈1樓10號公車站</li>
+                 <li style="line-height: 1.5;">下車地點 : 大井町トラックス21番<br><span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;">（原 大井町駅西口3番）</span></li>
+                 <li>單程票價 : 成人800円</li>
                </ul>
                <table>
                  <thead>
