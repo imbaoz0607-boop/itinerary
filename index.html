@@ -154,7 +154,7 @@
   justify-content: space-between;
   gap: 14px;
   padding: 14px 18px 10px;
-  border-bottom: none; 
+  border-bottom: none; /* 🚀 完美修正（電腦版）：移除造成重複線的底部邊框 */
  }
  .dayHeaderMain {
   display: flex;
@@ -607,7 +607,7 @@
    align-items: flex-start;
    gap: 4px;
    padding: 10px 10px 6px !important;
-   border-bottom: none !important; 
+   border-bottom: none !important; /* 🚀 完美修正（手機版）：同步強制關閉底部灰色橫線，達成去線效果 */
   }
   .dayHeaderMain { gap: 10px; width: 100%; }
   .dayIndex {
@@ -776,7 +776,7 @@
                <div class="galleryRow" role="list">
                  <div class="gItem"><img src="Day1/01.jpg"></div>
                  <div class="gItem"><img src="Day1/02.jpg"></div>
-                 <div class="gItem"><img src="Day1/03.jpg"></div>
+                
                </div>
              </div>
            </details>
@@ -823,14 +823,14 @@
       <div class="tRow">
        <div class="time">18:00</div>
        <div class="place">
-        <p class="placeTitle"><a class="placeLink" href="https://oimachi-tracks.hotel-metropolitan.com/tw/">JR東日本大都會大飯店大井町TRACKS</a></p>
+        <p class="placeTitle">JR東日本大都會大飯店大井町TRACKS</p>
         <p class="meta">HOTEL METROPOLITAN OIMACHI TRACKS TOKYO</p>
        </div>
       </div>
 
       <div class="tRow tRow-alignLeft">
         <div class="gallery gallery-alignLeft">
-         <p class="galleryTitle">📷 飯店 / 周邊示意</p>
+         <p class="galleryTitle">📷 飯店 / 周邊</p>
          <div class="galleryRow" role="list">
           <div class="gItem" role="listitem">
            <img src="Day1/07.jpg" alt="">
@@ -841,22 +841,31 @@
           <div class="gItem" role="listitem">
            <img src="Day1/09.jpg" alt="">
           </div>
+          <div class="gItem" role="listitem">
+           <img src="Day1/10.jpg" alt="">
+          </div>
+          <div class="gItem" role="listitem">
+           <img src="Day1/11.jpg" alt="">
+          </div>
+          <div class="gItem" role="listitem">
+           <img src="Day1/12.jpg" alt="">
+          </div>
          </div>
         </div>
       </div>
 
       <div class="tRow tRow-alignLeft">
         <details class="infoBox">
-         <summary>
-           <span class="summaryText">🍽️ 晚餐選擇</span>
-           <span class="chev">⌄</span>
-         </summary>
-         <div class="infoContent">
-           <ul class="notes" style="font-size:15px; line-height:1.7;">
-             <li>📌 <strong>備選餐廳一</strong>：可填寫大井町周邊平價美食、居酒屋或百貨地下街熟食。</li>
-             <li>📌 <strong>備選餐廳二</strong>：適合排入當天辦理 check-in 後的覓食口袋名單。</li>
-           </ul>
-         </div>
+          <summary>
+            <span class="summaryText">🍽️晚餐選擇</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="infoContent">
+            <ul class="notes">
+              <li>（餐廳名稱 / 預約資訊）</li>
+              <li>（可放：拉麵、燒肉、居酒屋等）</li>
+            </ul>
+          </div>
         </details>
       </div>
 
@@ -868,7 +877,7 @@
           </summary>
           <div class="infoContent">
             <ul class="notes">
-              <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
+              <li>飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/" target="_blank" rel="noopener">🔗官網</a><br>140-0005 東京都品川區廣町2-1-3<br>TEL : +81-3-6903-1122<br>JR大井町站TRACKS口直通</li>
               <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
             </ul>
           </div>
