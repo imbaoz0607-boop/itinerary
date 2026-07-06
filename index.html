@@ -347,7 +347,7 @@
   overflow: hidden;
  }
 
-/* ===== ⚙️ 完美對齊設定：拉到最左，排版完全跟時間切齊 ===== */
+/* ===== 收合層完美設定 ===== */
  details.infoBox {
   margin-top: 10px;
   margin-left: 0;
@@ -364,7 +364,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 10px 0; /* 🚀 左右拔除內邊距，文字直接向左頂滿對齊 */
+  padding: 10px 0; 
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -396,7 +396,7 @@
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 0 12px 0; /* 🚀 徹底消除左方縮排，讓清單、表格、相簿完美貼齊時間欄 */
+  padding: 0 0 12px 0; 
   color: #4d463f;
  }
  .btnRow {
@@ -419,10 +419,12 @@
   font-size: 12px;
   line-height: 1;
  }
+ 
+/* 🚀 ⚙️ 表格置中完美修正 🚀 */
 .infoContent table {
   width: 100%;
   max-width: 260px;
-  margin: 8px 0 0 0; 
+  margin: 12px auto 0; /* 改為 auto 讓時間表在內容區自動完美置中 */
   border-collapse: collapse;
   font-size: 14px;
  }
@@ -618,17 +620,15 @@
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
   
-  /* 統一手機網格寬度，維持完美對齊 */
   .tRow { 
    display: grid !important;
-   grid-template-columns: 54px 1fr !important; /* 微調手機寬度，騰出更多空間給右側內容 */
+   grid-template-columns: 54px 1fr !important; 
    gap: 8px !important; 
    padding: 6px 2px !important;
    align-items: start !important;
   }
   .time { font-size: 14px; }
   
-  /* ⚙️ 完美貼齊：手機版打破雙欄，讓收合層跟上方時間欄完美左切齊 */
   .tRow-alignLeft {
    grid-template-columns: 1fr !important; 
    display: block !important;
@@ -642,19 +642,18 @@
    width: 100% !important;
   }
   
-  /* 🚀 徹底消除縮排限制：直接與時間軸的垂直對齊線完全重合 */
   details.infoBox {
    margin-left: 0 !important;
    margin-right: 0 !important;
    width: 100% !important;
    border-radius: 0 !important;
-   background: transparent !important; /* 背景透明，讓視覺像 image.png 一樣純淨內嵌 */
+   background: transparent !important; 
   }
   details.infoBox > summary {
-   padding: 10px 0 !important; /* 標題完全靠左頂滿 */
+   padding: 10px 0 !important; 
   }
   .infoContent {
-   padding: 0 0 12px 0 !important; /* 內部元件完全靠左頂滿，與時間欄切齊 */
+   padding: 0 0 12px 0 !important; 
   }
   .infoContent details.infoBox {
    width: 100% !important;
@@ -669,7 +668,7 @@
   }
   
   .gItem {
-   width: 60vw; /* 完美的黃金中位數照片尺寸 */
+   width: 60vw; 
    max-width: none;
   }
   .lbNav { display: none; }
