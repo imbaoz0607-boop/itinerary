@@ -604,7 +604,7 @@
    padding-right: 8px;
   }
   .gItem {
-   width: 46vw; /* ⭐ 這裡調小了！原為 78vw，讓手機版瀏覽更精緻好滑閱 */
+   width: 60vw; /* ⭐ 調整為完美的黃金中位數尺寸！既好看又保留了右側滑動的呼吸空間 */
    max-width: none;
   }
   .lbNav { display: none; }
@@ -1024,4 +1024,18 @@
     const handle = row.querySelector('.time');
     if (!handle) return;
     handle.style.cursor = 'default';
-    handle
+    handle.style.userSelect = 'text';
+    handle.addEventListener('mousedown', () => row.draggable = true);
+    handle.addEventListener('mouseup', () => row.draggable = false);
+    handle.addEventListener('mouseleave', () => row.draggable = false);
+   });
+  });
+  document.querySelectorAll('a[href^="http"]').forEach(link => {
+   link.setAttribute('target', '_blank');
+   link.setAttribute('rel', 'noopener');
+  });
+
+ })();
+ </script>
+</body>
+</html>
