@@ -282,8 +282,26 @@
  }
  .notes {
   margin: 6px 0 0;
-  padding-left: 1.2em;
- }
+  padding-left: 0;
+  list-style: none;
+}
+.notes li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: #000;
+  padding: 6px 0;
+}
+.notes li a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+.notes li span {
+  color: #000;
+  font-weight: 500;
+}
  .notes li + li { margin-top: 3px; }
  .gallery {
   margin-top: 10px;
@@ -787,13 +805,7 @@
                <span class="chev">⌄</span>
              </summary>
              <div class="infoContent">
-            <div style="margin-bottom:10px;"><a href="https://www.oimachi-tracks.com/en/floor/" target="_blank" rel="noopener">OIMACHI TRACKS🔗Floor Guide</a></div>
-            <ul class="notes">
-                 <li>乘車地點 : 第3航廈1樓10號公車站</li>
-                 <li style="line-height: 1.5;">下車地點 : 大井町トラックス21番<br><span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;">（原 大井町駅西口3番）</span></li>
-                 <li>單程票價 : 成人800円</li>
-               </ul>
-               <table>
+            <table>
                  <thead>
                    <tr>
                      <th>出發（T3）</th>
@@ -864,8 +876,9 @@
           <div class="infoContent">
             <div style="margin-bottom:10px;">OIMACHI TRACKS<a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a></div>
             <ul class="notes">
-              <li>（餐廳名稱 / 預約資訊）</li>
-              <li>（可放：拉麵、燒肉、居酒屋等）</li>
+              <li><a href="https://www.instagram.com/oimachi_yellow/">Yellow Oimachi</a><span>蛋包飯 📍316</span></li>
+              <li><a href="https://www.dategyu.jp/tw/menu/">ダテノギュウタン本舗</a><span>牛舌 📍410</span></li>
+              <li><a href="https://www.instagram.com/ooimachi.zeniba/">銭場精肉店</a><span>📍415</span></li>
             </ul>
           </div>
         </details>
