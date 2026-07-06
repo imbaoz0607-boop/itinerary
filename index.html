@@ -288,7 +288,7 @@
   margin-top: 10px;
  }
  .galleryTitle {
-  padding-left: 4px;
+  padding-left: 0;
   margin: 0 0 6px;
   font-size: 14px;
   font-weight: 700;
@@ -300,7 +300,7 @@
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding-left: 4px;   
+  padding-left: 0;   
 }
 .galleryRow::-webkit-scrollbar { display: none; }
 
@@ -347,10 +347,10 @@
   overflow: hidden;
  }
 
-/* ===== ⚙️ 收合層完美設定：緊貼大框內縮、左右不超過 ===== */
+/* ===== ⚙️ 完美對齊設定：拉到最左，排版完全跟時間切齊 ===== */
  details.infoBox {
   margin-top: 10px;
-  margin-left: 0;   /* 清除舊有負值邊距，不再爆出外框 */
+  margin-left: 0;
   margin-right: 0;
   border-top: 1px solid var(--line);
   border-bottom: 0; 
@@ -364,7 +364,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 10px 14px;
+  padding: 10px 0; /* 🚀 左右拔除內邊距，文字直接向左頂滿對齊 */
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -392,10 +392,11 @@
   color: var(--muted);
   transition: transform .2s ease;
   flex: 0 0 auto;
+  padding-right: 4px;
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 14px 12px;
+  padding: 0 0 12px 0; /* 🚀 徹底消除左方縮排，讓清單、表格、相簿完美貼齊時間欄 */
   color: #4d463f;
  }
  .btnRow {
@@ -443,7 +444,7 @@
   background: #fafbff;
 }
 
-/* 內層收合盒基礎重設 */
+/* 內層巢狀收合盒對齊 */
 .infoContent details.infoBox {
   margin-left: 0;
   margin-right: 0;
@@ -620,35 +621,40 @@
   /* 統一手機網格寬度，維持完美對齊 */
   .tRow { 
    display: grid !important;
-   grid-template-columns: 68px 1fr !important;
-   gap: 3px !important; 
+   grid-template-columns: 54px 1fr !important; /* 微調手機寬度，騰出更多空間給右側內容 */
+   gap: 8px !important; 
    padding: 6px 2px !important;
    align-items: start !important;
   }
-  .time { font-size: 13px; }
+  .time { font-size: 14px; }
   
-  /* ⚙️ 手機版突破網格：拉到最左最右，死死黏在 timeline 內部線內 */
+  /* ⚙️ 完美貼齊：手機版打破雙欄，讓收合層跟上方時間欄完美左切齊 */
   .tRow-alignLeft {
-   grid-template-columns: 1fr !important; /* 打破兩欄限制 */
+   grid-template-columns: 1fr !important; 
    display: block !important;
    padding: 0 !important;
   }
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft {
    grid-column: unset !important;
-   margin-left: -10px !important;  /* 完美消除 padding 的 10px 空間 */
-   margin-right: -10px !important; /* 讓左右外壁死死卡在外框內壁上 */
-   width: calc(100% + 20px) !important;
+   margin-left: 0 !important;  
+   margin-right: 0 !important; 
+   width: 100% !important;
   }
   
+  /* 🚀 徹底消除縮排限制：直接與時間軸的垂直對齊線完全重合 */
   details.infoBox {
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+   width: 100% !important;
    border-radius: 0 !important;
+   background: transparent !important; /* 背景透明，讓視覺像 image.png 一樣純淨內嵌 */
   }
   details.infoBox > summary {
-   padding: 10px 12px 10px calc(68px + 5px) !important; /* 文字標題完美貼齊右側內容線 */
+   padding: 10px 0 !important; /* 標題完全靠左頂滿 */
   }
   .infoContent {
-   padding: 0 12px 12px calc(68px + 5px) !important;   /* 內容完美貼齊右側內容線 */
+   padding: 0 0 12px 0 !important; /* 內部元件完全靠左頂滿，與時間欄切齊 */
   }
   .infoContent details.infoBox {
    width: 100% !important;
@@ -663,7 +669,7 @@
   }
   
   .gItem {
-   width: 60vw; /* 鎖定黃金中位數尺寸 */
+   width: 60vw; /* 完美的黃金中位數照片尺寸 */
    max-width: none;
   }
   .lbNav { display: none; }
