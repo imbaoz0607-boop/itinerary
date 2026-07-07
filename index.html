@@ -1193,6 +1193,39 @@
    });
   });
 
+  // 👉 桌機拖曳 gallery（修正版）
+  document.querySelectorAll('.galleryRow').forEach(row => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    row.addEventListener('mousedown', (e) => {
+      e.stopPropagation(); // 防止干擾 timeline
+      isDown = true;
+      row.classList.add('dragging');
+      startX = e.pageX;
+      scrollLeft = row.scrollLeft;
+    });
+
+    row.addEventListener('mouseleave', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+    });
+
+    row.addEventListener('mouseup', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+    });
+
+    row.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const walk = (e.pageX - startX) * 1.2;
+      row.scrollLeft = scrollLeft - walk;
+    });
+  });
+
+  // 原本連結處理
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
