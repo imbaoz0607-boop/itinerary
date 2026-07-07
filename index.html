@@ -468,6 +468,12 @@
   text-decoration: underline !important;
   font-weight: 700 !important;
 }
+
+/* 🚫 但 transportIcon 不要底線（優先權更高） */
+.infoContent details.infoBox > summary a.transportIcon {
+  text-decoration: none !important;
+  color: inherit !important;
+}
 .infoContent details.infoBox .infoContent {
   padding: 0 0 8px 0;
 }
@@ -821,6 +827,7 @@
                <div class="galleryRow" role="list">
                  <div class="gItem"><img src="Day1/01.jpg"></div>
                  <div class="gItem"><img src="Day1/02.jpg"></div>
+                 <div class="gItem"><img src="Day1/03.jpg"></div>
                </div>
              </div>
            </details>
@@ -885,85 +892,17 @@
           <div class="gItem" role="listitem">
            <img src="Day1/09.jpg" alt="">
           </div>
+ <div class="gItem" role="listitem">
+  <img src="Day1/10.jpg" alt="">
+</div>
+<div class="gItem" role="listitem">
+  <img src="Day1/11.jpg" alt="">
+</div>
+<div class="gItem" role="listitem">
+  <img src="Day1/12.jpg" alt="">
+</div>
          </div>
         </div>
-      </div>
-
-      <!-- 🍽️ OIMACHI TRACKS餐飲 -->
-      <div class="tRow tRow-alignLeft">
-        <details class="infoBox">
-          <summary>
-            <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
-            <span class="chev">⌄</span>
-          </summary>
-          <div class="infoContent">
-
-            <p style="margin:6px 0 10px;">
-              OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
-            </p>
-
-            <ul class="dinner-list">
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://yamahan.tokyo/menu">山本のハンバーグ</a>
-                  <span class="dinner-type">漢堡排</span>
-                </div>
-                <span class="dinner-room">📍102</span>
-              </li>
-
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://latelier-du-pain.com/english/menu_hard.html">L’Atelier du Pain</a>
-                  <span class="dinner-type">麵包(六本木 tabelog百名店)</span>
-                </div>
-                <span class="dinner-room">📍210</span>
-              </li>
-
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.instagram.com/oimachi_yellow/">Yellow Oimachi</a>
-                  <span class="dinner-type">蛋包飯</span>
-                </div>
-                <span class="dinner-room">📍316</span>
-              </li>
-
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.dategyu.jp/tw/menu/">ダテノギュウタン本舗</a>
-                  <span class="dinner-type">牛舌</span>
-                </div>
-                <span class="dinner-room">📍410</span>
-              </li>
-
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.instagram.com/ooimachi.zeniba/">銭場精肉店</a>
-                  <span class="dinner-type">燒肉</span>
-                </div>
-                <span class="dinner-room">📍415</span>
-              </li>
-
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.instagram.com/shiogamakooo/">廻鮮寿司 塩釜港</a>
-                  <span class="dinner-type">宮城縣塩釜直送</span>
-                </div>
-                <span class="dinner-room">📍417</span>
-              </li>
-
-              <!-- 🍣 壽司圖集 -->
-              <div class="galleryRow" role="list">
-                <div class="gItem"><img src="Day1/20.jpg"></div>
-                <div class="gItem"><img src="Day1/21.jpg"></div>
-                <div class="gItem"><img src="Day1/22.jpg"></div>
-                <div class="gItem"><img src="Day1/23.jpg"></div>
-                <div class="gItem"><img src="Day1/24.jpg"></div>
-                <div class="gItem"><img src="Day1/25.jpg"></div>
-              </div>
-            </ul>
-
-          </div>
-        </details>
       </div>
 
       <div class="tRow tRow-alignLeft">
