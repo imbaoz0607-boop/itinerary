@@ -195,14 +195,7 @@
   font-weight: 800;
   color: #16253b;
   letter-spacing: .4px;
-  white-space: nowrap; /* 不換行 */
-  flex-shrink: 0; /* 不被壓縮 */
-}
-
-.dayCardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  white-space: nowrap; /* ✅ 不換行 */
 }
  .dayBody { padding: 12px 16px; }
 
@@ -238,15 +231,15 @@
   display: grid;
   grid-template-columns: 90px minmax(0,1fr);
   gap: 12px;
-  align-items: start; /* 統一頂部對齊 */
+  align-items: start;
   padding: 6px 0;
   border-top: none;
-}
+ }
  .tRow:first-child {
   padding-top: 0;
  }
  .time {
-  white-space: nowrap; /* 時間不換行 */
+  white-space: nowrap; /* ✅ 時間固定單行 */
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
@@ -254,16 +247,18 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  align-self: start;
 }
  .place { min-width: 0; }
  
  .placeTitle {
-  margin: 2px 0 0; /* 🔧 微調往下貼齊時間 */
+  margin: 0;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.35;
-  display: block;
-}
+  line-height: 1.35; 
+  display: flex;
+  align-items: flex-start;
+ }
  .placeTitle a {
   text-decoration: none;
   color: inherit;
@@ -641,7 +636,7 @@
    flex: 0 0 auto;
   }
 
-  /* 🔧 修正：日期固定右側不換行 */
+  /* ✅ 關鍵修正：日期固定右邊 */
   .dayCardHeader {
    flex-direction: row !important;
    align-items: center !important;
