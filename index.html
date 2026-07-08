@@ -264,21 +264,22 @@
  .meta {
   margin: 4px 0 0 0 !important;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 13px; /* 🎯 桌機版修正：將一般行程第2行後的說明文字放大一號至 13px */
   white-space: pre-line;
   line-height: 1.4;
  }
+ /* 🔒 特殊權重：死守大都會大飯店副標題字體，不受上述放大影響 */
  .place p.meta[style*="HOTEL"], 
  .place p.meta {
   font-size: 13px; 
  }
  #day1 .tRow:nth-child(3) .place p.meta {
-  font-size: 11px !important;
+  font-size: 11px !important; /* 🔒 精準定位大井町 TRACKS 英文副標，桌機維持 11px */
  }
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
-  font-size: 15px;
+  font-size: 15px; /* 🎯 🎯 桌機版修正：將條列點清單放大一號至 15px */
  }
  .notes li + li { margin-top: 3px; }
  .gallery {
@@ -706,15 +707,18 @@
    padding: 0 !important;
   }
   
+  /* 🎯 手機版修正：一般行程第2行後的說明文字放大一號至 12px */
   p.meta {
    font-size: 12px !important;
    white-space: pre-line !important;
   }
 
+  /* 🔒 手機版特殊權重：死守大都會大飯店英文副標題字體，維持緊湊 10px 不被放大 */
   #day1 .tRow:nth-child(3) .place p.meta {
    font-size: 10px !important;
   }
 
+  /* 🎯 手機版修正：條列點清單 (.notes) 放大一號至 14px */
   .notes {
    font-size: 14px !important;
   }
@@ -955,13 +959,49 @@
               <p style="margin:6px 0 10px;">
                 OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
               </p>
-              <ul class="notes">
-                <li>山本のハンバーグ 漢堡排</li>
-                <li>L’Atelier du Pain 麵包(六本木 tabelog百名店)</li>
-                <li>Yellow Oimachi 蛋包飯</li>
-                <li>ダテノギュウタン本舗 牛舌(仙台名店)</li>
-                <li>銭場精肉店 燒肉(溶岩盤上享受特選黑毛和牛)</li>
-                <li>廻鮮寿司 塩釜港 宮城縣塩釜直送</li>
+              <ul class="dinner-list">
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://yamahan.tokyo/menu">山本のハンバーグ</a>
+                    <span class="dinner-type">漢堡排</span>
+                  </div>
+                  <span class="dinner-room">📍102</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://latelier-du-pain.com/english/menu_hard.html">L’Atelier du Pain</a>
+                    <span class="dinner-type">麵包(六本木 tabelog百名店)</span>
+                  </div>
+                  <span class="dinner-room">📍210</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/oimachi_yellow/">Yellow Oimachi</a>
+                    <span class="dinner-type">蛋包飯</span>
+                  </div>
+                  <span class="dinner-room">📍316</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.dategyu.jp/tw/menu/">ダテノギュウタン本舗</a>
+                    <span class="dinner-type">牛舌(仙台名店)</span>
+                  </div>
+                  <span class="dinner-room">📍410</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/ooimachi.zeniba/">銭場精肉店</a>
+                    <span class="dinner-type">燒肉(溶岩盤上享受特選黑毛和牛)</span>
+                  </div>
+                  <span class="dinner-room">📍415</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/shiogamakooo/">廻鮮寿司 塩釜港</a>
+                    <span class="dinner-type">宮城縣塩釜直送</span>
+                  </div>
+                  <span class="dinner-room">📍417</span>
+                </li>
               </ul>
               <div class="galleryRow" role="list" style="margin-top: 14px;">
                 <div class="gItem"><img src="Day1/20.jpg"></div>
