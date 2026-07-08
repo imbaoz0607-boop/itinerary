@@ -227,13 +227,11 @@
   color: #5f5448;
   font-size: 13px;
  }
- 
- /* 🌟 修正後的桌機版時間軸：左右垂直置中對齊 */
  .tRow {
   display: grid;
-  grid-template-columns: 90px 100%px;
+  grid-template-columns: 90px minmax(0, 1fr); /* 🌟 修正錯誤拼字，恢復桌機版寬度 */
   gap: 12px;
-  align-items: center; /* 讓時間與行程內容水平置中對齊 */
+  align-items: start; /* 🌟 保持靠頂部對齊 */
   padding: 6px 0;
   border-top: none;
  }
@@ -244,21 +242,22 @@
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.35;
+  line-height: 1.4; /* 🌟 統一設定行高與右側標題一致 */
   display: flex;
-  align-items: center; /* 修正時間內部的對齊基準 */
+  align-items: flex-start;
   justify-content: flex-start;
-  align-self: center;  /* 確保時間欄位垂直置中 */
+  align-self: start; 
+  margin-top: 0; /* 🌟 歸零，確保與右側第一行字頂端精準切齊 */
  }
  .place { min-width: 0; }
  
  .placeTitle {
-  margin: 0;
+  margin: 0; /* 🌟 歸零，消除外距帶來的高低差落差 */
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.35; 
+  line-height: 1.4; /* 🌟 統一設定行高 */
   display: flex;
-  align-items: center;
+  align-items: flex-start;
  }
  .placeTitle a {
   text-decoration: none;
@@ -460,7 +459,7 @@
   color: #3b6cff !important;
   text-decoration: underline !important;
   font-weight: 700 !important;
-}
+ }
  .infoContent details.infoBox .infoContent {
   padding: 0 0 8px 0;
  }
@@ -660,20 +659,13 @@
    white-space: nowrap;
    flex-shrink: 0;
   }
- 
-  
-  .card { padding: 6px !important; } 
-  .dayBody { padding: 8px 4px !important; }
-  
-  /* 🌟 修正後的手機版時間軸：左右垂直置中對齊 */
+  .dayBody { padding: 12px 16px; }
+
   .tRow { 
-   display: grid !important;
-   grid-template-columns: 54px 1fr !important; 
-   gap: 8px !important; 
-   padding: 6px 2px !important;
-   align-items: center !important; /* 強制手機版左右垂直置中 */
+   grid-template-columns: 90px minmax(0, 1fr); /* 🌟 確保手機版也是正常雙欄 */
+   align-items: start !important; /* 🌟 確保手機版一樣靠頂部首行對齊 */
   }
-  .time { font-size: 14px; }
+  .time { font-size: 14px; margin-top: 0; }
   
   .tRow-alignLeft {
    grid-template-columns: 1fr !important; 
@@ -791,7 +783,7 @@
      </div>
      <div class="dayDate">9/26(六)</div>
     </div>
-    <div class="cardBody">
+    <div class="dayBody">
      <div class="timeline">
       
       <div class="tRow">
@@ -986,7 +978,7 @@
      </div>
      <div class="dayDate">9/28(一)</div>
     </div>
-    <div class="cardBody">
+    <div class="dayBody">
      <div class="timeline">
 
       <div class="tRow">
@@ -1114,7 +1106,7 @@
       <div class="dayIndex">8</div>
       <h2 class="dayTitle">回程</h2>
      </div>
-     <div class="dayDate">10/03(六)</div>
+     <div class="dayDate">10/03(close)</div>
     </div>
     <div class="cardBody"><div class="timeline"></div></div>
    </section>
