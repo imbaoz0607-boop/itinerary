@@ -228,12 +228,12 @@
   font-size: 13px;
  }
  
- /* ⏰ 桌機時間軸：回歸常態拉伸，靠內容決定自身高度 */
+ /* ⏰ 完美福岡格式時間軸：一律靠頂部對齊第一行 */
  .tRow {
   display: grid;
   grid-template-columns: 90px minmax(0, 1fr);
   gap: 12px;
-  align-items: stretch; /* 🌟 改回 stretch 讓左右高度齊平，單/雙行才不會跑位 */
+  align-items: start; /* 🌟 核心：一律靠頂部對齊，不論內容幾行，第一行都絕對切齊 */
   padding: 6px 0;
   border-top: none;
  }
@@ -244,20 +244,18 @@
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.35;
-  display: inline-flex;
-  align-items: center; /* 🌟 核心修正：不管是單行還是雙行換行，內容都在區塊內完美垂直置中 */
-  justify-content: flex-start;
+  line-height: 1.4; /* 🌟 行高與右側標題嚴格同步 */
+  display: block;  /* 🌟 改回區塊，讓多行字（如巴士直達）能完美自然往下排 */
+  margin-top: 0;   /* 🌟 消除任何位移 */
  }
  .place { min-width: 0; }
  
  .placeTitle {
-  margin: 0;
+  margin: 0;       /* 🌟 消除外距，確保第一行不跑位 */
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.35; 
-  display: flex;
-  align-items: flex-start;
+  line-height: 1.4; /* 🌟 行高與左側時間嚴格同步，達成福岡式對齊 */
+  display: block;
  }
  .placeTitle a {
   text-decoration: none;
@@ -268,9 +266,9 @@
  .meta {
   margin: 2px 0 0; 
   color: var(--muted);
-  font-size: 10px; 
-  white-space: nowrap;
-  line-height: 1.35;
+  font-size: 14px; /* 稍微放大 XXXXX 說明的字體，更好閱讀 */
+  white-space: pre-line; /* 支援文字自然換行 */
+  line-height: 1.4;
  }
  .notes {
   margin: 6px 0 0;
@@ -661,13 +659,13 @@
   }
   .dayBody { padding: 8px 4px !important; }
   
-  /* 🌟 手機版時間軸：同步改回 stretch 置中對齊 */
+  /* 🌟 手機版同步維持靠頂部首行對齊 */
   .tRow { 
    display: grid !important;
    grid-template-columns: 54px 1fr !important; 
    gap: 8px !important; 
    padding: 6px 2px !important;
-   align-items: stretch !important; /* 確保雙欄拉伸齊平 */
+   align-items: start !important; 
   }
   .time { font-size: 14px; margin-top: 0; }
   
