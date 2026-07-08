@@ -196,13 +196,7 @@
   color: #16253b;
   letter-spacing: .4px;
   white-space: nowrap;
-}
-
-.dayCardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+ }
  .dayBody { padding: 12px 16px; }
 
  .timeline {
@@ -237,15 +231,14 @@
   display: grid;
   grid-template-columns: 90px minmax(0,1fr);
   gap: 12px;
-  align-items: flex-start; /* 🔧 關鍵：全部對齊頂部 */
+  align-items: start;
   padding: 6px 0;
   border-top: none;
-}
+ }
  .tRow:first-child {
   padding-top: 0;
  }
  .time {
-  white-space: nowrap;
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
@@ -253,17 +246,19 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding-top: 0; /* 🔧 移除偏移 */
-}
+  align-self: start; 
+  margin-top: 2px; 
+ }
  .place { min-width: 0; }
  
  .placeTitle {
-  margin: 2px 0 0; /* 🔧 微調往下貼齊時間 */
+  margin: 0;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.35;
-  display: block;
-}
+  line-height: 1.35; 
+  display: flex;
+  align-items: flex-start;
+ }
  .placeTitle a {
   text-decoration: none;
   color: inherit;
@@ -640,23 +635,20 @@
    font-size: 13px;
    flex: 0 0 auto;
   }
-
-  /* 🔧 修正：日期固定右側不換行 */
   .dayCardHeader {
-   flex-direction: row !important;
-   align-items: center !important;
-   justify-content: space-between !important;
-   gap: 6px;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 4px;
    padding: 10px 10px 6px !important;
+   border-bottom: none !important; 
   }
-
-  .dayHeaderMain { gap: 10px; width: auto; }
-
-  .dayDate {
-   font-size: 14px;
-   white-space: nowrap !important;
-   padding-left: 0 !important;
-  } 
+  .dayHeaderMain { gap: 10px; width: 100%; }
+  .dayIndex {
+   width: 42px; min-width: 42px; height: 38px;
+   border-radius: 12px; font-size: 15px;
+  }
+  .dayHeading { font-size: 16px; }
+  .dayDate { font-size: 14px; padding-left: 52px; } 
   
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
