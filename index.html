@@ -137,9 +137,10 @@
  .card {
   background: var(--surface);
   border-radius: var(--radius);
-  padding: 16px 14px;
+  padding: 0; /* 🎯 修正外框：改回滿版不溢出 */
   margin-bottom: var(--gap);
   box-shadow: var(--shadow);
+  overflow: hidden;
  }
  .tabShell .card {
   margin-bottom: 0;
@@ -467,13 +468,18 @@
  .dinner-list li {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start; /* 🎯 修正：強制置頂對齊，避免換行時右側地圖圖標往下掉 */
+  gap: 12px;
   padding: 6px 0;
   border-bottom: 1px dashed var(--line);
   font-size: 15px;
  }
  .dinner-list li:last-child {
   border-bottom: none;
+ }
+ .dinner-list li > div {
+  flex: 1; /* 🎯 修正：讓左側名稱能自由伸縮與彈性換行 */
+  min-width: 0;
  }
  .dinner-name {
   font-weight: 600;
@@ -488,6 +494,8 @@
   font-weight: 700;
   color: var(--accent);
   font-family: monospace;
+  white-space: nowrap; /* 🎯 修正：防止 📍210 標籤本身換行變形 */
+  flex-shrink: 0;
  }
 
  .tRow-alignLeft {
@@ -690,7 +698,6 @@
    padding: 0 !important;
   }
   
-  /* 🎯 強制手機版為 10px */
   .meta, p.meta {
    font-size: 10px !important;
    white-space: pre-line !important;
@@ -923,7 +930,7 @@
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox">
+          <details class="infoBox" open> <!-- 🎯 修正外框：讓餐飲回到 timeline 卡片結構中 -->
             <summary>
               <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
               <span class="chev">⌄</span>
@@ -975,15 +982,16 @@
                   </div>
                   <span class="dinner-room">📍417</span>
                 </li>
-                <div class="galleryRow" role="list">
-                  <div class="gItem"><img src="Day1/20.jpg"></div>
-                  <div class="gItem"><img src="Day1/21.jpg"></div>
-                  <div class="gItem"><img src="Day1/22.jpg"></div>
-                  <div class="gItem"><img src="Day1/23.jpg"></div>
-                  <div class="gItem"><img src="Day1/24.jpg"></div>
-                  <div class="gItem"><img src="Day1/25.jpg"></div>
-                </div>
               </ul>
+              <!-- 🎯 照片移到清單外，維持原本乾淨的水平滑動結構 -->
+              <div class="galleryRow" role="list" style="margin-top: 14px;">
+                <div class="gItem"><img src="Day1/20.jpg"></div>
+                <div class="gItem"><img src="Day1/21.jpg"></div>
+                <div class="gItem"><img src="Day1/22.jpg"></div>
+                <div class="gItem"><img src="Day1/23.jpg"></div>
+                <div class="gItem"><img src="Day1/24.jpg"></div>
+                <div class="gItem"><img src="Day1/25.jpg"></div>
+              </div>
             </div>
           </details>
         </div>
@@ -1005,7 +1013,7 @@
                   TEL : +81-3-6903-1122<br>
                   JR大井町站TRACKS口直通
                 </li>
-                <li>若要接着排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+                <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
               </ul>
             </div>
           </details>
