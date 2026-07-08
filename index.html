@@ -136,12 +136,10 @@
  .pagePanel.active { display: block; }
  .card {
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  padding: 0;
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  margin-bottom: var(--gap);
   box-shadow: var(--shadow);
-  margin-bottom: 14px;
-  overflow: hidden;
  }
  .tabShell .card {
   margin-bottom: 0;
@@ -228,49 +226,47 @@
   font-size: 13px;
  }
 
- /* ⏰ 【桌機版】強制頂部首行對齊時間軸 */
+ /* ⏰ 【桌機版】全新 Flexbox 福岡對齊結構：徹底根絕高低差 */
  .tRow {
-  display: grid;
-  grid-template-columns: 90px minmax(0, 1fr);
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important; /* 強制雙邊頂部絕對齊平 */
   gap: 12px;
-  align-items: start !important; /* 🌟 確保桌機版嚴格靠最頂部對齊 */
   padding: 6px 0;
-  border-top: none;
+  width: 100%;
  }
  .tRow:first-child {
   padding-top: 0;
  }
  .time {
+  width: 90px;
+  min-width: 90px;
+  flex-shrink: 0;
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.4 !important; /* 🌟 行高零誤差 */
-  margin: 0 !important;       /* 🌟 外距歸零 */
-  padding: 0 !important;      /* 🌟 內距歸零 */
-  display: block;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  padding: 0 !important;
  }
- .place { min-width: 0; }
- 
- /* 🌟 核心修正：徹底抹平右側標題與段落包殼帶來的隱形高低差落差 */
+ .place { 
+  flex: 1;
+  min-width: 0; 
+ }
  .place p,
  .placeTitle {
-  margin-top: 0 !important;    /* 🔥 強制消滅讓右邊第一行字往下掉的所有瀏覽器外距 */
-  margin-bottom: 0 !important;
-  padding-top: 0 !important;   /* 🔥 強制內距也歸零 */
-  padding-bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.4 !important; /* 🌟 與左側時間完全一模一樣的行高，保證齊平 */
-  display: block;
+  line-height: 1.35 !important; /* 與左側時間行高完全同步 */
  }
  .meta {
-  margin: 4px 0 0 !important;  /* 行程說明 XXXXX 完美縮在標題的正下方生長 */
-  padding: 0 !important;
+  margin: 4px 0 0 0 !important;
   color: var(--muted);
   font-size: 14px; 
   white-space: pre-line;
   line-height: 1.4;
-  display: block;
  }
  .notes {
   margin: 6px 0 0;
@@ -496,15 +492,20 @@
  }
 
  .tRow-alignLeft {
-  display: grid !important; 
-  grid-template-columns: 90px minmax(0,1fr);
-  gap: 12px;
+  display: flex !important; 
+  flex-direction: row !important;
   width: 100%;
   padding: 6px 0;
  }
+ .tRow-alignLeft .time {
+  width: 90px;
+  min-width: 90px;
+ }
+ .tRow-alignLeft .place {
+  flex: 1;
+ }
  .tRow-alignLeft details.infoBox,
  .tRow-alignLeft .gallery-alignLeft {
-  grid-column: 2 !important;
   margin-left: 0 !important;   
   margin-right: 0 !important;
   width: 100% !important;
@@ -661,29 +662,47 @@
   }
   .dayBody { padding: 8px 4px !important; }
   
-  /* ⏰ 【手機版終極校正】強制雙欄嚴格頂部齊平 */
+  /* 🌟 【手機端原子級對齊修正】 */
   .tRow { 
-   display: grid !important;
-   grid-template-columns: 54px 1fr !important; 
+   display: flex !important;
+   flex-direction: row !important;
+   align-items: flex-start !important; /* 確保手機端即使右邊文字換行，頂部也完美齊平 */
    gap: 8px !important; 
    padding: 6px 2px !important;
-   align-items: start !important; /* 🎯 核心修復：強制手機版面對換行時，也絕對從第一行頂部出發切齊 */
+   width: 100% !important;
   }
   .time { 
+   width: 54px !important;
+   min-width: 54px !important;
    font-size: 14px; 
+   line-height: 1.35 !important;
    margin: 0 !important;
    padding: 0 !important;
-   line-height: 1.4 !important;
+   /* 🎯 加上微小的 1 像素物理偏移，徹底抹平部分手機系統網頁引擎的字體渲染落差 */
+   position: relative !important;
+   top: 1px !important; 
+  }
+  .place {
+   flex: 1 !important;
+  }
+  .place p,
+  .placeTitle {
+   font-size: 15px !important; /* 手機版字體微調 */
+   line-height: 1.35 !important; /* 與左側時間行高絕對同步 */
+   margin: 0 !important;
+   padding: 0 !important;
   }
   
   .tRow-alignLeft {
-   grid-template-columns: 1fr !important; 
    display: block !important;
    padding: 0 !important;
   }
+  .tRow-alignLeft .time {
+   width: 100% !important;
+   display: none !important; /* 在橫向滿版區塊隱藏無用時間欄 */
+  }
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft {
-   grid-column: unset !important;
    margin-left: 0 !important;  
    margin-right: 0 !important; 
    width: 100% !important;
@@ -804,66 +823,69 @@
       </div>
       
       <div class="tRow eRow tRow-alignLeft">
-        <details class="infoBox">
-         <summary>
-           <span class="summaryText">交通資訊</span>
-           <span class="chev">⌄</span>
-         </summary>
-         <div class="infoContent">
-           <details class="infoBox">
-             <summary>
-               <span class="summaryText">搭乘電車🚆</span>
-               <span class="chev">⌄</span>
-             </summary>
-             <div class="infoContent">
-               <ul class="notes" style="font-size:15px; line-height:1.7;">
-                 <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
-                 <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町<br></li>
-               </ul>
-               <div class="galleryRow" role="list">
-                 <div class="gItem"><img src="Day1/01.jpg"></div>
-                 <div class="gItem"><img src="Day1/02.jpg"></div>
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+           <summary>
+             <span class="summaryText">交通資訊</span>
+             <span class="chev">⌄</span>
+           </summary>
+           <div class="infoContent">
+             <details class="infoBox">
+               <summary>
+                 <span class="summaryText">搭乘電車🚆</span>
+                 <span class="chev">⌄</span>
+               </summary>
+               <div class="infoContent">
+                 <ul class="notes" style="font-size:15px; line-height:1.7;">
+                   <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
+                   <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町<br></li>
+                 </ul>
+                 <div class="galleryRow" role="list">
+                   <div class="gItem"><img src="Day1/01.jpg"></div>
+                   <div class="gItem"><img src="Day1/02.jpg"></div>
+                 </div>
                </div>
-             </div>
-           </details>
+             </details>
 
-           <details class="infoBox">
-             <summary>
-               <span class="summaryText">搭乘機場巴士 <a class="transportIcon" href="https://keikyubus.travel.navitime.com/">🚌</a></span>
-               <span class="chev">⌄</span>
-             </summary>
-             <div class="infoContent">
-               <ul class="notes">
-                 <li>乘車地點 : 第3航廈1樓10號公車站</li>
-                 <li style="line-height: 1.5;">下車地點 : 大井町トラックス21番<br><span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;">（原 大井町駅西口3番）</span></li>
-                 <li>單程票價 : 成人800円</li>
-               </ul>
-               <table>
-                 <thead>
-                   <tr>
-                     <th>出發（T3）</th>
-                     <th>抵達（大井町）</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr><td>14:05</td><td>14:57</td></tr>
-                   <tr><td>15:05</td><td>15:54</td></tr>
-                   <tr><td>16:05</td><td>16:57</td></tr>
-                   <tr><td>16:50</td><td>17:42</td></tr>
-                   <tr><td>17:40</td><td>18:32</td></tr>
-                 </tbody>
-               </table>
+             <details class="infoBox">
+               <summary>
+                 <span class="summaryText">搭乘機場巴士 <a class="transportIcon" href="https://keikyubus.travel.navitime.com/">🚌</a></span>
+                 <span class="chev">⌄</span>
+               </summary>
+               <div class="infoContent">
+                 <ul class="notes">
+                   <li>乘車地點 : 第3航廈1樓10號公車站</li>
+                   <li style="line-height: 1.5;">下車地點 : 大井町トラックス21番<br><span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;">（原 大井町駅西口3番）</span></li>
+                   <li>單程票價 : 成人800円</li>
+                 </ul>
+                 <table>
+                   <thead>
+                     <tr>
+                       <th>出發（T3）</th>
+                       <th>抵達（大井町）</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr><td>14:05</td><td>14:57</td></tr>
+                     <tr><td>15:05</td><td>15:54</td></tr>
+                     <tr><td>16:05</td><td>16:57</td></tr>
+                     <tr><td>16:50</td><td>17:42</td></tr>
+                     <tr><td>17:40</td><td>18:32</td></tr>
+                   </tbody>
+                 </table>
 
-               <div class="galleryRow" role="list">
-                 <div class="gItem"><img src="Day1/04.jpg" alt=""></div>
-                 <div class="gItem"><img src="Day1/05.jpg" alt=""></div>
-                 <div class="gItem"><img src="Day1/06.jpg" alt=""></div>
+                 <div class="galleryRow" role="list">
+                   <div class="gItem"><img src="Day1/04.jpg" alt=""></div>
+                   <div class="gItem"><img src="Day1/05.jpg" alt=""></div>
+                   <div class="gItem"><img src="Day1/06.jpg" alt=""></div>
+                 </div>
+
                </div>
-
-             </div>
-           </details>
-         </div>
-        </details>
+             </details>
+           </div>
+          </details>
+        </div>
       </div>
 
       <div class="tRow">
@@ -875,103 +897,112 @@
       </div>
 
       <div class="tRow tRow-alignLeft">
-        <div class="gallery gallery-alignLeft">
-         <p class="galleryTitle">📷 飯店 / 周邊</p>
-         <div class="galleryRow" role="list">
-          <div class="gItem" role="listitem"><img src="Day1/07.jpg" alt=""></div>
-          <div class="gItem" role="listitem"><img src="Day1/08.jpg" alt=""></div>
-          <div class="gItem" role="listitem"><img src="Day1/09.jpg" alt=""></div>
-          <div class="gItem" role="listitem"><img src="Day1/10.jpg" alt=""></div>
-          <div class="gItem" role="listitem"><img src="Day1/11.jpg" alt=""></div>
-          <div class="gItem" role="listitem"><img src="Day1/12.jpg" alt=""></div>
-         </div>
+        <div class="time"></div>
+        <div class="place">
+          <div class="gallery gallery-alignLeft">
+           <p class="galleryTitle">📷 飯店 / 周邊</p>
+           <div class="galleryRow" role="list">
+            <div class="gItem" role="listitem"><img src="Day1/07.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/08.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/09.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/10.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/11.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/12.jpg" alt=""></div>
+           </div>
+          </div>
         </div>
       </div>
 
       <div class="tRow tRow-alignLeft">
-        <details class="infoBox">
-          <summary>
-            <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
-            <span class="chev">⌄</span>
-          </summary>
-          <div class="infoContent">
-            <p style="margin:6px 0 10px;">
-              OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
-            </p>
-            <ul class="dinner-list">
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://yamahan.tokyo/menu">山本のハンバーグ</a>
-                  <span class="dinner-type">漢堡排</span>
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+            <summary>
+              <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+              <p style="margin:6px 0 10px;">
+                OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
+              </p>
+              <ul class="dinner-list">
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://yamahan.tokyo/menu">山本のハンバーグ</a>
+                    <span class="dinner-type">漢堡排</span>
+                  </div>
+                  <span class="dinner-room">📍102</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://latelier-du-pain.com/english/menu_hard.html">L’Atelier du Pain</a>
+                    <span class="dinner-type">麵包(六本木 tabelog百名店)</span>
+                  </div>
+                  <span class="dinner-room">📍210</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/oimachi_yellow/">Yellow Oimachi</a>
+                    <span class="dinner-type">蛋包飯</span>
+                  </div>
+                  <span class="dinner-room">📍316</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.dategyu.jp/tw/menu/">ダテノギュウタン本舗</a>
+                    <span class="dinner-type">牛舌(仙台名店)</span>
+                  </div>
+                  <span class="dinner-room">📍410</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/ooimachi.zeniba/">銭場精肉店</a>
+                    <span class="dinner-type">燒肉(溶岩盤上享受特選黑毛和牛)</span>
+                  </div>
+                  <span class="dinner-room">📍415</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/shiogamakooo/">廻鮮寿司 塩釜港</a>
+                    <span class="dinner-type">宮城縣塩釜直送</span>
+                  </div>
+                  <span class="dinner-room">📍417</span>
+                </li>
+                <div class="galleryRow" role="list">
+                  <div class="gItem"><img src="Day1/20.jpg"></div>
+                  <div class="gItem"><img src="Day1/21.jpg"></div>
+                  <div class="gItem"><img src="Day1/22.jpg"></div>
+                  <div class="gItem"><img src="Day1/23.jpg"></div>
+                  <div class="gItem"><img src="Day1/24.jpg"></div>
+                  <div class="gItem"><img src="Day1/25.jpg"></div>
                 </div>
-                <span class="dinner-room">📍102</span>
-              </li>
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://latelier-du-pain.com/english/menu_hard.html">L’Atelier du Pain</a>
-                  <span class="dinner-type">麵包(六本木 tabelog百名店)</span>
-                </div>
-                <span class="dinner-room">📍210</span>
-              </li>
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.instagram.com/oimachi_yellow/">Yellow Oimachi</a>
-                  <span class="dinner-type">蛋包飯</span>
-                </div>
-                <span class="dinner-room">📍316</span>
-              </li>
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.dategyu.jp/tw/menu/">ダテノギュウタン本舗</a>
-                  <span class="dinner-type">牛舌(仙台名店)</span>
-                </div>
-                <span class="dinner-room">📍410</span>
-              </li>
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.instagram.com/ooimachi.zeniba/">銭場精肉店</a>
-                  <span class="dinner-type">燒肉(溶岩盤上享受特選黑毛和牛)</span>
-                </div>
-                <span class="dinner-room">📍415</span>
-              </li>
-              <li>
-                <div>
-                  <a class="dinner-name" href="https://www.instagram.com/shiogamakooo/">廻鮮寿司 塩釜港</a>
-                  <span class="dinner-type">宮城縣塩釜直送</span>
-                </div>
-                <span class="dinner-room">📍417</span>
-              </li>
-              <div class="galleryRow" role="list">
-                <div class="gItem"><img src="Day1/20.jpg"></div>
-                <div class="gItem"><img src="Day1/21.jpg"></div>
-                <div class="gItem"><img src="Day1/22.jpg"></div>
-                <div class="gItem"><img src="Day1/23.jpg"></div>
-                <div class="gItem"><img src="Day1/24.jpg"></div>
-                <div class="gItem"><img src="Day1/25.jpg"></div>
-              </div>
-            </ul>
-          </div>
-        </details>
+              </ul>
+            </div>
+          </details>
+        </div>
       </div>
 
       <div class="tRow tRow-alignLeft">
-        <details class="infoBox">
-          <summary>
-            <span class="summaryText">📝Memo</span>
-            <span class="chev">⌄</span>
-          </summary>
-          <div class="infoContent">
-            <ul class="notes">
-              <li>
-                飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a><br>
-                140-0005 東京都品川區廣町2-1-3<br>
-                TEL : +81-3-6903-1122<br>
-                JR大井町站TRACKS口直通
-              </li>
-              <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
-            </ul>
-          </div>
-        </details>
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+            <summary>
+              <span class="summaryText">📝Memo</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+              <ul class="notes">
+                <li>
+                  飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a><br>
+                  140-0005 東京都品川區廣町2-1-3<br>
+                  TEL : +81-3-6903-1122<br>
+                  JR大井町站TRACKS口直通
+                </li>
+                <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
       </div>
 
      </div>
@@ -1251,160 +1282,4 @@
   modalInner.addEventListener('touchend', (e)=>{
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
-      const diffX = currentX - startX;
-      
-      if (scale === 1) {
-        if (diffX > 60) {
-          prevImage();
-        } else if (diffX < -60) {
-          nextImage();
-        }
-        resetTransform();
-      } else {
-        lastTranslateX = translateX;
-        lastTranslateY = translateY;
-      }
-    }
-       
-    const now = Date.now();
-    if (now - lastTap < 300 && e.touches.length === 0) {
-      if (scale === 1) {
-        scale = 2.5;
-        applyTransform(true);
-      } else {
-        resetTransform();
-      }
-      lastTap = 0;
-      touchMode = 'none';
-      return;
-    }
-    lastTap = now;
-    touchMode = 'none';
-  });
-
-  document.querySelectorAll('.timeline').forEach(timeline => {
-   let dragItem = null;
-   
-   timeline.addEventListener('dragstart', e => {
-    const row = e.target.closest('.tRow');
-    if (!row) return;
-    dragItem = row;
-    row.style.opacity = '0.4';
-    e.dataTransfer.effectAllowed = 'move';
-   });
-   
-   timeline.addEventListener('dragend', e => {
-    const row = e.target.closest('.tRow');
-    if (row) row.style.opacity = '1';
-    dragItem = null;
-   });
-   
-   timeline.addEventListener('dragover', e => {
-    e.preventDefault();
-    const row = e.target.closest('.tRow');
-    if (!row || !dragItem || row === dragItem) return;
-    const rect = row.getBoundingClientRect();
-    const offset = e.clientY - rect.top;
-    if (offset > rect.height / 2) {
-     row.after(dragItem);
-    } else {
-     row.before(dragItem);
-    }
-   });
-
-   timeline.querySelectorAll('.tRow').forEach(row => {
-    row.draggable = false;
-    const handle = row.querySelector('.time');
-    if (!handle) return;
-    handle.style.cursor = 'default';
-    handle.style.userSelect = 'text';
-    handle.addEventListener('mousedown', () => row.draggable = true);
-    handle.addEventListener('mouseup', () => row.draggable = false);
-    handle.addEventListener('mouseleave', () => row.draggable = false);
-   });
-  });
-
-  document.querySelectorAll('.galleryRow').forEach(row => {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    let velocity = 0;
-    let lastX = 0;
-    let lastTime = 0;
-
-    row.addEventListener('mousedown', (e) => {
-      e.stopPropagation();
-      isDown = true;
-      row.classList.add('dragging');
-      startX = e.pageX;
-      scrollLeft = row.scrollLeft;
-      lastX = e.pageX;
-      lastTime = Date.now();
-    });
-
-    row.addEventListener('mouseleave', () => {
-      isDown = false;
-      row.classList.remove('dragging');
-    });
-
-    row.addEventListener('mouseup', () => {
-      isDown = false;
-      row.classList.remove('dragging');
-      const decay = 0.95;
-      function momentum(){
-        if (Math.abs(velocity) < 0.1) return;
-        row.scrollLeft -= velocity;
-        velocity *= decay;
-        requestAnimationFrame(momentum);
-      }
-      momentum();
-    });
-
-    row.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX;
-      const walk = (x - startX);
-      row.scrollLeft = scrollLeft - walk;
-
-      const now = Date.now();
-      const dx = x - lastX;
-      const dt = now - lastTime || 1;
-      velocity = dx / dt * 16; 
-      lastX = x;
-      lastTime = now;
-    });
-
-    row.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        row.scrollLeft += e.deltaY;
-      }
-    }, { passive: false });
-  });
-
-  document.querySelectorAll('.tabBtn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      const targetId = btn.getAttribute('data-target');
-      document.querySelectorAll('.pagePanel').forEach(panel => {
-        if(panel.id === targetId) {
-          panel.classList.add('active');
-        } else {
-          panel.classList.remove('active');
-        }
-      });
-    });
-  });
-
-  document.querySelectorAll('a[href^="http"]').forEach(link => {
-   link.setAttribute('target', '_blank');
-   link.setAttribute('rel', 'noopener');
-  });
- })();
- </script>
-</body>
-</html>
+      const diffX
