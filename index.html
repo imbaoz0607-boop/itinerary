@@ -1282,4 +1282,160 @@
   modalInner.addEventListener('touchend', (e)=>{
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
-      const diffX
+      const diffX = currentX - startX;
+      
+      if (scale === 1) {
+        if (diffX > 60) {
+          prevImage();
+        } else if (diffX < -60) {
+          nextImage();
+        }
+        resetTransform();
+      } else {
+        lastTranslateX = translateX;
+        lastTranslateY = translateY;
+      }
+    }
+       
+    const now = Date.now();
+    if (now - lastTap < 300 && e.touches.length === 0) {
+      if (scale === 1) {
+        scale = 2.5;
+        applyTransform(true);
+      } else {
+        resetTransform();
+      }
+      lastTap = 0;
+      touchMode = 'none';
+      return;
+    }
+    lastTap = now;
+    touchMode = 'none';
+  });
+
+  document.querySelectorAll('.timeline').forEach(timeline => {
+   let dragItem = null;
+   
+   timeline.addEventListener('dragstart', e => {
+    const row = e.target.closest('.tRow');
+    if (!row) return;
+    dragItem = row;
+    row.style.opacity = '0.4';
+    e.dataTransfer.effectAllowed = 'move';
+   });
+   
+   timeline.addEventListener('dragend', e => {
+    const row = e.target.closest('.tRow');
+    if (row) row.style.opacity = '1';
+    dragItem = null;
+   });
+   
+   timeline.addEventListener('dragover', e => {
+    e.preventDefault();
+    const row = e.target.closest('.tRow');
+    if (!row || !dragItem || row === dragItem) return;
+    const rect = row.getBoundingClientRect();
+    const offset = e.clientY - rect.top;
+    if (offset > rect.height / 2) {
+     row.after(dragItem);
+    } else {
+     row.before(dragItem);
+    }
+   });
+
+   timeline.querySelectorAll('.tRow').forEach(row => {
+    row.draggable = false;
+    const handle = row.querySelector('.time');
+    if (!handle) return;
+    handle.style.cursor = 'default';
+    handle.style.userSelect = 'text';
+    handle.addEventListener('mousedown', () => row.draggable = true);
+    handle.addEventListener('mouseup', () => row.draggable = false);
+    handle.addEventListener('mouseleave', () => row.draggable = false);
+   });
+  });
+
+  document.querySelectorAll('.galleryRow').forEach(row => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+
+    row.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      isDown = true;
+      row.classList.add('dragging');
+      startX = e.pageX;
+      scrollLeft = row.scrollLeft;
+      lastX = e.pageX;
+      lastTime = Date.now();
+    });
+
+    row.addEventListener('mouseleave', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+    });
+
+    row.addEventListener('mouseup', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+      const decay = 0.95;
+      function momentum(){
+        if (Math.abs(velocity) < 0.1) return;
+        row.scrollLeft -= velocity;
+        velocity *= decay;
+        requestAnimationFrame(momentum);
+      }
+      momentum();
+    });
+
+    row.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX;
+      const walk = (x - startX);
+      row.scrollLeft = scrollLeft - walk;
+
+      const now = Date.now();
+      const dx = x - lastX;
+      const dt = now - lastTime || 1;
+      velocity = dx / dt * 16; 
+      lastX = x;
+      lastTime = now;
+    });
+
+    row.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        row.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  });
+
+  document.querySelectorAll('.tabBtn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const targetId = btn.getAttribute('data-target');
+      document.querySelectorAll('.pagePanel').forEach(panel => {
+        if(panel.id === targetId) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  document.querySelectorAll('a[href^="http"]').forEach(link => {
+   link.setAttribute('target', '_blank');
+   link.setAttribute('rel', 'noopener');
+  });
+ })();
+ </script>
+</body>
+</html>
