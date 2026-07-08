@@ -226,11 +226,10 @@
   font-size: 13px;
  }
 
- /* ⏰ 【桌機版】全新 Flexbox 福岡對齊結構：徹底根絕高低差 */
  .tRow {
   display: flex !important;
   flex-direction: row !important;
-  align-items: flex-start !important; /* 強制雙邊頂部絕對齊平 */
+  align-items: flex-start !important; 
   gap: 12px;
   padding: 6px 0;
   width: 100%;
@@ -259,7 +258,7 @@
   padding: 0 !important;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.35 !important; /* 與左側時間行高完全同步 */
+  line-height: 1.35 !important; 
  }
  .meta {
   margin: 4px 0 0 0 !important;
@@ -662,11 +661,10 @@
   }
   .dayBody { padding: 8px 4px !important; }
   
-  /* 🌟 【手機端原子級對齊修正】 */
   .tRow { 
    display: flex !important;
    flex-direction: row !important;
-   align-items: flex-start !important; /* 確保手機端即使右邊文字換行，頂部也完美齊平 */
+   align-items: flex-start !important; 
    gap: 8px !important; 
    padding: 6px 2px !important;
    width: 100% !important;
@@ -678,7 +676,6 @@
    line-height: 1.35 !important;
    margin: 0 !important;
    padding: 0 !important;
-   /* 🎯 加上微小的 1 像素物理偏移，徹底抹平部分手機系統網頁引擎的字體渲染落差 */
    position: relative !important;
    top: 1px !important; 
   }
@@ -687,8 +684,8 @@
   }
   .place p,
   .placeTitle {
-   font-size: 15px !important; /* 手機版字體微調 */
-   line-height: 1.35 !important; /* 與左側時間行高絕對同步 */
+   font-size: 15px !important; 
+   line-height: 1.35 !important; 
    margin: 0 !important;
    padding: 0 !important;
   }
@@ -699,7 +696,7 @@
   }
   .tRow-alignLeft .time {
    width: 100% !important;
-   display: none !important; /* 在橫向滿版區塊隱藏無用時間欄 */
+   display: none !important; 
   }
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft {
@@ -998,7 +995,7 @@
                   TEL : +81-3-6903-1122<br>
                   JR大井町站TRACKS口直通
                 </li>
-                <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+                <li>若要接着排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
               </ul>
             </div>
           </details>
@@ -1007,8 +1004,20 @@
 
      </div>
     </div>
-   
-      </section>
+   </section>
+
+   <section class="card daySection pagePanel" id="day2">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">2</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">9/27(日)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
 
    <section class="card daySection pagePanel" id="day3">
     <div class="dayCardHeader">
@@ -1066,6 +1075,13 @@
       </div>
 
       <div class="tRow">
+       <div class="time">13:45 - 16:00</div>
+       <div class="place">
+        <p class="placeTitle">藏造老街 ＆ 時之鐘</p>
+       </div>
+      </div>
+
+      <div class="tRow">
        <div class="time">16:00 - 17:30</div>
        <div class="place">
         <p class="placeTitle">新富町商店街</p>
@@ -1085,17 +1101,6 @@
     </div>
    </section>
 
-   <section class="card daySection pagePanel" id="day2">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">2</div>
-      <h2 class="dayTitle">行程待安排</h2>
-     </div>
-     <div class="dayDate">9/27(日)</div>
-    </div>
-    <div class="cardBody"><div class="timeline"></div></div>
-   </section>
-
    <section class="card daySection pagePanel" id="day4">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
@@ -1104,7 +1109,9 @@
      </div>
      <div class="dayDate">9/29(二)</div>
     </div>
-    <div class="cardBody"><div class="timeline"></div></div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
    </section>
 
    <section class="card daySection pagePanel" id="day5">
@@ -1115,7 +1122,9 @@
      </div>
      <div class="dayDate">9/30(三)</div>
     </div>
-    <div class="cardBody"><div class="timeline"></div></div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
    </section>
 
    <section class="card daySection pagePanel" id="day6">
@@ -1126,7 +1135,9 @@
      </div>
      <div class="dayDate">10/01(四)</div>
     </div>
-    <div class="cardBody"><div class="timeline"></div></div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
    </section>
 
    <section class="card daySection pagePanel" id="day7">
@@ -1137,7 +1148,9 @@
      </div>
      <div class="dayDate">10/02(五)</div>
     </div>
-    <div class="cardBody"><div class="timeline"></div></div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
    </section>
 
    <section class="card daySection pagePanel" id="day8">
@@ -1148,7 +1161,9 @@
      </div>
      <div class="dayDate">10/03(六)</div>
     </div>
-    <div class="cardBody"><div class="timeline"></div></div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
    </section>
 
   </section>
