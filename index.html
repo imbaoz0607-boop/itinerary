@@ -227,13 +227,13 @@
   color: #5f5448;
   font-size: 13px;
  }
- 
- /* ⏰ 完美福岡格式時間軸：一律靠頂部對齊第一行 */
+
+ /* ⏰ 完美對齊第一行頂部的福岡格式時間軸 */
  .tRow {
   display: grid;
   grid-template-columns: 90px minmax(0, 1fr);
   gap: 12px;
-  align-items: start; /* 🌟 核心：一律靠頂部對齊，不論內容幾行，第一行都絕對切齊 */
+  align-items: start; /* 🌟 確保時間軸一律從第一行頂部出發對齊 */
   padding: 6px 0;
   border-top: none;
  }
@@ -244,31 +244,29 @@
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.4; /* 🌟 行高與右側標題嚴格同步 */
-  display: block;  /* 🌟 改回區塊，讓多行字（如巴士直達）能完美自然往下排 */
-  margin-top: 0;   /* 🌟 消除任何位移 */
+  line-height: 1.4; /* 🌟 嚴格與右邊文字行高保持一致 */
+  display: block;
+  margin-top: 0;   /* 🌟 徹底消除頂部高低差 */
  }
  .place { min-width: 0; }
  
+ /* 🌟 終極修正：拔除右側 P 標籤內建的隱形外距落差，並同步行高 */
+ .place p,
  .placeTitle {
-  margin: 0;       /* 🌟 消除外距，確保第一行不跑位 */
+  margin-top: 0 !important;    /* 🔥 強制消滅讓右邊第一行字往下掉的 16px 瀏覽器外距 */
+  margin-bottom: 0 !important;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.4; /* 🌟 行高與左側時間嚴格同步，達成福岡式對齊 */
+  line-height: 1.4;            /* 🌟 與左側時間使用完全相同的行高，達成完美切齊 */
   display: block;
  }
- .placeTitle a {
-  text-decoration: none;
-  color: inherit;
-  white-space: nowrap;
-  flex-shrink: 0;
- }
  .meta {
-  margin: 2px 0 0; 
+  margin: 4px 0 0 !important; /* 🌟 行程說明 XXXXX 完美縮在標題的正下方生長 */
   color: var(--muted);
-  font-size: 14px; /* 稍微放大 XXXXX 說明的字體，更好閱讀 */
-  white-space: pre-line; /* 支援文字自然換行 */
+  font-size: 14px; 
+  white-space: pre-line;
   line-height: 1.4;
+  display: block;
  }
  .notes {
   margin: 6px 0 0;
@@ -659,13 +657,13 @@
   }
   .dayBody { padding: 8px 4px !important; }
   
-  /* 🌟 手機版同步維持靠頂部首行對齊 */
+  /* 🌟 手機版時間軸同步修正 */
   .tRow { 
    display: grid !important;
    grid-template-columns: 54px 1fr !important; 
    gap: 8px !important; 
    padding: 6px 2px !important;
-   align-items: start !important; 
+   align-items: start !important; /* 🌟 靠頂部首行齊平 */
   }
   .time { font-size: 14px; margin-top: 0; }
   
