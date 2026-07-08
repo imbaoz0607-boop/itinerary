@@ -264,10 +264,12 @@
  .meta {
   margin: 4px 0 0 0 !important;
   color: var(--muted);
-  font-size: 13px; 
+  font-size: 13px; /* 🎯 桌機版修正：將一般行程第2行後的說明文字放大一號至 13px */
   white-space: pre-line;
   line-height: 1.4;
  }
+ /* 🔒 特殊權重：死守大都會大飯店副標題字體，不受上述放大影響 */
+ .place p.meta[style*="HOTEL"], 
  .place p.meta {
   font-size: 13px; 
  }
@@ -277,7 +279,7 @@
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
-  font-size: 15px; 
+  font-size: 15px; /* 🎯 🎯 桌機版修正：將條列點清單放大一號至 15px */
  }
  .notes li + li { margin-top: 3px; }
  .gallery {
@@ -479,7 +481,7 @@
   gap: 12px;
   padding: 6px 0;
   border-bottom: 1px dashed var(--line);
-  font-size: 15px; /* 🎯 桌機版修正：將餐飲清單內的餐廳名稱與備註放大一號至 15px */
+  font-size: 15px;
  }
  .dinner-list li:last-child {
   border-bottom: none;
@@ -493,7 +495,7 @@
   color: var(--text);
  }
  .dinner-type {
-  font-size: 13px; /* 🎯 桌機版餐飲小標對齊放大 */
+  font-size: 13px;
   color: var(--muted);
   margin-left: 8px;
  }
@@ -705,15 +707,18 @@
    padding: 0 !important;
   }
   
+  /* 🎯 手機版修正：一般行程第2行後的說明文字放大一號至 12px */
   p.meta {
    font-size: 12px !important;
    white-space: pre-line !important;
   }
 
+  /* 🔒 手機版特殊權重：死守大都會大飯店英文副標題字體，維持緊湊 10px 不被放大 */
   #day1 .tRow:nth-child(3) .place p.meta {
    font-size: 10px !important;
   }
 
+  /* 🎯 手機版修正：條列點清單 (.notes) 放大一號至 14px */
   .notes {
    font-size: 14px !important;
   }
@@ -721,14 +726,53 @@
   .heroFlightList {
    font-size: 14px !important;
   }
-
-  /* 🎯 手機版修正：將餐飲清單內的所有餐廳文字同步放大至一號 14px */
-  .dinner-list li {
-   font-size: 14px !important;
+  
+  .tRow-alignLeft {
+   display: block !important;
+   padding: 0 !important;
   }
-  .dinner-type {
-   font-size: 12px !important;
+  .tRow-alignLeft .time {
+   width: 100% !important;
+   display: none !important; 
   }
+  .tRow-alignLeft details.infoBox,
+  .tRow-alignLeft .gallery-alignLeft {
+   margin-left: 0 !important;  
+   margin-right: 0 !important; 
+   width: 100% !important;
+  }
+  
+  details.infoBox {
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+   width: 100% !important;
+   border-radius: 0 !important;
+   background: transparent !important; 
+  }
+  details.infoBox > summary {
+   padding: 10px 0 !important; 
+  }
+  .infoContent {
+   padding: 0 0 12px 0 !important; 
+  }
+  .infoContent details.infoBox {
+   width: 100% !important;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+   }
+  .infoContent details.infoBox > summary {
+   padding: 8px 0 !important;
+  }
+  .infoContent details.infoBox .infoContent {
+   padding: 0 0 8px 0 !important;
+  }
+  
+  .gItem {
+   width: 60vw; 
+   max-width: none;
+  }
+  .lbNav { display: none; }
+  .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
  </style>
 </head>
@@ -1219,8 +1263,7 @@
   let startX = 0, startY = 0;
   let currentX = 0, currentY = 0;
   let translateX = 0, translateY = 0;
-  let lastTranslateX = 0;
-  let lastTranslateY = 0;
+  let lastTranslateX = 0, lastTranslateY = 0;
   let lastTap = 0;
   let isDragging = false;
   let touchMode = 'none';
