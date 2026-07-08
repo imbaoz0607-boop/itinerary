@@ -191,23 +191,17 @@
   line-height: 1.3;
  }
  .dayDate {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 800;
-  color: #1f3a8a;
-  background: #eaf2ff;
-  border: 1px solid #cfe0ff;
-  padding: 6px 10px;
-  border-radius: 999px;
-  letter-spacing: .3px;
+  color: #16253b;
+  letter-spacing: .4px;
   white-space: nowrap;
-  box-shadow: 0 4px 10px rgba(0,0,0,.05);
 }
 
 .dayCardHeader {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
  .dayBody { padding: 12px 16px; }
 
@@ -255,20 +249,20 @@
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.35; /* 🔧 跟右邊標題一致 */
+  line-height: 1.35;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding-top: 2px; /* 🔧 微調讓數字跟標題第一行對齊 */
+  padding-top: 0; /* 🔧 移除偏移 */
 }
  .place { min-width: 0; }
  
  .placeTitle {
-  margin: 0;
+  margin: 2px 0 0; /* 🔧 微調往下貼齊時間 */
   font-size: 16px;
   font-weight: 700;
   line-height: 1.35;
-  display: block; /* 🔧 避免 flex 造成偏移 */
+  display: block;
 }
  .placeTitle a {
   text-decoration: none;
