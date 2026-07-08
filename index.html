@@ -115,7 +115,7 @@
  .heroFlightList {
   margin: 6px 0 0;
   padding-left: 18px;
-  font-size: 11px;
+  font-size: 11px; /* 🎯 徹底鎖死：桌機版去回程機票資訊字體改回 11px */
  }
  .heroFlightList li + li { margin-top: 3px; }
  .heroFlightList strong { font-weight: 700; }
@@ -137,7 +137,7 @@
  .card {
   background: var(--surface);
   border-radius: var(--radius);
-  padding: 0; /* 🎯 修正外框：改回滿版不溢出 */
+  padding: 0; 
   margin-bottom: var(--gap);
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -468,7 +468,7 @@
  .dinner-list li {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* 🎯 修正：強制置頂對齊，避免換行時右側地圖圖標往下掉 */
+  align-items: flex-start; 
   gap: 12px;
   padding: 6px 0;
   border-bottom: 1px dashed var(--line);
@@ -478,7 +478,7 @@
   border-bottom: none;
  }
  .dinner-list li > div {
-  flex: 1; /* 🎯 修正：讓左側名稱能自由伸縮與彈性換行 */
+  flex: 1; 
   min-width: 0;
  }
  .dinner-name {
@@ -494,7 +494,7 @@
   font-weight: 700;
   color: var(--accent);
   font-family: monospace;
-  white-space: nowrap; /* 🎯 修正：防止 📍210 標籤本身換行變形 */
+  white-space: nowrap; 
   flex-shrink: 0;
  }
 
@@ -703,6 +703,7 @@
    white-space: pre-line !important;
   }
 
+  /* 🎯 徹底鎖死：手機版去回程機票資訊字體也強制縮小到 10px */
   .heroFlightList {
    font-size: 10px !important;
   }
@@ -739,7 +740,7 @@
    width: 100% !important;
    margin-left: 0 !important;
    margin-right: 0 !important;
-  }
+   }
   .infoContent details.infoBox > summary {
    padding: 8px 0 !important;
   }
@@ -930,7 +931,7 @@
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox" open> <!-- 🎯 修正外框：讓餐飲回到 timeline 卡片結構中 -->
+          <details class="infoBox" open> 
             <summary>
               <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
               <span class="chev">⌄</span>
@@ -983,7 +984,6 @@
                   <span class="dinner-room">📍417</span>
                 </li>
               </ul>
-              <!-- 🎯 照片移到清單外，維持原本乾淨的水平滑動結構 -->
               <div class="galleryRow" role="list" style="margin-top: 14px;">
                 <div class="gItem"><img src="Day1/20.jpg"></div>
                 <div class="gItem"><img src="Day1/21.jpg"></div>
