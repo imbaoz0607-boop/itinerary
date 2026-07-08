@@ -227,11 +227,13 @@
   color: #5f5448;
   font-size: 13px;
  }
+ 
+ /* 🌟 修正後的桌機版時間軸：左右垂直置中對齊 */
  .tRow {
   display: grid;
-  grid-template-columns: 90px minmax(0,1fr);
+  grid-template-columns: 90px 100%px;
   gap: 12px;
-  align-items: start;
+  align-items: center; /* 讓時間與行程內容水平置中對齊 */
   padding: 6px 0;
   border-top: none;
  }
@@ -244,10 +246,9 @@
   letter-spacing: .2px;
   line-height: 1.35;
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* 修正時間內部的對齊基準 */
   justify-content: flex-start;
-  align-self: start; 
-  margin-top: 2px; 
+  align-self: center;  /* 確保時間欄位垂直置中 */
  }
  .place { min-width: 0; }
  
@@ -257,7 +258,7 @@
   font-weight: 700;
   line-height: 1.35; 
   display: flex;
-  align-items: flex-start;
+  align-items: center;
  }
  .placeTitle a {
   text-decoration: none;
@@ -459,7 +460,7 @@
   color: #3b6cff !important;
   text-decoration: underline !important;
   font-weight: 700 !important;
- }
+}
  .infoContent details.infoBox .infoContent {
   padding: 0 0 8px 0;
  }
@@ -636,7 +637,6 @@
    flex: 0 0 auto;
   }
 
-  /* 🔥關鍵修正：手機版標題與日期同一行 */
   .dayCardHeader {
    flex-direction: row !important;
    align-items: center !important;
@@ -665,12 +665,13 @@
   .card { padding: 6px !important; } 
   .dayBody { padding: 8px 4px !important; }
   
+  /* 🌟 修正後的手機版時間軸：左右垂直置中對齊 */
   .tRow { 
    display: grid !important;
    grid-template-columns: 54px 1fr !important; 
    gap: 8px !important; 
    padding: 6px 2px !important;
-   align-items: start !important;
+   align-items: center !important; /* 強制手機版左右垂直置中 */
   }
   .time { font-size: 14px; }
   
@@ -790,7 +791,7 @@
      </div>
      <div class="dayDate">9/26(六)</div>
     </div>
-    <div class="dayBody">
+    <div class="cardBody">
      <div class="timeline">
       
       <div class="tRow">
@@ -985,7 +986,7 @@
      </div>
      <div class="dayDate">9/28(一)</div>
     </div>
-    <div class="dayBody">
+    <div class="cardBody">
      <div class="timeline">
 
       <div class="tRow">
@@ -1060,7 +1061,7 @@
      </div>
      <div class="dayDate">9/27(日)</div>
     </div>
-    <div class="dayBody"><div class="timeline"></div></div>
+    <div class="cardBody"><div class="timeline"></div></div>
    </section>
 
    <section class="card daySection pagePanel" id="day4">
@@ -1071,7 +1072,7 @@
      </div>
      <div class="dayDate">9/29(二)</div>
     </div>
-    <div class="dayBody"><div class="timeline"></div></div>
+    <div class="cardBody"><div class="timeline"></div></div>
    </section>
 
    <section class="card daySection pagePanel" id="day5">
@@ -1082,7 +1083,7 @@
      </div>
      <div class="dayDate">9/30(三)</div>
     </div>
-    <div class="dayBody"><div class="timeline"></div></div>
+    <div class="cardBody"><div class="timeline"></div></div>
    </section>
 
    <section class="card daySection pagePanel" id="day6">
@@ -1093,7 +1094,7 @@
      </div>
      <div class="dayDate">10/01(四)</div>
     </div>
-    <div class="dayBody"><div class="timeline"></div></div>
+    <div class="cardBody"><div class="timeline"></div></div>
    </section>
 
    <section class="card daySection pagePanel" id="day7">
@@ -1104,7 +1105,7 @@
      </div>
      <div class="dayDate">10/02(五)</div>
     </div>
-    <div class="dayBody"><div class="timeline"></div></div>
+    <div class="cardBody"><div class="timeline"></div></div>
    </section>
 
    <section class="card daySection pagePanel" id="day8">
@@ -1115,7 +1116,7 @@
      </div>
      <div class="dayDate">10/03(六)</div>
     </div>
-    <div class="dayBody"><div class="timeline"></div></div>
+    <div class="cardBody"><div class="timeline"></div></div>
    </section>
 
   </section>
@@ -1134,7 +1135,6 @@
 
  <script>
  (function(){
-  // 📸 燈箱點擊事件綁定
   document.querySelectorAll('.galleryRow img').forEach(img => {
     img.removeAttribute('onclick');
     img.addEventListener('click', () => openLightbox(img));
@@ -1181,7 +1181,6 @@
   nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
   prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
 
-  // 🔍 燈箱手勢與縮放邏輯
   let scale = 1, lastScale = 1;
   let startDist = 0;
   let startX = 0, startY = 0;
@@ -1282,7 +1281,6 @@
     touchMode = 'none';
   });
 
-  // 🔄 時間軸拖曳排序功能
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -1325,7 +1323,6 @@
    });
   });
 
-  // 🖱️ 桌機拖曳滑動 + 滾輪橫向滾動
   document.querySelectorAll('.galleryRow').forEach(row => {
     let isDown = false;
     let startX;
@@ -1385,7 +1382,6 @@
     }, { passive: false });
   });
 
-  // 🚀 補上：行程頁籤（Day 1 ~ Day 8 / Memo）切換邏輯
   document.querySelectorAll('.tabBtn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1403,7 +1399,6 @@
     });
   });
 
-  // 🌐 自動處理所有外部連結在新分頁開啟
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
@@ -1412,4 +1407,3 @@
  </script>
 </body>
 </html>
-
