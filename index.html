@@ -227,11 +227,13 @@
   color: #5f5448;
   font-size: 13px;
  }
+ 
+ /* ⏰ 桌機時間軸：回歸常態拉伸，靠內容決定自身高度 */
  .tRow {
   display: grid;
-  grid-template-columns: 90px minmax(0, 1fr); /* 🌟 修正錯誤拼字，恢復桌機版寬度 */
+  grid-template-columns: 90px minmax(0, 1fr);
   gap: 12px;
-  align-items: start; /* 🌟 保持靠頂部對齊 */
+  align-items: stretch; /* 🌟 改回 stretch 讓左右高度齊平，單/雙行才不會跑位 */
   padding: 6px 0;
   border-top: none;
  }
@@ -242,20 +244,18 @@
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.4; /* 🌟 統一設定行高與右側標題一致 */
-  display: flex;
-  align-items: flex-start;
+  line-height: 1.35;
+  display: inline-flex;
+  align-items: center; /* 🌟 核心修正：不管是單行還是雙行換行，內容都在區塊內完美垂直置中 */
   justify-content: flex-start;
-  align-self: start; 
-  margin-top: 0; /* 🌟 歸零，確保與右側第一行字頂端精準切齊 */
  }
  .place { min-width: 0; }
  
  .placeTitle {
-  margin: 0; /* 🌟 歸零，消除外距帶來的高低差落差 */
+  margin: 0;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.4; /* 🌟 統一設定行高 */
+  line-height: 1.35; 
   display: flex;
   align-items: flex-start;
  }
@@ -659,11 +659,15 @@
    white-space: nowrap;
    flex-shrink: 0;
   }
-  .dayBody { padding: 12px 16px; }
-
+  .dayBody { padding: 8px 4px !important; }
+  
+  /* 🌟 手機版時間軸：同步改回 stretch 置中對齊 */
   .tRow { 
-   grid-template-columns: 90px minmax(0, 1fr); /* 🌟 確保手機版也是正常雙欄 */
-   align-items: start !important; /* 🌟 確保手機版一樣靠頂部首行對齊 */
+   display: grid !important;
+   grid-template-columns: 54px 1fr !important; 
+   gap: 8px !important; 
+   padding: 6px 2px !important;
+   align-items: stretch !important; /* 確保雙欄拉伸齊平 */
   }
   .time { font-size: 14px; margin-top: 0; }
   
@@ -1106,7 +1110,7 @@
       <div class="dayIndex">8</div>
       <h2 class="dayTitle">回程</h2>
      </div>
-     <div class="dayDate">10/03(close)</div>
+     <div class="dayDate">10/03(六)</div>
     </div>
     <div class="cardBody"><div class="timeline"></div></div>
    </section>
