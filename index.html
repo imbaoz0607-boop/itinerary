@@ -263,7 +263,7 @@
  .meta {
   margin: 4px 0 0 0 !important;
   color: var(--muted);
-  font-size: 14px; 
+  font-size: 11px; /* 🎯 桌機版調整為舒適的 11px */
   white-space: pre-line;
   line-height: 1.4;
  }
@@ -689,6 +689,10 @@
    margin: 0 !important;
    padding: 0 !important;
   }
+  /* 🎯 手機版極致緊湊調整為 10px */
+  .meta {
+   font-size: 10px !important;
+  }
   
   .tRow-alignLeft {
    display: block !important;
@@ -1010,12 +1014,88 @@
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">2</div>
-      <h2 class="dayTitle">行程待安排</h2>
+      <h2 class="dayTitle">原宿表參道 ＆ 澀谷散策</h2>
      </div>
      <div class="dayDate">9/27(日)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline"></div>
+     <div class="timeline">
+
+      <!-- 09:30 明治神宮 -->
+      <div class="tRow">
+       <div class="time">09:30</div>
+       <div class="place">
+        <p class="placeTitle">明治神宮 ＆ 代代木公園</p>
+        <p class="meta">大井町出發：搭乘 JR 京濱東北線至品川，轉山手線至「原宿站」。</p>
+        <ul class="notes">
+         <li>清晨散步吸收芬多精，參拜巨大的木造鳥居。</li>
+         <li>週日經常能遇到舉行傳統神前婚禮的隊伍。</li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- 11:30 表參道 & 午餐 -->
+      <div class="tRow">
+       <div class="time">11:30</div>
+       <div class="place">
+        <p class="placeTitle">表參道 ＆ 青山散策（午餐）</p>
+        <p class="meta">沿著櫸木林蔭大道漫步，欣賞安藤忠雄設計的 Omotesando Hills 與各大品牌旗艦店。</p>
+        <ul class="notes">
+         <li>推薦午餐：來自紐約的超人氣龍蝦堡 Luke's Lobster，或在巷弄間找間質感咖啡廳。</li>
+         <li>周邊推薦踩店：CASETiFY STUDiO 旗艦店（物色具設計感的質感手機殼）。</li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- 15:00 貓街往澀谷 -->
+      <div class="tRow">
+       <div class="time">15:00</div>
+       <div class="place">
+        <p class="placeTitle">貓街 (Cat Street) 漫步往澀谷</p>
+        <p class="meta">連結原宿與澀谷的潮流小巷，避開大馬路人潮的舒適步行者天堂。</p>
+        <ul class="notes">
+         <li>聚集許多獨立設計師品牌、生活雜貨與外帶咖啡店。</li>
+         <li>沿途一邊逛街，一邊輕鬆步行前往澀谷。</li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- 16:30 澀谷十字路口 -->
+      <div class="tRow">
+       <div class="time">16:30</div>
+       <div class="place">
+        <p class="placeTitle">澀谷車站周邊 ＆ 宮下公園</p>
+        <p class="meta">體驗全世界最繁忙的十字路口，並前往新地標 MIYASHITA PARK。</p>
+        <ul class="notes">
+         <li>宮下公園樓頂有結合綠地與滑板場的空中花園，一樓則是充滿復古居酒屋氣氛的「澀谷橫丁」。</li>
+         <li>周邊購物點：澀谷線流 (Shibuya Stream)、Shibuya Scramble Square。</li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- 18:00 SHIBUYA SKY -->
+      <div class="tRow">
+       <div class="time">18:00</div>
+       <div class="place">
+        <p class="placeTitle">SHIBUYA SKY 展望台（日落與夜景）</p>
+        <p class="meta">東京目前最熱門的 360 度露天玻璃展望台。</p>
+        <ul class="notes">
+         <li><strong>⚠️ 重要提醒</strong>：熱門日落場次非常難搶，務必於搭乘日前 4 週的日本時間當日 0:00（台灣時間前一天 23:00）準時上網搶票！</li>
+         <li>可以同時將魔幻時刻的夕陽與絕美東京夜景盡收眼底。</li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- 20:00 晚餐與返回飯店 -->
+      <div class="tRow">
+       <div class="time">20:00</div>
+       <div class="place">
+        <p class="placeTitle">晚餐：澀谷燒肉或居酒屋 ⇄ 返回大井町</p>
+        <p class="meta">交通：從澀谷站搭乘 JR 山手線至品川，轉京濱東北線直達大井町。</p>
+       </div>
+      </div>
+
+     </div>
     </div>
    </section>
 
@@ -1064,13 +1144,6 @@
          <li>江戶風味鰻魚飯</li>
          <li>特色手打烏龍麵</li>
         </ul>
-       </div>
-      </div>
-
-      <div class="tRow">
-       <div class="time">13:45 - 16:00</div>
-       <div class="place">
-        <p class="placeTitle">藏造老街 ＆ 時之鐘</p>
        </div>
       </div>
 
