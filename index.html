@@ -115,7 +115,7 @@
  .heroFlightList {
   margin: 6px 0 0;
   padding-left: 18px;
-  font-size: 13px;
+  font-size: 11px;
  }
  .heroFlightList li + li { margin-top: 3px; }
  .heroFlightList strong { font-weight: 700; }
@@ -263,7 +263,7 @@
  .meta {
   margin: 4px 0 0 0 !important;
   color: var(--muted);
-  font-size: 11px; /* 🎯 桌機版調整為舒適的 11px */
+  font-size: 11px !important; /* 🎯 修正：移除此處原先殘留的 14px，強制桌機版為 11px */
   white-space: pre-line;
   line-height: 1.4;
  }
@@ -689,8 +689,13 @@
    margin: 0 !important;
    padding: 0 !important;
   }
-  /* 🎯 手機版極致緊湊調整為 10px */
+  
+  /* 🎯 修正：手機版套用正確的 10px */
   .meta {
+   font-size: 10px !important;
+  }
+
+  .heroFlightList {
    font-size: 10px !important;
   }
   
@@ -1021,20 +1026,18 @@
     <div class="dayBody">
      <div class="timeline">
 
-      <!-- 09:30 明治神宮 -->
       <div class="tRow">
        <div class="time">09:30</div>
        <div class="place">
         <p class="placeTitle">明治神宮 ＆ 代代木公園</p>
         <p class="meta">大井町出發：搭乘 JR 京濱東北線至品川，轉山手線至「原宿站」。</p>
         <ul class="notes">
-         <li>清晨散步吸收芬多精，參拜巨大的木造鳥居。</li>
+         <li>清晨散步吸收芬原精，參拜巨大的木造鳥居。</li>
          <li>週日經常能遇到舉行傳統神前婚禮的隊伍。</li>
         </ul>
        </div>
       </div>
 
-      <!-- 11:30 表參道 & 午餐 -->
       <div class="tRow">
        <div class="time">11:30</div>
        <div class="place">
@@ -1047,7 +1050,6 @@
        </div>
       </div>
 
-      <!-- 15:00 貓街往澀谷 -->
       <div class="tRow">
        <div class="time">15:00</div>
        <div class="place">
@@ -1060,7 +1062,6 @@
        </div>
       </div>
 
-      <!-- 16:30 澀谷十字路口 -->
       <div class="tRow">
        <div class="time">16:30</div>
        <div class="place">
@@ -1073,7 +1074,6 @@
        </div>
       </div>
 
-      <!-- 18:00 SHIBUYA SKY -->
       <div class="tRow">
        <div class="time">18:00</div>
        <div class="place">
@@ -1086,7 +1086,6 @@
        </div>
       </div>
 
-      <!-- 20:00 晚餐與返回飯店 -->
       <div class="tRow">
        <div class="time">20:00</div>
        <div class="place">
