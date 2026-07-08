@@ -228,12 +228,12 @@
   font-size: 13px;
  }
 
- /* ⏰ 完美對齊第一行頂部的福岡格式時間軸 */
+ /* ⏰ 【桌機版】強制頂部首行對齊時間軸 */
  .tRow {
   display: grid;
   grid-template-columns: 90px minmax(0, 1fr);
   gap: 12px;
-  align-items: start; /* 🌟 確保時間軸一律從第一行頂部出發對齊 */
+  align-items: start !important; /* 🌟 確保桌機版嚴格靠最頂部對齊 */
   padding: 6px 0;
   border-top: none;
  }
@@ -244,24 +244,28 @@
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
-  line-height: 1.4; /* 🌟 嚴格與右邊文字行高保持一致 */
+  line-height: 1.4 !important; /* 🌟 行高零誤差 */
+  margin: 0 !important;       /* 🌟 外距歸零 */
+  padding: 0 !important;      /* 🌟 內距歸零 */
   display: block;
-  margin-top: 0;   /* 🌟 徹底消除頂部高低差 */
  }
  .place { min-width: 0; }
  
- /* 🌟 終極修正：拔除右側 P 標籤內建的隱形外距落差，並同步行高 */
+ /* 🌟 核心修正：徹底抹平右側標題與段落包殼帶來的隱形高低差落差 */
  .place p,
  .placeTitle {
-  margin-top: 0 !important;    /* 🔥 強制消滅讓右邊第一行字往下掉的 16px 瀏覽器外距 */
+  margin-top: 0 !important;    /* 🔥 強制消滅讓右邊第一行字往下掉的所有瀏覽器外距 */
   margin-bottom: 0 !important;
+  padding-top: 0 !important;   /* 🔥 強制內距也歸零 */
+  padding-bottom: 0 !important;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.4;            /* 🌟 與左側時間使用完全相同的行高，達成完美切齊 */
+  line-height: 1.4 !important; /* 🌟 與左側時間完全一模一樣的行高，保證齊平 */
   display: block;
  }
  .meta {
-  margin: 4px 0 0 !important; /* 🌟 行程說明 XXXXX 完美縮在標題的正下方生長 */
+  margin: 4px 0 0 !important;  /* 行程說明 XXXXX 完美縮在標題的正下方生長 */
+  padding: 0 !important;
   color: var(--muted);
   font-size: 14px; 
   white-space: pre-line;
@@ -657,15 +661,20 @@
   }
   .dayBody { padding: 8px 4px !important; }
   
-  /* 🌟 手機版時間軸同步修正 */
+  /* ⏰ 【手機版終極校正】強制雙欄嚴格頂部齊平 */
   .tRow { 
    display: grid !important;
    grid-template-columns: 54px 1fr !important; 
    gap: 8px !important; 
    padding: 6px 2px !important;
-   align-items: start !important; /* 🌟 靠頂部首行齊平 */
+   align-items: start !important; /* 🎯 核心修復：強制手機版面對換行時，也絕對從第一行頂部出發切齊 */
   }
-  .time { font-size: 14px; margin-top: 0; }
+  .time { 
+   font-size: 14px; 
+   margin: 0 !important;
+   padding: 0 !important;
+   line-height: 1.4 !important;
+  }
   
   .tRow-alignLeft {
    grid-template-columns: 1fr !important; 
