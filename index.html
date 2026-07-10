@@ -279,7 +279,7 @@
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
-  font-size: 15px; /* 🎯 🎯 桌機版修正：將條列點清單放大一號至 15px */
+  font-size: 14px; /* 🎯 🎯 統一優化：將備忘/交通條列點清單設定為 14px */
  }
  .notes li + li { margin-top: 3px; }
  .gallery {
@@ -481,7 +481,7 @@
   gap: 12px;
   padding: 6px 0;
   border-bottom: 1px dashed var(--line);
-  font-size: 13px; /* 🎯 配合指引修改：與一般說明文字大小相同 */
+  font-size: 14px; /* 🎯 統一優化：與電車、巴士清單全面綁定為 14px */
  }
  .dinner-list li:last-child {
   border-bottom: none;
@@ -707,26 +707,19 @@
    padding: 0 !important;
   }
   
-  /* 🎯 手機版修正：一般行程第2行後的說明文字放大一號至 12px */
   p.meta {
    font-size: 12px !important;
    white-space: pre-line !important;
   }
 
-  /* 🔒 手機版特殊權重：死守大都會大飯店英文副標題字體，維持緊湊 10px 不被放大 */
   #day1 .tRow:nth-child(3) .place p.meta {
    font-size: 10px !important;
   }
 
-  /* 🎯 手機版修正：條列點清單 (.notes) 放大一號至 14px */
-  .notes {
-   font-size: 14px !important;
-  }
-
-  /* 🎯 手機版修正：同步縮小綠色餐飲區塊與說明字體至手機版的 12px */
-  .dinner-list li,
-  .dinner-list-p {
-   font-size: 12px !important;
+  /* 🎯 手機版修正：將交通、巴士、餐廳列表清單同步綁定為 13px */
+  .notes,
+  .dinner-list li {
+   font-size: 13px !important;
   }
 
   .heroFlightList {
@@ -877,7 +870,7 @@
                  <span class="chev">⌄</span>
                </summary>
                <div class="infoContent">
-                 <ul class="notes" style="font-size:15px; line-height:1.7;">
+                 <ul class="notes" style="font-size:14px; line-height:1.7;">
                    <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
                    <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町<br></li>
                  </ul>
@@ -962,7 +955,7 @@
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
-              <p style="margin:6px 0 10px; font-size: 13px;">
+              <p style="margin:6px 0 10px; font-size: 14px;">
                 OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
               </p>
               <ul class="dinner-list">
