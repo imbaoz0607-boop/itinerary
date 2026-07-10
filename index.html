@@ -481,7 +481,7 @@
   gap: 12px;
   padding: 6px 0;
   border-bottom: 1px dashed var(--line);
-  font-size: 15px;
+  font-size: 13px; /* 🎯 配合圖二修改：將餐飲列表字體縮小至與一般說明 (.meta) 相同的 13px */
  }
  .dinner-list li:last-child {
   border-bottom: none;
@@ -495,7 +495,7 @@
   color: var(--text);
  }
  .dinner-type {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--muted);
   margin-left: 8px;
  }
@@ -505,6 +505,9 @@
   font-family: monospace;
   white-space: nowrap; 
   flex-shrink: 0;
+ }
+ .dinner-list-p {
+  font-size: 13px; /* 🎯 配合圖二修改：將餐飲導覽標籤字體同步改為 13px */
  }
 
  .tRow-alignLeft {
@@ -721,6 +724,12 @@
   /* 🎯 手機版修正：條列點清單 (.notes) 放大一號至 14px */
   .notes {
    font-size: 14px !important;
+  }
+
+  /* 🎯 手機版修正：同步縮小綠色餐飲區塊字體至手機版的 12px */
+  .dinner-list li,
+  .dinner-list-p {
+   font-size: 12px !important;
   }
 
   .heroFlightList {
@@ -956,7 +965,7 @@
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
-              <p style="margin:6px 0 10px;">
+              <p class="dinner-list-p" style="margin:6px 0 10px;">
                 OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
               </p>
               <ul class="dinner-list">
