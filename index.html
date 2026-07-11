@@ -712,7 +712,7 @@
   }
   
   p.meta {
-   font-size: 12px !important;
+   font-size: 13px !important; /* 🎯 修正：手機版全面回歸 13px 統一優化 */
    white-space: pre-line !important;
   }
 
@@ -723,6 +723,14 @@
   .notes,
   .dinner-list li {
    font-size: 13px !important;
+   color: var(--text) !important; /* 🎯 修正：強制咬定為碳黑色 */
+  }
+
+  /* 🎯 🎯 修正核心：強制讓 Day3 的這段說明文字在手機版同步放大到 13px，並改回碳黑色、鬆綁擠壓的行高 */
+  #day3 .infoContent p.meta {
+   font-size: 13px !important;
+   color: var(--text) !important;
+   line-height: 1.5 !important;
   }
 
   .heroFlightList {
@@ -744,7 +752,6 @@
    width: 100% !important;
   }
   
-  /* 🎯 🎯 修正核心：將手機版收合選單按鈕的字體同步限縮為 15px，完美對齊行程標題 */
   details.infoBox > summary .summaryText {
    font-size: 15px !important;
   }
@@ -1085,7 +1092,6 @@
   </div>
 </div>
 
-<!-- 不換車直達川越（獨立收合層） -->
 <div class="tRow tRow-alignLeft">
   <div class="time"></div>
   <div class="place">
@@ -1108,7 +1114,7 @@
               <img src="Day3/03.jpg" alt="03">
             </div>
           </div>
-        <p class="meta" style="margin-top:0; line-height:1.2;">
+        <p class="meta" style="margin-top:0; line-height:1.5;">
   川越駅觀光案內所可購買（乘車地點不同須注意）<br>
   1. 小江戶巡迴巴士(小江戸巡回バス)1日票600円，單次搭乘220円<br>
   2. 小江戶名勝巡遊巴士(小江戸名所めぐりバス)1日票500円，單程約220～240円
@@ -1119,7 +1125,6 @@
   </div>
 </div>
 
-<!-- 池袋換乘東武東上線 -->
 <div class="tRow tRow-alignLeft">
   <div class="time"></div>
   <div class="place">
@@ -1549,7 +1554,7 @@
 
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
-   link.setAttribute('rel', 'noopener');
+   link.Rel = 'noopener';
   });
  })();
  </script>
