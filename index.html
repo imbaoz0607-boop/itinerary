@@ -232,7 +232,7 @@
   flex-direction: row !important;
   align-items: flex-start !important; 
   gap: 10px;
-  padding: 2px 0; /* 🔥 再縮一層 */
+  padding: 2px 0; 
   width: 100%;
  }
  .tRow:first-child {
@@ -259,41 +259,36 @@
   padding: 0 !important;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.25 !important; /* 🔥 再壓縮行高 */
+  line-height: 1.25 !important; 
  }
 
- /* 🔥🔥 極致貼齊：砍掉標題與下一行間距 */
  .placeTitle {
   margin-bottom: 0 !important;
  }
 
  .meta {
-  margin-top: 0 !important; /* 🔥 完全貼齊標題 */
-}
- .meta {
   margin: 4px 0 0 0 !important;
   color: var(--muted);
-  font-size: 13px; /* 🎯 桌機版修正：將一般行程第2行後的說明文字放大一號至 13px */
+  font-size: 13px; 
   white-space: pre-line;
   line-height: 1.4;
  }
- /* 🔒 特殊權重：死守大都會大飯店副標題字體，不受上述放大影響 */
  .place p.meta[style*="HOTEL"], 
  .place p.meta {
   font-size: 13px; 
  }
  #day1 .tRow:nth-child(3) .place p.meta {
-  font-size: 11px !important; /* 🔒 精準定位大井町 TRACKS 英文副標，桌機維持 11px */
+  font-size: 11px !important; 
  }
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
-  font-size: 14px; /* 🎯 🎯 統一優化：將備忘/交通條列點清單設定為 14px */
+  font-size: 14px; 
  }
  .notes li + li { margin-top: 3px; }
  .gallery {
-  margin-top: -2px; /* 🔥🔥 貼到極限（微負間距） */
-}
+  margin-top: -2px; 
+ }
  .galleryTitle {
   padding-left: 0;
   margin: 0 0 6px;
@@ -490,7 +485,7 @@
   gap: 12px;
   padding: 6px 0;
   border-bottom: 1px dashed var(--line);
-  font-size: 14px; /* 🎯 統一優化：與電車、巴士清單全面綁定為 14px */
+  font-size: 14px; 
  }
  .dinner-list li:last-child {
   border-bottom: none;
@@ -520,7 +515,7 @@
   display: flex !important; 
   flex-direction: row !important;
   width: 100%;
-  padding: 0 !important; /* 🔥 完全消除間距 */
+  padding: 0 !important; 
 }
  .tRow-alignLeft .time {
   width: 90px;
@@ -698,12 +693,12 @@
   .time { 
    width: 54px !important;
    min-width: 54px !important;
-   font-size: 14px; 
+   font-size: 15px !important; 
    line-height: 1.35 !important;
    margin: 0 !important;
    padding: 0 !important;
    position: relative !important;
-   top: 1px !important; 
+   top: 0px !important; 
   }
   .place {
    flex: 1 !important;
@@ -725,7 +720,6 @@
    font-size: 10px !important;
   }
 
-  /* 🎯 手機版修正：將交通、巴士、餐廳列表清單同步綁定為 13px */
   .notes,
   .dinner-list li {
    font-size: 13px !important;
@@ -748,6 +742,11 @@
    margin-left: 0 !important;  
    margin-right: 0 !important; 
    width: 100% !important;
+  }
+  
+  /* 🎯 🎯 修正核心：將手機版收合選單按鈕的字體同步限縮為 15px，完美對齊行程標題 */
+  details.infoBox > summary .summaryText {
+   font-size: 15px !important;
   }
   
   details.infoBox {
@@ -843,7 +842,7 @@
       </div>
      </div>
     </div>
-   </section>
+  </section>
    
    <section class="card daySection pagePanel active" id="day1">
     <div class="dayCardHeader">
@@ -942,7 +941,6 @@
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-           
            <div class="galleryRow" role="list">
             <div class="gItem" role="listitem"><img src="Day1/07.jpg" alt=""></div>
             <div class="gItem" role="listitem"><img src="Day1/08.jpg" alt=""></div>
@@ -1152,7 +1150,6 @@
        <div class="time">10:54</div>
        <div class="place">
         <p class="placeTitle">抵達川越</p>
-       
        </div>
       </div>
 
