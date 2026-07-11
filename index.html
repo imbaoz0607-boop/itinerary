@@ -231,8 +231,8 @@
   display: flex !important;
   flex-direction: row !important;
   align-items: flex-start !important; 
-  gap: 12px;
-  padding: 6px 0;
+  gap: 10px;
+  padding: 2px 0; /* 🔥 再縮一層 */
   width: 100%;
  }
  .tRow:first-child {
@@ -259,8 +259,17 @@
   padding: 0 !important;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.35 !important; 
+  line-height: 1.25 !important; /* 🔥 再壓縮行高 */
  }
+
+ /* 🔥🔥 極致貼齊：砍掉標題與下一行間距 */
+ .placeTitle {
+  margin-bottom: 0 !important;
+ }
+
+ .meta {
+  margin-top: 0 !important; /* 🔥 完全貼齊標題 */
+}
  .meta {
   margin: 4px 0 0 0 !important;
   color: var(--muted);
@@ -283,8 +292,8 @@
  }
  .notes li + li { margin-top: 3px; }
  .gallery {
-  margin-top: 10px;
- }
+  margin-top: -2px; /* 🔥🔥 貼到極限（微負間距） */
+}
  .galleryTitle {
   padding-left: 0;
   margin: 0 0 6px;
@@ -511,8 +520,8 @@
   display: flex !important; 
   flex-direction: row !important;
   width: 100%;
-  padding: 6px 0;
- }
+  padding: 0 !important; /* 🔥 完全消除間距 */
+}
  .tRow-alignLeft .time {
   width: 90px;
   min-width: 90px;
@@ -689,12 +698,12 @@
   .time { 
    width: 54px !important;
    min-width: 54px !important;
-   font-size: 15px !important; /* 🎯 修正：放大至 15px 與右側標題一致 */
+   font-size: 14px; 
    line-height: 1.35 !important;
    margin: 0 !important;
    padding: 0 !important;
    position: relative !important;
-   top: 0px !important; /* 🎯 修正：移除下拉偏移量，確保水平對齊 */
+   top: 1px !important; 
   }
   .place {
    flex: 1 !important;
@@ -834,7 +843,7 @@
       </div>
      </div>
     </div>
-  </section>
+   </section>
    
    <section class="card daySection pagePanel active" id="day1">
     <div class="dayCardHeader">
@@ -933,7 +942,7 @@
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-           <p class="galleryTitle">📷 飯店 / 周邊</p>
+           
            <div class="galleryRow" role="list">
             <div class="gItem" role="listitem"><img src="Day1/07.jpg" alt=""></div>
             <div class="gItem" role="listitem"><img src="Day1/08.jpg" alt=""></div>
@@ -1072,11 +1081,11 @@
         <p class="placeTitle">
   <a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">大井町</a>→川越
 </p>
-        <p class="meta">可在池袋換乘東武東上線(較快抵達/費用更省)</p>
+        <p class="meta">無須換車</p>
        </div>
       </div>
 
-      <!-- 🔽 新增：池袋轉乘說明圖片 -->
+      <!-- 🔽 圖片（無須換車下方） -->
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
@@ -1085,11 +1094,31 @@
               <div class="gItem" role="listitem"><img src="Day3/01.jpg" alt="01"></div>
               <div class="gItem" role="listitem"><img src="Day3/02.jpg" alt="02"></div>
               <div class="gItem" role="listitem"><img src="Day3/03.jpg" alt="03"></div>
-              <div class="gItem" role="listitem"><img src="Day3/04.jpg" alt="04"></div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 🔽 乘車資訊（收合層） -->
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+            <summary>
+              <span class="summaryText">池袋換乘東武東上線(較快抵達/費用更省)</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+              <ul class="notes">
+                <li>JR京濱東北線 → 池袋</li>
+                <li>轉乘 東武東上線 → 川越</li>
+                <li>建議使用 IC卡（Suica / PASMO）</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+          
 
       <div class="tRow">
        <div class="time">10:54</div>
