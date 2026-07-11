@@ -231,8 +231,8 @@
   display: flex !important;
   flex-direction: row !important;
   align-items: flex-start !important; 
-  gap: 10px;
-  padding: 2px 0; /* 🔥 再縮一層 */
+  gap: 12px;
+  padding: 6px 0;
   width: 100%;
  }
  .tRow:first-child {
@@ -259,16 +259,7 @@
   padding: 0 !important;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.25 !important; /* 🔥 再壓縮行高 */
- }
-
- /* 🔥🔥 極致貼齊：砍掉標題與下一行間距 */
- .placeTitle {
-  margin-bottom: 0 !important;
- }
-
- .meta {
-  margin-top: 1px !important; /* 🔥 幾乎貼齊標題 */
+  line-height: 1.35 !important; 
  }
  .meta {
   margin: 4px 0 0 0 !important;
@@ -292,8 +283,8 @@
  }
  .notes li + li { margin-top: 3px; }
  .gallery {
-  margin-top: 0px; /* 🔥 幾乎貼齊上方文字 */
-}
+  margin-top: 10px;
+ }
  .galleryTitle {
   padding-left: 0;
   margin: 0 0 6px;
@@ -520,8 +511,8 @@
   display: flex !important; 
   flex-direction: row !important;
   width: 100%;
-  padding: 0 !important; /* 🔥 完全消除間距 */
-}
+  padding: 6px 0;
+ }
  .tRow-alignLeft .time {
   width: 90px;
   min-width: 90px;
@@ -698,12 +689,12 @@
   .time { 
    width: 54px !important;
    min-width: 54px !important;
-   font-size: 14px; 
+   font-size: 15px !important; /* 🎯 修正：放大至 15px 與右側標題一致 */
    line-height: 1.35 !important;
    margin: 0 !important;
    padding: 0 !important;
    position: relative !important;
-   top: 1px !important; 
+   top: 0px !important; /* 🎯 修正：移除下拉偏移量，確保水平對齊 */
   }
   .place {
    flex: 1 !important;
@@ -843,7 +834,7 @@
       </div>
      </div>
     </div>
-   </section>
+  </section>
    
    <section class="card daySection pagePanel active" id="day1">
     <div class="dayCardHeader">
@@ -942,7 +933,7 @@
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-           
+           <p class="galleryTitle">📷 飯店 / 周邊</p>
            <div class="galleryRow" role="list">
             <div class="gItem" role="listitem"><img src="Day1/07.jpg" alt=""></div>
             <div class="gItem" role="listitem"><img src="Day1/08.jpg" alt=""></div>
