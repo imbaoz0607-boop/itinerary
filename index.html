@@ -365,16 +365,21 @@
   overflow: hidden;
   width: 100%;
  }
- /* 🎯 修正核心：徹底斬草除根！當收合選單相連時，不只消除 border-top，連同內部標題自帶的線與陰影全面拔除 */
- details.infoBox + details.infoBox {
-  border-top: none !important;
+ 
+ /* 🎯 修正核心：建立無邊框乾淨類別，直接強制碾壓並阻斷所有內外線條與陰影 */
+ details.no-border-box {
+  border: none !important;
   margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+ }
+ details.no-border-box > summary {
+  border: none !important;
+  outline: none !important;
   box-shadow: none !important;
  }
- details.infoBox + details.infoBox > summary {
-  border-top: none !important;
-  box-shadow: none !important;
- }
+
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
@@ -1101,10 +1106,12 @@
   </div>
 </div>
 
+<!-- 不換車直達川越（獨立收合層） -->
 <div class="tRow tRow-alignLeft">
   <div class="time"></div>
   <div class="place">
-    <details class="infoBox">
+    <!-- 🎯 修正核心：直接在此套用 no-border-box 阻斷上方線條 -->
+    <details class="infoBox no-border-box">
       <summary>
         <span class="summaryText">不換車直達川越，票價1250円</span>
         <span class="chev">⌄</span>
@@ -1134,10 +1141,12 @@
   </div>
 </div>
 
+<!-- 池袋換乘東武東上線 -->
 <div class="tRow tRow-alignLeft">
   <div class="time"></div>
   <div class="place">
-    <details class="infoBox">
+    <!-- 🎯 修正核心：直接在此套用 no-border-box 阻斷上方線條 -->
+    <details class="infoBox no-border-box">
       <summary>
         <span class="summaryText">池袋換乘東武東上線(較快抵達/費用更省)</span>
         <span class="chev">⌄</span>
