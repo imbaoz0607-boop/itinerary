@@ -365,6 +365,11 @@
   overflow: hidden;
   width: 100%;
  }
+ /* 🎯 修正核心：當兩個收合層連在一起時，消除中間重複產生的相連線條 */
+ details.infoBox + details.infoBox {
+  border-top: none !important;
+  margin-top: 0 !important;
+ }
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
@@ -712,7 +717,7 @@
   }
   
   p.meta {
-   font-size: 13px !important; /* 🎯 修正：手機版全面回歸 13px 統一優化 */
+   font-size: 13px !important; 
    white-space: pre-line !important;
   }
 
@@ -723,10 +728,9 @@
   .notes,
   .dinner-list li {
    font-size: 13px !important;
-   color: var(--text) !important; /* 🎯 修正：強制咬定為碳黑色 */
+   color: var(--text) !important; 
   }
 
-  /* 🎯 🎯 修正核心：強制讓 Day3 的這段說明文字在手機版同步放大到 13px，並改回碳黑色、鬆綁擠壓的行高 */
   #day3 .infoContent p.meta {
    font-size: 13px !important;
    color: var(--text) !important;
@@ -1554,7 +1558,7 @@
 
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
-   link.Rel = 'noopener';
+   link.setAttribute('rel', 'noopener');
   });
  })();
  </script>
