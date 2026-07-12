@@ -154,7 +154,7 @@
   justify-content: space-between;
   gap: 14px;
   padding: 14px 18px 10px;
-  border-bottom: none; 
+  border-bottom: none;
  }
  .dayHeaderMain {
   display: flex;
@@ -232,7 +232,7 @@
   flex-direction: row !important;
   align-items: flex-start !important; 
   gap: 10px;
-  padding: 2px 0; 
+  padding: 2px 0;
   width: 100%;
  }
  .tRow:first-child {
@@ -275,7 +275,7 @@
  }
  .place p.meta[style*="HOTEL"], 
  .place p.meta {
-  font-size: 13px; 
+  font-size: 13px;
  }
  #day1 .tRow:nth-child(3) .place p.meta {
   font-size: 11px !important; 
@@ -287,7 +287,7 @@
  }
  .notes li + li { margin-top: 3px; }
  .gallery {
-  margin-top: -2px; 
+  margin-top: -2px;
  }
  .galleryTitle {
   padding-left: 0;
@@ -366,7 +366,6 @@
   width: 100%;
  }
  
- /* 🎯 修正核心：建立無邊框乾淨類別，直接強制碾壓並阻斷所有內外線條與陰影 */
  details.no-border-box {
   border: none !important;
   margin-top: 0 !important;
@@ -530,8 +529,8 @@
   display: flex !important; 
   flex-direction: row !important;
   width: 100%;
-  padding: 0 !important; 
-}
+  padding: 0 !important;
+ }
  .tRow-alignLeft .time {
   width: 90px;
   min-width: 90px;
@@ -575,7 +574,7 @@
  }
  .lbImg { 
   max-width: 100%; 
-  max-height: 100vh; 
+  max-height: 100vh;
   object-fit: contain; 
   touch-action: none; 
   transition: transform 0.1s ease-out;
@@ -648,7 +647,7 @@
  @media (max-width: 640px) {
   .container { 
    padding-left: 4px !important;
-   padding-right: 4px !important; 
+   padding-right: 4px !important;
    padding-top: 10px !important; 
   }
   .hero { margin-bottom: 8px; }   
@@ -713,21 +712,21 @@
    margin: 0 !important;
    padding: 0 !important;
    position: relative !important;
-   top: 0px !important; 
+   top: 0px !important;
   }
   .place {
    flex: 1 !important;
   }
   .place p,
   .placeTitle {
-   font-size: 15px !important; 
+   font-size: 15px !important;
    line-height: 1.35 !important; 
    margin: 0 !important;
    padding: 0 !important;
   }
   
   p.meta {
-   font-size: 13px !important; 
+   font-size: 13px !important;
    white-space: pre-line !important;
   }
 
@@ -738,7 +737,7 @@
   .notes,
   .dinner-list li {
    font-size: 13px !important;
-   color: var(--text) !important; 
+   color: var(--text) !important;
   }
 
   #day3 .infoContent p.meta {
@@ -757,7 +756,7 @@
   }
   .tRow-alignLeft .time {
    width: 100% !important;
-   display: none !important; 
+   display: none !important;
   }
   .tRow-alignLeft details.infoBox,
   .tRow-alignLeft .gallery-alignLeft {
@@ -778,16 +777,16 @@
    background: transparent !important; 
   }
   details.infoBox > summary {
-   padding: 10px 0 !important; 
+   padding: 10px 0 !important;
   }
   .infoContent {
-   padding: 0 0 12px 0 !important; 
+   padding: 0 0 12px 0 !important;
   }
   .infoContent details.infoBox {
    width: 100% !important;
    margin-left: 0 !important;
    margin-right: 0 !important;
-   }
+  }
   .infoContent details.infoBox > summary {
    padding: 8px 0 !important;
   }
@@ -1157,9 +1156,10 @@
           </summary>
 
           <div class="infoContent">
-            <ul class="notes" style="margin-top:6px;">
-              <li>大井町搭乘臨海線➞池袋後，需出站換乘東武東上線</li>
-              <li style="line-height:1.5;">可購買川越優惠周遊券升級版/1200円<br><span style="padding-left:5em; color: var(--muted); font-size:0.95em;">池袋⇄川越來回電車票、小江戶名勝巡遊巴士(小江戸名所めぐりバス）、特約商家優惠</span></li>
+            <ul class="notes" style="margin-top:6px; list-style-type: none; padding-left: 0;">
+              <li>．大井町搭乘臨海線➞池袋後，需出站換乘東武東上線</li>
+              <li>．可購買川越優惠周遊券升級版/1200円</li>
+              <li>．池袋⇄川越來回電車票、小江戶名勝巡遊巴士(小江戸名所めぐりバス）、特約商家優惠</li>
             </ul>
           </div>
         </details>
@@ -1190,7 +1190,7 @@
       <div class="tRow">
        <div class="time">12:15 - 13:45</div>
        <div class="place">
-        <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
+       <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
         <ul class="notes">
          <li>江戶風味鰻魚飯</li>
          <li>特色手打烏龍麵</li>
@@ -1319,7 +1319,6 @@
   const nextBtn = document.getElementById('lbNext');
   let currentIndex = -1;
   let currentGroup = [];
-
   function openLightbox(img){
     const row = img.closest('.galleryRow');
     currentGroup = Array.from(row.querySelectorAll('img'));
@@ -1361,7 +1360,6 @@
   let lastTap = 0;
   let isDragging = false;
   let touchMode = 'none';
-
   function getDist(touches){
     return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
   }
@@ -1391,7 +1389,6 @@
       lastScale = scale;
     }
   }, {passive: false});
-
   modalInner.addEventListener('touchmove', (e)=>{
     if (touchMode === 'pinch' && e.touches.length === 2) {
       e.preventDefault();
@@ -1417,7 +1414,6 @@
       }
     }
   }, {passive: false});
-
   modalInner.addEventListener('touchend', (e)=>{
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
@@ -1451,7 +1447,6 @@
     lastTap = now;
     touchMode = 'none';
   });
-
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -1493,7 +1488,6 @@
     handle.addEventListener('mouseleave', () => row.draggable = false);
    });
   });
-
   document.querySelectorAll('.galleryRow').forEach(row => {
     let isDown = false;
     let startX;
@@ -1544,7 +1538,6 @@
       lastX = x;
       lastTime = now;
     });
-
     row.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault();
@@ -1569,7 +1562,6 @@
       });
     });
   });
-
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
