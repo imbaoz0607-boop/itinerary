@@ -365,10 +365,15 @@
   overflow: hidden;
   width: 100%;
  }
- /* 🎯 修正核心：當兩個收合層連在一起時，消除中間重複產生的相連線條 */
+ /* 🎯 修正核心：徹底斬草除根！當收合選單相連時，不只消除 border-top，連同內部標題自帶的線與陰影全面拔除 */
  details.infoBox + details.infoBox {
   border-top: none !important;
   margin-top: 0 !important;
+  box-shadow: none !important;
+ }
+ details.infoBox + details.infoBox > summary {
+  border-top: none !important;
+  box-shadow: none !important;
  }
  details.infoBox > summary {
   list-style: none;
