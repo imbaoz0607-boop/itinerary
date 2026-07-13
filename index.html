@@ -282,15 +282,10 @@
  }
  .notes {
   margin: 6px 0 0;
-  padding-left: 0;
-  list-style: none;
+  padding-left: 1.2em;
   font-size: 14px; 
  }
  .notes li + li { margin-top: 3px; }
- .notes ul.notes {
-  list-style: none;
-  padding-left: 0;
- }
  .gallery {
   margin-top: -2px;
  }
@@ -633,178 +628,8 @@
   justify-content: center;
   box-shadow: var(--shadow);
  }
- .lbCaption {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.65);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  z-index: 10;
-  pointer-events: none;
-  max-width: 85%;
-  text-align: center;
- }
- 
- @media (max-width: 640px) {
-  .container { 
-   padding-left: 4px !important;
-   padding-right: 4px !important;
-   padding-top: 10px !important; 
-  }
-  .hero { margin-bottom: 8px; }   
-  .heroFlights {
-   grid-template-columns: repeat(2, minmax(0, 1fr));
-   gap: 6px;
-  }
-  .heroFlightCard {
-   padding: 8px 6px !important;  
-  }
-  .tabShell { border-radius: 18px; }
-  .topTabs {
-   gap: 6px;
-   padding: 8px 6px;
-   scroll-padding-inline: 8px;
-  }
-  .tabBtn {
-   min-height: 36px;             
-   padding: 0 10px;
-   font-size: 13px;
-   flex: 0 0 auto;
-  }
-
-  .dayCardHeader {
-   flex-direction: row !important;
-   align-items: center !important;
-   justify-content: space-between !important;
-   gap: 10px;
-   padding: 10px 10px 6px !important;
-  }
-
-  .dayHeaderMain {
-   flex: 1;
-   display: flex;
-   align-items: center;
-   gap: 10px;
-   min-width: 0;
-  }
-
-  .dayDate {
-   font-size: 14px;
-   padding-left: 0 !important;
-   margin-left: auto;
-   white-space: nowrap;
-   flex-shrink: 0;
-  }
-  .dayBody { padding: 8px 4px !important; }
-  
-  .tRow { 
-   display: flex !important;
-   flex-direction: row !important;
-   align-items: flex-start !important; 
-   gap: 8px !important; 
-   padding: 6px 2px !important;
-   width: 100% !important;
-  }
-  .time { 
-   width: 54px !important;
-   min-width: 54px !important;
-   font-size: 15px !important; 
-   line-height: 1.35 !important;
-   margin: 0 !important;
-   padding: 0 !important;
-   position: relative !important;
-   top: 0px !important;
-  }
-  .place {
-   flex: 1 !important;
-  }
-  .place p,
-  .placeTitle {
-   font-size: 15px !important;
-   line-height: 1.35 !important; 
-   margin: 0 !important;
-   padding: 0 !important;
-  }
-  
-  p.meta {
-   font-size: 13px !important;
-   white-space: pre-line !important;
-  }
-
-  #day1 .tRow:nth-child(3) .place p.meta {
-   font-size: 10px !important;
-  }
-
-  .notes,
-  .dinner-list li {
-   font-size: 13px !important;
-   color: var(--text) !important;
-  }
-
-  #day3 .infoContent p.meta {
-   font-size: 13px !important;
-   color: var(--text) !important;
-   line-height: 1.5 !important;
-  }
-
-  .heroFlightList {
-   font-size: 14px !important;
-  }
-  
-  .tRow-alignLeft {
-   display: block !important;
-   padding: 0 !important;
-  }
-  .tRow-alignLeft .time {
-   width: 100% !important;
-   display: none !important;
-  }
-  .tRow-alignLeft details.infoBox,
-  .tRow-alignLeft .gallery-alignLeft {
-   margin-left: 0 !important;  
-   margin-right: 0 !important; 
-   width: 100% !important;
-  }
-  
-  details.infoBox > summary .summaryText {
-   font-size: 15px !important;
-  }
-  
-  details.infoBox {
-   margin-left: 0 !important;
-   margin-right: 0 !important;
-   width: 100% !important;
-   border-radius: 0 !important;
-   background: transparent !important; 
-  }
-  details.infoBox > summary {
-   padding: 10px 0 !important;
-  }
-  .infoContent {
-   padding: 0 0 12px 0 !important;
-  }
-  .infoContent details.infoBox {
-   width: 100% !important;
-   margin-left: 0 !important;
-   margin-right: 0 !important;
-  }
-  .infoContent details.infoBox > summary {
-   padding: 8px 0 !important;
-  }
-  .infoContent details.infoBox .infoContent {
-   padding: 0 0 8px 0 !important;
-  }
-  
-  .gItem {
-   width: 60vw; 
-   max-width: none;
-  }
-  .lbNav { display: none; }
-  .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
+ .lbNav { display: none; }
+ .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
  </style>
 </head>
@@ -836,9 +661,9 @@
   </section>
   <section class="tabShell">
    <nav class="topTabs" aria-label="行程頁籤">
-    <a class="tabBtn" data-target="day1">Day 1</a>
+    <a class="tabBtn active" data-target="day1">Day 1</a>
     <a class="tabBtn" data-target="day2">Day 2</a>
-    <a class="tabBtn active" data-target="day3">Day 3</a>
+    <a class="tabBtn" data-target="day3">Day 3</a>
     <a class="tabBtn" data-target="day4">Day 4</a>
     <a class="tabBtn" data-target="day5">Day 5</a>
     <a class="tabBtn" data-target="day6">Day 6</a>
@@ -869,7 +694,7 @@
     </div>
   </section>
    
-   <section class="card daySection pagePanel" id="day1">
+   <section class="card daySection pagePanel active" id="day1">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">1</div>
@@ -1087,7 +912,7 @@
     </div>
    </section>
 
-   <section class="card daySection pagePanel active" id="day3">
+   <section class="card daySection pagePanel" id="day3">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">3</div>
@@ -1174,14 +999,9 @@
        <div class="time">10:54</div>
        <div class="place">
         <p class="placeTitle">抵達川越</p>
-        <ul class="notes" style="margin-top: 6px;">
-         <li>．川越駅觀光案內所可購買（乘車地點不同須注意）
-           <ul class="notes" style="margin-top: 3px; padding-left: 1.5em;">
-             <li>1. 小江戶巡迴巴士(小江戸巡回バス)1日票600円，單次搭乘220円</li>
-             <li>2. 小江戶名勝巡遊巴士(小江戸名所めぐりバス)1日票500円，單程約220～240円</li>
-           </ul>
-         </li>
-        </ul>
+        <p class="meta">可至川越駅觀光案內所可購買(乘車地點不同須注意)
+1. 小江戶巡迴巴士(小江戸巡回バス)1日票600円，單次搭乘220円
+2. 小江戶名勝巡遊巴士(小江戸名所めぐりバス)1日票500円，單程約220～240円</p>
        </div>
       </div>
 
@@ -1190,8 +1010,8 @@
        <div class="place">
         <p class="placeTitle">冰川神社</p>
         <ul class="notes">
-         <li>．從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
-         <li>．建議直接搭到最遠端 → 冰川神社</li>
+         <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
+         <li>建議直接搭到最遠端 → 冰川神社</li>
         </ul>
        </div>
       </div>
@@ -1201,8 +1021,8 @@
        <div class="place">
        <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
         <ul class="notes">
-         <li>．江戶風味鰻魚飯</li>
-         <li>．特色手打烏龍麵</li>
+         <li>江戶風味鰻魚飯</li>
+         <li>特色手打烏龍麵</li>
         </ul>
        </div>
       </div>
