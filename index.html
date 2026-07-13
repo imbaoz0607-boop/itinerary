@@ -282,10 +282,15 @@
  }
  .notes {
   margin: 6px 0 0;
-  padding-left: 1.2em;
+  padding-left: 0;
+  list-style: none;
   font-size: 14px; 
  }
  .notes li + li { margin-top: 3px; }
+ .notes ul.notes {
+  list-style: none;
+  padding-left: 0;
+ }
  .gallery {
   margin-top: -2px;
  }
@@ -831,9 +836,9 @@
   </section>
   <section class="tabShell">
    <nav class="topTabs" aria-label="行程頁籤">
-    <a class="tabBtn active" data-target="day1">Day 1</a>
+    <a class="tabBtn" data-target="day1">Day 1</a>
     <a class="tabBtn" data-target="day2">Day 2</a>
-    <a class="tabBtn" data-target="day3">Day 3</a>
+    <a class="tabBtn active" data-target="day3">Day 3</a>
     <a class="tabBtn" data-target="day4">Day 4</a>
     <a class="tabBtn" data-target="day5">Day 5</a>
     <a class="tabBtn" data-target="day6">Day 6</a>
@@ -864,7 +869,7 @@
     </div>
   </section>
    
-   <section class="card daySection pagePanel active" id="day1">
+   <section class="card daySection pagePanel" id="day1">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">1</div>
@@ -1082,7 +1087,7 @@
     </div>
    </section>
 
-   <section class="card daySection pagePanel" id="day3">
+   <section class="card daySection pagePanel active" id="day3">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">3</div>
@@ -1169,6 +1174,14 @@
        <div class="time">10:54</div>
        <div class="place">
         <p class="placeTitle">抵達川越</p>
+        <ul class="notes" style="margin-top: 6px;">
+         <li>．川越駅觀光案內所可購買（乘車地點不同須注意）
+           <ul class="notes" style="margin-top: 3px; padding-left: 1.5em;">
+             <li>1. 小江戶巡迴巴士(小江戸巡回バス)1日票600円，單次搭乘220円</li>
+             <li>2. 小江戶名勝巡遊巴士(小江戸名所めぐりバス)1日票500円，單程約220～240円</li>
+           </ul>
+         </li>
+        </ul>
        </div>
       </div>
 
@@ -1177,8 +1190,8 @@
        <div class="place">
         <p class="placeTitle">冰川神社</p>
         <ul class="notes">
-         <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
-         <li>建議直接搭到最遠端 → 冰川神社</li>
+         <li>．從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
+         <li>．建議直接搭到最遠端 → 冰川神社</li>
         </ul>
        </div>
       </div>
@@ -1188,8 +1201,8 @@
        <div class="place">
        <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
         <ul class="notes">
-         <li>江戶風味鰻魚飯</li>
-         <li>特色手打烏龍麵</li>
+         <li>．江戶風味鰻魚飯</li>
+         <li>．特色手打烏龍麵</li>
         </ul>
        </div>
       </div>
