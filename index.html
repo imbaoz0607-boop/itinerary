@@ -1200,6 +1200,8 @@
   const routes=stops[stop];
   let html='';
 
+  let best=null; // 👉 推薦搭乘
+
   Object.keys(routes).forEach(name=>{
     const times=routes[name];
     const upcoming=times.map(t=>({t,d:toMin(t)-now})).filter(x=>x.d>=0);
@@ -1207,6 +1209,11 @@
     if(upcoming.length){
       const next=upcoming[0];
       const next2=upcoming[1];
+
+      // 👉 找最早一班
+      if(!best || next.d < best.d){
+        best = {name, ...next};
+      }
 
       html+=`
       <div class="busRow">
@@ -1219,24 +1226,55 @@
     }
   });
 
-  if(!html){
-    html='<div class="busHint">今日班次已結束</div>';
+  // 👉 顯示推薦（優化：永遠顯示）
+  let recommendHTML = '';
+
+  if(best){
+    recommendHTML = `
+    <div style="font-size:13px;margin-bottom:8px;color:#3b6cff;font-weight:600;">
+      👉 建議：搭 ${best.name}（${best.d===0?'即將出發':best.d+'分後'}）
+    </div>`;
+  } else {
+    recommendHTML = `
+    <div style="font-size:13px;margin-bottom:8px;color:#999;">
+      👉 今日班次已結束
+    </div>`;
   }
 
-  document.getElementById('busLive').innerHTML=html;
+  if(!html){
+    html='';
+  }
+
+  document.getElementById('busLive').innerHTML = recommendHTML + html;
  }
 
  function renderTable(){
+  const now=nowMin();
   const stop=document.getElementById('busStop').value;
   const routes=stops[stop];
   let html='';
 
   Object.keys(routes).forEach(name=>{
-    html+=`<div style="margin-top:6px;font-weight:600">${name}</div>`;
-    routes[name].forEach(t=>{
-      html+=`<div class="busRow"><div>${t}</div></div>`;
-    });
+    const times=routes[name];
+
+    // 👉 抓未來班次
+    const upcoming=times.map(t=>({t,d:toMin(t)-now})).filter(x=>x.d>=0);
+
+    // 👉 只取最近3班
+    const nextThree=upcoming.slice(0,3);
+
+    if(nextThree.length){
+      html+=`<div style="margin-top:6px;font-weight:600">${name}</div>`;
+
+      nextThree.forEach(obj=>{
+        html+=`<div class="busRow"><div>${obj.t}</div></div>`;
+      });
+    }
   });
+
+  if(!html){
+    html='<div class="busHint">今日班次已結束</div>';
+  }
 
   document.getElementById('busTable').innerHTML=html;
  }
