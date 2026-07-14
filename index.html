@@ -1127,6 +1127,54 @@
        </div>
       </div>
 
+      <!-- 智慧交通系統 -->
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+            <summary>
+              <span class="summaryText">🚌 川越巴士即時看板</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+
+<style>
+.boardWrap-mini{display:flex;justify-content:center;margin-top:10px}
+.boardCard{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center;width:200px}
+.boardTime{font-size:32px;font-weight:700}
+.boardRoute{margin-top:4px;font-size:14px}
+.boardMeta{margin-top:6px;font-size:12px;color:#888}
+</style>
+
+<div class="boardWrap-mini">
+  <div class="boardCard" id="miniBoard"></div>
+</div>
+
+<script>
+(function(){
+ const times=["11:15","11:25","11:35","11:45"];
+ function nowMin(){const n=new Date();return n.getHours()*60+n.getMinutes();}
+ function toMin(t){const p=t.split(":");return p[0]*60+parseInt(p[1]);}
+ function renderMini(){
+  const now=nowMin();
+  const list=times.map(t=>({time:t,diff:toMin(t)-now})).filter(x=>x.diff>=-5);
+  const next=list.find(x=>x.diff>=0);
+  if(!next) return;
+  document.getElementById("miniBoard").innerHTML=
+    '<div class="boardTime">'+next.time+'</div>'+
+    '<div class="boardRoute">小江戶巴士</div>'+
+    '<div class="boardMeta">'+(next.diff<=0?'即將發車':'還有 '+next.diff+' 分鐘')+'</div>';
+ }
+ renderMini();
+ setInterval(renderMini,60000);
+})();
+</script>
+
+            </div>
+          </details>
+        </div>
+      </div>
+
       <div class="tRow">
        <div class="time">11:10 - 12:00</div>
        <div class="place">
