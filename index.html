@@ -1148,63 +1148,117 @@
               .busHint{font-size:12px;color:#888;margin-top:6px}
               </style>
 
-              <div class="busTabs">
-                <div class="busTab active" onclick="busMode('live')">🚏 即時搭車</div>
-                <div class="busTab" onclick="busMode('table')">📅 預查時刻</div>
-              </div>
+             <div style="margin-bottom:10px;font-size:13px;">
+📍目前位置：
+<select id="busStop" style="margin-left:6px;padding:4px 8px;border-radius:8px;border:1px solid #ddd;">
+  <option value="川越駅">川越駅</option>
+  <option value="冰川神社">冰川神社</option>
+  <option value="藏造老街">藏造老街</option>
+  <option value="菓子屋橫丁">菓子屋橫丁</option>
+</select>
+</div>
 
-              <div id="busLive" class="busPanel active"></div>
-              <div id="busTable" class="busPanel"></div>
+<div class="busTabs">
+  <div class="busTab active" onclick="busMode('live')">🚏 即時搭車</div>
+  <div class="busTab" onclick="busMode('table')">📅 預查時刻</div>
+</div>
 
-              <script>
-              (function(){
-               const routes=[
-                {name:'🟣 紫線（先喜多院）',times:['11:15','11:35','11:55']},
-                {name:'🟠 橘線（先藏之街）',times:['11:20','11:40','12:00']},
-                {name:'🎫 名勝巴士（單向）',times:['11:18','11:38','11:58']}
-               ];
-               function nowMin(){const n=new Date();return n.getHours()*60+n.getMinutes();}
-               function toMin(t){const p=t.split(':');return p[0]*60+parseInt(p[1]);}
+<div id="busLive" class="busPanel active"></div>
+<div id="busTable" class="busPanel"></div>
 
-               function renderLive(){
-                const now=nowMin();
-                let html='';
-                routes.forEach(r=>{
-                  const next=r.times.map(t=>({t,d:toMin(t)-now})).filter(x=>x.d>=0)[0];
-                  if(next){
-                    html+=`<div class="busRow"><div>${r.name}</div><div>${next.t}（${next.d===0?'即將':next.d+'分'}）</div></div>`;
-                  }
-                });
-                if(!html){
-                  html='<div class="busHint">今日即時班次已結束。請點選上方「📅 預查時刻」查看完整班次。</div>';
-                }
-                document.getElementById('busLive').innerHTML=html;
-               }
+<script>
+(function(){
+ const stops={
+  "川越駅":{
+    "🟣 紫線":["11:15","11:35","11:55"],
+    "🟠 橘線":["11:20","11:40","12:00"],
+    "🎫 名勝巴士":["11:18","11:38","11:58"]
+  },
+  "冰川神社":{
+    "🟣 紫線":["11:25","11:45","12:05"],
+    "🟠 橘線":["11:10","11:30","11:50"],
+    "🎫 名勝巴士":["11:28","11:48","12:08"]
+  },
+  "藏造老街":{
+    "🟣 紫線":["11:35","11:55","12:15"],
+    "🟠 橘線":["11:00","11:20","11:40"],
+    "🎫 名勝巴士":["11:32","11:52","12:12"]
+  },
+  "菓子屋橫丁":{
+    "🟣 紫線":["11:40","12:00","12:20"],
+    "🟠 橘線":["11:05","11:25","11:45"],
+    "🎫 名勝巴士":["11:35","11:55","12:15"]
+  }
+ };
 
-               function renderTable(){
-                let html='';
-                routes.forEach(r=>{
-                  html+=`<div style="margin-top:6px;font-weight:600">${r.name}</div>`;
-                  r.times.forEach(t=>{
-                    html+=`<div class="busRow"><div>${t}</div></div>`;
-                  });
-                });
-                document.getElementById('busTable').innerHTML=html;
-               }
+ function nowMin(){const n=new Date();return n.getHours()*60+n.getMinutes();}
+ function toMin(t){const p=t.split(':');return p[0]*60+parseInt(p[1]);}
 
-               window.busMode=function(mode){
-                document.querySelectorAll('.busTab').forEach((el,i)=>{
-                  el.classList.toggle('active', (mode==='live'&&i===0)||(mode==='table'&&i===1));
-                });
-                document.getElementById('busLive').classList.toggle('active',mode==='live');
-                document.getElementById('busTable').classList.toggle('active',mode==='table');
-               }
+ function renderLive(){
+  const now=nowMin();
+  const stop=document.getElementById('busStop').value;
+  const routes=stops[stop];
+  let html='';
 
-               renderLive();
-               renderTable();
-               setInterval(renderLive,60000);
-              })();
-              </script>
+  Object.keys(routes).forEach(name=>{
+    const times=routes[name];
+    const upcoming=times.map(t=>({t,d:toMin(t)-now})).filter(x=>x.d>=0);
+
+    if(upcoming.length){
+      const next=upcoming[0];
+      const next2=upcoming[1];
+
+      html+=`
+      <div class="busRow">
+        <div>${name}</div>
+        <div>
+          ${next.t}（${next.d===0?'即將':next.d+'分'}）
+          ${next2?`<br><span style="font-size:12px;color:#888">→ ${next2.t}</span>`:''}
+        </div>
+      </div>`;
+    }
+  });
+
+  if(!html){
+    html='<div class="busHint">今日班次已結束</div>';
+  }
+
+  document.getElementById('busLive').innerHTML=html;
+ }
+
+ function renderTable(){
+  const stop=document.getElementById('busStop').value;
+  const routes=stops[stop];
+  let html='';
+
+  Object.keys(routes).forEach(name=>{
+    html+=`<div style="margin-top:6px;font-weight:600">${name}</div>`;
+    routes[name].forEach(t=>{
+      html+=`<div class="busRow"><div>${t}</div></div>`;
+    });
+  });
+
+  document.getElementById('busTable').innerHTML=html;
+ }
+
+ window.busMode=function(mode){
+  document.querySelectorAll('.busTab').forEach((el,i)=>{
+    el.classList.toggle('active', (mode==='live'&&i===0)||(mode==='table'&&i===1));
+  });
+  document.getElementById('busLive').classList.toggle('active',mode==='live');
+  document.getElementById('busTable').classList.toggle('active',mode==='table');
+ }
+
+ document.getElementById('busStop').addEventListener('change',()=>{
+  renderLive();
+  renderTable();
+ });
+
+ renderLive();
+ renderTable();
+ setInterval(renderLive,60000);
+})();
+</script>
 
             </div>
           </details>
