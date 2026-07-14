@@ -6,7 +6,7 @@
  <title>東京｜主行程模板 v5</title>
  <style>
  :root {
-  --bg: #f1f3f7; 
+  --bg: #f1f3f7;
   --surface: #ffffff; 
   --text: #2d2a26;
   --muted: #7a736b;
@@ -23,26 +23,27 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.65;
+  line-height: 1.5;
  }
  .container {
   width: min(100%, 980px);
   margin: 0 auto;
-  padding: 20px 14px 48px;
+  padding: 16px 8px 20px;
  }
- .hero, .tabShell { margin-bottom: 18px; }
+ .hero { margin-bottom: 12px; }
  .tabShell {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 28px;
   box-shadow: var(--shadow);
   overflow: visible; 
+  margin-bottom: 14px;
  }
  .topTabs {
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;
-  padding: 18px 14px;
+  padding: 12px 14px;
   margin: 0;
   background: var(--surface);
   border: 0;
@@ -60,17 +61,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
-  padding: 0 20px;
+  min-height: 42px;
+  padding: 0 16px;
   border-radius: 999px;
   border: 1px solid #d6d6db;
   background: #f7f7f9;
   color: #1f2430;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1;
   white-space: nowrap;
   transition: all .18s ease;
+  cursor: pointer;
  }
  .tabBtn.active {
   border-color: #3b6cff;
@@ -83,49 +85,46 @@
   background: var(--line);
  }
  .daySection { scroll-margin-top: 18px; }
+
  .heroTitleCard {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  padding: 22px 18px;
-  box-shadow: var(--shadow);
-  margin-bottom: 14px;
+  border: none;
+  border-radius: 0;
+  padding: 8px 4px;
+  margin-bottom: 8px;
+  background: transparent;
  }
+ 
  .heroFlights {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: stretch;
+  gap: 12px;
  }
  .heroFlightCard {
-  background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 16px 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+  border-radius: 16px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, .03);
  }
  .heroFlightTitle {
-  margin: 0 0 10px;
-  font-size: 18px;
-  line-height: 1.35;
-  font-weight: 800;
-  color: #1f2430;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--text);
  }
  .heroFlightList {
-  margin: 0;
-  padding-left: 1.15em;
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 14px; 
  }
- .heroFlightList li + li { margin-top: 4px; }
- .heroFlightList strong { font-size: 15px; }
+ .heroFlightList li + li { margin-top: 3px; }
+ .heroFlightList strong { font-weight: 700; }
+ 
  .title {
   margin: 0;
   font-size: clamp(24px, 4vw, 34px);
   line-height: 1.25;
- }
- .subtitle {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 14px;
+  font-weight: 800;
  }
  .pagePanel {
   display: none;
@@ -137,11 +136,10 @@
  .pagePanel.active { display: block; }
  .card {
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  padding: 0;
+  border-radius: var(--radius);
+  padding: 0; 
+  margin-bottom: var(--gap);
   box-shadow: var(--shadow);
-  margin-bottom: 18px;
   overflow: hidden;
  }
  .tabShell .card {
@@ -155,8 +153,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding: 18px 18px 14px;
-  border-bottom: 1px solid var(--line);
+  padding: 14px 18px 10px;
+  border-bottom: none;
  }
  .dayHeaderMain {
   display: flex;
@@ -168,42 +166,53 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  min-width: 56px;
-  height: 52px;
-  border-radius: 18px;
+  width: 52px;
+  min-width: 52px;
+  height: 48px;
+  border-radius: 16px;
   border: 1px solid #9ec0ff;
   background: #eaf2ff;
   color: #173d7a;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   line-height: 1;
  }
  .dayHeading {
   min-width: 0;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.3;
   color: #16253b;
  }
+ .dayTitle {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.3;
+ }
  .dayDate {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   color: #16253b;
   letter-spacing: .4px;
   white-space: nowrap;
  }
- .dayBody { padding: 18px 16px; }
- .dayTitle {
-  margin: 0;
-  font-size: 22px;
-  line-height: 1.35;
+ .dayBody { padding: 12px 16px; }
+
+ .timeline {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px 10px;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.04);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
  }
  .dayMeta {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   padding: 0;
   list-style: none;
  }
@@ -211,115 +220,169 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 10px;
+  padding: 4px 10px;
   background: var(--chip);
-  border-radius: 999px;
+  border-radius: 9999px;
   color: #5f5448;
   font-size: 13px;
  }
- .timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
- }
+
  .tRow {
-  display: grid;
-  grid-template-columns: 74px minmax(0, 1fr);
-  gap: 12px;
-  align-items: start;
-  padding: 10px 0;
-  border-top: 1px dashed var(--line);
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important; 
+  gap: 10px;
+  padding: 2px 0;
+  width: 100%;
  }
  .tRow:first-child {
-  border-top: none;
   padding-top: 0;
  }
  .time {
+  width: 90px;
+  min-width: 90px;
+  flex-shrink: 0;
   font-weight: 700;
   color: #000;
   letter-spacing: .2px;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  padding: 0 !important;
  }
- .place { min-width: 0; }
+ .place { 
+  flex: 1;
+  min-width: 0; 
+ }
+ .place p,
  .placeTitle {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   font-size: 16px;
   font-weight: 700;
+  line-height: 1.25 !important; 
  }
+
+ .placeTitle {
+  margin-bottom: 0 !important;
+ }
+
  .meta {
-  margin: 4px 0 0;
+  margin: 4px 0 0 0 !important;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px; 
+  white-space: pre-line;
+  line-height: 1.4;
+ }
+ .place p.meta[style*="HOTEL"], 
+ .place p.meta {
+  font-size: 13px;
+ }
+ #day1 .tRow:nth-child(3) .place p.meta {
+  font-size: 11px !important; 
  }
  .notes {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   padding-left: 1.2em;
+  font-size: 14px; 
  }
- .notes li + li { margin-top: 4px; }
+ .notes li + li { margin-top: 3px; }
  .gallery {
-  margin-top: 12px;
-  margin-left: calc(-74px - 12px);
-  margin-right: -16px;
+  margin-top: -2px;
  }
  .galleryTitle {
-  padding-left: 16px;
-  padding-right: 16px;
-  margin: 0 0 8px;
-  font-size: 15px;
+  padding-left: 0;
+  margin: 0 0 6px;
+  font-size: 14px;
   font-weight: 700;
  }
  .galleryRow {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   overflow-x: auto;
-  padding: 4px 0 6px;
-  scroll-snap-type: x proximity;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x; 
-  overscroll-behavior-x: contain; 
+  padding-left: 0;
+  scroll-behavior: smooth;
+  cursor: grab;
  }
- .galleryRow::-webkit-scrollbar { height: 8px; }
- .galleryRow::-webkit-scrollbar-thumb {
-  background: #d8cfc3;
-  border-radius: 999px;
- }
+ .galleryRow::-webkit-scrollbar { display: none; }
+ .galleryRow.dragging { cursor: grabbing; }
+
  .gItem {
   flex: 0 0 auto;
-  width: 180px;
-  scroll-snap-align: start;
- }
- .gItem img,
- .gItem a.pdfLink {
-  display: block;
-  width: 100%;
-  border-radius: 14px;
+  width: 72vw;
+  max-width: 260px;
+  aspect-ratio: 3 / 2;
+  border-radius: 16px;
+  overflow: hidden;
   border: 1px solid var(--line);
   background: #faf8f4;
- }
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  scroll-snap-align: center;
+  position: relative;
+ } 
  .gItem img {
-  aspect-ratio: auto; 
-  object-fit: contain; 
-  cursor: zoom-in;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: box-shadow 0.2s ease;
  }
- .gCaption {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 13px;
+ .gItem img:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
  }
+
+ .gItem[data-caption]::after {
+  content: attr(data-caption);
+  position: absolute;
+  left: 8px; right: 8px; bottom: 8px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  background: rgba(17,24,39,.62);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: .2px;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+ }
+
  details.infoBox {
-  margin-top: 12px;
-  margin-left: calc(-74px - 12px);
-  margin-right: -16px;
-  border: 1px solid var(--line);
+  margin-top: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 0; 
   border-left: 0;
   border-right: 0;
   border-radius: 0;
   background: #fcfaf7;
   overflow: hidden;
+  width: 100%;
  }
+ 
+ details.no-border-box {
+  border: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+ }
+ details.no-border-box > summary {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+ }
+
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 12px 16px;
+  padding: 10px 0; 
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -329,7 +392,7 @@
  details.infoBox > summary::-webkit-details-marker { display: none; }
  .summaryText { min-width: 0; }
  .transportLine { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
- .transportLine a { font-size: 16px; text-decoration: none; }
+ .transportLine a { font-size: 16px; text-decoration: none; color: inherit; font-weight: inherit; }
  .transportIcon {
   display: inline-flex;
   align-items: center;
@@ -338,44 +401,39 @@
   height: 22px;
   margin-left: 4px;
   border-radius: 6px;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 14px;
   line-height: 1;
+  color: inherit;
+ }
+ .summaryText a {
+  text-decoration: none !important;
+  color: inherit !important;
  }
  .transportIcon:hover { background: #f1f3f7; }
- .infoContent > details.infoBox {
-  margin-left: 0;
-  margin-right: 0;
-  border: 0;
-  background: transparent;
- }
- .infoContent > details.infoBox > summary {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--line);
- }
- .infoContent > details.infoBox:last-child > summary { border-bottom: none; }
  .chev {
   color: var(--muted);
   transition: transform .2s ease;
   flex: 0 0 auto;
+  padding-right: 4px;
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 16px 14px;
+  padding: 0 0 12px 0; 
   color: #4d463f;
  }
  .btnRow {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 8px;
  }
  .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
-  padding: 4px 8px;
+  min-height: 26px;
+  padding: 2px 8px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #fff;
@@ -386,63 +444,163 @@
  }
  .infoContent table {
   width: 100%;
+  max-width: 260px;
+  margin: 12px auto 0; 
   border-collapse: collapse;
   font-size: 14px;
-  margin-top: 8px;
+ }
+ .infoContent th, 
+ .infoContent td {
+  width: 50%;
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
  }
  .infoContent th {
-  text-align: center;
   background: #f4f6fb;
-  padding: 8px 6px;
-  border-bottom: 1px solid var(--line);
-  font-weight: 700;
- }
- .infoContent td {
-  padding: 8px 6px;
-  border-bottom: 1px solid var(--line);
-  text-align: center;
- }
- .infoContent tr:hover td { background: #fafbff; }
- .infoContent td:last-child {
-  text-align: left;
   font-weight: 600;
  }
+ .infoContent td:last-child {
+  font-weight: 600;
+ }
+ .infoContent tr:hover td {
+  background: #fafbff;
+ }
+
+ .infoContent details.infoBox {
+  margin-left: 0;
+  margin-right: 0;
+  background: transparent;
+  border-top: none;
+ }
+ .infoContent details.infoBox > summary {
+  padding: 8px 0;
+  font-weight: 700;
+  color: var(--text);
+ }
+ .infoContent details.infoBox > summary a {
+  color: #3b6cff !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+ }
+ .infoContent details.infoBox .infoContent {
+  padding: 0 0 8px 0;
+ }
+
+ .dinner-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+ }
+ .dinner-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; 
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px; 
+ }
+ .dinner-list li:last-child {
+  border-bottom: none;
+ }
+ .dinner-list li > div {
+  flex: 1; 
+  min-width: 0;
+ }
+ .dinner-name {
+  font-weight: 600;
+  color: var(--text);
+ }
+ .dinner-type {
+  font-size: 12px;
+  color: var(--muted);
+  margin-left: 8px;
+ }
+ .dinner-room {
+  font-weight: 700;
+  color: var(--accent);
+  font-family: monospace;
+  white-space: nowrap; 
+  flex-shrink: 0;
+ }
+
+ .tRow-alignLeft {
+  display: flex !important; 
+  flex-direction: row !important;
+  width: 100%;
+  padding: 0 !important;
+ }
+ .tRow-alignLeft .time {
+  width: 90px;
+  min-width: 90px;
+ }
+ .tRow-alignLeft .place {
+  flex: 1;
+ }
+ .tRow-alignLeft details.infoBox,
+ .tRow-alignLeft .gallery-alignLeft {
+  margin-left: 0 !important;   
+  margin-right: 0 !important;
+  width: 100% !important;
+ }
+ .tRow-alignLeft .gallery-alignLeft .galleryTitle {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+ }
+ .infoContent .galleryRow {
+  margin-top: 12px;
+  padding-top: 6px;
+ }
+ .infoContent .galleryRow .gItem,
+ .gallery-alignLeft .galleryRow .gItem {
+  min-width: 0;
+ }
+
  .lbModal {
   position: fixed;
   inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 0;
   z-index: 9999;
  }
  .lbModal.open { display: flex; }
  .lbBackdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.72);
+  background: rgba(0,0,0,.85);
  }
- .lbImg { max-width: 100%; max-height: 90vh; object-fit: contain; } 
+ .lbImg { 
+  max-width: 100%; 
+  max-height: 100vh;
+  object-fit: contain; 
+  touch-action: none; 
+  transition: transform 0.1s ease-out;
+  user-select: none;
+  -webkit-user-drag: none;
+ } 
  .lbInner {
   position: relative;
   z-index: 1;
-  width: min(100%, 980px);
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  overflow: hidden;
  }
  .lbNav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 10;
   border: none;
   width: 46px;
   height: 46px;
   border-radius: 999px;
-  background: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.85);
   font-size: 26px;
   cursor: pointer;
   display: flex;
@@ -450,126 +608,241 @@
   justify-content: center;
   box-shadow: var(--shadow);
  }
- .lbPrev { left: -6px; }
- .lbNext { right: -6px; }
+ .lbPrev { left: 14px; }
+ .lbNext { right: 14px; }
  .lbClose {
   position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
   border: none;
   border-radius: 999px;
-  min-width: 42px;
-  min-height: 42px;
-  padding: 0 12px;
-  font-size: 22px;
-  line-height: 1;
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
   cursor: pointer;
-  background: rgba(255,255,255,.96);
+  background: rgba(255,255,255,.85);
   color: #2d2a26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: var(--shadow);
  }
+ .lbCaption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 10;
+  pointer-events: none;
+  max-width: 85%;
+  text-align: center;
+ }
  
- /* --- 響應式合併 --- */
  @media (max-width: 640px) {
+  .container { 
+   padding-left: 4px !important;
+   padding-right: 4px !important;
+   padding-top: 10px !important; 
+  }
+  .hero { margin-bottom: 8px; }   
   .heroFlights {
    grid-template-columns: repeat(2, minmax(0, 1fr));
-   gap: 10px;
+   gap: 6px;
   }
-  .container { padding-inline: 10px; }
-  .tabShell { border-radius: 22px; }
+  .heroFlightCard {
+   padding: 8px 6px !important;  
+  }
+  .tabShell { border-radius: 18px; }
   .topTabs {
-   gap: 8px;
-   padding: 14px 12px;
-   scroll-padding-inline: 12px;
+   gap: 6px;
+   padding: 8px 6px;
+   scroll-padding-inline: 8px;
   }
   .tabBtn {
-   min-height: 44px;
-   padding: 0 16px;
-   font-size: 15px;
+   min-height: 36px;             
+   padding: 0 10px;
+   font-size: 13px;
    flex: 0 0 auto;
   }
+
   .dayCardHeader {
-   flex-direction: column;
-   align-items: flex-start;
+   flex-direction: row !important;
+   align-items: center !important;
+   justify-content: space-between !important;
    gap: 10px;
+   padding: 10px 10px 6px !important;
   }
-  .dayHeaderMain { width: 100%; }
-  .dayHeading { font-size: 18px; }
-  .dayDate { font-size: 16px; }
-  .heroTitleCard { border-radius: 22px; }
-  .card { padding: 16px 12px; }
-  .tRow { grid-template-columns: 1fr; gap: 6px; }
-  .time { font-size: 14px; }
-  .gallery, details.infoBox {
-   margin-left: -12px;
-   margin-right: -12px;
+
+  .dayHeaderMain {
+   flex: 1;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   min-width: 0;
   }
-  .galleryTitle, details.infoBox > summary, .infoContent {
-   padding-left: 12px;
-   padding-right: 12px;
+
+  .dayDate {
+   font-size: 14px;
+   padding-left: 0 !important;
+   margin-left: auto;
+   white-space: nowrap;
+   flex-shrink: 0;
   }
-  .gItem { width: 156px; }
-  .flightMid { grid-template-columns: 1fr; gap: 10px; }
-  .airportCol.isRight, .flightRoute { text-align: left; }
-  .airportCode { font-size: 24px; }
-  .infoContent table { font-size: 13px; }
+  .dayBody { padding: 8px 4px !important; }
+  
+  .tRow { 
+   display: flex !important;
+   flex-direction: row !important;
+   align-items: flex-start !important; 
+   gap: 8px !important; 
+   padding: 6px 2px !important;
+   width: 100% !important;
+  }
+  .time { 
+   width: 54px !important;
+   min-width: 54px !important;
+   font-size: 15px !important; 
+   line-height: 1.35 !important;
+   margin: 0 !important;
+   padding: 0 !important;
+   position: relative !important;
+   top: 0px !important;
+  }
+  .place {
+   flex: 1 !important;
+  }
+  .place p,
+  .placeTitle {
+   font-size: 15px !important;
+   line-height: 1.35 !important; 
+   margin: 0 !important;
+   padding: 0 !important;
+  }
+  
+  p.meta {
+   font-size: 13px !important;
+   white-space: pre-line !important;
+  }
+
+  #day1 .tRow:nth-child(3) .place p.meta {
+   font-size: 10px !important;
+  }
+
+  .notes,
+  .dinner-list li {
+   font-size: 13px !important;
+   color: var(--text) !important;
+  }
+
+  #day3 .infoContent p.meta {
+   font-size: 13px !important;
+   color: var(--text) !important;
+   line-height: 1.5 !important;
+  }
+
+  .heroFlightList {
+   font-size: 14px !important;
+  }
+  
+  .tRow-alignLeft {
+   display: block !important;
+   padding: 0 !important;
+  }
+  .tRow-alignLeft .time {
+   width: 100% !important;
+   display: none !important;
+  }
+  .tRow-alignLeft details.infoBox,
+  .tRow-alignLeft .gallery-alignLeft {
+   margin-left: 0 !important;  
+   margin-right: 0 !important; 
+   width: 100% !important;
+  }
+  
+  details.infoBox > summary .summaryText {
+   font-size: 15px !important;
+  }
+  
+  details.infoBox {
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+   width: 100% !important;
+   border-radius: 0 !important;
+   background: transparent !important; 
+  }
+  details.infoBox > summary {
+   padding: 10px 0 !important;
+  }
+  .infoContent {
+   padding: 0 0 12px 0 !important;
+  }
+  .infoContent details.infoBox {
+   width: 100% !important;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+  }
+  .infoContent details.infoBox > summary {
+   padding: 8px 0 !important;
+  }
+  .infoContent details.infoBox .infoContent {
+   padding: 0 0 8px 0 !important;
+  }
+  
+  .gItem {
+   width: 60vw; 
+   max-width: none;
+  }
+  .lbNav { display: none; }
+  .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
  </style>
 </head>
 <body>
  <main class="container">
   <section class="hero" id="memo">
+   <div class="heroTitleCard">
+    <h1 class="title">Tokyo 8 Days</h1>
+   </div>
+
    <div class="heroFlights">
-    <section class="heroFlightCard" aria-label="去程航班資訊">
-     <h2 class="heroFlightTitle">✈️ 去程（04/20 一）JX802</h2>
+    <div class="heroFlightCard">
+     <h2 class="heroFlightTitle">✈️去09/26(六) 華航CI220</h2>
      <ul class="heroFlightList">
-      <li>⏰ 預計 <strong>07:40</strong> 抵達機場</li>
-      <li>🛫 <strong>10:40</strong>　出發 TPE 桃園國際機場（第一航廈）</li>
-      <li>🛬 <strong>15:05</strong>　抵達 NRT 成田機場（第二航廈）</li>
+      <li>⏰ <strong>預計 06:30</strong> 抵達機場</li>
+      <li>🛫 <strong>9:00</strong> 松山機場 T1</li>
+      <li>🛬 <strong>13:10</strong> 羽田機場 T3</li>
      </ul>
-    </section>
-    <section class="heroFlightCard" aria-label="回程航班資訊">
-     <h2 class="heroFlightTitle">✈️ 回程（04/24 五）JX805</h2>
+    </div>
+    <div class="heroFlightCard">
+     <h2 class="heroFlightTitle">✈️回10/03(六) 華航CI221</h2>
      <ul class="heroFlightList">
-      <li>⏰ 預計 <strong>17:40</strong> 抵達機場</li>
-      <li>🛫 <strong>20:40</strong>　出發 NRT 成田機場（第二航廈）</li>
-      <li>🛬 <strong>23:20</strong>　抵達 TPE 桃園國際機場（第一航廈）</li>
+      <li>⏰ <strong>預計 11:30</strong> 抵達機場</li>
+      <li>🛫 <strong>14:30</strong> 羽田機場 T3</li>
+      <li>🛬 <strong>16:55</strong> 松山機場 T1</li>
      </ul>
-    </section>
+    </div>
    </div>
   </section>
   <section class="tabShell">
    <nav class="topTabs" aria-label="行程頁籤">
-    <a class="tabBtn active" href="#day1" data-target="day1">Day 1</a>
-    <a class="tabBtn" href="#day2" data-target="day2">Day 2</a>
-    <a class="tabBtn" href="#day3" data-target="day3">Day 3</a>
-    <a class="tabBtn" href="#day4" data-target="day4">Day 4</a>
-    <a class="tabBtn" href="#day5" data-target="day5">Day 5</a>
-    <a class="tabBtn" href="#memoPanel" data-target="memoPanel">Memo</a>
-    <a class="tabBtn" href="#editorPanel" data-target="editorPanel">單日編輯器</a>
-    <a class="tabBtn" href="#" id="addDayBtn">＋新增 Day</a>
+    <a class="tabBtn active" data-target="day1">Day 1</a>
+    <a class="tabBtn" data-target="day2">Day 2</a>
+    <a class="tabBtn" data-target="day3">Day 3</a>
+    <a class="tabBtn" data-target="day4">Day 4</a>
+    <a class="tabBtn" data-target="day5">Day 5</a>
+    <a class="tabBtn" data-target="day6">Day 6</a>
+    <a class="tabBtn" data-target="day7">Day 7</a>
+    <a class="tabBtn" data-target="day8">Day 8</a>
+    <a class="tabBtn" data-target="memoPanel">Memo</a>
    </nav>
    <div class="tabsDivider"></div>
-   <section class="card pagePanel" id="editorPanel">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">E</div>
-      <h2 class="dayTitle">單日行程編輯器</h2>
-     </div>
-     <div class="dayDate">Quick Builder</div>
-    </div>
-    <div class="dayBody">
-     <p class="meta">輸入時間與地點後按「生成行程」，會自動產生 tRow HTML，可貼回任一天。</p>
-     <div style="display:grid;gap:10px;max-width:420px;margin-top:10px;">
-      <input id="editTime" placeholder="時間，例如 09:00" style="padding:8px;border:1px solid var(--line);border-radius:8px;">
-      <input id="editPlace" placeholder="地點，例如 淺草寺" style="padding:8px;border:1px solid var(--line);border-radius:8px;">
-      <input id="editMeta" placeholder="說明，例如 逛雷門、仲見世" style="padding:8px;border:1px solid var(--line);border-radius:8px;">
-      <button id="buildRow" style="padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;">生成行程</button>
-     </div>
-     <textarea id="rowOutput" style="margin-top:12px;width:100%;height:140px;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:monospace"></textarea>
-    </div>
-   </section>
+   
    <section class="card pagePanel" id="memoPanel">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
@@ -583,257 +856,397 @@
       <div class="tRow">
        <div class="time">Memo</div>
        <div class="place">
-        <p class="placeTitle">請把這次旅行的重要備忘填在這裡</p>
+         <p class="placeTitle">請把這次旅行的重要備忘填在這裡</p>
         <p class="meta">例如票券、餐廳預約、購物清單、天氣提醒、重要地址。</p>
        </div>
       </div>
      </div>
     </div>
-   </section>
+  </section>
+   
    <section class="card daySection pagePanel active" id="day1">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">1</div>
-      <h2 class="dayTitle">抵達東京｜入住OMO3 東京赤坂 </h2>
+      <h2 class="dayTitle">抵達東京</h2>
      </div>
-     <div class="dayDate">04/20（一）</div>
+     <div class="dayDate">9/26(六)</div>
     </div>
     <div class="dayBody">
      <div class="timeline">
+      
       <div class="tRow">
-       <div class="time">07:40</div>
+       <div class="time">13:10</div>
        <div class="place">
-        <p class="placeTitle">抵達桃園機場 T1</p>
-        <p class="meta">待填</p>
+        <p class="placeTitle">羽田機場第3航廈</p>
+        <p class="meta">領取行李後巴士或電車前往大井町站</p>
        </div>
       </div>
-      <div class="tRow">
-       <div class="time">16:00</div>
-       <div class="place">
-        <p class="placeTitle">入境、領行李後前往東京市區</p>
-        <p class="meta">待填</p>
-        <details class="infoBox">
-         <summary>
-          <span class="summaryText">交通資訊</span>
-          <span class="chev">⌄</span>
-         </summary>
-         <div class="infoContent">
+      
+      <div class="tRow eRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
           <details class="infoBox">
            <summary>
-            <span class="summaryText">🕒參考時刻表</span>
-            <span class="chev">⌄</span>
+             <span class="summaryText">交通資訊</span>
+             <span class="chev">⌄</span>
            </summary>
            <div class="infoContent">
-            <table>
-             <tr><th>T2出發</th><th>下車站</th><th>抵達</th><th>交通工具</th></tr>
-             <tr><td>16:02</td><td>京成上野</td><td>16:43</td><td>🚄 Skyliner 46</td></tr>
-             <tr><td>16:10</td><td>赤坂見附</td><td>18:35</td><td>🚌 利木津巴士</td></tr>
-             <tr><td>16:16</td><td>東京</td><td>17:16</td><td>🚆 N'EX 34</td></tr>
-             <tr><td>16:22</td><td>京成上野</td><td>17:03</td><td>🚄 Skyliner 48</td></tr>
-             <tr><td>16:30</td><td>赤坂見附</td><td>18:45</td><td>🚌 利木津巴士</td></tr>
-             <tr><td>16:42</td><td>京成上野</td><td>17:23</td><td>🚄 Skyliner 50</td></tr>
-             <tr><td>16:44</td><td>東京</td><td>17:43</td><td>🚆 N'EX 36</td></tr>
-             <tr><td>17:02</td><td>京成上野</td><td>17:43</td><td>🚄 Skyliner 52</td></tr>
-             <tr><td>17:16</td><td>東京</td><td>18:16</td><td>🚆 N'EX 38</td></tr>
-             <tr><td>17:20</td><td>赤坂見附</td><td>19:45</td><td>🚌 利木津巴士</td></tr>
-             <tr><td>17:22</td><td>京成上野</td><td>18:04</td><td>🚄 Skyliner 54</td></tr>
-             <tr><td>17:43</td><td>京成上野</td><td>18:26</td><td>🚄 Skyliner 56</td></tr>
-             <tr><td>17:44</td><td>東京</td><td>18:43</td><td>🚆 N'EX 40</td></tr>
-             <tr><td>18:03</td><td>京成上野</td><td>18:47</td><td>🚄 Skyliner 58</td></tr>
-             <tr><td>19:00</td><td>赤坂見附</td><td>21:15</td><td>🚌 利木津巴士</td></tr>
-            </table>
+             <details class="infoBox">
+               <summary>
+                 <span class="summaryText">搭乘電車🚆</span>
+                 <span class="chev">⌄</span>
+               </summary>
+               <div class="infoContent">
+                 <ul class="notes" style="font-size:14px; line-height:1.7;">
+                   <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
+                   <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町<br></li>
+                 </ul>
+                 <div class="galleryRow" role="list">
+                   <div class="gItem"><img src="Day1/01.jpg"></div>
+                   <div class="gItem"><img src="Day1/02.jpg"></div>
+                 </div>
+               </div>
+             </details>
+
+             <details class="infoBox">
+               <summary>
+                 <span class="summaryText">搭乘機場巴士 <a class="transportIcon" href="https://keikyubus.travel.navitime.com/">🚌</a></span>
+                 <span class="chev">⌄</span>
+               </summary>
+               <div class="infoContent">
+                 <ul class="notes">
+                   <li>乘車地點 : 第3航廈1樓10號公車站</li>
+                   <li style="line-height: 1.5;">下車地點 : 大井町トラックス21番<br><span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;">（原 大井町駅西口3番）</span></li>
+                   <li>單程票價 : 成人800円</li>
+                 </ul>
+                 <table>
+                   <thead>
+                     <tr>
+                       <th>出發（T3）</th>
+                       <th>抵達（大井町）</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr><td>14:05</td><td>14:57</td></tr>
+                     <tr><td>15:05</td><td>15:54</td></tr>
+                     <tr><td>16:05</td><td>16:57</td></tr>
+                     <tr><td>16:50</td><td>17:42</td></tr>
+                     <tr><td>17:40</td><td>18:32</td></tr>
+                   </tbody>
+                 </table>
+
+                 <div class="galleryRow" role="list">
+                   <div class="gItem"><img src="Day1/04.jpg" alt=""></div>
+                   <div class="gItem"><img src="Day1/05.jpg" alt=""></div>
+                   <div class="gItem"><img src="Day1/06.jpg" alt=""></div>
+                 </div>
+
+               </div>
+             </details>
            </div>
           </details>
-          <details class="infoBox"> 
-           <summary>
-            <span class="summaryText">🚌 利木津巴士</span>
-            <span class="chev">⌄</span>
-           </summary>
-           <div class="infoContent">
-            <ul class="notes">
-             <li>成田T2→赤坂見附→OMO3東京赤坂 </li>
-             <li><a href="https://www.limousinebus.co.jp/zh-tw/" target="_blank" style="text-decoration:underline">官網購票</a> 💰¥3,600、第二航廈的巴士(Limousine Bus)購票處在1樓入境大廳(Arrival Hall)，南口(A)或北口(B)的橘色櫃檯巴士售票櫃檯或自動售票機購票。</li>
-            </ul>
-            <div class="gallery" style="margin-left:0;margin-right:0">
-             <div class="galleryRow" role="list">
-              <div class="gItem" role="listitem"><img src="Day1/1.jpg" alt="利木津巴士"></div>
-             </div>
-            </div>
-           </div>
-          </details>
-          <details class="infoBox">
-           <summary>
-            <span class="summaryText">🚄 Skyliner ＋銀座線</span>
-            <span class="chev">⌄</span>
-           </summary>
-           <div class="infoContent">
-            <ul class="notes">
-             <li>成田機場T2→京成上野出站→經地下連通道→銀座線上野站(往澀谷方向)→赤坂見附G05→10出口→OMO3東京赤坂。</li>
-             <li><a href="https://www.keisei.co.jp/keisei/tetudou/skyliner/e-ticket/zht/" target="_blank" style="text-decoration:underline">官網購票</a> 💰2,310</li>
-            </ul>
-            <div class="gallery" style="margin-left:0;margin-right:0">
-             <div class="galleryRow" role="list">
-              <div class="gItem" role="listitem"><img src="Day1/2.jpg" alt="Skyliner"></div>
-              <div class="gItem" role="listitem"><img src="Day1/3.jpg" alt="Skyliner"></div>
-             </div>
-            </div>
-           </div>
-          </details>
-          <details class="infoBox">
-           <summary>
-            <span class="summaryText">🚆 成田特快(N'EX) ＋丸ノ內線</span>
-            <span class="chev">⌄</span>
-           </summary>
-           <div class="infoContent">
-            <ul class="notes">
-             <li>成田機場T2→東京站→轉地鐵丸之內線(往池袋)→赤坂見附M13→10出口→OMO3東京赤坂。</li>
-             <li><a href="https://www.eki-net.com/zh-CHT/jreast-train-reservation/Top/Index" target="_blank" style="text-decoration:underline">官網購票</a></li>
-             <li>抵達後使用QR Code於售票機取票。</li>
-            </ul>
-            <div class="gallery" style="margin-left:0;margin-right:0">
-             <div class="galleryRow" role="list">
-              <div class="gItem" role="listitem"><img src="Day1/4.jpg" alt="NEX sign"></div>
-              <div class="gItem" role="listitem"><img src="Day1/5.jpg" alt="QR ticket machine"></div>
-              <div class="gItem" role="listitem"><img src="Day1/6.jpg" alt="NEX ticket"></div>
-             </div>
-            </div>
-           </div>
-          </details>
-          <div class="gallery" style="margin-left:0;margin-right:0">
-           <p class="galleryTitle">📷10出口</p>
-           <div class="galleryRow noteImages" role="list">
-            <div class="gItem" role="listitem"><img src="Day1/7.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/8.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/9.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/10.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/11.jpg" alt="note"></div>
-            <div class="gItem" role="listitem"><img src="Day1/12.jpg" alt="note"></div>
-           </div>
-          </div>
-         </div>
-        </details>
-       </div>
+        </div>
       </div>
+
       <div class="tRow">
        <div class="time">18:00</div>
        <div class="place">
-        <p class="placeTitle">入住 OMO3 東京赤坂 <a class="btn" href="https://hoshinoresorts.com/zh_tw/hotels/omo3tokyoakasaka/">🔗官網</a></p>
-        <p class="meta">先放行李、稍作休息，之後可安排赤坂周邊晚餐或散步</p>
-        <div class="gallery">
-         <p class="galleryTitle">📷 飯店 / 周邊示意</p>
-         <div class="galleryRow" role="list">
-          <div class="gItem" role="listitem">
-           <img src="Day1/13.jpg" alt="OMO3 東京赤坂">
-           <div class="gCaption">OMO3 東京赤坂</div>
-          </div>
-          <div class="gItem" role="listitem">
-           <img src="Day1/14.jpg" alt="赤坂周邊地圖">
-           <div class="gCaption">赤坂周邊地圖</div>
-          </div>
-         </div>
-        </div>
-        <details class="infoBox">
-         <summary>
-          <span class="summaryText">🏨 入住提醒</span>
-          <span class="chev">⌄</span>
-         </summary>
-         <div class="infoContent">
-          <ul class="notes">
-           <li>可在這裡補 Check-in 時間與寄放行李資訊。</li>
-           <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
-          </ul>
-         </div>
-        </details>
+        <p class="placeTitle">JR東日本大都會大飯店大井町TRACKS</p>
+        <p class="meta">HOTEL METROPOLITAN OIMACHI TRACKS TOKYO</p>
        </div>
       </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <div class="gallery gallery-alignLeft">
+           <div class="galleryRow" role="list">
+            <div class="gItem" role="listitem"><img src="Day1/07.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/08.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/09.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/10.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/11.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/12.jpg" alt=""></div>
+           </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox"> 
+            <summary>
+              <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+              <p style="margin:6px 0 10px; font-size: 14px;">
+                OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
+              </p>
+              <ul class="dinner-list">
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://yamahan.tokyo/menu">．山本のハンバーグ</a>
+                    <span class="dinner-type">漢堡排</span>
+                  </div>
+                  <span class="dinner-room">📍102</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://latelier-du-pain.com/english/menu_hard.html">．L’Atelier du Pain</a>
+                    <span class="dinner-type">麵包(六本木 tabelog百名店)</span>
+                  </div>
+                  <span class="dinner-room">📍210</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/oimachi_yellow/">．Yellow Oimachi</a>
+                    <span class="dinner-type">蛋包飯</span>
+                  </div>
+                  <span class="dinner-room">📍316</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.dategyu.jp/tw/menu/">．ダテノギュウタン本舗</a>
+                    <span class="dinner-type">牛舌(仙台名店)</span>
+                  </div>
+                  <span class="dinner-room">📍410</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/ooimachi.zeniba/">．銭場精肉店</a>
+                    <span class="dinner-type">燒肉(溶岩盤上享受特選黑毛和牛)</span>
+                  </div>
+                  <span class="dinner-room">📍415</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/shiogamakooo/">．廻鮮寿司 塩釜港</a>
+                    <span class="dinner-type">宮城縣塩釜直送</span>
+                  </div>
+                  <span class="dinner-room">📍417</span>
+                </li>
+              </ul>
+              <div class="galleryRow" role="list" style="margin-top: 14px;">
+                <div class="gItem"><img src="Day1/20.jpg"></div>
+                <div class="gItem"><img src="Day1/21.jpg"></div>
+                <div class="gItem"><img src="Day1/22.jpg"></div>
+                <div class="gItem"><img src="Day1/23.jpg"></div>
+                <div class="gItem"><img src="Day1/24.jpg"></div>
+                <div class="gItem"><img src="Day1/25.jpg"></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+            <summary>
+              <span class="summaryText">📝Memo</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+              <ul class="notes">
+                <li>
+                  飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a><br>
+                  140-0005 東京都品川區廣町2-1-3<br>
+                  TEL : +81-3-6903-1122<br>
+                  JR大井町站TRACKS口直通
+                </li>
+                <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+
      </div>
     </div>
    </section>
+
    <section class="card daySection pagePanel" id="day2">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">2</div>
-      <h2 class="dayTitle">東京｜Day 2 行程</h2>
+      <h2 class="dayTitle">行程待安排</h2>
      </div>
-     <div class="dayDate">04/21（二）</div>
+     <div class="dayDate">9/27(日)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">09:00</div>
-       <div class="place">
-        <p class="placeTitle">請填入 Day 2 第一個行程</p>
-        <p class="meta">可在這裡填地點、交通、預估停留時間。</p>
-       </div>
-      </div>
-     </div>
+     <div class="timeline"></div>
     </div>
    </section>
+
    <section class="card daySection pagePanel" id="day3">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">3</div>
-      <h2 class="dayTitle">東京｜Day 3 行程</h2>
+      <h2 class="dayTitle">川越一日遊</h2>
      </div>
-     <div class="dayDate">04/22（三）</div>
+     <div class="dayDate">9/28(一)</div>
     </div>
     <div class="dayBody">
      <div class="timeline">
+
       <div class="tRow">
-       <div class="time">09:00</div>
+       <div class="time">09:41</div>
        <div class="place">
-        <p class="placeTitle">請填入 Day 3 第一個行程</p>
-        <p class="meta">之後直接複製 tRow 新增更多行程即可。</p>
+         <p class="placeTitle">大井町 → 川越</p>
+         <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通運轉JR埼京線・川越線(直達不換車)
+⏱️乘車約75分鐘｜票價1250円(可刷交通卡)</p>
        </div>
       </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <div class="gallery gallery-alignLeft">
+            <div class="galleryRow" role="list">
+              <div class="gItem" role="listitem"><img src="Day3/01.jpg" alt="時刻表"></div>
+              <div class="gItem" role="listitem"><img src="Day3/02.jpg" alt="乘車路線"></div>
+              <div class="gItem" role="listitem"><img src="Day3/03.jpg" alt="直通運轉圖"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">10:54</div>
+       <div class="place">
+        <p class="placeTitle">抵達川越</p>
+        <p class="meta">📍川越駅觀光案內所可購買(乘車地點不同須注意)
+🚌<a href="https://eaglebus.group/co-edo/" style="color:inherit; text-decoration:none;">小江戶巡迴巴士（小江戸巡回バス）</a>
+1日票 600円／單次 220円
+🎫<a href="https://www.tobu-bus.com/pc/area/koedo.html" style="color:inherit; text-decoration:none;">小江戶名勝巡遊巴士（小江戸名所めぐりバス）</a>
+1日票 500円／單程約 220～240円</p>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">11:10 - 12:00</div>
+       <div class="place">
+        <p class="placeTitle">冰川神社</p>
+        <ul class="notes">
+         <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
+         <li>建議直接搭到最遠端 → 冰川神社</li>
+        </ul>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">12:15 - 13:45</div>
+       <div class="place">
+       <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
+        <ul class="notes">
+         <li>江戶風味鰻魚飯</li>
+         <li>特色手打烏龍麵</li>
+        </ul>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">13:45 - 16:00</div>
+       <div class="place">
+        <p class="placeTitle">藏造老街 ＆ 時之鐘</p>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">16:00 - 17:30</div>
+       <div class="place">
+        <p class="placeTitle">新富町商店街</p>
+        <p class="meta">一路逛回車站</p>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">17:30 ~</div>
+       <div class="place">
+        <p class="placeTitle">返回東京</p>
+        <p class="meta">JR 川越線・埼京線直通（往大崎 / 新木場）</p>
+       </div>
+      </div>
+
      </div>
     </div>
    </section>
+
    <section class="card daySection pagePanel" id="day4">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">4</div>
-      <h2 class="dayTitle">東京｜Day 4 行程</h2>
+      <h2 class="dayTitle">行程待安排</h2>
      </div>
-     <div class="dayDate">04/23（四）</div>
+     <div class="dayDate">9/29(二)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">09:00</div>
-       <div class="place">
-        <p class="placeTitle">請填入 Day 4 第一個行程</p>
-        <p class="meta">這一頁也做成和上面一樣的日行程卡格式。</p>
-       </div>
-      </div>
-     </div>
+     <div class="timeline"></div>
     </div>
    </section>
+
    <section class="card daySection pagePanel" id="day5">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">5</div>
-      <h2 class="dayTitle">東京｜Day 5 行程</h2>
+      <h2 class="dayTitle">行程待安排</h2>
      </div>
-     <div class="dayDate">04/24（五）</div>
+     <div class="dayDate">9/30(三)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">09:00</div>
-       <div class="place">
-        <p class="placeTitle">請填入 Day 5 第一個行程</p>
-        <p class="meta">可視需要加入相簿、收合層、地圖按鈕。</p>
-       </div>
-      </div>
-     </div>
+     <div class="timeline"></div>
     </div>
    </section>
+
+   <section class="card daySection pagePanel" id="day6">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">6</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">10/01(四)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day7">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">7</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">10/02(五)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day8">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">8</div>
+      <h2 class="dayTitle">回程</h2>
+     </div>
+     <div class="dayDate">10/03(六)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
   </section>
  </main>
+
  <div class="lbModal" id="lightbox" aria-hidden="true">
   <div class="lbBackdrop" data-close="lightbox"></div>
-  <div class="lbInner" role="dialog" aria-modal="true" aria-label="圖片預覽">
+  <div class="lbInner">
    <button class="lbClose" type="button" id="lbClose" aria-label="關閉圖片">×</button>
    <button class="lbNav lbPrev" id="lbPrev" aria-label="上一張">‹</button>
    <img class="lbImg" id="lbImg" alt="放大圖片">
@@ -844,304 +1257,147 @@
 
  <script>
  (function(){
-  // DOM 元素宣告
+  document.querySelectorAll('.galleryRow img').forEach(img => {
+    img.removeAttribute('onclick');
+    img.addEventListener('click', () => openLightbox(img));
+  });
+
   const modal = document.getElementById('lightbox');
   const modalImg = document.getElementById('lbImg');
   const modalCaption = document.getElementById('lbCaption');
   const closeBtn = document.getElementById('lbClose');
   const prevBtn = document.getElementById('lbPrev');
   const nextBtn = document.getElementById('lbNext');
-  const tabButtons = document.querySelectorAll('.tabBtn[data-target]');
-  const pagePanels = document.querySelectorAll('.pagePanel');
-  const addDayBtn = document.getElementById('addDayBtn');
-  
-  // 狀態變數
   let currentIndex = -1;
   let currentGroup = [];
-  let startX = 0;
-  let endX = 0;
-  let lastDayId = 'day1';
-
-  // ===== Lightbox 圖片預覽功能 =====
-  function getCaption(img) {
-   const item = img.closest('.gItem');
-   const cap = item ? item.querySelector('.gCaption') : null;
-   return cap ? cap.textContent.trim() : (img.alt || '');
+  function openLightbox(img){
+    const row = img.closest('.galleryRow');
+    currentGroup = Array.from(row.querySelectorAll('img'));
+    currentIndex = currentGroup.indexOf(img);
+    showImage(currentIndex);
+    modal.classList.add('open');
+    resetTransform();
   }
 
-  function showImage(index) {
-   if (index < 0 || index >= currentGroup.length) return;
-   currentIndex = index;
-   const img = currentGroup[index];
-   modalImg.src = img.currentSrc || img.src;
-   modalImg.alt = img.alt || '';
-   modalCaption.textContent = getCaption(img);
+  function showImage(i){
+    if(i<0 || i>=currentGroup.length) return;
+    currentIndex = i;
+    const img = currentGroup[i];
+    modalImg.src = img.src;
+    
+    const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
+    modalCaption.textContent = captionText;
+    modalCaption.style.display = captionText ? 'block' : 'none';
   }
 
-  function openLightbox(img) {
-   const row = img.closest('.galleryRow');
-   if (!row) return;
-   currentGroup = Array.from(row.querySelectorAll('img'));
-   currentIndex = currentGroup.indexOf(img);
-   showImage(currentIndex);
-   modal.classList.add('open');
-   modal.setAttribute('aria-hidden', 'false');
-   document.body.style.overflow = 'hidden';
+  function nextImage(){
+    showImage((currentIndex+1)%currentGroup.length);
   }
 
-  function closeLightbox() {
-   modal.classList.remove('open');
-   modal.setAttribute('aria-hidden', 'true');
-   modalImg.removeAttribute('src');
-   modalCaption.textContent = '';
-   document.body.style.overflow = '';
+  function prevImage(){
+    showImage((currentIndex-1+currentGroup.length)%currentGroup.length);
   }
 
-  function nextImage() {
-   if (currentIndex < currentGroup.length - 1) showImage(currentIndex + 1);
+  closeBtn.onclick = ()=> { modal.classList.remove('open'); resetTransform(); };
+  nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
+  prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
+
+  let scale = 1, lastScale = 1;
+  let startDist = 0;
+  let startX = 0, startY = 0;
+  let currentX = 0, currentY = 0;
+  let translateX = 0, translateY = 0;
+  let lastTranslateX = 0; let lastTranslateY = 0;
+  let lastTap = 0;
+  let isDragging = false;
+  let touchMode = 'none';
+  function getDist(touches){
+    return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
   }
 
-  function prevImage() {
-   if (currentIndex > 0) showImage(currentIndex - 1);
+  function applyTransform(animate = false){
+    modalImg.style.transition = animate ? 'transform 0.25s ease-out' : 'none';
+    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
   }
 
-  document.querySelectorAll('.galleryRow img').forEach(img => {
-   img.loading = 'lazy';
-   img.addEventListener('click', () => openLightbox(img));
-  });
-
-  modal.addEventListener('click', e => {
-   if (e.target === modal || e.target.dataset.close === 'lightbox') closeLightbox();
-  });
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', prevImage);
-  nextBtn.addEventListener('click', nextImage);
-
-  document.addEventListener('keydown', e => {
-   if (!modal.classList.contains('open')) return;
-   if (e.key === 'Escape') closeLightbox();
-   if (e.key === 'ArrowRight') nextImage();
-   if (e.key === 'ArrowLeft') prevImage();
-  });
-
-  modalImg.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-  modalImg.addEventListener('touchend', e => {
-   endX = e.changedTouches[0].clientX;
-   const diff = startX - endX;
-   if (Math.abs(diff) < 40) return;
-   if (diff > 0) nextImage();
-   else prevImage();
-  });
-
-  // ===== 頁籤切換功能 =====
-  function activateTab(targetId, updateHash) {
-   if (targetId.startsWith('day')) lastDayId = targetId;
-   
-   tabButtons.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.target === targetId);
-   });
-   pagePanels.forEach(panel => {
-    panel.classList.toggle('active', panel.id === targetId);
-   });
-   
-   if (updateHash) history.replaceState(null, '', '#' + targetId);
+  function resetTransform(){
+    scale = 1; lastScale = 1;
+    translateX = 0; translateY = 0;
+    lastTranslateX = 0; lastTranslateY = 0;
+    applyTransform(true);
   }
 
-  tabButtons.forEach(btn => {
-   btn.addEventListener('click', e => {
-    e.preventDefault();
-    activateTab(btn.dataset.target, true);
-   });
-  });
-
-  const initialHash = window.location.hash ? window.location.hash.slice(1) : '';
-  const hasInitialPanel = Array.from(pagePanels).some(p => p.id === initialHash);
-  activateTab(hasInitialPanel ? initialHash : 'day1', false);
-
-  // ===== 行程日期與標題設定 =====
-  const tripConfig = {
-   tripName: '東京旅行',
-   startDate: '2026-04-20',
-  };
-
-  function formatDate(date) {
-   const d = new Date(date);
-   const m = String(d.getMonth() + 1).padStart(2, '0');
-   const day = String(d.getDate()).padStart(2, '0');
-   const w = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
-   return `${m}/${day}（${w}）`;
-  }
-
-  function applyAutoDates() {
-   const start = new Date(tripConfig.startDate);
-   document.querySelectorAll('.daySection').forEach((section, i) => {
-    const d = new Date(start);
-    d.setDate(start.getDate() + i);
-    const el = section.querySelector('.dayDate');
-    if (el && (el.textContent.includes('請填日期') || el.textContent.trim() === '')) {
-     el.textContent = formatDate(d);
+  const modalInner = document.querySelector('.lbInner');
+  modalInner.addEventListener('touchstart', (e)=>{
+    if (e.touches.length === 1) {
+      touchMode = 'pan';
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isDragging = true;
+    } else if (e.touches.length === 2) {
+      touchMode = 'pinch';
+      startDist = getDist(e.touches);
+      lastScale = scale;
     }
-   });
-  }
+  }, {passive: false});
+  modalInner.addEventListener('touchmove', (e)=>{
+    if (touchMode === 'pinch' && e.touches.length === 2) {
+      e.preventDefault();
+      const dist = getDist(e.touches);
+      scale = Math.min(4, Math.max(1, lastScale * (dist / startDist)));
+      applyTransform();
+    } 
+    else if (touchMode === 'pan' && isDragging && e.touches.length === 1) {
+      currentX = e.touches[0].clientX;
+      currentY = e.touches[0].clientY;
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
 
-  function applyTripName() {
-   if (tripConfig.tripName) {
-    document.title = tripConfig.tripName + '｜行程';
-    document.querySelectorAll('.daySection .dayTitle').forEach((el, i) => {
-     if (i > 0 && el.textContent.includes('Day')) {
-      el.textContent = tripConfig.tripName + '｜Day ' + (i + 1) + ' 行程';
-     }
-    });
-   }
-  }
-
-  applyAutoDates();
-  applyTripName();
-
-  // ===== 動態新增 Day =====
-  if (addDayBtn) {
-   addDayBtn.addEventListener('click', e => {
-    e.preventDefault();
-    const daySections = Array.from(document.querySelectorAll('.daySection'));
-    
-    // Shift鍵或雙擊刪除最後一天
-    if (e.shiftKey || e.detail === 2) {
-     if (daySections.length <= 5) return;
-     const last = daySections[daySections.length - 1];
-     const tab = document.querySelector(`.tabBtn[data-target="${last.id}"]`);
-     last.remove();
-     if (tab) tab.remove();
-     activateTab('day5', true);
-     return;
+      if (scale > 1) {
+        translateX = lastTranslateX + diffX;
+        translateY = lastTranslateY + diffY;
+        applyTransform();
+      } else {
+        if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
+          e.preventDefault();
+          modalImg.style.transform = `translateX(${diffX}px) scale(1)`;
+        }
+      }
     }
-    
-    const last = daySections[daySections.length - 1];
-    const newIndex = daySections.length + 1;
-    const clone = last.cloneNode(true);
-    clone.id = 'day' + newIndex;
-    
-    const indexEl = clone.querySelector('.dayIndex');
-    if (indexEl) indexEl.textContent = newIndex;
-    
-    const titleEl = clone.querySelector('.dayTitle');
-    if (titleEl) titleEl.textContent = tripConfig.tripName + '｜Day ' + newIndex + ' 行程';
-    
-    const dateEl = clone.querySelector('.dayDate');
-    if (dateEl) {
-     const start = new Date(tripConfig.startDate);
-     const d = new Date(start);
-     d.setDate(start.getDate() + (newIndex - 1));
-     dateEl.textContent = formatDate(d);
+  }, {passive: false});
+  modalInner.addEventListener('touchend', (e)=>{
+    if (touchMode === 'pan' && isDragging) {
+      isDragging = false;
+      const diffX = currentX - startX;
+      
+      if (scale === 1) {
+        if (diffX > 60) {
+          prevImage();
+        } else if (diffX < -60) {
+          nextImage();
+        }
+        resetTransform();
+      } else {
+        lastTranslateX = translateX;
+        lastTranslateY = translateY;
+      }
     }
-    
-    const timeline = clone.querySelector('.timeline');
-    if (timeline) {
-     timeline.innerHTML = `
-     <div class="tRow">
-      <div class="time">09:00</div>
-      <div class="place">
-       <p class="placeTitle">請填入 Day ${newIndex} 第一個行程</p>
-       <p class="meta">新增行程可複製這一列 tRow。</p>
-      </div>
-     </div>`;
+       
+    const now = Date.now();
+    if (now - lastTap < 300 && e.touches.length === 0) {
+      if (scale === 1) {
+        scale = 2.5;
+        applyTransform(true);
+      } else {
+        resetTransform();
+      }
+      lastTap = 0;
+      touchMode = 'none';
+      return;
     }
-    
-    clone.classList.remove('active');
-    document.querySelector('.tabShell').appendChild(clone);
-    
-    const tab = document.createElement('a');
-    tab.className = 'tabBtn';
-    tab.href = '#day' + newIndex;
-    tab.dataset.target = 'day' + newIndex;
-    tab.textContent = 'Day ' + newIndex;
-    
-    const memoTab = document.querySelector('.tabBtn[data-target="memoPanel"]');
-    document.querySelector('.topTabs').insertBefore(tab, memoTab);
-    
-    tab.addEventListener('click', ev => {
-     ev.preventDefault();
-     activateTab('day' + newIndex, true);
-    });
-   });
-  }
-
-  // ===== 單日編輯器生成功能 =====
-  const buildBtn = document.getElementById('buildRow');
-  if (buildBtn) {
-   buildBtn.addEventListener('click', () => {
-    const t = document.getElementById('editTime').value || '09:00';
-    const p = document.getElementById('editPlace').value || '地點';
-    const m = document.getElementById('editMeta').value || '';
-    const html = `<div class="tRow">\n <div class="time">${t}</div>\n <div class="place">\n <p class="placeTitle">${p}</p>\n <p class="meta">${m}</p>\n </div>\n</div>`;
-    document.getElementById('rowOutput').value = html;
-   });
-  }
-
-  // ===== 匯出目前 HTML 功能 =====
-  const editor = document.getElementById('editorPanel');
-  if (editor) {
-   const btnRow = document.createElement('div');
-   btnRow.style.cssText = 'margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;';
-   
-   const makeBtn = label => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.textContent = label;
-    b.style.cssText = 'padding:8px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; cursor:pointer;';
-    return b;
-   };
-   
-   const exportDayBtn = makeBtn('複製目前 Day HTML');
-   const exportAllBtn = makeBtn('複製全部行程 HTML');
-   const copyPageBtn = makeBtn('複製完整頁面 HTML');
-   btnRow.append(exportDayBtn, exportAllBtn, copyPageBtn);
-   editor.querySelector('.dayBody').appendChild(btnRow);
-   const output = document.getElementById('rowOutput');
-
-   function getActiveTimeline() {
-    const activeDay = document.querySelector('.daySection.active');
-    if (activeDay) return activeDay.querySelector('.timeline');
-    const lastDay = document.getElementById(lastDayId);
-    if (lastDay) return lastDay.querySelector('.timeline');
-    return null;
-   }
-
-   async function copyText(text, successMessage) {
-    output.value = text;
-    output.scrollTop = 0;
-    try {
-     await navigator.clipboard.writeText(text);
-    } catch (err) {
-     output.focus();
-     output.select();
-     document.execCommand('copy');
-    }
-    alert(successMessage);
-   }
-
-   exportDayBtn.addEventListener('click', async () => {
-    const timeline = getActiveTimeline();
-    if (!timeline) return;
-    await copyText(timeline.innerHTML.trim(), '目前 Day HTML 已複製');
-   });
-
-   exportAllBtn.addEventListener('click', async () => {
-    let html = '';
-    document.querySelectorAll('.daySection').forEach(day => {
-     const timeline = day.querySelector('.timeline');
-     if (timeline) {
-      html += `\n\n${timeline.innerHTML.trim()}\n`;
-     }
-    });
-    await copyText(html.trim(), '全部行程 HTML 已複製');
-   });
-
-   copyPageBtn.addEventListener('click', async () => {
-    await copyText(document.documentElement.outerHTML, '完整 HTML 已複製，可直接貼回主行程檔');
-   });
-  }
-
-  // ===== 行程拖曳排序 =====
+    lastTap = now;
+    touchMode = 'none';
+  });
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -1176,51 +1432,91 @@
     row.draggable = false;
     const handle = row.querySelector('.time');
     if (!handle) return;
-    handle.style.cursor = 'grab';
-    handle.style.userSelect = 'none';
+    handle.style.cursor = 'default';
+    handle.style.userSelect = 'text';
     handle.addEventListener('mousedown', () => row.draggable = true);
     handle.addEventListener('mouseup', () => row.draggable = false);
     handle.addEventListener('mouseleave', () => row.draggable = false);
    });
   });
+  document.querySelectorAll('.galleryRow').forEach(row => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
 
-  // ===== 下一班車自動標示系統 =====
-  const rows = Array.from(document.querySelectorAll('.infoContent table tr')).slice(1);
-  if (rows.length) {
-   const now = new Date();
-   const realNowMin = now.getHours() * 60 + now.getMinutes();
-   const nowMin = Math.max(16 * 60, realNowMin);
-   const list = [];
-   
-   rows.forEach(row => {
-    const tds = row.querySelectorAll('td');
-    if (tds.length < 4) return;
-    const [h, m] = tds[0].textContent.trim().split(':').map(Number);
-    const minutes = h * 60 + m;
-    if (minutes >= nowMin) list.push({ row, minutes });
-   });
-   
-   list.sort((a, b) => a.minutes - b.minutes);
-   const nextThree = list.slice(0, 3);
-   
-   nextThree.forEach((item, index) => {
-    const td = item.row.querySelectorAll('td')[3];
-    if (index === 0) {
-     td.innerHTML += ' ⭐';
-     item.row.style.background = '#e8f7e8';
-     item.row.style.fontWeight = '700';
-    } else {
-     item.row.style.background = '#fff9e8';
-    }
-   });
-  }
+    row.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      isDown = true;
+      row.classList.add('dragging');
+      startX = e.pageX;
+      scrollLeft = row.scrollLeft;
+      lastX = e.pageX;
+      lastTime = Date.now();
+    });
 
-  // ===== 自動讓外部連結開新分頁 =====
+    row.addEventListener('mouseleave', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+    });
+
+    row.addEventListener('mouseup', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+      const decay = 0.95;
+      function momentum(){
+        if (Math.abs(velocity) < 0.1) return;
+        row.scrollLeft -= velocity;
+        velocity *= decay;
+        requestAnimationFrame(momentum);
+      }
+      momentum();
+    });
+
+    row.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX;
+      const walk = (x - startX);
+      row.scrollLeft = scrollLeft - walk;
+
+      const now = Date.now();
+      const dx = x - lastX;
+      const dt = now - lastTime || 1;
+      velocity = dx / dt * 16; 
+      lastX = x;
+      lastTime = now;
+    });
+    row.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        row.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  });
+
+  document.querySelectorAll('.tabBtn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const targetId = btn.getAttribute('data-target');
+      document.querySelectorAll('.pagePanel').forEach(panel => {
+        if(panel.id === targetId) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+    });
+  });
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
   });
-
  })();
  </script>
 </body>
