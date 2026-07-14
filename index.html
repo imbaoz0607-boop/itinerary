@@ -857,12 +857,12 @@
        <div class="time">Memo</div>
        <div class="place">
          <p class="placeTitle">請把這次旅行的重要備忘填在這裡</p>
-        <p class="meta">例如票券、餐廳預約、購物清單、天氣提醒、重要地址。</p>
+         <p class="meta">例如票券、餐廳預約、購物清單、天氣提醒、重要地址。</p>
        </div>
       </div>
      </div>
     </div>
-  </section>
+   </section>
    
    <section class="card daySection pagePanel active" id="day1">
     <div class="dayCardHeader">
@@ -889,7 +889,7 @@
           <details class="infoBox">
            <summary>
              <span class="summaryText">交通資訊</span>
-             <span class="chev">⌄</span>
+             <span class="chev">...</span>
            </summary>
            <div class="infoContent">
              <details class="infoBox">
@@ -1127,7 +1127,6 @@
        </div>
       </div>
 
-      <!-- 智慧交通系統（升級：即時＋預查） -->
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
@@ -1138,79 +1137,74 @@
             </summary>
             <div class="infoContent">
 
-<style>
-.busTabs{display:flex;gap:8px;margin:6px 0 10px}
-.busTab{padding:6px 12px;border-radius:999px;border:1px solid #ddd;background:#f7f7f9;cursor:pointer;font-size:13px}
-.busTab.active{background:#fff;border-color:#3b6cff}
-.busPanel{display:none}
-.busPanel.active{display:block}
-.busRow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:14px}
-.busRow:last-child{border-bottom:none}
-.busHint{font-size:12px;color:#888;margin-top:6px}
-</style>
+              <style>
+              .busTabs{display:flex;gap:8px;margin:6px 0 10px}
+              .busTab{padding:6px 12px;border-radius:999px;border:1px solid #ddd;background:#f7f7f9;cursor:pointer;font-size:13px}
+              .busTab.active{background:#fff;border-color:#3b6cff}
+              .busPanel{display:none}
+              .busPanel.active{display:block}
+              .busRow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:14px}
+              .busRow:last-child{border-bottom:none}
+              .busHint{font-size:12px;color:#888;margin-top:6px}
+              </style>
 
-<div class="busTabs">
-  <div class="busTab active" onclick="busMode('live')">🚏 即時搭車</div>
-  <div class="busTab" onclick="busMode('table')">📅 預查時刻</div>
-</div>
+              <div class="busTabs">
+                <div class="busTab active" onclick="busMode('live')">🚏 即時搭車</div>
+                <div class="busTab" onclick="busMode('table')">📅 預查時刻</div>
+              </div>
 
-<div id="busLive" class="busPanel active"></div>
-<div id="busTable" class="busPanel"></div>
+              <div id="busLive" class="busPanel active"></div>
+              <div id="busTable" class="busPanel"></div>
 
-<script>
-(function(){
- const routes=[
-  {name:'🟣 紫線（先喜多院）',times:['11:15','11:35','11:55']},
-  {name:'🟠 橘線（先藏之街）',times:['11:20','11:40','12:00']},
-  {name:'🎫 名勝巴士（單向）',times:['11:18','11:38','11:58']}
- ];
- function nowMin(){const n=new Date();return n.getHours()*60+n.getMinutes();}
- function toMin(t){const p=t.split(':');return p[0]*60+parseInt(p[1]);}
+              <script>
+              (function(){
+               const routes=[
+                {name:'🟣 紫線（先喜多院）',times:['11:15','11:35','11:55']},
+                {name:'🟠 橘線（先藏之街）',times:['11:20','11:40','12:00']},
+                {name:'🎫 名勝巴士（單向）',times:['11:18','11:38','11:58']}
+               ];
+               function nowMin(){const n=new Date();return n.getHours()*60+n.getMinutes();}
+               function toMin(t){const p=t.split(':');return p[0]*60+parseInt(p[1]);}
 
- function renderLive(){
-  const now=nowMin();
-  let html='';
-  routes.forEach(r=>{
-    const next=r.times.map(t=>({t,d:toMin(t)-now})).filter(x=>x.d>=0)[0];
-    if(next){
-      html+=`<div class="busRow"><div>${r.name}</div><div>${next.t}（${next.d===0?'即將':next.d+'分'}）</div></div>`;
-    }
-  });
-  if(!html){
-    html='<div class="busHint">今日班次已結束</div>';
-  }
-  document.getElementById('busLive').innerHTML=html;
- }
+               function renderLive(){
+                const now=nowMin();
+                let html='';
+                routes.forEach(r=>{
+                  const next=r.times.map(t=>({t,d:toMin(t)-now})).filter(x=>x.d>=0)[0];
+                  if(next){
+                    html+=`<div class="busRow"><div>${r.name}</div><div>${next.t}（${next.d===0?'即將':next.d+'分'}）</div></div>`;
+                  }
+                });
+                if(!html){
+                  html='<div class="busHint">今日班次已結束</div>';
+                }
+                document.getElementById('busLive').innerHTML=html;
+               }
 
- function renderTable(){
-  let html='';
-  routes.forEach(r=>{
-    html+=`<div style="margin-top:6px;font-weight:600">${r.name}</div>`;
-    r.times.forEach(t=>{
-      html+=`<div class="busRow"><div>${t}</div></div>`;
-    });
-  });
-  document.getElementById('busTable').innerHTML=html;
- }
+               function renderTable(){
+                let html='';
+                routes.forEach(r=>{
+                  html+=`<div style="margin-top:6px;font-weight:600">${r.name}</div>`;
+                  r.times.forEach(t=>{
+                    html+=`<div class="busRow"><div>${t}</div></div>`;
+                  });
+                });
+                document.getElementById('busTable').innerHTML=html;
+               }
 
- window.busMode=function(mode){
-  document.querySelectorAll('.busTab').forEach((el,i)=>{
-    el.classList.toggle('active', (mode==='live'&&i===0)||(mode==='table'&&i===1));
-  });
-  document.getElementById('busLive').classList.toggle('active',mode==='live');
-  document.getElementById('busTable').classList.toggle('active',mode==='table');
- }
+               window.busMode=function(mode){
+                document.querySelectorAll('.busTab').forEach((el,i)=>{
+                  el.classList.toggle('active', (mode==='live'&&i===0)||(mode==='table'&&i===1));
+                });
+                document.getElementById('busLive').classList.toggle('active',mode==='live');
+                document.getElementById('busTable').classList.toggle('active',mode==='table');
+               }
 
- renderLive();
- renderTable();
- setInterval(renderLive,60000);
-})();
-</script>
-
-            </div>
-          </details>
-        </div>
-      </div>
+               renderLive();
+               renderTable();
+               setInterval(renderLive,60000);
+              })();
+              </script>
 
             </div>
           </details>
@@ -1220,22 +1214,22 @@
       <div class="tRow">
        <div class="time">11:10 - 12:00</div>
        <div class="place">
-        <p class="placeTitle">冰川神社</p>
-        <ul class="notes">
-         <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
-         <li>建議直接搭到最遠端 → 冰川神社</li>
-        </ul>
+         <p class="placeTitle">冰川神社</p>
+         <ul class="notes">
+          <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
+          <li>建議直接搭到最遠端 → 冰川神社</li>
+         </ul>
        </div>
       </div>
 
       <div class="tRow">
        <div class="time">12:15 - 13:45</div>
        <div class="place">
-       <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
-        <ul class="notes">
-         <li>江戶風味鰻魚飯</li>
-         <li>特色手打烏龍麵</li>
-        </ul>
+         <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
+         <ul class="notes">
+          <li>江戶風味鰻魚飯</li>
+          <li>特色手打烏龍麵</li>
+         </ul>
        </div>
       </div>
 
@@ -1301,7 +1295,7 @@
      <div class="dayDate">10/01(四)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline"></div>
+      <div class="timeline"></div>
     </div>
    </section>
 
@@ -1397,7 +1391,8 @@
   let startX = 0, startY = 0;
   let currentX = 0, currentY = 0;
   let translateX = 0, translateY = 0;
-  let lastTranslateX = 0; let lastTranslateY = 0;
+  let lastTranslateX = 0;
+  let lastTranslateY = 0;
   let lastTap = 0;
   let isDragging = false;
   let touchMode = 'none';
