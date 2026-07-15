@@ -510,7 +510,8 @@
  }
  .dinner-name {
   font-weight: 600;
-  color: var(--text);
+  color: #3b6cff !important;
+  text-decoration: underline;
  }
  .dinner-type {
   font-size: 12px;
@@ -590,6 +591,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  touch-action: none;
  }
  .lbNav {
   position: absolute;
@@ -708,7 +710,6 @@
    width: 58px !important;
    min-width: 58px !important;
    font-size: 14px !important; 
-   line-height: 1.35 !important;
    margin: 0 !important;
    padding: 0 !important;
    position: relative !important;
@@ -758,20 +759,12 @@
    width: 100% !important;
    display: none !important;
   }
-  .tRow-alignLeft details.infoBox,
-  .tRow-alignLeft .gallery-alignLeft {
-   margin-left: 0 !important;  
-   margin-right: 0 !important; 
-   width: 100% !important;
-  }
   
   details.infoBox > summary .summaryText {
    font-size: 15px !important;
   }
   
   details.infoBox {
-   margin-left: 0 !important;
-   margin-right: 0 !important;
    width: 100% !important;
    border-radius: 0 !important;
    background: transparent !important; 
@@ -784,14 +777,6 @@
   }
   .infoContent details.infoBox {
    width: 100% !important;
-   margin-left: 0 !important;
-   margin-right: 0 !important;
-  }
-  .infoContent details.infoBox > summary {
-   padding: 8px 0 !important;
-  }
-  .infoContent details.infoBox .infoContent {
-   padding: 0 0 8px 0 !important;
   }
   
   .gItem {
@@ -799,7 +784,6 @@
    max-width: none;
   }
   .lbNav { display: none; }
-  .heroTitleCard { border: none; border-radius: 0; padding: 8px 4px; background: transparent; }
  }
  </style>
 </head>
@@ -816,7 +800,7 @@
      <ul class="heroFlightList">
       <li>⏰ <strong>預計 06:30</strong> 抵達機場</li>
       <li>🛫 <strong>9:00</strong> 松山機場 T1</li>
-      <li>🛬 <strong>13:10</strong> 羽7田機場 T3</li>
+      <li>🛬 <strong>13:10</strong> 羽田機場 T3</li>
      </ul>
     </div>
     <div class="heroFlightCard">
@@ -1158,8 +1142,6 @@
 </select>
 </div>
 
-
-
 <div id="busLive" class="busPanel active"></div>
 
 <script>
@@ -1186,11 +1168,12 @@
     "名勝巡遊巴士":["11:35","11:55","12:15"]
   }
  };
-
  function nowMin(){const n=new Date();return n.getHours()*60+n.getMinutes();}
  function toMin(t){const p=t.split(':');return p[0]*60+parseInt(p[1]);}
 
  function renderLive(){
+  const liveEl = document.getElementById('busLive');
+  if(!liveEl) return;
   const now=nowMin();
   const stop=document.getElementById('busStop').value;
   const routes=stops[stop];
@@ -1212,7 +1195,6 @@
       html+=`<div class="busRow"><div>${name}</div><div>${next.t}（${next.d===0?'即將':next.d+'分'}）${next2?`<br><span style="font-size:12px;color:#888">→ ${next2.t}</span>`:''}</div></div>`;
     }
   });
-
   let recommendHTML='';
 
   if(best){
@@ -1221,17 +1203,15 @@
     recommendHTML = `<div style="font-size:13px;margin-bottom:8px;color:#999;">👉 今日班次已結束</div>`;
   }
 
-  document.getElementById('busLive').innerHTML = recommendHTML + html;
+  liveEl.innerHTML = recommendHTML + html;
  }
 
  document.getElementById('busStop').addEventListener('change',renderLive);
-
  renderLive();
  setInterval(renderLive,60000);
 })();
 </script>
 
-              <!-- 📎 乘車資訊補充 -->
               <div style="margin-top:14px;">
                 <div class="galleryRow" role="list">
                   <div class="gItem"><img src="Day3/04.jpg" alt="川越站巴士乘車位置圖"></div>
@@ -1320,7 +1300,7 @@
     <div class="dayBody">
      <div class="timeline"></div>
     </div>
-   </section>
+  </section>
 
    <section class="card daySection pagePanel" id="day6">
     <div class="dayCardHeader">
@@ -1357,7 +1337,22 @@
      <div class="dayDate">10/03(六)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline"></div>
+     <div class="timeline">
+      <div class="tRow">
+       <div class="time">11:30</div>
+       <div class="place">
+         <p class="placeTitle">抵達羽田機場第3航廈</p>
+         <p class="meta">辦理登機與行李託運手續，出境手續與免稅店購物</p>
+       </div>
+      </div>
+      <div class="tRow">
+       <div class="time">14:30</div>
+       <div class="place">
+         <p class="placeTitle">起飛前往松山機場</p>
+         <p class="meta">搭乘華航 CI221 航班</p>
+       </div>
+      </div>
+     </div>
     </div>
    </section>
 
@@ -1390,6 +1385,7 @@
   const nextBtn = document.getElementById('lbNext');
   let currentIndex = -1;
   let currentGroup = [];
+
   function openLightbox(img){
     const row = img.closest('.galleryRow');
     currentGroup = Array.from(row.querySelectorAll('img'));
@@ -1432,6 +1428,7 @@
   let lastTap = 0;
   let isDragging = false;
   let touchMode = 'none';
+
   function getDist(touches){
     return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
   }
@@ -1461,6 +1458,7 @@
       lastScale = scale;
     }
   }, {passive: false});
+
   modalInner.addEventListener('touchmove', (e)=>{
     if (touchMode === 'pinch' && e.touches.length === 2) {
       e.preventDefault();
@@ -1486,6 +1484,7 @@
       }
     }
   }, {passive: false});
+
   modalInner.addEventListener('touchend', (e)=>{
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
@@ -1519,6 +1518,7 @@
     lastTap = now;
     touchMode = 'none';
   });
+
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -1560,6 +1560,7 @@
     handle.addEventListener('mouseleave', () => row.draggable = false);
    });
   });
+
   document.querySelectorAll('.galleryRow').forEach(row => {
     let isDown = false;
     let startX;
@@ -1610,6 +1611,7 @@
       lastX = x;
       lastTime = now;
     });
+
     row.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault();
@@ -1634,6 +1636,7 @@
       });
     });
   });
+
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
