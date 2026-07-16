@@ -1100,6 +1100,7 @@
         </div>
       </div>
 
+      <!-- 池袋換乘東武東上線 -->
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
@@ -1145,7 +1146,7 @@
         <div class="place">
           <details class="infoBox" open>
             <summary>
-              <span class="summaryText">🚌 巴士即時搭乘資訊</span>
+              <span class="summaryText">🚌 巴士即時搭乘資訊 (支援雙班次顯示)</span>
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
@@ -1156,11 +1157,13 @@
               .busRow strong{color:#3b6cff;font-size:15px}
               .busHint{font-size:12px;color:#888;margin-top:6px;text-align:center;padding:10px 0}
               .busMetaInfo{font-size:12px;color:#666;margin-top:2px;font-weight:normal}
+              .busNextLabel{font-size:12px;color:#777;margin-left:8px;padding:1px 6px;background:#f0f2f5;border-radius:4px;display:inline-block}
               </style>
 
              <div style="margin-bottom:12px;font-size:14px;font-weight:700;">
 📍 請選擇您目前所在的站牌名稱：
 <select id="busStop" style="margin-top:6px;display:block;width:100%;padding:8px 10px;border-radius:8px;border:1px solid #3b6cff;font-size:14px;outline:none;background:#fff;">
+  <!-- 名勝巡遊巴士 獨有站點 -->
   <optgroup label="--- 名勝巡遊巴士 專屬停靠 ---">
     <option value="川越駅東口(3番)">川越駅東口(3番)</option>
     <option value="喜多院前">喜多院前</option>
@@ -1173,6 +1176,7 @@
     <option value="妙昌寺入口">妙昌寺入口</option>
   </optgroup>
   
+  <!-- C01 / C02 獨有站點 -->
   <optgroup label="--- C01/C02 巡迴巴士 專屬停靠 ---">
     <option value="川越駅西口">川越駅西口</option>
     <option value="本川越駅">本川越駅</option>
@@ -1187,10 +1191,11 @@
     <option value="菓子屋横丁">菓子屋横丁</option>
   </optgroup>
 
+  <!-- 共同停靠站點 -->
   <optgroup label="--- 多條路線 共同停靠大站 ---">
     <option value="成田山前">成田山前（名勝）/ 喜多院（C01）</option>
     <option value="博物館前">博物館前（名勝）/ 博物館・美術館前（C01/C02）</option>
-    <option value="川越氷川神社">川越氷川神社（名勝）/ 氷川神社前（C01/C02）</option>
+    <option value="川越氷川神社" selected>川越氷川神社（名勝）/ 氷川神社前（C01/C02）</option>
     <option value="札の辻">札の辻（名勝/C01/C02 共同站）</option>
     <option value="一番街">一番街（名勝/C01/C02 共同站）</option>
     <option value="川越市駅">川越市駅（名勝/C01/C02 共同站）</option>
@@ -1204,7 +1209,6 @@
 (function(){
 
 // ===== 1. 名勝巡遊巴士（真實 EXCEL 時刻表） =====
-// 格式定義：16個站點對應時間。若無停靠，則不寫。
 const meisho = [
   {
     "川越駅東口(3番)":"10:00", "喜多院前":"10:08", "成田山前":"10:09", "松江町二丁目":"10:11", "大手町":"10:12", "やまぶき会館前":"10:14", 
@@ -1232,17 +1236,17 @@ const meisho = [
     "仲町":"13:45", "妙昌寺入口":"13:47", "川越市駅":"13:50"
   },
   {
-    "川越駅東口(3番)":"14:00", "喜多院前":"14:08", "成田山前":"14:09", "松江町二丁目":"14:11", "大手町":"14:12", "やまぶき会館前":"14:14", 
+    "川越駅東口(3番)":"14:00", "喜多院前":"14:08", "成田山前":"14:09", "松江町二丁目":"14:11", "大手町":"14:12", "やまぶき會館前":"14:14", 
     "博物館前":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札の辻":"14:23", "一番街":"14:24", 
     "仲町":"14:25", "妙昌寺入口":"14:27", "川越市駅":"14:30"
   },
   {
-    "川越駅東口(3番)":"14:50", "喜多院前":"14:58", "成田山前":"14:59", "松江町二丁目":"15:01", "大手町":"15:02", "やまぶき会館前":"15:04", 
+    "川越駅東口(3番)":"14:50", "喜多院前":"14:58", "成田山前":"14:59", "松江町二丁目":"15:01", "大手町":"15:02", "やまぶき會館前":"15:04", 
     "博物館前":"15:08", "川越氷川神社":"15:10", "裁判所前":"15:11", "川越市役所前":"15:12", "札の辻":"15:13", "一番街":"15:14", 
     "仲町":"15:15", "妙昌寺入口":"15:17", "川越市駅":"15:20"
   },
   {
-    "川越駅東口(3番)":"15:40", "喜多院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき会館前":"15:54", 
+    "川越駅東口(3番)":"15:40", "喜多院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき會館前":"15:54", 
     "博物館前":"15:58", "川越氷川神社":"16:00", "裁判所前":"16:01", "川越市役所前":"16:02", "札の辻":"16:03", "一番街":"16:04", 
     "仲町":"16:05", "妙昌寺入口":"16:07", "川越市駅":"16:10"
   }
@@ -1304,10 +1308,8 @@ const c02 = [
   }
 ];
 
-// ===== 4. 站名同義/映射關係表 =====
-// 因為實體站牌在各路線命名略有不同，為了避免用戶在同一個地點看不到其他路線，以下進行精確對齊映射：
+// ===== 4. 站名映射關係表 =====
 function getMappedStop(lineName, selectValue) {
-  // 名勝巡遊巴士的映射
   if (lineName === 'meisho') {
     if (selectValue === '成田山前') return '成田山前';
     if (selectValue === '博物館前') return '博物館前';
@@ -1315,29 +1317,24 @@ function getMappedStop(lineName, selectValue) {
     if (selectValue === '札の辻') return '札の辻';
     if (selectValue === '一番街') return '一番街';
     if (selectValue === '川越市駅') return '川越市駅';
-    // 專屬站點
     return selectValue; 
   }
   
-  // C01（紫線）巡迴的映射
   if (lineName === 'c01') {
-    if (selectValue === '成田山前') return '喜多院'; // EXCEL 中 C01 在成田山對應喜多院站點
+    if (selectValue === '成田山前') return '喜多院';
     if (selectValue === '博物館前') return '博物館・美術館前';
-    if (selectValue === '川越氷川神社') return '氷川神社前';
-    if (selectValue === '札の辻') return '大手門前'; // 札の辻最近的站點為大手門前
-    if (selectValue === '一番街') return '大手門前';
-    if (selectValue === '川越市駅') return '川越市駅';
-    // 專屬站點
-    return selectValue;
-  }
-
-  // C02（橘線）巡迴的映射
-  if (lineName === 'c02') {
-    if (selectValue === '博物館前') return '博物館・美術館前'; // C02 在降車專用中有停
     if (selectValue === '川越氷川神社') return '氷川神社前';
     if (selectValue === '札の辻') return '大手門前';
     if (selectValue === '一番街') return '大手門前';
-    // 專屬站點
+    if (selectValue === '川越市駅') return '川越市駅';
+    return selectValue;
+  }
+
+  if (lineName === 'c02') {
+    if (selectValue === '博物館前') return '博物館・美術館前';
+    if (selectValue === '川越氷川神社') return '氷川神社前';
+    if (selectValue === '札の辻') return '大手門前';
+    if (selectValue === '一番街') return '大手門前';
     return selectValue;
   }
   
@@ -1350,8 +1347,8 @@ function toMin(t){
   return h*60 + parseInt(m);
 }
 
-function getNext(data, mappedStop, nowMin){
-  // 檢查這條線是否真的有這個站點
+// 支援獲取多個未來的班次
+function getUpcomingBuses(data, mappedStop, nowMin) {
   let hasStop = false;
   for(const bus of data){
     if(bus[mappedStop] !== undefined) {
@@ -1359,19 +1356,18 @@ function getNext(data, mappedStop, nowMin){
       break;
     }
   }
-  if (!hasStop) return null; // 該路線沒經過此站，直接回傳 null (不顯示)
+  if (!hasStop) return null; // 該路線沒經過此站，回傳 null 
 
-  // 尋找最近一班車
+  const upcoming = [];
   for(const bus of data){
     const t = bus[mappedStop];
     if(!t || t === "止於此站" || t === "—") continue;
     const m = toMin(t);
     if(m >= nowMin){
-      return {time:t, diff:m-nowMin};
+      upcoming.push({time: t, diff: m - nowMin});
     }
   }
-  // 如果有站點但今天已經沒車了
-  return {time: "結束", diff: 9999};
+  return upcoming; // 返回一個包含所有未到站班次的陣列
 }
 
 function renderLive(){
@@ -1380,7 +1376,6 @@ function renderLive(){
   const now = new Date();
   const nowMin = now.getHours()*60 + now.getMinutes();
   
-  // 分別取得三條線映射後的結果
   const lines = [
     { name: '🚌 小江戶名勝巡遊巴士', key: 'meisho', data: meisho },
     { name: '🟣 巡迴巴士 C01 (紫線)', key: 'c01', data: c01 },
@@ -1391,11 +1386,10 @@ function renderLive(){
 
   lines.forEach(line => {
     const mappedStop = getMappedStop(line.key, selectVal);
-    const next = getNext(line.data, mappedStop, nowMin);
+    const upcoming = getUpcomingBuses(line.data, mappedStop, nowMin);
     
-    // 如果 next 存在，代表這條路線有經過此站！
-    if (next) {
-      if (next.time === "結束") {
+    if (upcoming) {
+      if (upcoming.length === 0) {
         activeLinesHtml.push(`
           <div class="busRow" style="opacity: 0.6;">
             <div>${line.name} <div class="busMetaInfo">站牌名稱：${mappedStop}</div></div>
@@ -1403,10 +1397,21 @@ function renderLive(){
           </div>
         `);
       } else {
+        const first = upcoming[0];
+        let nextStr = "";
+        
+        // 如果有「下一班」的車次
+        if (upcoming.length > 1) {
+          const second = upcoming[1];
+          nextStr = `<span class="busNextLabel">➔ 下班 <strong>${second.time}</strong> (${second.diff}分後)</span>`;
+        } else {
+          nextStr = `<span class="busNextLabel" style="color:#e67e22;background:#fdf6ec;">[末班車]</span>`;
+        }
+
         activeLinesHtml.push(`
           <div class="busRow">
             <div>${line.name} <div class="busMetaInfo">站牌名稱：${mappedStop}</div></div>
-            <div><strong>${next.time}</strong>（${next.diff} 分後）</div>
+            <div><strong>${first.time}</strong>（${first.diff} 分後）${nextStr}</div>
           </div>
         `);
       }
@@ -1423,11 +1428,12 @@ function renderLive(){
 
 document.getElementById('busStop').addEventListener('change', renderLive);
 renderLive();
-setInterval(renderLive, 10000); // 手機端 10 秒刷新一次，確保時間精準
+setInterval(renderLive, 10000); // 手機端每 10 秒刷新一次，確保即時性
 
 })();
 </script>
 
+              <!-- 📎 乘車資訊補充 -->
               <div style="margin-top:14px;">
                 <div class="galleryRow" role="list">
                   <div class="gItem"><img src="Day3/04.jpg" alt="川越站巴士乘車位置圖"></div>
