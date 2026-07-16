@@ -1143,7 +1143,7 @@
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox">
+          <details class="infoBox" open>
             <summary>
               <span class="summaryText">🚌 巴士即時搭乘資訊</span>
               <span class="chev">⌄</span>
@@ -1151,543 +1151,97 @@
             <div class="infoContent">
 
               <style>
-              .busTabs{display:flex;gap:8px;margin:6px 0 10px}
-              .busTab{padding:6px 12px;border-radius:999px;border:1px solid #ddd;background:#f7f7f9;cursor:pointer;font-size:13px}
-              .busTab.active{background:#fff;border-color:#3b6cff}
-              .busPanel{display:none}
-              .busPanel.active{display:block}
-              .busRow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:14px}
+              .busRow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee;font-size:14px}
               .busRow:last-child{border-bottom:none}
-              .busHint{font-size:12px;color:#888;margin-top:6px}
+              .busRow strong{color:#3b6cff;font-size:15px}
+              .busHint{font-size:12px;color:#888;margin-top:6px;text-align:center;padding:10px 0}
+              .busMetaInfo{font-size:12px;color:#666;margin-top:2px;font-weight:normal}
               </style>
 
-             <div style="margin-bottom:10px;font-size:13px;">
-📍目前位置：
-<select id="busStop" style="margin-left:6px;padding:4px 8px;border-radius:8px;border:1px solid #ddd;">
-  <option value="川越駅">川越站 (起點發車)</option>
-  <option value="喜多院">喜多院</option>
-  <option value="成田山前">成田山前</option>
-  <option value="本川越駅">本川越駅</option>
-  <option value="蓮馨寺北">蓮馨寺北</option>
-  <option value="蔵の街">蔵の街</option>
-  <option value="大手門前">大手門前</option>
-  <option value="市役所">市役所</option>
-  <option value="博物館前">博物館 / 美術館前</option>
-  <option value="氷川神社前">氷川神社前</option>
-  <option value="菓子屋横丁">菓子屋横丁</option>
-  <option value="川越市駅">川越市駅</option>
+             <div style="margin-bottom:12px;font-size:14px;font-weight:700;">
+📍 請選擇您目前所在的站牌名稱：
+<select id="busStop" style="margin-top:6px;display:block;width:100%;padding:8px 10px;border-radius:8px;border:1px solid #3b6cff;font-size:14px;outline:none;background:#fff;">
+  <optgroup label="--- 名勝巡遊巴士 專屬停靠 ---">
+    <option value="川越駅東口(3番)">川越駅東口(3番)</option>
+    <option value="喜多院前">喜多院前</option>
+    <option value="松江町二丁目">松江町二丁目</option>
+    <option value="大手町">大手町（名勝）</option>
+    <option value="やまぶき会館前">やまぶき会館前</option>
+    <option value="裁判所前">裁判所前</option>
+    <option value="川越市役所前">川越市役所前</option>
+    <option value="仲町">仲町</option>
+    <option value="妙昌寺入口">妙昌寺入口</option>
+  </optgroup>
+  
+  <optgroup label="--- C01/C02 巡迴巴士 專屬停靠 ---">
+    <option value="川越駅西口">川越駅西口</option>
+    <option value="本川越駅">本川越駅</option>
+    <option value="蓮馨寺北">蓮馨寺北</option>
+    <option value="蔵の街">蔵の街</option>
+    <option value="大手門前">大手門前（C01/C02）</option>
+    <option value="市役所">市役所（C01/C02）</option>
+    <option value="小江戸蔵里">小江戸蔵里</option>
+    <option value="喜多院">喜多院</option>
+    <option value="川越高校前">川越高校前</option>
+    <option value="あぐれっしゅ川越">あぐれっしゅ川越</option>
+    <option value="菓子屋横丁">菓子屋横丁</option>
+  </optgroup>
+
+  <optgroup label="--- 多條路線 共同停靠大站 ---">
+    <option value="成田山前">成田山前（名勝）/ 喜多院（C01）</option>
+    <option value="博物館前">博物館前（名勝）/ 博物館・美術館前（C01/C02）</option>
+    <option value="川越氷川神社">川越氷川神社（名勝）/ 氷川神社前（C01/C02）</option>
+    <option value="札の辻">札の辻（名勝/C01/C02 共同站）</option>
+    <option value="一番街">一番街（名勝/C01/C02 共同站）</option>
+    <option value="川越市駅">川越市駅（名勝/C01/C02 共同站）</option>
+  </optgroup>
 </select>
 </div>
 
-<div id="busLive" class="busPanel active"></div>
+<div id="busLive" style="background:#fcfcfc;border:1px solid var(--line);border-radius:12px;padding:4px 12px;"></div>
 
 <script>
 (function(){
 
-// ===== 名勝巡遊巴士（全班次-對齊EXCEL） ===== 
+// ===== 1. 名勝巡遊巴士（真實 EXCEL 時刻表） =====
+// 格式定義：16個站點對應時間。若無停靠，則不寫。
 const meisho = [
-  {"川越駅":"10:00","喜多院":"10:08","成田山前":"10:09","本川越駅":"","蓮馨寺北":"","蔵の街":"10:24","大手門前":"10:12","市役所":"10:22","博物館前":"10:18","氷川神社前":"10:20","菓子屋横丁":"","川越市駅":"10:30"},
-  {"川越駅":"10:50","喜多院":"10:58","成田山前":"10:59","本川越駅":"","蓮馨寺北":"","蔵の街":"11:14","大手門前":"11:02","市役所":"11:12","博物館前":"11:08","氷川神社前":"11:10","菓子屋横丁":"","川越市駅":"11:20"},
-  {"川越駅":"11:45","喜多院":"11:53","成田山前":"11:54","本川越駅":"","蓮馨寺北":"","蔵の街":"12:09","大手門前":"12:57","市役所":"12:07","博物館前":"12:03","氷川神社前":"12:05","菓子屋横丁":"","川越市駅":"12:15"},
-  {"川越駅":"12:45","喜多院":"12:53","成田山前":"12:54","本川越駅":"","蓮馨寺北":"","蔵の街":"","大手門前":"12:57","市役所":"13:07","博物館前":"13:03","氷川神社前":"13:05","菓子屋横丁":"","川越市駅":""}, // 止於札の辻
-  {"川越駅":"13:20","喜多院":"13:28","成田山前":"13:29","本川越駅":"","蓮馨寺北":"","蔵の街":"13:44","大手門前":"13:32","市役所":"13:42","博物館前":"13:38","氷川神社前":"13:40","菓子屋横丁":"","川越市駅":"13:50"},
-  {"川越駅":"14:00","喜多院":"14:08","成田山前":"14:09","本川越駅":"","蓮馨寺北":"","蔵の街":"14:24","大手門前":"14:12","市役所":"14:22","博物館前":"14:18","氷川神社前":"14:20","菓子屋横丁":"","川越市駅":"14:30"},
-  {"川越駅":"14:50","喜多院":"14:58","成田山前":"14:59","本川越駅":"","蓮馨寺北":"","蔵の街":"15:14","大手門前":"15:02","市役所":"15:12","博物館前":"15:08","氷川神社前":"15:10","菓子屋横丁":"","川越市駅":"15:20"},
-  {"川越駅":"15:40","喜多院":"15:48","成田山前":"15:49","本川越駅":"","蓮馨寺北":"","蔵の街":"16:04","大手門前":"15:52","市役所":"16:02","博物館前":"15:58","氷川神社前":"16:00","菓子屋横丁":"","川越市駅":"16:10"}
-];
-
-// ===== 巡迴巴士 C01（紫線-對齊EXCEL） =====
-const c01 = [
-  {"川越駅":"10:55","本川越駅":"11:01","蓮馨寺北":"","蔵の街":"11:07","大手門前":"11:08","市役所":"11:09","喜多院":"11:07","博物館前":"11:11","氷川神社前":"11:29","菓子屋横丁":"11:32","川越市駅":"11:37"},
-  {"川越駅":"12:05","本川越駅":"12:11","蓮馨寺北":"","蔵の街":"12:17","大手門前":"12:18","市役所":"12:19","喜多院":"12:17","博物館前":"12:21","氷川神社前":"12:39","菓子屋横丁":"12:42","川越市駅":"12:47"},
-  {"川越駅":"13:10","本川越駅":"13:16","蓮馨寺北":"","蔵の街":"13:22","大手門前":"13:23","市役所":"13:24","喜多院":"13:22","博物館前":"13:26","氷川神社前":"13:41","菓子屋横丁":"13:44","川越市駅":"13:48"},
-  {"川越駅":"14:45","本川越駅":"14:51","蓮馨寺北":"","蔵の街":"14:57","大手門前":"14:58","市役所":"14:59","喜多院":"14:57","博物館前":"15:01","氷川神社前":"15:19","菓子屋横丁":"15:22","川越市駅":"15:27"},
-  {"川越駅":"16:00","本川越駅":"16:06","蓮馨寺北":"","蔵の街":"","大手門前":"","市役所":"","喜多院":"16:12","博物館前":"16:16","氷川神社前":"16:34","菓子屋横丁":"16:37","川越市駅":"16:42"}
-];
-
-// ===== 巡迴巴士 C02（橘線-對齊EXCEL） =====
-const c02 = [
-  {"川越駅":"09:45","本川越駅":"09:51","蓮馨寺北":"09:53","蔵の街":"09:57","大手門前":"09:58","市役所":"09:59","喜多院":"","博物館前":"","氷川神社前":"10:06","菓子屋横丁":"","川越市駅":""},
-  {"川越駅":"10:35","本川越駅":"10:41","蓮馨寺北":"10:43","蔵の街":"10:47","大手門前":"10:48","市役所":"10:49","喜多院":"","博物館前":"","氷川神社前":"10:56","菓子屋横丁":"","川越市駅":""},
-  {"川越駅":"11:25","本川越駅":"11:31","蓮馨寺北":"11:33","蔵の街":"11:37","大手門前":"11:38","市役所":"11:39","喜多院":"","博物館前":"","氷川神社前":"11:29","菓子屋横丁":"","川越市駅":""},
-  {"川越駅":"13:20","本川越駅":"13:26","蓮馨寺北":"13:28","蔵の街":"13:32","大手門前":"13:33","市役所":"13:34","喜多院":"","博物館前":"","氷川神社前":"13:41","菓子屋横丁":"","川越市駅":""},
-  {"川越駅":"14:15","本川越駅":"14:21","蓮馨寺北":"14:23","蔵の街":"14:27","大手門前":"14:28","市役所":"14:29","喜多院":"","博物館前":"","氷川神社前":"14:36","菓子屋横丁":"","川越市駅":""},
-  {"川越駅":"15:05","本川越駅":"15:11","蓮馨寺北":"15:13","蔵の街":"15:17","大手門前":"15:18","市役所":"15:19","喜多院":"","博物館前":"","氷川神社前":"15:19","菓子屋横丁":"","川越市駅":""},
-  {"川越駅":"16:35","本川越駅":"16:41","蓮馨寺北":"16:43","蔵の街":"16:47","大手門前":"16:48","市役所":"16:49","喜多院":"","博物館前":"","氷川神社前":"16:56","菓子屋横丁":"","川越市駅":""}
-];
-
-function toMin(t){
-  if(!t) return 9999;
-  const [h,m] = t.split(':');
-  return h*60 + parseInt(m);
-}
-
-function getNext(data, stop, nowMin){
-  for(const bus of data){
-    const t = bus[stop];
-    if(!t) continue;
-    const m = toMin(t);
-    if(m >= nowMin){
-      return {time:t, diff:m-nowMin};
-    }
-  }
-  return null;
-}
-
-function renderLive(){
-  const el = document.getElementById('busLive');
-  const stop = document.getElementById('busStop').value;
-  const now = new Date();
-  const nowMin = now.getHours()*60 + now.getMinutes();
-  
-  const result = [
-    {name:'🚌名勝巡遊巴士 (東口發)', data:meisho},
-    {name:'🟣C01紫線巡迴 (西口發)', data:c01},
-    {name:'🟠C02橘線巡迴 (西口發)', data:c02}
-  ].map(line=>{
-    const next = getNext(line.data, stop, nowMin);
-    return next ? {name:line.name, ...next} : null;
-  }).filter(Boolean).sort((a,b)=>a.diff-b.diff);
-
-  if(result.length===0){
-    el.innerHTML = '<div class="busHint">今日所有預排班次已結束。</div>';
-    return;
-  }
-
-  el.innerHTML = result.map(r=>
-    `<div class="busRow"><div>${r.name}</div><div><strong>${r.time}</strong>（${r.diff} 分後）</div></div>`
-  ).join('');
-}
-
-document.getElementById('busStop').addEventListener('change',renderLive);
-renderLive();
-setInterval(renderLive, 30000); // 縮短為 30 秒自動重整一次
-
-})();
-</script>
-
-              <div style="margin-top:14px;">
-                <div class="galleryRow" role="list">
-                  <div class="gItem"><img src="Day3/04.jpg" alt="川越站巴士乘車位置圖"></div>
-                </div>
-                <div class="btnRow" style="margin-top:10px;">
-                  <a class="btn" href="Day3/巡迴巴士乘車資訊.pdf" target="_blank">📄 巡迴巴士乘車資訊</a>
-                  <a class="btn" href="Day3/名勝巡遊巴士乘車資訊.pdf" target="_blank">📄 名勝巡遊巴士乘車資訊</a>
-                </div>
-              </div>
-
-            </div>
-          </details>
-        </div>
-      </div>
-
-      <div class="tRow">
-       <div class="time">11:10 - 12:00</div>
-       <div class="place">
-         <p class="placeTitle">冰川神社</p>
-         <ul class="notes">
-          <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
-          <li>建議直接搭到最遠端 → 冰川神社</li>
-         </ul>
-       </div>
-      </div>
-
-      <div class="tRow">
-       <div class="time">12:15 - 13:45</div>
-       <div class="place">
-         <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
-         <ul class="notes">
-          <li>江戶風味鰻魚飯</li>
-          <li>特色手打烏龍麵</li>
-         </ul>
-       </div>
-      </div>
-
-      <div class="tRow">
-       <div class="time">13:45 - 16:00</div>
-       <div class="place">
-        <p class="placeTitle">藏造老街 ＆ 時之鐘</p>
-       </div>
-      </div>
-
-      <div class="tRow">
-       <div class="time">16:00 - 17:30</div>
-       <div class="place">
-        <p class="placeTitle">新富町商店街</p>
-        <p class="meta">一路逛回車站</p>
-       </div>
-      </div>
-
-      <div class="tRow">
-       <div class="time">17:30 ~</div>
-       <div class="place">
-        <p class="placeTitle">返回東京</p>
-        <p class="meta">JR 川越線・埼京線直通（往大崎 / 新木場）</p>
-       </div>
-      </div>
-
-     </div>
-    </div>
-   </section>
-
-   <section class="card daySection pagePanel" id="day4">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">4</div>
-      <h2 class="dayTitle">行程待安排</h2>
-     </div>
-     <div class="dayDate">9/29(二)</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline"></div>
-    </div>
-   </section>
-
-   <section class="card daySection pagePanel" id="day5">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">5</div>
-      <h2 class="dayTitle">行程待安排</h2>
-     </div>
-     <div class="dayDate">9/30(三)</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline"></div>
-    </div>
-  </section>
-
-   <section class="card daySection pagePanel" id="day6">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">6</div>
-      <h2 class="dayTitle">行程待安排</h2>
-     </div>
-     <div class="dayDate">10/01(四)</div>
-    </div>
-    <div class="dayBody">
-      <div class="timeline"></div>
-    </div>
-   </section>
-
-   <section class="card daySection pagePanel" id="day7">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">7</div>
-      <h2 class="dayTitle">行程待安排</h2>
-     </div>
-     <div class="dayDate">10/02(五)</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline"></div>
-    </div>
-   </section>
-
-   <section class="card daySection pagePanel" id="day8">
-    <div class="dayCardHeader">
-     <div class="dayHeaderMain">
-      <div class="dayIndex">8</div>
-      <h2 class="dayTitle">回程</h2>
-     </div>
-     <div class="dayDate">10/03(六)</div>
-    </div>
-    <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-        <div class="time">11:30</div>
-       <div class="place">
-         <p class="placeTitle">抵達機場</p>
-         <p class="meta">預計 11:30 抵達羽田機場第3航廈辦理登機與託運</p>
-       </div>
-      </div>
-      <div class="tRow">
-       <div class="time">14:30</div>
-       <div class="place">
-         <p class="placeTitle">起飛返回松山機場</p>
-         <p class="meta">搭乘華航 CI221，預計 16:55 抵達松山機場</p>
-      </div>
-      </div>
-     </div>
-    </div>
-   </section>
-
-  </section>
- </main>
-
- <div class="lbModal" id="lightbox" aria-hidden="true">
-  <div class="lbBackdrop" data-close="lightbox"></div>
-  <div class="lbInner">
-   <button class="lbClose" type="button" id="lbClose" aria-label="關閉圖片">×</button>
-   <button class="lbNav lbPrev" id="lbPrev" aria-label="上一張">‹</button>
-   <img class="lbImg" id="lbImg" alt="放大圖片">
-   <button class="lbNav lbNext" id="lbNext" aria-label="下一張">›</button>
-   <div class="lbCaption" id="lbCaption"></div>
-  </div>
- </div>
-
- <script>
- (function(){
-  document.querySelectorAll('.galleryRow img').forEach(img => {
-    img.removeAttribute('onclick');
-    img.addEventListener('click', () => openLightbox(img));
-  });
-
-  const modal = document.getElementById('lightbox');
-  const modalImg = document.getElementById('lbImg');
-  const modalCaption = document.getElementById('lbCaption');
-  const closeBtn = document.getElementById('lbClose');
-  const prevBtn = document.getElementById('lbPrev');
-  const nextBtn = document.getElementById('lbNext');
-  let currentIndex = -1;
-  let currentGroup = [];
-  function openLightbox(img){
-    const row = img.closest('.galleryRow');
-    currentGroup = Array.from(row.querySelectorAll('img'));
-    currentIndex = currentGroup.indexOf(img);
-    showImage(currentIndex);
-    modal.classList.add('open');
-    resetTransform();
-  }
-
-  function showImage(i){
-    if(i<0 || i>=currentGroup.length) return;
-    currentIndex = i;
-    const img = currentGroup[i];
-    modalImg.src = img.src;
-    
-    const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
-    modalCaption.textContent = captionText;
-    modalCaption.style.display = captionText ? 'block' : 'none';
-  }
-
-  function nextImage(){
-    showImage((currentIndex+1)%currentGroup.length);
-  }
-
-  function prevImage(){
-    showImage((currentIndex-1+currentGroup.length)%currentGroup.length);
-  }
-
-  closeBtn.onclick = ()=> { modal.classList.remove('open'); resetTransform(); };
-  nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
-  prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
-
-  let scale = 1, lastScale = 1;
-  let startDist = 0;
-  let startX = 0, startY = 0;
-  let currentX = 0, currentY = 0;
-  let translateX = 0, translateY = 0;
-  let lastTranslateX = 0;
-  let lastTranslateY = 0;
-  let lastTap = 0;
-  let isDragging = false;
-  let touchMode = 'none';
-  function getDist(touches){
-    return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
-  }
-
-  function applyTransform(animate = false){
-    modalImg.style.transition = animate ? 'transform 0.25s ease-out' : 'none';
-    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-  }
-
-  function resetTransform(){
-    scale = 1; lastScale = 1;
-    translateX = 0; translateY = 0;
-    lastTranslateX = 0; lastTranslateY = 0;
-    applyTransform(true);
-  }
-
-  const modalInner = document.querySelector('.lbInner');
-  modalInner.addEventListener('touchstart', (e)=>{
-    if (e.touches.length === 1) {
-      touchMode = 'pan';
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      isDragging = true;
-    } else if (e.touches.length === 2) {
-      touchMode = 'pinch';
-      startDist = getDist(e.touches);
-      lastScale = scale;
-    }
-  }, {passive: false});
-  modalInner.addEventListener('touchmove', (e)=>{
-    if (touchMode === 'pinch' && e.touches.length === 2) {
-      e.preventDefault();
-      const dist = getDist(e.touches);
-      scale = Math.min(4, Math.max(1, lastScale * (dist / startDist)));
-      applyTransform();
-    } 
-    else if (touchMode === 'pan' && isDragging && e.touches.length === 1) {
-      currentX = e.touches[0].clientX;
-      currentY = e.touches[0].clientY;
-      const diffX = currentX - startX;
-      const diffY = currentY - startY;
-
-      if (scale > 1) {
-        translateX = lastTranslateX + diffX;
-        translateY = lastTranslateY + diffY;
-        applyTransform();
-      } else {
-        if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
-          e.preventDefault();
-          modalImg.style.transform = `translateX(${diffX}px) scale(1)`;
-        }
-      }
-    }
-  }, {passive: false});
-  modalInner.addEventListener('touchend', (e)=>{
-    if (touchMode === 'pan' && isDragging) {
-      isDragging = false;
-      const diffX = currentX - startX;
-      
-      if (scale === 1) {
-        if (diffX > 60) {
-          prevImage();
-        } else if (diffX < -60) {
-          nextImage();
-        }
-        resetTransform();
-      } else {
-        lastTranslateX = translateX;
-        lastTranslateY = translateY;
-      }
-    }
-       
-    const now = Date.now();
-    if (now - lastTap < 300 && e.touches.length === 0) {
-      if (scale === 1) {
-        scale = 2.5;
-        applyTransform(true);
-      } else {
-        resetTransform();
-      }
-      lastTap = 0;
-      touchMode = 'none';
-      return;
-    }
-    lastTap = now;
-    touchMode = 'none';
-  });
-  document.querySelectorAll('.timeline').forEach(timeline => {
-   let dragItem = null;
-   
-   timeline.addEventListener('dragstart', e => {
-    const row = e.target.closest('.tRow');
-    if (!row) return;
-    dragItem = row;
-    row.style.opacity = '0.4';
-    e.dataTransfer.effectAllowed = 'move';
-   });
-   
-   timeline.addEventListener('dragend', e => {
-    const row = e.target.closest('.tRow');
-    if (row) row.style.opacity = '1';
-    dragItem = null;
-   });
-   
-   timeline.addEventListener('dragover', e => {
-    e.preventDefault();
-    const row = e.target.closest('.tRow');
-    if (!row || !dragItem || row === dragItem) return;
-    const rect = row.getBoundingClientRect();
-    const offset = e.clientY - rect.top;
-    if (offset > rect.height / 2) {
-     row.after(dragItem);
-    } else {
-     row.before(dragItem);
-    }
-   });
-
-   timeline.querySelectorAll('.tRow').forEach(row => {
-    row.draggable = false;
-    const handle = row.querySelector('.time');
-    if (!handle) return;
-    handle.style.cursor = 'default';
-    handle.style.userSelect = 'text';
-    handle.addEventListener('mousedown', () => row.draggable = true);
-    handle.addEventListener('mouseup', () => row.draggable = false);
-    handle.addEventListener('mouseleave', () => row.draggable = false);
-   });
-  });
-  document.querySelectorAll('.galleryRow').forEach(row => {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    let velocity = 0;
-    let lastX = 0;
-    let lastTime = 0;
-
-    row.addEventListener('mousedown', (e) => {
-      e.stopPropagation();
-      isDown = true;
-      row.classList.add('dragging');
-      startX = e.pageX;
-      scrollLeft = row.scrollLeft;
-      lastX = e.pageX;
-      lastTime = Date.now();
-    });
-
-    row.addEventListener('mouseleave', () => {
-      isDown = false;
-      row.classList.remove('dragging');
-    });
-
-    row.addEventListener('mouseup', () => {
-      isDown = false;
-      row.classList.remove('dragging');
-      const decay = 0.95;
-      function momentum(){
-        if (Math.abs(velocity) < 0.1) return;
-        row.scrollLeft -= velocity;
-        velocity *= decay;
-        requestAnimationFrame(momentum);
-      }
-      momentum();
-    });
-
-    row.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX;
-      const walk = (x - startX);
-      row.scrollLeft = scrollLeft - walk;
-
-      const now = Date.now();
-      const dx = x - lastX;
-      const dt = now - lastTime || 1;
-      velocity = dx / dt * 16; 
-      lastX = x;
-      lastTime = now;
-    });
-    row.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        row.scrollLeft += e.deltaY;
-      }
-    }, { passive: false });
-  });
-
-  document.querySelectorAll('.tabBtn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      const targetId = btn.getAttribute('data-target');
-      document.querySelectorAll('.pagePanel').forEach(panel => {
-        if(panel.id === targetId) {
-          panel.classList.add('active');
-        } else {
-          panel.classList.remove('active');
-        }
-      });
-    });
-  });
-  document.querySelectorAll('a[href^="http"]').forEach(link => {
-   link.setAttribute('target', '_blank');
-   link.setAttribute('rel', 'noopener');
-  });
- })();
- </script>
-</body>
-</html>
+  {
+    "川越駅東口(3番)":"10:00", "喜多院前":"10:08", "成田山前":"10:09", "松江町二丁目":"10:11", "大手町":"10:12", "やまぶき会館前":"10:14", 
+    "博物館前":"10:18", "川越氷川神社":"10:20", "裁判所前":"10:21", "川越市役所前":"10:22", "札の辻":"10:23", "一番街":"10:24", 
+    "仲町":"10:25", "妙昌寺入口":"10:27", "川越市駅":"10:30"
+  },
+  {
+    "川越駅東口(3番)":"10:50", "喜多院前":"10:58", "成田山前":"10:59", "松江町二丁目":"11:01", "大手町":"11:02", "やまぶき会館前":"11:04", 
+    "博物館前":"11:08", "川越氷川神社":"11:10", "裁判所前":"11:11", "川越市役所前":"11:12", "札の辻":"11:13", "一番街":"11:14", 
+    "仲町":"11:15", "妙昌寺入口":"11:17", "川越市駅":"11:20"
+  },
+  {
+    "川越駅東口(3番)":"11:45", "喜多院前":"11:53", "成田山前":"11:54", "松江町二丁目":"11:56", "大手町":"11:57", "やまぶき会館前":"11:59", 
+    "博物館前":"12:03", "川越氷川神社":"12:05", "裁判所前":"12:06", "川越市役所前":"12:07", "札の辻":"12:08", "一番街":"12:09", 
+    "仲町":"12:10", "妙昌寺入口":"12:12", "川越市駅":"12:15"
+  },
+  {
+    // 註：本班次終點僅到「札の辻」
+    "川越駅東口(3番)":"12:45", "喜多院前":"12:53", "成田山前":"12:54", "松江町二丁目":"12:56", "大手町":"12:57", "やまぶき会館前":"12:59", 
+    "博物館前":"13:03", "川越氷川神社":"13:05", "裁判所前":"13:06", "川越市役所前":"13:07", "札の辻":"13:10"
+  },
+  {
+    "川越駅東口(3番)":"13:20", "喜多院前":"13:28", "成田山前":"13:29", "松江町二丁目":"13:31", "大手町":"13:32", "やまぶき会館前":"13:34", 
+    "博物館前":"13:38", "川越氷川神社":"13:40", "裁判所前":"13:41", "川越市役所前":"13:42", "札の辻":"13:43", "一番街":"13:44", 
+    "仲町":"13:45", "妙昌寺入口":"13:47", "川越市駅":"13:50"
+  },
+  {
+    "川越駅東口(3番)":"14:00", "喜多院前":"14:08", "成田山前":"14:09", "松江町二丁目":"14:11", "大手町":"14:12", "やまぶき会館前":"14:14", 
+    "博物館前":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札の辻":"14:23", "一番街":"14:24", 
+    "仲町":"14:25", "妙昌寺入口":"14:27", "川越市駅":"14:30"
+  },
+  {
+    "川越駅東口(3番)":"14:50", "喜多院前":"14:58", "成田山前":"14:59", "松江町二丁目":"15:01", "大手町":"15:02", "やまぶき会館前":"15:04", 
+    "博物館前":"15:08", "川越氷川神社":"15:10", "裁判所前":"15:11", "川越市役所前":"15:12", "札の辻":"15:13", "一番街":"15:14", 
+    "仲町":"15:15", "妙昌寺入口":"15:17", "川越市駅":"15:20"
+  },
+  {
+    "川越駅東口(3番)":"15:40", "喜多院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき会館前":"15:54", 
+    "博物館前":"15:58", "川越氷川神社":"16:00", "裁判所前":"16:01", "川越市役所前":"16:02", "札の辻":"16:03", "一番街":"16:04", 
+    "仲町":"16:05", "妙昌寺入口
