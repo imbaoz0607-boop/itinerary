@@ -431,3 +431,1450 @@
  }
  .btn {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1;
+ }
+ .infoContent table {
+  width: 100%;
+  max-width: 260px;
+  margin: 12px auto 0; 
+  border-collapse: collapse;
+  font-size: 14px;
+ }
+ .infoContent th, 
+ .infoContent td {
+  width: 50%;
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+ }
+ .infoContent th {
+  background: #f4f6fb;
+  font-weight: 600;
+ }
+ .infoContent td:last-child {
+  font-weight: 600;
+ }
+ .infoContent tr:hover td {
+  background: #fafbff;
+ }
+
+ .infoContent details.infoBox {
+  margin-left: 0;
+  margin-right: 0;
+  background: transparent;
+  border-top: none;
+ }
+ .infoContent details.infoBox > summary {
+  padding: 8px 0;
+  font-weight: 700;
+  color: var(--text);
+ }
+ .infoContent details.infoBox > summary a {
+  color: #3b6cff !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+ }
+ .infoContent details.infoBox .infoContent {
+  padding: 0 0 8px 0;
+ }
+
+ .dinner-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+ }
+ .dinner-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; 
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px; 
+ }
+ .dinner-list li:last-child {
+  border-bottom: none;
+ }
+ .dinner-list li > div {
+  flex: 1; 
+  min-width: 0;
+ }
+ .dinner-name {
+  font-weight: 600;
+  color: var(--text) !important;
+  text-decoration: none;
+ }
+ .dinner-type {
+  font-size: 12px;
+  color: var(--muted);
+  margin-left: 8px;
+ }
+ .dinner-room {
+  font-weight: 700;
+  color: var(--accent);
+  font-family: monospace;
+  white-space: nowrap; 
+  flex-shrink: 0;
+ }
+
+ .tRow-alignLeft {
+  display: flex !important; 
+  flex-direction: row !important;
+  width: 100%;
+  padding: 0 !important;
+ }
+ .tRow-alignLeft .time {
+  width: 90px;
+  min-width: 90px;
+ }
+ .tRow-alignLeft .place {
+  flex: 1;
+ }
+ .tRow-alignLeft details.infoBox,
+ .tRow-alignLeft .gallery-alignLeft {
+  margin-left: 0 !important;   
+  margin-right: 0 !important;
+  width: 100% !important;
+ }
+ .tRow-alignLeft .gallery-alignLeft .galleryTitle {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+ }
+ .infoContent .galleryRow {
+  margin-top: 12px;
+  padding-top: 6px;
+ }
+ .infoContent .galleryRow .gItem,
+ .gallery-alignLeft .galleryRow .gItem {
+  min-width: 0;
+ }
+
+ .lbModal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 9999;
+ }
+ .lbModal.open { display: flex; }
+ .lbBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+ }
+ .lbImg { 
+  max-width: 100%; 
+  max-height: 100vh;
+  object-fit: contain; 
+  touch-action: none; 
+  transition: transform 0.1s ease-out;
+  user-select: none;
+  -webkit-user-drag: none;
+ } 
+ .lbInner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+ }
+ .lbNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.85);
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+ }
+ .lbPrev { left: 14px; }
+ .lbNext { right: 14px; }
+ .lbClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  border: none;
+  border-radius: 999px;
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
+  cursor: pointer;
+  background: rgba(255,255,255,.85);
+  color: #2d2a26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+ }
+ .lbCaption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 10;
+  pointer-events: none;
+  max-width: 85%;
+  text-align: center;
+ }
+ 
+ @media (max-width: 640px) {
+  .container { 
+   padding-left: 4px !important;
+   padding-right: 4px !important;
+   padding-top: 10px !important; 
+  }
+  .hero { margin-bottom: 8px; }   
+  .heroFlights {
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 6px;
+  }
+  .heroFlightCard {
+   padding: 8px 6px !important;  
+  }
+  .tabShell { border-radius: 18px; }
+  .topTabs {
+   gap: 6px;
+   padding: 8px 6px;
+   scroll-padding-inline: 8px;
+  }
+  .tabBtn {
+   min-height: 36px;             
+   padding: 0 10px;
+   font-size: 13px;
+   flex: 0 0 auto;
+  }
+
+  .dayCardHeader {
+   flex-direction: row !important;
+   align-items: center !important;
+   justify-content: space-between !important;
+   gap: 10px;
+   padding: 10px 10px 6px !important;
+  }
+
+  .dayHeaderMain {
+   flex: 1;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   min-width: 0;
+  }
+
+  .dayDate {
+   font-size: 14px;
+   padding-left: 0 !important;
+   margin-left: auto;
+   white-space: nowrap;
+   flex-shrink: 0;
+  }
+  .dayBody { padding: 8px 4px !important; }
+  
+  .tRow { 
+   display: flex !important;
+   flex-direction: row !important;
+   align-items: flex-start !important; 
+   gap: 8px !important; 
+   padding: 6px 2px !important;
+   width: 100% !important;
+  }
+  .time { 
+   width: 58px !important;
+   min-width: 58px !important;
+   font-size: 14px !important; 
+   margin: 0 !important;
+   padding: 0 !important;
+   position: relative !important;
+   top: 0px !important;
+  }
+  .place {
+   flex: 1 !important;
+  }
+  .place p,
+  .placeTitle {
+   font-size: 15px !important;
+   line-height: 1.35 !important; 
+   margin: 0 !important;
+   padding: 0 !important;
+  }
+  
+  p.meta {
+   font-size: 13px !important;
+   white-space: pre-line !important;
+  }
+
+  #day1 .tRow:nth-child(3) .place p.meta {
+   font-size: 10px !important;
+  }
+
+  .notes,
+  .dinner-list li {
+   font-size: 13px !important;
+   color: var(--text) !important;
+  }
+
+  #day3 .infoContent p.meta {
+   font-size: 13px !important;
+   color: var(--text) !important;
+   line-height: 1.5 !important;
+  }
+
+  .heroFlightList {
+   font-size: 14px !important;
+  }
+  
+  .tRow-alignLeft {
+   display: block !important;
+   padding: 0 !important;
+  }
+  .tRow-alignLeft .time {
+   width: 100% !important;
+   display: none !important;
+  }
+  
+  details.infoBox > summary .summaryText {
+   font-size: 15px !important;
+  }
+  
+  details.infoBox {
+   width: 100% !important;
+   border-radius: 0 !important;
+   background: transparent !important;
+  }
+  details.infoBox > summary {
+   padding: 10px 0 !important;
+  }
+  .infoContent {
+   padding: 0 0 12px 0 !important;
+  }
+  .infoContent details.infoBox {
+   width: 100% !important;
+  }
+  
+  .gItem {
+   width: 60vw;
+   max-width: none;
+  }
+  .lbNav { display: none; }
+ }
+ </style>
+</head>
+<body>
+ <main class="container">
+  <section class="hero" id="memo">
+   <div class="heroTitleCard">
+    <h1 class="title">Tokyo 8 Days</h1>
+   </div>
+
+   <div class="heroFlights">
+    <div class="heroFlightCard">
+     <h2 class="heroFlightTitle">✈️去09/26(六) 華航CI220</h2>
+     <ul class="heroFlightList">
+      <li>⏰ <strong>預計 06:30</strong> 抵達機場</li>
+      <li>🛫 <strong>9:00</strong> 松山機場 T1</li>
+      <li>🛬 <strong>13:10</strong> 羽田機場 T3</li>
+     </ul>
+    </div>
+    <div class="heroFlightCard">
+     <h2 class="heroFlightTitle">✈️回10/03(六) 華航CI221</h2>
+     <ul class="heroFlightList">
+      <li>⏰ <strong>預計 11:30</strong> 抵達機場</li>
+      <li>🛫 <strong>14:30</strong> 羽田機場 T3</li>
+      <li>🛬 <strong>16:55</strong> 松山機場 T1</li>
+     </ul>
+    </div>
+   </div>
+  </section>
+  <section class="tabShell">
+   <nav class="topTabs" aria-label="行程頁籤">
+    <a class="tabBtn active" data-target="day1">Day 1</a>
+    <a class="tabBtn" data-target="day2">Day 2</a>
+    <a class="tabBtn" data-target="day3">Day 3</a>
+    <a class="tabBtn" data-target="day4">Day 4</a>
+    <a class="tabBtn" data-target="day5">Day 5</a>
+    <a class="tabBtn" data-target="day6">Day 6</a>
+    <a class="tabBtn" data-target="day7">Day 7</a>
+    <a class="tabBtn" data-target="day8">Day 8</a>
+    <a class="tabBtn" data-target="memoPanel">Memo</a>
+   </nav>
+   <div class="tabsDivider"></div>
+   
+   <section class="card pagePanel" id="memoPanel">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">M</div>
+      <h2 class="dayTitle">Memo</h2>
+     </div>
+     <div class="dayDate">Travel Notes</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline">
+      <div class="tRow">
+       <div class="time">Memo</div>
+       <div class="place">
+         <p class="placeTitle">請把這次旅行的重要備忘填在這裡</p>
+         <p class="meta">例如票券、餐廳預約、購物清單、天氣提醒、重要地址。</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   
+   <section class="card daySection pagePanel active" id="day1">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">1</div>
+      <h2 class="dayTitle">抵達東京</h2>
+     </div>
+     <div class="dayDate">9/26(六)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline">
+      
+      <div class="tRow">
+       <div class="time">13:10</div>
+       <div class="place">
+         <p class="placeTitle">羽田機場第3航廈</p>
+         <p class="meta">領取行李後巴士或電車前往大井町站</p>
+       </div>
+      </div>
+      
+      <div class="tRow eRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+           <summary>
+             <span class="summaryText">交通資訊</span>
+             <span class="chev">⌄</span>
+           </summary>
+           <div class="infoContent">
+             <details class="infoBox">
+               <summary>
+                 <span class="summaryText">搭乘電車🚆</span>
+                 <span class="chev">⌄</span>
+               </summary>
+               <div class="infoContent">
+                 <ul class="notes" style="font-size:14px; line-height:1.7;">
+                   <li>🔴京急線→品川→轉JR京濱東北線→大井町站<br></li>
+                   <li>🔵單軌電車→濱松町→轉JR京濱東北線→大井町<br></li>
+                 </ul>
+                 <div class="galleryRow" role="list">
+                   <div class="gItem"><img src="Day1/01.jpg"></div>
+                   <div class="gItem"><img src="Day1/02.jpg"></div>
+                 </div>
+               </div>
+             </details>
+
+             <details class="infoBox">
+               <summary>
+                 <span class="summaryText">搭乘機場巴士 <a class="transportIcon" href="https://keikyubus.travel.navitime.com/">🚌</a></span>
+                 <span class="chev">⌄</span>
+               </summary>
+               <div class="infoContent">
+                 <ul class="notes">
+                   <li>乘車地點 : 第3航廈1樓10號公車站</li>
+                   <li style="line-height: 1.5;">下車地點 : 大井町トラックス21番<br><span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;">（原 大井町駅西口3番）</span></li>
+                   <li>單程票價 : 成人800円</li>
+                 </ul>
+                 <table>
+                   <thead>
+                     <tr>
+                       <th>出發（T3）</th>
+                       <th>抵達（大井町）</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr><td>14:05</td><td>14:57</td></tr>
+                     <tr><td>15:05</td><td>15:54</td></tr>
+                     <tr><td>16:05</td><td>16:57</td></tr>
+                     <tr><td>16:50</td><td>17:42</td></tr>
+                     <tr><td>17:40</td><td>18:32</td></tr>
+                   </tbody>
+                 </table>
+
+                 <div class="galleryRow" role="list">
+                   <div class="gItem"><img src="Day1/04.jpg" alt=""></div>
+                   <div class="gItem"><img src="Day1/05.jpg" alt=""></div>
+                   <div class="gItem"><img src="Day1/06.jpg" alt=""></div>
+                 </div>
+
+               </div>
+             </details>
+           </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">18:00</div>
+       <div class="place">
+        <p class="placeTitle">JR東日本大都會大飯店大井町TRACKS</p>
+        <p class="meta">HOTEL METROPOLITAN OIMACHI TRACKS TOKYO</p>
+       </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <div class="gallery gallery-alignLeft">
+           <div class="galleryRow" role="list">
+            <div class="gItem" role="listitem"><img src="Day1/07.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/08.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/09.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/10.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/11.jpg" alt=""></div>
+            <div class="gItem" role="listitem"><img src="Day1/12.jpg" alt=""></div>
+           </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox"> 
+            <summary>
+              <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+              <p style="margin:6px 0 10px; font-size: 14px;">
+                OIMACHI TRACKS <a href="https://www.oimachi-tracks.com/en/floor/">🔗Floor Guide</a>
+              </p>
+              <ul class="dinner-list">
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://yamahan.tokyo/menu">．山本のハンバーグ</a>
+                    <span class="dinner-type">漢堡排</span>
+                  </div>
+                  <span class="dinner-room">📍102</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://latelier-du-pain.com/english/menu_hard.html">．L’Atelier du Pain</a>
+                    <span class="dinner-type">麵包(六本木 tabelog百名店)</span>
+                  </div>
+                  <span class="dinner-room">📍210</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/oimachi_yellow/">．Yellow Oimachi</a>
+                    <span class="dinner-type">蛋包飯</span>
+                  </div>
+                  <span class="dinner-room">📍316</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.dategyu.jp/tw/menu/">．ダテノギュウタン本舗</a>
+                    <span class="dinner-type">牛舌(仙台名店)</span>
+                  </div>
+                  <span class="dinner-room">📍410</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/ooimachi.zeniba/">．銭場精肉店</a>
+                    <span class="dinner-type">燒肉(溶岩盤上享受特選黑毛和牛)</span>
+                  </div>
+                  <span class="dinner-room">📍415</span>
+                </li>
+                <li>
+                  <div>
+                    <a class="dinner-name" href="https://www.instagram.com/shiogamakooo/">．廻鮮寿司 塩釜港</a>
+                    <span class="dinner-type">宮城縣塩釜直送</span>
+                  </div>
+                  <span class="dinner-room">📍417</span>
+                </li>
+              </ul>
+              <div class="galleryRow" role="list" style="margin-top: 14px;">
+                <div class="gItem"><img src="Day1/20.jpg"></div>
+                <div class="gItem"><img src="Day1/21.jpg"></div>
+                <div class="gItem"><img src="Day1/22.jpg"></div>
+                <div class="gItem"><img src="Day1/23.jpg"></div>
+                <div class="gItem"><img src="Day1/24.jpg"></div>
+                <div class="gItem"><img src="Day1/25.jpg"></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+            <summary>
+              <span class="summaryText">📝Memo</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+              <ul class="notes">
+                <li>
+                  飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a><br>
+                  140-0005 東京都品川區廣町2-1-3<br>
+                  TEL : +81-3-6903-1122<br>
+                  JR大井町站TRACKS口直通
+                </li>
+                <li>若要接著排晚餐，也可以直接把餐廳放在下一個 tRow。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+
+     </div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day2">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">2</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">9/27(日)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day3">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">3</div>
+      <h2 class="dayTitle">川越一日遊</h2>
+     </div>
+     <div class="dayDate">9/28(一)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline">
+
+      <div class="tRow">
+       <div class="time">09:41</div>
+       <div class="place">
+         <p class="placeTitle">大井町 ⭢ 川越</p>
+         <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通運轉JR埼京線・川越線(直達不換車)
+⏱️乘車約75分鐘｜票價1250円(可刷交通卡)</p>
+       </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <div class="gallery gallery-alignLeft">
+            <div class="galleryRow" role="list">
+              <div class="gItem" role="listitem"><img src="Day3/01.jpg" alt="時刻表"></div>
+              <div class="gItem" role="listitem"><img src="Day3/02.jpg" alt="乘車路線"></div>
+              <div class="gItem" role="listitem"><img src="Day3/03.jpg" alt="直通運轉圖"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox">
+            <summary>
+              <span class="summaryText">池袋換乘東武東上線(較快抵達/費用更省)</span>
+              <span class="chev">⌄</span>
+            </summary>
+
+            <div class="infoContent">
+              <ul class="notes">
+                <li>大井町搭乘臨海線⭢池袋站，刷卡出 JR 的剪票口⭢旁邊東武線剪票口刷卡進站(認準藍色東武鐵道TOBU)</li>
+                <li>池袋⮂川越電車車票、小江戶名勝巡遊巴士(小江戸名所めぐりバス）、特約商家優惠</li>
+                <li>周遊券無法搭乘小江戶巡迴巴士(小江戸巡回バス)</li>
+                <li>
+                  <a href="https://tobu-japantrip-tickets.com/traffic-tickets/2002/purchase"
+                     target="_blank"
+                     rel="noopener"
+                     style="color:inherit; text-decoration:none;">
+                    川越優惠周遊券升級版/1200円
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">10:54</div>
+       <div class="place">
+        <p class="placeTitle">抵達川越</p>
+        <p class="meta">📍川越駅觀光案內所可購買(乘車地點不同須注意)
+🚌<a href="https://eaglebus.group/co-edo/" style="color:inherit; text-decoration:none;">小江戶巡迴巴士(小江戸巡回バス)順、逆向</a>
+1日票 600円／單次 220円
+🎫<a href="https://www.tobu-bus.com/pc/area/koedo.html" style="color:inherit; text-decoration:none;">小江戶名勝巡遊巴士(小江戸名所めぐりバス)</a>
+1日票 500円／單程約 220～240円</p>
+       </div>
+      </div>
+
+      <div class="tRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+          <details class="infoBox" open>
+            <summary>
+              <span class="summaryText">🚌 巴士即時搭乘資訊 (零瑕疵升級版)</span>
+              <span class="chev">⌄</span>
+            </summary>
+            <div class="infoContent">
+
+              <style>
+              .busRow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee;font-size:14px}
+              .busRow:last-child{border-bottom:none}
+              .busRow strong{color:#3b6cff;font-size:15px}
+              .busHint{font-size:12px;color:#888;margin-top:6px;text-align:center;padding:10px 0}
+              .busMetaInfo{font-size:11px;color:#e67e22;margin-top:2px;font-weight:normal}
+              .busNextLabel{font-size:12px;color:#777;margin-left:8px;padding:1px 6px;background:#f0f2f5;border-radius:4px;display:inline-block}
+              </style>
+
+             <div style="margin-bottom:12px;font-size:14px;font-weight:700;">
+📍 請選擇您目前所在的站牌名稱：
+<select id="busStop" style="margin-top:6px;display:block;width:100%;padding:8px 10px;border-radius:8px;border:1px solid #3b6cff;font-size:14px;outline:none;background:#fff;">
+  <optgroup label="--- 名勝巡遊巴士 專屬停靠 ---">
+    <option value="川越駅東口(3番)">川越駅東口(3番)</option>
+    <option value="喜多院前">喜多院前</option>
+    <option value="松江町二丁目">松江町二丁目</option>
+    <option value="大手町">大手町（名勝）</option>
+    <option value="やまぶき會館前">やまぶき會館前</option>
+    <option value="裁判所前">裁判所前</option>
+    <option value="川越市役所前">川越市役所前</option>
+    <option value="仲町">仲町</option>
+    <option value="妙昌寺入口">妙昌寺入口</option>
+  </optgroup>
+  
+  <optgroup label="--- C01/C02 巡迴巴士 專屬停靠 ---">
+    <option value="川越駅西口">川越駅西口</option>
+    <option value="本川越駅">本川越駅</option>
+    <option value="蓮馨寺北">蓮馨寺北</option>
+    <option value="蔵の街">蔵の街</option>
+    <option value="大手門前">大手門前（C01/C02）</option>
+    <option value="市役所">市役所（C01/C02）</option>
+    <option value="小江戸蔵里">小江戸蔵里</option>
+    <option value="喜多院">喜多院</option>
+    <option value="川越高校前">川越高校前</option>
+    <option value="菓子屋横丁">菓子屋横丁</option>
+  </optgroup>
+
+  <optgroup label="--- 多條路線 共同/臨近停靠大站 ---">
+    <option value="成田山前">成田山前（名勝）/ 喜多院（C01）</option>
+    <option value="博物館_降車">博物館・美術館前 (降車専用) (C01/C02)</option>
+    <option value="博物館_乘車" selected>博物館前（名勝）/ 博物館・美術館前 (乘車) (C01/C02)</option>
+    <option value="あぐれっしゅ_降車">あぐれっしゅ川越 (降車専用) (C01/C02)</option>
+    <option value="あぐれっしゅ_乘車">あぐれっしゅ川越 (乘車) (C01/C02)</option>
+    <option value="川越氷川神社">川越氷川神社（名勝）/ 氷川神社前（C01/C02）</option>
+    <option value="札の辻">札の辻（名勝/C01/C02 共同站）</option>
+    <option value="一番街">一番街（名勝/C01/C02 共同站）</option>
+    <option value="川越市駅">川越市駅（名勝/C01/C02 共同站）</option>
+  </optgroup>
+</select>
+</div>
+
+<div id="busLive" style="background:#fcfcfc;border:1px solid var(--line);border-radius:12px;padding:4px 12px;"></div>
+
+<script>
+(function(){
+
+// ===== 1. 名勝巡遊巴士（100% 精準對齊 EXCEL CSV 資料庫） =====
+const meisho = [
+  {
+    "川越駅東口(3番)":"10:00", "喜多院前":"10:08", "成田山前":"10:09", "松江町二丁目":"10:11", "大手町":"10:12", "やまぶき會館前":"10:14", 
+    "博物館_乘車":"10:18", "川越氷川神社":"10:20", "裁判所前":"10:21", "川越市役所前":"10:22", "札の辻":"10:23", "一番街":"10:24", 
+    "仲町":"10:25", "妙昌寺入口":"10:27", "川越市駅":"10:30"
+  },
+  {
+    "川越駅東口(3番)":"10:50", "喜多院前":"10:58", "成田山前":"10:59", "松江町二丁目":"11:01", "大手町":"11:02", "やまぶき會館前":"11:04", 
+    "博物館_乘車":"11:08", "川越氷川神社":"11:10", "裁判所前":"11:11", "川越市役所前":"11:12", "札の辻":"11:13", "一番街":"11:14", 
+    "仲町":"11:15", "妙昌寺入口":"11:17", "川越市駅":"11:20"
+  },
+  {
+    "川越駅東口(3番)":"11:45", "喜多院前":"11:53", "成田山前":"11:54", "松江町二丁目":"11:56", "大手町":"11:57", "やまぶき會館前":"11:59", 
+    "博物館_乘車":"12:03", "川越氷川神社":"12:05", "裁判所前":"12:06", "川越市役所前":"12:07", "札の辻":"12:08", "一番街":"12:09", 
+    "仲町":"12:10", "妙昌寺入口":"12:12", "川越市駅":"12:15"
+  },
+  {
+    // 註：本班次終點僅到「札の辻」
+    "川越駅東口(3番)":"12:45", "喜多院前":"12:53", "成田山前":"12:54", "松江町二丁目":"12:56", "大手町":"12:57", "やまぶき會館前":"12:59", 
+    "博物館_乘車":"13:03", "川越氷川神社":"13:05", "裁判所前":"13:06", "川越市役所前":"13:07", "札の辻":"13:10"
+  },
+  {
+    "川越駅東口(3番)":"13:20", "喜多院前":"13:28", "成田山前":"13:29", "松江町二丁目":"13:31", "大手町":"13:32", "やまぶき會館前":"13:34", 
+    "博物館_乘車":"13:38", "川越氷川神社":"13:40", "裁判所前":"13:41", "川越市役所前":"13:42", "札の辻":"13:43", "一番街":"13:44", 
+    "仲町":"13:45", "妙昌寺入口":"13:47", "川越市駅":"13:50"
+  },
+  {
+    "川越駅東口(3番)":"14:00", "喜多院前":"14:08", "成田山前":"14:09", "松江町二丁目":"14:11", "大手町":"14:12", "やまぶき會館前":"14:14", 
+    "博物館_乘車":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札の辻":"14:23", "一番街":"14:24", 
+    "仲町":"14:25", "妙昌寺入口":"14:27", "川越市駅":"14:30"
+  },
+  {
+    "川越駅東口(3番)":"14:50", "喜多院前":"14:58", "成田山前":"14:59", "松江町二丁目":"15:01", "大手町":"15:02", "やまぶき會館前":"15:04", 
+    "博物館_乘車":"15:08", "川越氷川神社":"15:10", "裁判所前":"15:11", "川越市役所前":"15:12", "札の辻":"15:13", "一番街":"15:14", 
+    "仲町":"15:15", "妙昌寺入口":"15:17", "川越市駅":"15:20"
+  },
+  {
+    "川越駅東口(3番)":"15:40", "喜多院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき會館前":"15:54", 
+    "博物館_乘車":"15:58", "川越氷川神社":"16:00", "裁判所前":"16:01", "川越市役所前":"16:02", "札の辻":"16:03", "一番街":"16:04", 
+    "仲町":"16:05", "妙昌寺入口":"16:07", "川越市駅":"16:10"
+  }
+];
+
+// ===== 2. C01（紫線巡迴）（100% 精準拆分上/下車專用，零秒差對齊原始 CSV） =====
+const c01 = [
+  {
+    "川越駅西口":"10:55", "本川越駅":"11:01", "小江戸蔵里":"11:02", "喜多院":"11:07", "川越高校前":"11:10", 
+    "博物館_降車":"11:11", "あぐれっしゅ_降車":"11:13", "あぐれっしゅ_乘車":"11:14", "博物館_乘車":"11:27", 
+    "氷川神社前":"11:29", "大手門前":"11:31", "菓子屋横丁":"11:32", "川越市駅":"11:37"
+  },
+  {
+    "川越駅西口":"12:05", "本川越駅":"12:11", "小江戸蔵里":"12:12", "喜多院":"12:17", "川越高校前":"12:20", 
+    "博物館_降車":"12:21", "あぐれっしゅ_降車":"12:23", "あぐれっしゅ_乘車":"12:24", "博物館_乘車":"12:37", 
+    "氷川神社前":"12:39", "大手門前":"12:41", "川越市駅":"12:47"
+  },
+  {
+    // 註：這班 C01 抵達あぐれっしゅ川越(降車)後即止。
+    "川越駅西口":"13:10", "本川越駅":"13:16", "小江戸蔵里":"13:17", "喜多院":"13:22", "川越高校前":"13:25", 
+    "博物館_降車":"13:26", "あぐれっしゅ_降車":"13:36"
+  },
+  {
+    "川越駅西口":"14:45", "本川越駅":"14:51", "小江戸蔵里":"14:52", "喜多院":"14:57", "川越高校前":"15:00", 
+    "博物館_降車":"15:01", "あぐれっしゅ_降車":"15:03", "あぐれっしゅ_乘車":"15:04", "博物館_乘車":"15:17", 
+    "氷川神社前":"15:19", "大手門前":"15:21", "菓子屋横丁":"15:22", "川越市駅":"15:27"
+  },
+  {
+    "川越駅西口":"16:00", "本川越駅":"16:06", "小江戸蔵里":"16:07", "喜多院":"16:12", "川越高校前":"16:15", 
+    "博物館_降車":"16:16", "あぐれっしゅ_降車":"16:18", "あぐれっしゅ_乘車":"16:19", "博物館_乘車":"16:32", 
+    "氷川神社前":"16:34", "大手門前":"16:36", "菓子屋横丁":"16:37", "川越市駅":"16:42"
+  }
+];
+
+// ===== 3. C02（橘線巡迴）（100% 精準對齊 EXCEL CSV，並對齊上/下車站牌） =====
+const c02 = [
+  {
+    "川越駅西口":"09:45", "本川越駅":"09:51", "蓮馨寺北":"09:53", "蔵の街":"09:57", "大手門前":"09:58", "市役所":"09:59", 
+    "あぐれっしゅ_降車":"10:06", "博物館_降車":"10:08", "氷川神社前":"10:06", "菓子屋横丁":"10:11"
+  },
+  {
+    "川越駅西口":"10:35", "本川越駅":"10:41", "蓮馨寺北":"10:43", "蔵の街":"10:47", "大手門前":"10:48", "市役所":"10:49", 
+    "あぐれっしゅ_降車":"10:56", "博物館_降車":"10:58", "氷川神社前":"10:56", "菓子屋横丁":"11:01"
+  },
+  {
+    // 註：本班次僅到あぐれっしゅ川越(降車)，隨後止。
+    "川越駅西口":"11:25", "本川越駅":"11:31", "蓮馨寺北":"11:33", "蔵の街":"11:37", "大手門前":"11:38", "市役所":"11:39", 
+    "あぐれっしゅ_降車":"11:45"
+  },
+  {
+    "川越駅西口":"12:05", "本川越駅":"12:11", "蓮馨寺北":"12:13", "蔵の街":"12:17", "大手門前":"12:18", "市役所":"12:19", 
+    "あぐれっしゅ_乘車":"12:47", "博物館_乘車":"12:49", "氷川神社前":"12:39", "菓子屋横丁":"12:42"
+  },
+  {
+    "川越駅西口":"13:20", "本川越駅":"13:26", "蓮馨寺北":"13:28", "蔵の街":"13:32", "大手門前":"13:33", "市役所":"13:34", 
+    "あぐれっしゅ_降車":"13:41", "博物館_降車":"13:43", "氷川神社前":"13:41", "菓子屋横丁":"13:46"
+  },
+  {
+    "川越駅西口":"14:15", "本川越駅":"14:21", "蓮馨寺北":"14:23", "蔵の街":"14:27", "大手門前":"14:28", "市役所":"14:29", 
+    "あぐれっしゅ_降車":"14:36", "博物館_降車":"14:38", "氷川神社前":"14:36", "菓子屋横丁":"14:41"
+  },
+  {
+    "川越駅西口":"15:05", "本川越駅":"15:11", "蓮馨寺北":"15:13", "蔵の街":"15:17", "大手門前":"15:18", "市役所":"15:19", 
+    "あぐれっしゅ_乘車":"16:06", "博物館_乘車":"16:08", "氷川神社前":"15:19", "菓子屋横丁":"15:22"
+  },
+  {
+    "川越駅西口":"16:35", "本川越駅":"16:41", "蓮馨寺北":"16:43", "蔵の街":"16:47", "大手門前":"16:48", "市役所":"16:49", 
+    "あぐれっしゅ_降車":"16:56", "博物館_降車":"16:58", "氷川神社前":"16:56", "菓子屋横丁":"17:01"
+  }
+];
+
+// ===== 4. 精確站名同義與映射關係 =====
+function getMappedStop(lineName, selectValue) {
+  // 名勝巡遊巴士 mapping
+  if (lineName === 'meisho') {
+    if (selectValue === '成田山前') return '成田山前';
+    if (selectValue === '博物館_乘車') return '博物館_乘車';
+    if (selectValue === '川越氷川神社') return '川越氷川神社';
+    if (selectValue === '札の辻') return '札の辻';
+    if (selectValue === '一番街') return '一番街';
+    if (selectValue === '川越市駅') return '川越市駅';
+    // 下車與あぐれっしゅ專屬，名勝巡遊巴士無對應 Key，直接回傳 selectValue (在該路線會回 null 並隱藏)
+    return selectValue; 
+  }
+  
+  // C01（紫線）巡迴 mapping
+  if (lineName === 'c01') {
+    if (selectValue === '成田山前') return '喜多院';
+    if (selectValue === '博物館_降車') return '博物館_降車';
+    if (selectValue === '博物館_乘車') return '博物館_乘車';
+    if (selectValue === 'あぐれっしゅ_降車') return 'あぐれっしゅ_降車';
+    if (selectValue === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (selectValue === '川越氷川神社') return '氷川神社前';
+    if (selectValue === '札の辻') return '大手門前';
+    if (selectValue === '一番街') return '大手門前';
+    if (selectValue === '川越市駅') return '川越市駅';
+    return selectValue;
+  }
+
+  // C02（橘線）巡迴 mapping
+  if (lineName === 'c02') {
+    if (selectValue === '博物館_降車') return '博物館_降車';
+    if (selectValue === '博物館_乘車') return '博物館_乘車';
+    if (selectValue === 'あぐれっしゅ_降車') return 'あぐれっしゅ_降車';
+    if (selectValue === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (selectValue === '川越氷川神社') return '氷川神社前';
+    if (selectValue === '札の辻') return '大手門前';
+    if (selectValue === '一番街') return '大手門前';
+    return selectValue;
+  }
+  
+  return selectValue;
+}
+
+function toMin(t){
+  if(!t) return 9999;
+  const [h,m] = t.split(':');
+  return h*60 + parseInt(m);
+}
+
+function getUpcomingBuses(data, mappedStop, nowMin) {
+  let hasStop = false;
+  for(const bus of data){
+    if(bus[mappedStop] !== undefined) {
+      hasStop = true;
+      break;
+    }
+  }
+  if (!hasStop) return null; // 該路線無停靠此站牌 ➔ 前端隱藏
+
+  const upcoming = [];
+  for(const bus of data){
+    const t = bus[mappedStop];
+    if(!t || t === "止於此站" || t === "—") continue;
+    const m = toMin(t);
+    if(m >= nowMin){
+      upcoming.push({time: t.slice(0, 5), diff: m - nowMin});
+    }
+  }
+  return upcoming; 
+}
+
+function renderLive(){
+  const el = document.getElementById('busLive');
+  const selectVal = document.getElementById('busStop').value;
+  const now = new Date();
+  const nowMin = now.getHours()*60 + now.getMinutes();
+  
+  const lines = [
+    { name: '🚌 小江戶名勝巡遊巴士', key: 'meisho', data: meisho },
+    { name: '🟣 巡迴巴士 C01 (紫線)', key: 'c01', data: c01 },
+    { name: '🟠 巡迴巴士 C02 (橘線)', key: 'c02', data: c02 }
+  ];
+
+  let activeLinesHtml = [];
+
+  lines.forEach(line => {
+    const mappedStop = getMappedStop(line.key, selectVal);
+    const upcoming = getUpcomingBuses(line.data, mappedStop, nowMin);
+    
+    if (upcoming) {
+      if (upcoming.length === 0) {
+        activeLinesHtml.push(`
+          <div class="busRow" style="opacity: 0.5;">
+            <div>${line.name} <div class="busMetaInfo">站牌：${mappedStop}</div></div>
+            <div style="color: #999;">今日已收班</div>
+          </div>
+        `);
+      } else {
+        const first = upcoming[0];
+        let nextStr = "";
+        
+        if (upcoming.length > 1) {
+          const second = upcoming[1];
+          nextStr = `<span class="busNextLabel">➔ 下班 <strong>${second.time}</strong> (${second.diff}分後)</span>`;
+        } else {
+          nextStr = `<span class="busNextLabel" style="color:#e67e22;background:#fdf6ec;">[末班車]</span>`;
+        }
+
+        // 當使用者選擇「降車專用」站點時，特別進行備註提示，避免遊客跑去那邊等上車
+        const isGetOffStop = mappedStop.includes('降車');
+        const warningTip = isGetOffStop ? ' <strong style="color:#e74c3c;font-size:11px;">⚠️ 降車專用 (此站不停車載客)</strong>' : '';
+
+        activeLinesHtml.push(`
+          <div class="busRow">
+            <div>${line.name} <div class="busMetaInfo">站牌：${mappedStop}${warningTip}</div></div>
+            <div><strong>${first.time}</strong>（${first.diff} 分後）${nextStr}</div>
+          </div>
+        `);
+      }
+    }
+  });
+
+  if(activeLinesHtml.length === 0){
+    el.innerHTML = '<div class="busHint">⚠️ 此站牌未有任何巴士路線停靠。</div>';
+    return;
+  }
+
+  el.innerHTML = activeLinesHtml.join('');
+}
+
+document.getElementById('busStop').addEventListener('change', renderLive);
+renderLive();
+setInterval(renderLive, 10000); 
+
+})();
+</script>
+
+              <div style="margin-top:14px;">
+                <div class="galleryRow" role="list">
+                  <div class="gItem"><img src="Day3/04.jpg" alt="川越站巴士乘車位置圖"></div>
+                </div>
+                <div class="btnRow" style="margin-top:10px;">
+                  <a class="btn" href="Day3/巡迴巴士乘車資訊.pdf" target="_blank">📄 巡迴巴士乘車資訊</a>
+                  <a class="btn" href="Day3/名勝巡遊巴士乘車資訊.pdf" target="_blank">📄 名勝巡遊巴士乘車資訊</a>
+                </div>
+              </div>
+
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">11:10 - 12:00</div>
+       <div class="place">
+         <p class="placeTitle">冰川神社</p>
+         <ul class="notes">
+          <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
+          <li>建議直接搭到最遠端 → 冰川神社</li>
+         </ul>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">12:15 - 13:45</div>
+       <div class="place">
+         <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
+         <ul class="notes">
+          <li>江戶風味鰻魚飯</li>
+          <li>特色手打烏龍麵</li>
+         </ul>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">13:45 - 16:00</div>
+       <div class="place">
+        <p class="placeTitle">藏造老街 ＆ 時之鐘</p>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">16:00 - 17:30</div>
+       <div class="place">
+        <p class="placeTitle">新富町商店街</p>
+        <p class="meta">一路逛回車站</p>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">17:30 ~</div>
+       <div class="place">
+        <p class="placeTitle">返回東京</p>
+        <p class="meta">JR 川越線・埼京線直通（往大崎 / 新木場）</p>
+       </div>
+      </div>
+
+     </div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day4">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">4</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">9/29(二)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day5">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">5</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">9/30(三)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+  </section>
+
+   <section class="card daySection pagePanel" id="day6">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">6</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">10/01(四)</div>
+    </div>
+    <div class="dayBody">
+      <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day7">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">7</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">10/02(五)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day8">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">8</div>
+      <h2 class="dayTitle">回程</h2>
+     </div>
+     <div class="dayDate">10/03(六)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline">
+      <div class="tRow">
+        <div class="time">11:30</div>
+       <div class="place">
+         <p class="placeTitle">抵達機場</p>
+         <p class="meta">預計 11:30 抵達羽田機場第3航廈辦理登機與託運</p>
+       </div>
+      </div>
+      <div class="tRow">
+       <div class="time">14:30</div>
+       <div class="place">
+         <p class="placeTitle">起飛返回松山機場</p>
+         <p class="meta">搭乘華航 CI221，預計 16:55 抵達松山機場</p>
+      </div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+  </section>
+ </main>
+
+ <div class="lbModal" id="lightbox" aria-hidden="true">
+  <div class="lbBackdrop" data-close="lightbox"></div>
+  <div class="lbInner">
+   <button class="lbClose" type="button" id="lbClose" aria-label="關閉圖片">×</button>
+   <button class="lbNav lbPrev" id="lbPrev" aria-label="上一張">‹</button>
+   <img class="lbImg" id="lbImg" alt="放大圖片">
+   <button class="lbNav lbNext" id="lbNext" aria-label="下一張">›</button>
+   <div class="lbCaption" id="lbCaption"></div>
+  </div>
+ </div>
+
+ <script>
+ (function(){
+  document.querySelectorAll('.galleryRow img').forEach(img => {
+    img.removeAttribute('onclick');
+    img.addEventListener('click', () => openLightbox(img));
+  });
+
+  const modal = document.getElementById('lightbox');
+  const modalImg = document.getElementById('lbImg');
+  const modalCaption = document.getElementById('lbCaption');
+  const closeBtn = document.getElementById('lbClose');
+  const prevBtn = document.getElementById('lbPrev');
+  const nextBtn = document.getElementById('lbNext');
+  let currentIndex = -1;
+  let currentGroup = [];
+  function openLightbox(img){
+    const row = img.closest('.galleryRow');
+    currentGroup = Array.from(row.querySelectorAll('img'));
+    currentIndex = currentGroup.indexOf(img);
+    showImage(currentIndex);
+    modal.classList.add('open');
+    resetTransform();
+  }
+
+  function showImage(i){
+    if(i<0 || i>=currentGroup.length) return;
+    currentIndex = i;
+    const img = currentGroup[i];
+    modalImg.src = img.src;
+    
+    const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
+    modalCaption.textContent = captionText;
+    modalCaption.style.display = captionText ? 'block' : 'none';
+  }
+
+  function nextImage(){
+    showImage((currentIndex+1)%currentGroup.length);
+  }
+
+  function prevImage(){
+    showImage((currentIndex-1+currentGroup.length)%currentGroup.length);
+  }
+
+  closeBtn.onclick = ()=> { modal.classList.remove('open'); resetTransform(); };
+  nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
+  prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
+
+  let scale = 1, lastScale = 1;
+  let startDist = 0;
+  let startX = 0, startY = 0;
+  let currentX = 0, currentY = 0;
+  let translateX = 0, translateY = 0;
+  let lastTranslateX = 0;
+  let lastTranslateY = 0;
+  let lastTap = 0;
+  let isDragging = false;
+  let touchMode = 'none';
+  function getDist(touches){
+    return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+  }
+
+  function applyTransform(animate = false){
+    modalImg.style.transition = animate ? 'transform 0.25s ease-out' : 'none';
+    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  }
+
+  function resetTransform(){
+    scale = 1; lastScale = 1;
+    translateX = 0; translateY = 0;
+    lastTranslateX = 0; lastTranslateY = 0;
+    applyTransform(true);
+  }
+
+  const modalInner = document.querySelector('.lbInner');
+  modalInner.addEventListener('touchstart', (e)=>{
+    if (e.touches.length === 1) {
+      touchMode = 'pan';
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isDragging = true;
+    } else if (e.touches.length === 2) {
+      touchMode = 'pinch';
+      startDist = getDist(e.touches);
+      lastScale = scale;
+    }
+  }, {passive: false});
+  modalInner.addEventListener('touchmove', (e)=>{
+    if (touchMode === 'pinch' && e.touches.length === 2) {
+      e.preventDefault();
+      const dist = getDist(e.touches);
+      scale = Math.min(4, Math.max(1, lastScale * (dist / startDist)));
+      applyTransform();
+    } 
+    else if (touchMode === 'pan' && isDragging && e.touches.length === 1) {
+      currentX = e.touches[0].clientX;
+      currentY = e.touches[0].clientY;
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+
+      if (scale > 1) {
+        translateX = lastTranslateX + diffX;
+        translateY = lastTranslateY + diffY;
+        applyTransform();
+      } else {
+        if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
+          e.preventDefault();
+          modalImg.style.transform = `translateX(${diffX}px) scale(1)`;
+        }
+      }
+    }
+  }, {passive: false});
+  modalInner.addEventListener('touchend', (e)=>{
+    if (touchMode === 'pan' && isDragging) {
+      isDragging = false;
+      const diffX = currentX - startX;
+      
+      if (scale === 1) {
+        if (diffX > 60) {
+          prevImage();
+        } else if (diffX < -60) {
+          nextImage();
+        }
+        resetTransform();
+      } else {
+        lastTranslateX = translateX;
+        lastTranslateY = translateY;
+      }
+    }
+       
+    const now = Date.now();
+    if (now - lastTap < 300 && e.touches.length === 0) {
+      if (scale === 1) {
+        scale = 2.5;
+        applyTransform(true);
+      } else {
+        resetTransform();
+      }
+      lastTap = 0;
+      touchMode = 'none';
+      return;
+    }
+    lastTap = now;
+    touchMode = 'none';
+  });
+  document.querySelectorAll('.timeline').forEach(timeline => {
+   let dragItem = null;
+   
+   timeline.addEventListener('dragstart', e => {
+    const row = e.target.closest('.tRow');
+    if (!row) return;
+    dragItem = row;
+    row.style.opacity = '0.4';
+    e.dataTransfer.effectAllowed = 'move';
+   });
+   
+   timeline.addEventListener('dragend', e => {
+    const row = e.target.closest('.tRow');
+    if (row) row.style.opacity = '1';
+    dragItem = null;
+   });
+   
+   timeline.addEventListener('dragover', e => {
+    e.preventDefault();
+    const row = e.target.closest('.tRow');
+    if (!row || !dragItem || row === dragItem) return;
+    const rect = row.getBoundingClientRect();
+    const offset = e.clientY - rect.top;
+    if (offset > rect.height / 2) {
+     row.after(dragItem);
+    } else {
+     row.before(dragItem);
+    }
+   });
+
+   timeline.querySelectorAll('.tRow').forEach(row => {
+    row.draggable = false;
+    const handle = row.querySelector('.time');
+    if (!handle) return;
+    handle.style.cursor = 'default';
+    handle.style.userSelect = 'text';
+    handle.addEventListener('mousedown', () => row.draggable = true);
+    handle.addEventListener('mouseup', () => row.draggable = false);
+    handle.addEventListener('mouseleave', () => row.draggable = false);
+   });
+  });
+  document.querySelectorAll('.galleryRow').forEach(row => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+
+    row.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      isDown = true;
+      row.classList.add('dragging');
+      startX = e.pageX;
+      scrollLeft = row.scrollLeft;
+      lastX = e.pageX;
+      lastTime = Date.now();
+    });
+
+    row.addEventListener('mouseleave', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+    });
+
+    row.addEventListener('mouseup', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+      const decay = 0.95;
+      function momentum(){
+        if (Math.abs(velocity) < 0.1) return;
+        row.scrollLeft -= velocity;
+        velocity *= decay;
+        requestAnimationFrame(momentum);
+      }
+      momentum();
+    });
+
+    row.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX;
+      const walk = (x - startX);
+      row.scrollLeft = scrollLeft - walk;
+
+      const now = Date.now();
+      const dx = x - lastX;
+      const dt = now - lastTime || 1;
+      velocity = dx / dt * 16; 
+      lastX = x;
+      lastTime = now;
+    });
+    row.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        row.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  });
+
+  document.querySelectorAll('.tabBtn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const targetId = btn.getAttribute('data-target');
+      document.querySelectorAll('.pagePanel').forEach(panel => {
+        if(panel.id === targetId) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+    });
+  });
+  document.querySelectorAll('a[href^="http"]').forEach(link => {
+   link.setAttribute('target', '_blank');
+   link.setAttribute('rel', 'noopener');
+  });
+ })();
+ </script>
+</body>
+</html>
