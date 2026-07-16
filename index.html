@@ -1244,4 +1244,612 @@ const meisho = [
   {
     "川越駅東口(3番)":"15:40", "喜多院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき会館前":"15:54", 
     "博物館前":"15:58", "川越氷川神社":"16:00", "裁判所前":"16:01", "川越市役所前":"16:02", "札の辻":"16:03", "一番街":"16:04", 
-    "仲町":"16:05", "妙昌寺入口
+    "仲町":"16:05", "妙昌寺入口":"16:07", "川越市駅":"16:10"
+  }
+];
+
+// ===== 2. C01（紫線巡迴） （真實 EXCEL 時刻表） =====
+const c01 = [
+  {
+    "川越駅西口":"10:55", "本川越駅":"11:01", "小江戸蔵里":"11:02", "喜多院":"11:07", "川越高校前":"11:10", "博物館・美術館前":"11:27", 
+    "あぐれっしゅ川越":"11:14", "氷川神社前":"11:29", "大手門前":"11:31", "菓子屋横丁":"11:32", "川越市駅":"11:37"
+  },
+  {
+    "川越駅西口":"12:05", "本川越駅":"12:11", "小江戸蔵里":"12:12", "喜多院":"12:17", "川越高校前":"12:20", "博物館・美術館前":"12:37", 
+    "あぐれっしゅ川越":"12:24", "氷川神社前":"12:39", "大手門前":"12:41", "川越市駅":"12:47"
+  },
+  {
+    "川越駅西口":"13:10", "本川越駅":"13:16", "小江戸蔵里":"13:17", "喜多院":"13:22", "川越高校前":"13:25", 
+    "氷川神社前":"13:41", "大手門前":"13:43", "川越市駅":"13:48"
+  },
+  {
+    "川越駅西口":"14:45", "本川越駅":"14:51", "小江戸蔵里":"14:52", "喜多院":"14:57", "川越高校前":"15:00", "博物館・美術館前":"15:17", 
+    "あぐれっしゅ川越":"15:04", "氷川神社前":"15:19", "大手門前":"15:21", "菓子屋横丁":"15:22", "川越市駅":"15:27"
+  },
+  {
+    "川越駅西口":"16:00", "本川越駅":"16:06", "小江戸蔵里":"16:07", "喜多院":"16:12", "川越高校前":"16:15", "博物館・美術館前":"16:32", 
+    "あぐれっしゅ川越":"16:19", "氷川神社前":"16:34", "大手門前":"16:36", "菓子屋横丁":"16:37", "川越市駅":"16:42"
+  }
+];
+
+// ===== 3. C02（橘線巡迴） （真實 EXCEL 時刻表） =====
+const c02 = [
+  {
+    "川越駅西口":"09:45", "本川越駅":"09:51", "蓮馨寺北":"09:53", "蔵の街":"09:57", "大手門前":"09:58", "市役所":"09:59", 
+    "氷川神社前":"10:06"
+  },
+  {
+    "川越駅西口":"10:35", "本川越駅":"10:41", "蓮馨寺北":"10:43", "蔵の街":"10:47", "大手門前":"10:48", "市役所":"10:49", 
+    "氷川神社前":"10:56"
+  },
+  {
+    "川越駅西口":"11:25", "本川越駅":"11:31", "蓮馨寺北":"11:33", "蔵の街":"11:37", "大手門前":"11:38", "市役所":"11:39", 
+    "氷川神社前":"11:29"
+  },
+  {
+    "川越駅西口":"13:20", "本川越駅":"13:26", "蓮馨寺北":"13:28", "蔵の街":"13:32", "大手門前":"13:33", "市役所":"13:34", 
+    "氷川神社前":"13:41"
+  },
+  {
+    "川越駅西口":"14:15", "本川越駅":"14:21", "蓮馨寺北":"14:23", "蔵の街":"14:27", "大手門前":"14:28", "市役所":"14:29", 
+    "氷川神社前":"14:36"
+  },
+  {
+    "川越駅西口":"15:05", "本川越駅":"15:11", "蓮馨寺北":"15:13", "蔵の街":"15:17", "大手門前":"15:18", "市役所":"15:19", 
+    "氷川神社前":"15:19"
+  },
+  {
+    "川越駅西口":"16:35", "本川越駅":"16:41", "蓮馨寺北":"16:43", "蔵の街":"16:47", "大手門前":"16:48", "市役所":"16:49", 
+    "氷川神社前":"16:56"
+  }
+];
+
+// ===== 4. 站名同義/映射關係表 =====
+// 因為實體站牌在各路線命名略有不同，為了避免用戶在同一個地點看不到其他路線，以下進行精確對齊映射：
+function getMappedStop(lineName, selectValue) {
+  // 名勝巡遊巴士的映射
+  if (lineName === 'meisho') {
+    if (selectValue === '成田山前') return '成田山前';
+    if (selectValue === '博物館前') return '博物館前';
+    if (selectValue === '川越氷川神社') return '川越氷川神社';
+    if (selectValue === '札の辻') return '札の辻';
+    if (selectValue === '一番街') return '一番街';
+    if (selectValue === '川越市駅') return '川越市駅';
+    // 專屬站點
+    return selectValue; 
+  }
+  
+  // C01（紫線）巡迴的映射
+  if (lineName === 'c01') {
+    if (selectValue === '成田山前') return '喜多院'; // EXCEL 中 C01 在成田山對應喜多院站點
+    if (selectValue === '博物館前') return '博物館・美術館前';
+    if (selectValue === '川越氷川神社') return '氷川神社前';
+    if (selectValue === '札の辻') return '大手門前'; // 札の辻最近的站點為大手門前
+    if (selectValue === '一番街') return '大手門前';
+    if (selectValue === '川越市駅') return '川越市駅';
+    // 專屬站點
+    return selectValue;
+  }
+
+  // C02（橘線）巡迴的映射
+  if (lineName === 'c02') {
+    if (selectValue === '博物館前') return '博物館・美術館前'; // C02 在降車專用中有停
+    if (selectValue === '川越氷川神社') return '氷川神社前';
+    if (selectValue === '札の辻') return '大手門前';
+    if (selectValue === '一番街') return '大手門前';
+    // 專屬站點
+    return selectValue;
+  }
+  
+  return selectValue;
+}
+
+function toMin(t){
+  if(!t) return 9999;
+  const [h,m] = t.split(':');
+  return h*60 + parseInt(m);
+}
+
+function getNext(data, mappedStop, nowMin){
+  // 檢查這條線是否真的有這個站點
+  let hasStop = false;
+  for(const bus of data){
+    if(bus[mappedStop] !== undefined) {
+      hasStop = true;
+      break;
+    }
+  }
+  if (!hasStop) return null; // 該路線沒經過此站，直接回傳 null (不顯示)
+
+  // 尋找最近一班車
+  for(const bus of data){
+    const t = bus[mappedStop];
+    if(!t || t === "止於此站" || t === "—") continue;
+    const m = toMin(t);
+    if(m >= nowMin){
+      return {time:t, diff:m-nowMin};
+    }
+  }
+  // 如果有站點但今天已經沒車了
+  return {time: "結束", diff: 9999};
+}
+
+function renderLive(){
+  const el = document.getElementById('busLive');
+  const selectVal = document.getElementById('busStop').value;
+  const now = new Date();
+  const nowMin = now.getHours()*60 + now.getMinutes();
+  
+  // 分別取得三條線映射後的結果
+  const lines = [
+    { name: '🚌 小江戶名勝巡遊巴士', key: 'meisho', data: meisho },
+    { name: '🟣 巡迴巴士 C01 (紫線)', key: 'c01', data: c01 },
+    { name: '🟠 巡迴巴士 C02 (橘線)', key: 'c02', data: c02 }
+  ];
+
+  let activeLinesHtml = [];
+
+  lines.forEach(line => {
+    const mappedStop = getMappedStop(line.key, selectVal);
+    const next = getNext(line.data, mappedStop, nowMin);
+    
+    // 如果 next 存在，代表這條路線有經過此站！
+    if (next) {
+      if (next.time === "結束") {
+        activeLinesHtml.push(`
+          <div class="busRow" style="opacity: 0.6;">
+            <div>${line.name} <div class="busMetaInfo">站牌名稱：${mappedStop}</div></div>
+            <div style="color: #888;">今日班次已結束</div>
+          </div>
+        `);
+      } else {
+        activeLinesHtml.push(`
+          <div class="busRow">
+            <div>${line.name} <div class="busMetaInfo">站牌名稱：${mappedStop}</div></div>
+            <div><strong>${next.time}</strong>（${next.diff} 分後）</div>
+          </div>
+        `);
+      }
+    }
+  });
+
+  if(activeLinesHtml.length === 0){
+    el.innerHTML = '<div class="busHint">⚠️ 系統偵測異常，該站無任何車次經過。</div>';
+    return;
+  }
+
+  el.innerHTML = activeLinesHtml.join('');
+}
+
+document.getElementById('busStop').addEventListener('change', renderLive);
+renderLive();
+setInterval(renderLive, 10000); // 手機端 10 秒刷新一次，確保時間精準
+
+})();
+</script>
+
+              <div style="margin-top:14px;">
+                <div class="galleryRow" role="list">
+                  <div class="gItem"><img src="Day3/04.jpg" alt="川越站巴士乘車位置圖"></div>
+                </div>
+                <div class="btnRow" style="margin-top:10px;">
+                  <a class="btn" href="Day3/巡迴巴士乘車資訊.pdf" target="_blank">📄 巡迴巴士乘車資訊</a>
+                  <a class="btn" href="Day3/名勝巡遊巴士乘車資訊.pdf" target="_blank">📄 名勝巡遊巴士乘車資訊</a>
+                </div>
+              </div>
+
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">11:10 - 12:00</div>
+       <div class="place">
+         <p class="placeTitle">冰川神社</p>
+         <ul class="notes">
+          <li>從川越站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
+          <li>建議直接搭到最遠端 → 冰川神社</li>
+         </ul>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">12:15 - 13:45</div>
+       <div class="place">
+         <p class="placeTitle">菓子屋橫丁 ＆ 午餐</p>
+         <ul class="notes">
+          <li>江戶風味鰻魚飯</li>
+          <li>特色手打烏龍麵</li>
+         </ul>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">13:45 - 16:00</div>
+       <div class="place">
+        <p class="placeTitle">藏造老街 ＆ 時之鐘</p>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">16:00 - 17:30</div>
+       <div class="place">
+        <p class="placeTitle">新富町商店街</p>
+        <p class="meta">一路逛回車站</p>
+       </div>
+      </div>
+
+      <div class="tRow">
+       <div class="time">17:30 ~</div>
+       <div class="place">
+        <p class="placeTitle">返回東京</p>
+        <p class="meta">JR 川越線・埼京線直通（往大崎 / 新木場）</p>
+       </div>
+      </div>
+
+     </div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day4">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">4</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">9/29(二)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day5">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">5</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">9/30(三)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+  </section>
+
+   <section class="card daySection pagePanel" id="day6">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">6</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">10/01(四)</div>
+    </div>
+    <div class="dayBody">
+      <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day7">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">7</div>
+      <h2 class="dayTitle">行程待安排</h2>
+     </div>
+     <div class="dayDate">10/02(五)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline"></div>
+    </div>
+   </section>
+
+   <section class="card daySection pagePanel" id="day8">
+    <div class="dayCardHeader">
+     <div class="dayHeaderMain">
+      <div class="dayIndex">8</div>
+      <h2 class="dayTitle">回程</h2>
+     </div>
+     <div class="dayDate">10/03(六)</div>
+    </div>
+    <div class="dayBody">
+     <div class="timeline">
+      <div class="tRow">
+        <div class="time">11:30</div>
+       <div class="place">
+         <p class="placeTitle">抵達機場</p>
+         <p class="meta">預計 11:30 抵達羽田機場第3航廈辦理登機與託運</p>
+       </div>
+      </div>
+      <div class="tRow">
+       <div class="time">14:30</div>
+       <div class="place">
+         <p class="placeTitle">起飛返回松山機場</p>
+         <p class="meta">搭乘華航 CI221，預計 16:55 抵達松山機場</p>
+      </div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+  </section>
+ </main>
+
+ <div class="lbModal" id="lightbox" aria-hidden="true">
+  <div class="lbBackdrop" data-close="lightbox"></div>
+  <div class="lbInner">
+   <button class="lbClose" type="button" id="lbClose" aria-label="關閉圖片">×</button>
+   <button class="lbNav lbPrev" id="lbPrev" aria-label="上一張">‹</button>
+   <img class="lbImg" id="lbImg" alt="放大圖片">
+   <button class="lbNav lbNext" id="lbNext" aria-label="下一張">›</button>
+   <div class="lbCaption" id="lbCaption"></div>
+  </div>
+ </div>
+
+ <script>
+ (function(){
+  document.querySelectorAll('.galleryRow img').forEach(img => {
+    img.removeAttribute('onclick');
+    img.addEventListener('click', () => openLightbox(img));
+  });
+
+  const modal = document.getElementById('lightbox');
+  const modalImg = document.getElementById('lbImg');
+  const modalCaption = document.getElementById('lbCaption');
+  const closeBtn = document.getElementById('lbClose');
+  const prevBtn = document.getElementById('lbPrev');
+  const nextBtn = document.getElementById('lbNext');
+  let currentIndex = -1;
+  let currentGroup = [];
+  function openLightbox(img){
+    const row = img.closest('.galleryRow');
+    currentGroup = Array.from(row.querySelectorAll('img'));
+    currentIndex = currentGroup.indexOf(img);
+    showImage(currentIndex);
+    modal.classList.add('open');
+    resetTransform();
+  }
+
+  function showImage(i){
+    if(i<0 || i>=currentGroup.length) return;
+    currentIndex = i;
+    const img = currentGroup[i];
+    modalImg.src = img.src;
+    
+    const captionText = img.closest('.gItem')?.getAttribute('data-caption') || img.alt || '';
+    modalCaption.textContent = captionText;
+    modalCaption.style.display = captionText ? 'block' : 'none';
+  }
+
+  function nextImage(){
+    showImage((currentIndex+1)%currentGroup.length);
+  }
+
+  function prevImage(){
+    showImage((currentIndex-1+currentGroup.length)%currentGroup.length);
+  }
+
+  closeBtn.onclick = ()=> { modal.classList.remove('open'); resetTransform(); };
+  nextBtn.onclick = ()=>{ nextImage(); resetTransform(); };
+  prevBtn.onclick = ()=>{ prevImage(); resetTransform(); };
+
+  let scale = 1, lastScale = 1;
+  let startDist = 0;
+  let startX = 0, startY = 0;
+  let currentX = 0, currentY = 0;
+  let translateX = 0, translateY = 0;
+  let lastTranslateX = 0;
+  let lastTranslateY = 0;
+  let lastTap = 0;
+  let isDragging = false;
+  let touchMode = 'none';
+  function getDist(touches){
+    return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+  }
+
+  function applyTransform(animate = false){
+    modalImg.style.transition = animate ? 'transform 0.25s ease-out' : 'none';
+    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  }
+
+  function resetTransform(){
+    scale = 1; lastScale = 1;
+    translateX = 0; translateY = 0;
+    lastTranslateX = 0; lastTranslateY = 0;
+    applyTransform(true);
+  }
+
+  const modalInner = document.querySelector('.lbInner');
+  modalInner.addEventListener('touchstart', (e)=>{
+    if (e.touches.length === 1) {
+      touchMode = 'pan';
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isDragging = true;
+    } else if (e.touches.length === 2) {
+      touchMode = 'pinch';
+      startDist = getDist(e.touches);
+      lastScale = scale;
+    }
+  }, {passive: false});
+  modalInner.addEventListener('touchmove', (e)=>{
+    if (touchMode === 'pinch' && e.touches.length === 2) {
+      e.preventDefault();
+      const dist = getDist(e.touches);
+      scale = Math.min(4, Math.max(1, lastScale * (dist / startDist)));
+      applyTransform();
+    } 
+    else if (touchMode === 'pan' && isDragging && e.touches.length === 1) {
+      currentX = e.touches[0].clientX;
+      currentY = e.touches[0].clientY;
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+
+      if (scale > 1) {
+        translateX = lastTranslateX + diffX;
+        translateY = lastTranslateY + diffY;
+        applyTransform();
+      } else {
+        if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
+          e.preventDefault();
+          modalImg.style.transform = `translateX(${diffX}px) scale(1)`;
+        }
+      }
+    }
+  }, {passive: false});
+  modalInner.addEventListener('touchend', (e)=>{
+    if (touchMode === 'pan' && isDragging) {
+      isDragging = false;
+      const diffX = currentX - startX;
+      
+      if (scale === 1) {
+        if (diffX > 60) {
+          prevImage();
+        } else if (diffX < -60) {
+          nextImage();
+        }
+        resetTransform();
+      } else {
+        lastTranslateX = translateX;
+        lastTranslateY = translateY;
+      }
+    }
+       
+    const now = Date.now();
+    if (now - lastTap < 300 && e.touches.length === 0) {
+      if (scale === 1) {
+        scale = 2.5;
+        applyTransform(true);
+      } else {
+        resetTransform();
+      }
+      lastTap = 0;
+      touchMode = 'none';
+      return;
+    }
+    lastTap = now;
+    touchMode = 'none';
+  });
+  document.querySelectorAll('.timeline').forEach(timeline => {
+   let dragItem = null;
+   
+   timeline.addEventListener('dragstart', e => {
+    const row = e.target.closest('.tRow');
+    if (!row) return;
+    dragItem = row;
+    row.style.opacity = '0.4';
+    e.dataTransfer.effectAllowed = 'move';
+   });
+   
+   timeline.addEventListener('dragend', e => {
+    const row = e.target.closest('.tRow');
+    if (row) row.style.opacity = '1';
+    dragItem = null;
+   });
+   
+   timeline.addEventListener('dragover', e => {
+    e.preventDefault();
+    const row = e.target.closest('.tRow');
+    if (!row || !dragItem || row === dragItem) return;
+    const rect = row.getBoundingClientRect();
+    const offset = e.clientY - rect.top;
+    if (offset > rect.height / 2) {
+     row.after(dragItem);
+    } else {
+     row.before(dragItem);
+    }
+   });
+
+   timeline.querySelectorAll('.tRow').forEach(row => {
+    row.draggable = false;
+    const handle = row.querySelector('.time');
+    if (!handle) return;
+    handle.style.cursor = 'default';
+    handle.style.userSelect = 'text';
+    handle.addEventListener('mousedown', () => row.draggable = true);
+    handle.addEventListener('mouseup', () => row.draggable = false);
+    handle.addEventListener('mouseleave', () => row.draggable = false);
+   });
+  });
+  document.querySelectorAll('.galleryRow').forEach(row => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+
+    row.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      isDown = true;
+      row.classList.add('dragging');
+      startX = e.pageX;
+      scrollLeft = row.scrollLeft;
+      lastX = e.pageX;
+      lastTime = Date.now();
+    });
+
+    row.addEventListener('mouseleave', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+    });
+
+    row.addEventListener('mouseup', () => {
+      isDown = false;
+      row.classList.remove('dragging');
+      const decay = 0.95;
+      function momentum(){
+        if (Math.abs(velocity) < 0.1) return;
+        row.scrollLeft -= velocity;
+        velocity *= decay;
+        requestAnimationFrame(momentum);
+      }
+      momentum();
+    });
+
+    row.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX;
+      const walk = (x - startX);
+      row.scrollLeft = scrollLeft - walk;
+
+      const now = Date.now();
+      const dx = x - lastX;
+      const dt = now - lastTime || 1;
+      velocity = dx / dt * 16; 
+      lastX = x;
+      lastTime = now;
+    });
+    row.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        row.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  });
+
+  document.querySelectorAll('.tabBtn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const targetId = btn.getAttribute('data-target');
+      document.querySelectorAll('.pagePanel').forEach(panel => {
+        if(panel.id === targetId) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+    });
+  });
+  document.querySelectorAll('a[href^="http"]').forEach(link => {
+   link.setAttribute('target', '_blank');
+   link.setAttribute('rel', 'noopener');
+  });
+ })();
+ </script>
+</body>
+</html>
