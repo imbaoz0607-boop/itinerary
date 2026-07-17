@@ -273,7 +273,7 @@
   font-weight: 400 !important;
   white-space: pre-line;
   line-height: 1.6 !important;
-}
+ }
  
  .notes {
   margin: 6px 0 0;
@@ -282,33 +282,33 @@
   line-height: 1.6 !important;
   color: #4d463f !important;
   font-weight: 400 !important;
-}
+ }
 
-.infoContent .notes,
-.infoContent ul,
-.infoContent li,
-.meta,
-.infoContent p.meta {
+ .infoContent .notes,
+ .infoContent ul,
+ .infoContent li,
+ .meta,
+ .infoContent p.meta {
   font-size: 14px !important;
   line-height: 1.6 !important;
   color: #4d463f !important;
-}
+ }
 
-#day1 .tRow:nth-child(3) .place p.meta {
+ #day1 .tRow:nth-child(3) .place p.meta {
   font-size: 14px !important;
-}
+ }
 
-#day3 .infoContent p.meta,
-#day3 .infoContent .notes,
-#day3 .infoContent li {
+ #day3 .infoContent p.meta,
+ #day3 .infoContent .notes,
+ #day3 .infoContent li {
   font-size: 14px !important;
   line-height: 1.6 !important;
   color: #4d463f !important;
-}
+ }
 
-.notes li {
+ .notes li {
   margin-bottom: 4px;
-}
+ }
  .notes li + li { margin-top: 3px; }
  .gallery {
   margin-top: -2px;
@@ -1164,6 +1164,7 @@
        </div>
       </div>
 
+      <!-- ⭐ 修正：樣式套用為 tRow-alignLeft 與 gallery-alignLeft，左右完美緊貼邊框 -->
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
@@ -1181,8 +1182,9 @@
         <div class="time"></div>
         <div class="place">
           <details class="infoBox" open>
+            <!-- ⭐ 修正：將標題改為「🚌 巴士即時搭乘資訊 」 -->
             <summary>
-              <span class="summaryText">🚌 巴士即時搭乘資訊 (零瑕疵升級版)</span>
+              <span class="summaryText">🚌 巴士即時搭乘資訊 </span>
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
@@ -1229,7 +1231,7 @@
     <option value="博物館_乘車">博物館前（名勝）/ 博物館・美術館前（C01/C02）</option>
     <option value="あぐれっしゅ_乘車">あぐれっしゅ川越（C01/C02）</option>
     <option value="川越氷川神社" selected>川越氷川神社（名勝）/ 氷川神社前（C01/C02）</option>
-    <option value="札の辻">札の辻（名勝/C01/C02 共同站）</option>
+    <option value="札の辻">札的辻（名勝/C01/C02 共同站）</option>
     <option value="一番街">一番街（名勝/C01/C02 共同站）</option>
     <option value="川越市駅">川越市駅（名勝/C01/C02 共同站）</option>
   </optgroup>
@@ -1269,7 +1271,7 @@ const meisho = [
   },
   {
     "川越駅東口(3番)":"14:00", "喜多院前":"14:08", "成田山前":"14:09", "松江町二丁目":"14:11", "大手町":"14:12", "やまぶき會館前":"14:14", 
-    "博物館_乘車":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札的辻":"14:23", "一番街":"14:24", 
+    "博物館_乘車":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札校辻":"14:23", "一番街":"14:24", 
     "仲町":"14:25", "妙昌寺入口":"14:27", "川越市駅":"14:30"
   },
   {
@@ -1288,26 +1290,25 @@ const meisho = [
 const c01 = [
   {
     "川越駅西口":"10:55", "本川越駅":"11:01", "小江戸蔵里":"11:02", "喜多院":"11:07", 
-    "あぐれっしゅ_乘車":"11:14", "博物館_乘車":"11:27", 
+    "Aぐれっしゅ_乘車":"11:14", "博物館_乘車":"11:27", 
     "氷川神社前":"11:29", "大手門前":"11:31", "菓子屋横丁":"11:32", "川越市駅":"11:37"
   },
   {
     "川越駅西口":"12:05", "本川越駅":"12:11", "小江戸蔵里":"12:12", "喜多院":"12:17",  
-    "あぐれっしゅ_乘車":"12:24", "博物館_乘車":"12:37", 
+    "Aぐれっしゅ_乘車":"12:24", "博物館_乘車":"12:37", 
     "氷川神社前":"12:39", "大手門前":"12:41", "川越市駅":"12:47"
   },
   {
-    // 註：這班 C01 抵達あぐれっしゅ川越(降車)後即止，不開放上車。因此完全不寫入時間。
     "川越駅西口":"13:10", "本川越駅":"13:16", "小江戸蔵里":"13:17", "喜多院":"13:22"
   },
   {
     "川越駅西口":"14:45", "本川越駅":"14:51", "小江戸蔵里":"14:52", "喜多院":"14:57", 
-    "あぐれっしゅ_乘車":"15:04", "博物館_乘車":"15:17", 
+    "Aぐれっしゅ_乘車":"15:04", "博物館_乘車":"15:17", 
     "氷川神社前":"15:19", "大手門前":"15:21", "菓子屋横丁":"15:22", "川越市駅":"15:27"
   },
   {
     "川越駅西口":"16:00", "本川越駅":"16:06", "小江戸蔵里":"16:07", "喜多院":"16:12", 
-    "あぐれっしゅ_乘車":"16:19", "博物館_乘車":"16:32", 
+    "Aぐれっしゅ_乘車":"16:19", "博物館_乘車":"16:32", 
     "氷川神社前":"16:34", "大手門前":"16:36", "菓子屋横丁":"16:37", "川越市駅":"16:42"
   }
 ];
@@ -1323,12 +1324,11 @@ const c02 = [
     "氷川神社前":"10:56", "菓子屋横丁":"11:01"
   },
   {
-    // 本班次僅降車不載客。
     "川越駅西口":"11:25", "本川越駅":"11:31", "蓮馨寺北":"11:33", "蔵の街":"11:37", "大手門前":"11:38", "市役所":"11:39"
   },
   {
     "川越駅西口":"12:05", "本川越駅":"12:11", "蓮馨寺北":"12:13", "蔵の街":"12:17", "大手門前":"12:18", "市役所":"12:19", 
-    "あぐれっしゅ_乘車":"12:47", "博物館_乘車":"12:49"
+    "Aぐれっしゅ_乘車":"12:47", "博物館_乘車":"12:49"
   },
   {
     "川越駅西口":"13:20", "本川越駅":"13:26", "蓮馨寺北":"13:28", "蔵の街":"13:32", "大手門前":"13:33", "市役所":"13:34", 
@@ -1339,8 +1339,8 @@ const c02 = [
     "氷川神社前":"14:36", "菓子屋横丁":"14:41"
   },
   {
-    "川越駅西口":"15:05", "本川越駅":"15:11", "蓮馨寺北":"15:13", "蔵的街":"15:17", "大手門前":"15:18", "市役所":"15:19", 
-    "あぐれっしゅ_乘車":"16:06", "博物館_乘車":"16:08"
+    "川越駅西口":"15:05", "本川越駅":"15:11", "蓮馨寺北":"15:13", "蔵の街":"15:17", "大手門前":"15:18", "市役所":"15:19", 
+    "Aぐれっしゅ_乘車":"16:06", "博物館_乘車":"16:08"
   },
   {
     "川越駅西口":"16:35", "本川越駅":"16:41", "蓮馨寺北":"16:43", "蔵の街":"16:47", "大手門前":"16:48", "市役所":"16:49", 
@@ -1366,7 +1366,7 @@ function getMappedStop(lineName, selectValue) {
   if (lineName === 'c01') {
     if (base === '成田山前') return '喜多院';
     if (base === '博物館_乘車') return '博物館_乘車';
-    if (base === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (base === 'Aぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
     if (base === '川越氷川神社') return '氷川神社前';
     if (base === '札の辻') return '大手門前';
     if (base === '一番街') return '大手門前';
@@ -1378,7 +1378,7 @@ function getMappedStop(lineName, selectValue) {
 
   if (lineName === 'c02') {
     if (base === '博物館_乘車') return '博物館_乘車';
-    if (base === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (base === 'Aぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
     if (base === '川越氷川神社') return '氷川神社前';
     if (base === '札の辻') return '大手門前';
     if (base === '一番街') return '大手門前';
@@ -1387,7 +1387,7 @@ function getMappedStop(lineName, selectValue) {
     return base;
   }
   
-  return selectValue;
+  return base;
 }
 
 function toMin(t){
