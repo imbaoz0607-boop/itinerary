@@ -268,23 +268,51 @@
 
  .meta {
   margin: 4px 0 0 0 !important;
-  color: var(--muted);
-  font-size: 13px; 
+  color: #4d463f !important; /* ⭐ 與清單完全一致 */
+  font-size: 14px !important;
+  font-weight: 400 !important;
   white-space: pre-line;
-  line-height: 1.4;
- }
- .place p.meta[style*="HOTEL"], 
- .place p.meta {
-  font-size: 13px;
- }
- #day1 .tRow:nth-child(3) .place p.meta {
-  font-size: 11px !important; 
- }
+  line-height: 1.6 !important;
+}
+ 
+ 
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
-  font-size: 14px; 
- }
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #4d463f !important;
+  font-weight: 400 !important;
+}
+
+/* ===== 統一所有交通/說明清單文字樣式 ===== */
+.infoContent .notes,
+.infoContent ul,
+.infoContent li,
+.meta,
+.infoContent p.meta {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #4d463f !important;
+}
+
+/* 修正 Day1 被縮小字體 */
+#day1 .tRow:nth-child(3) .place p.meta {
+  font-size: 14px !important;
+}
+
+/* Day3 統一 */
+#day3 .infoContent p.meta,
+#day3 .infoContent .notes,
+#day3 .infoContent li {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #4d463f !important;
+}
+
+.notes li {
+  margin-bottom: 4px;
+}
  .notes li + li { margin-top: 3px; }
  .gallery {
   margin-top: -2px;
