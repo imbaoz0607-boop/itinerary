@@ -981,7 +981,7 @@
                 <li>
                   <div>
                     <a class="dinner-name" href="https://latelier-du-pain.com/english/menu_hard.html">．L’Atelier du Pain</a>
-                    <span class="dinner-type">麵包(六本木 tabelog百名店)</span>
+                    <span class="dinner-type">麵包(六本木 tabelog名店)</span>
                   </div>
                   <span class="dinner-room">📍210</span>
                 </li>
@@ -1237,12 +1237,12 @@ const meisho = [
   },
   {
     "川越駅東口(3番)":"14:50", "喜多院前":"14:58", "成田山前":"14:59", "松江町二丁目":"15:01", "大手町":"15:02", "やまぶき會館前":"15:04", 
-    "博物館_乘車":"15:08", "川越氷川神社":"15:10", "裁判所前":"15:11", "川越市役所前":"15:12", "札的辻":"15:13", "一番街":"15:14", 
+    "博物館_乘車":"15:08", "川越氷川神社":"15:10", "裁判所前":"15:11", "川越市役所前":"15:12", "札の辻":"15:13", "一番街":"15:14", 
     "仲町":"15:15", "妙昌寺入口":"15:17", "川越市駅":"15:20"
   },
   {
     "川越駅東口(3番)":"15:40", "喜多院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき會館前":"15:54", 
-    "博物館_乘車":"15:58", "川越氷川神社":"16:00", "裁判所前":"16:01", "川越市役所前":"16:02", "札的辻":"16:03", "一番街":"16:04", 
+    "博物館_乘車":"15:58", "川越氷川神社":"16:00", "裁判所前":"16:01", "川越市役所前":"16:02", "札の辻":"16:03", "一番街":"16:04", 
     "仲町":"16:05", "妙昌寺入口":"16:07", "川越市駅":"16:10"
   }
 ];
@@ -1291,7 +1291,7 @@ const c02 = [
   },
   {
     "川越駅西口":"12:05", "本川越駅":"12:11", "蓮馨寺北":"12:13", "蔵の街":"12:17", "大手門前":"12:18", "市役所":"12:19", 
-    "あぐれっしゅ_乘車":"12:47", "博物館_乘車":"12:49", "氷川神社前":"12:39", "菓子屋横丁":"12:42"
+    "あぐれっしゅ_乘車":"12:47", "博物館_乘車":"12:49"
   },
   {
     "川越駅西口":"13:20", "本川越駅":"13:26", "蓮馨寺北":"13:28", "蔵の街":"13:32", "大手門前":"13:33", "市役所":"13:34", 
@@ -1303,7 +1303,7 @@ const c02 = [
   },
   {
     "川越駅西口":"15:05", "本川越駅":"15:11", "蓮馨寺北":"15:13", "蔵の街":"15:17", "大手門前":"15:18", "市役所":"15:19", 
-    "あぐれっしゅ_乘車":"16:06", "博物館_乘車":"16:08", "氷川神社前":"15:19", "菓子屋横丁":"15:22"
+    "あぐれっしゅ_乘車":"16:06", "博物館_乘車":"16:08"
   },
   {
     "川越駅西口":"16:35", "本川越駅":"16:41", "蓮馨寺北":"16:43", "蔵の街":"16:47", "大手門前":"16:48", "市役所":"16:49", 
@@ -1313,43 +1313,51 @@ const c02 = [
 
 // ===== 4. 精確站名同義與映射關係 =====
 function getMappedStop(lineName, selectValue) {
+  // ⭐ 修正：移除括號說明，避免站名對不到
+  const base = selectValue.replace(/（.*?）/g, '');
+
   if (lineName === 'meisho') {
-    if (selectValue === '成田山前') return '成田山前';
-    if (selectValue === '博物館_乘車') return '博物館_乘車';
-    if (selectValue === '川越氷川神社') return '川越氷川神社';
-    if (selectValue === '札の辻') return '札の辻';
-    if (selectValue === '一番街') return '一番街';
-    if (selectValue === '川越市駅') return '川越市駅';
-    return selectValue; 
-  }
+    if (base === '成田山前') return '成田山前';
+    if (base === '博物館_乘車') return '博物館_乘車';
+    if (base === '川越氷川神社') return '川越氷川神社';
+    if (base === '札の辻') return '札の辻';
+    if (base === '一番街') return '一番街';
+    if (base === '川越市駅') return '川越市駅';
+    if (base === '市役所') return '川越市役所前';
+    return base; 
+  } 
   
   if (lineName === 'c01') {
-    if (selectValue === '成田山前') return '喜多院';
-    if (selectValue === '博物館_乘車') return '博物館_乘車';
-    if (selectValue === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
-    if (selectValue === '川越氷川神社') return '氷川神社前';
-    if (selectValue === '札の辻') return '大手門前';
-    if (selectValue === '一番街') return '大手門前';
-    if (selectValue === '川越市駅') return '川越市駅';
-    return selectValue;
+    if (base === '成田山前') return '喜多院';
+    if (base === '博物館_乘車') return '博物館_乘車';
+    if (base === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (base === '川越氷川神社') return '氷川神社前';
+    if (base === '札の辻') return '大手門前';
+    if (base === '一番街') return '大手門前';
+    if (base === '川越市駅') return '川越市駅';
+    if (base === '市役所') return '市役所';
+    if (base === '大手門前') return '大手門前';
+    return base;
   }
 
   if (lineName === 'c02') {
-    if (selectValue === '博物館_乘車') return '博物館_乘車';
-    if (selectValue === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
-    if (selectValue === '川越氷川神社') return '氷川神社前';
-    if (selectValue === '札の辻') return '大手門前';
-    if (selectValue === '一番街') return '大手門前';
-    return selectValue;
+    if (base === '博物館_乘車') return '博物館_乘車';
+    if (base === 'あぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (base === '川越氷川神社') return '氷川神社前';
+    if (base === '札の辻') return '大手門前';
+    if (base === '一番街') return '大手門前';
+    if (base === '市役所') return '市役所';
+    if (base === '大手門前') return '大手門前';
+    return base;
   }
   
-  return selectValue;
+  return base;
 }
 
 function toMin(t){
   if(!t) return 9999;
   const [h,m] = t.split(':');
-  return h*60 + parseInt(m);
+  return parseInt(h)*60 + parseInt(m);
 }
 
 function getUpcomingBuses(data, mappedStop, nowMin) {
@@ -1371,6 +1379,10 @@ function getUpcomingBuses(data, mappedStop, nowMin) {
       upcoming.push({time: t.slice(0, 5), diff: m - nowMin});
     }
   }
+
+  // ⭐ 修正：確保顯示順序為最近 → 下一班
+  upcoming.sort((a,b)=>a.diff - b.diff);
+
   return upcoming; 
 }
 
@@ -1456,7 +1468,7 @@ setInterval(renderLive, 10000);
        <div class="place">
          <p class="placeTitle">冰川神社</p>
          <ul class="notes">
-          <li>從川微站東口搭乘「小江戶名勝巡迴巴士」或一般路線公車</li>
+          <li>從川越站東口搭乘 「小江戶名勝巡迴巴士」或一般路線公車</li>
           <li>建議直接搭到最遠端 → 冰川神社</li>
          </ul>
        </div>
@@ -1578,7 +1590,7 @@ setInterval(renderLive, 10000);
       </div>
      </div>
     </div>
-   </section>
+  </section>
 
   </section>
  </main>
