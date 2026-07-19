@@ -273,20 +273,20 @@
   font-weight: 400 !important;
   white-space: pre-line;
   line-height: 1.6 !important;
-}
+ }
 
-/* 關鍵：讓換行後文字對齊第一個字（不是對齊．） */
 /* 每一行項目獨立處理，換行後與第一個字對齊 */
-.meta.alignFix{
-  padding:0;
-  text-indent:0;
-}
+ .meta.alignFix {
+  padding: 0;
+  text-indent: 0;
+ }
 
-.meta.alignFix .metaItem{
-  display:block;
-  padding-left:1em;
-  text-indent:-1em;
-} }
+ .meta.alignFix .metaItem {
+  display: block;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+  margin-bottom: 4px;
+ }
  
  .notes {
   margin: 6px 0 0;
@@ -1177,7 +1177,6 @@
        </div>
       </div>
 
-      <!-- ⭐ 修正：樣式套用為 tRow-alignLeft 與 gallery-alignLeft，左右完美緊貼邊框 -->
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
@@ -1195,7 +1194,6 @@
         <div class="time"></div>
         <div class="place">
           <details class="infoBox" >
-            <!-- ⭐ 修正：將標題改為「🚌 巴士即時搭乘資訊 」 -->
             <summary>
               <span class="summaryText">🚌 巴士即時搭乘資訊 </span>
               <span class="chev">⌄</span>
@@ -1289,17 +1287,17 @@ const meisho = [
   },
   {
     "川越駅東口(3番)":"14:50", "喜多院前":"14:58", "成田山前":"14:59", "松江町二丁目":"15:01", "大手町":"15:02", "やまぶき會館前":"15:04", 
-    "博物館_乘車":"15:08", "川越氷川神社":"15:10", "裁判所前":"15:11", "川越市役所前":"15:12", "札的辻":"15:13", "一番街":"15:14", 
+    "博物館_乘車":"15:08", "川越氷川神社":"15:10", "裁判所前":"15:11", "}/index.html", "札的辻":"15:13", "一番街":"15:14", 
     "仲町":"15:15", "妙昌寺入口":"15:17", "川越市駅":"15:20"
   },
   {
-    "川越駅東口(3番)":"15:40", "喜多院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき會館前":"15:54", 
+    "川越駅東口(3番)":"15:40", "喜重院前":"15:48", "成田山前":"15:49", "松江町二丁目":"15:51", "大手町":"15:52", "やまぶき會館前":"15:54", 
     "博物館_乘車":"15:58", "川越氷川神社":"16:00", "裁判所前":"16:01", "川越市役所前":"16:02", "札的辻":"16:03", "一番街":"16:04", 
     "仲町":"16:05", "妙昌寺入口":"16:07", "川越市駅":"16:10"
   }
 ];
 
-// ===== 2. C01（紫線巡迴）（已刪除所有降車專用與無用站點） =====
+// ===== 2. C01（紫線巡迴） =====
 const c01 = [
   {
     "川越駅西口":"10:55", "本川越駅":"11:01", "小江戸蔵里":"11:02", "喜多院":"11:07", 
@@ -1326,7 +1324,7 @@ const c01 = [
   }
 ];
 
-// ===== 3. C02（橘線巡迴）（已刪除所有降車專用與無用站點） =====
+// ===== 3. C02（橘線巡迴） =====
 const c02 = [
   {
     "川越駅西口":"09:45", "本川越駅":"09:51", "蓮馨寺北":"09:53", "蔵の街":"09:57", "大手門前":"09:58", "市役所":"09:59", 
@@ -1361,7 +1359,6 @@ const c02 = [
   }
 ];
 
-// ===== 4. 精確站名同義與映射關係 =====
 function getMappedStop(lineName, selectValue) {
   const base = selectValue.replace(/（.*?）/g, '');
 
@@ -1393,7 +1390,7 @@ function getMappedStop(lineName, selectValue) {
     if (base === '博物館_乘車') return '博物館_乘車';
     if (base === 'Aぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
     if (base === '川越氷川神社') return '氷川神社前';
-    if (base === '札の辻') return '大手門前';
+    if (base === '札的辻') return '大手門前';
     if (base === '一番街') return '大手門前';
     if (base === '市役所') return '市役所';
     if (base === '大手門前') return '大手門前';
@@ -1522,12 +1519,14 @@ setInterval(renderLive, 10000);
     冰川神社
   </a>
 </p>
-       <p class="meta alignFix">．冰川神社建於西元541年，據說是在河流發現了發光物體，被稱為冰川神光，進而建造了神社
-．高15m的明神形鳥居是日本最大的木製鳥居之一
-．投幣後用木頭鏟子撈出來地瓜御神籤
-．每年6月底至9月中旬會舉行祈求良緣的川越風鈴祭(縁むすび風鈴）
-．將特製的白色人形紙籤當作替身，以轉移穢氣著名的人形流(にんぎょうながし)除厄儀式
-．用釣的鯛魚御神籤，紅色是招福一年安鯛、粉紅色是良縁あい鯛，另有季節或特定活動限定款</p>
+       <p class="meta alignFix">
+         <span class="metaItem">．冰川神社建於西元541年，據說是在河流發現了<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;發光物體，被稱為冰川神光，進而建造了神社</span>
+         <span class="metaItem">．高15m的明神形鳥居是日本最大的木製鳥居之一</span>
+         <span class="metaItem">．投幣後用木頭鏟子撈出來地瓜御神籤</span>
+         <span class="metaItem">．每年6月底至9月中旬會舉行祈求良緣的川越風鈴<br>&nbsp;&nbsp;&nbsp;&nbsp;祭(縁むすび風鈴）</span>
+         <span class="metaItem">．將特製的白色人形紙籤當作替身，以轉移穢氣著<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名的人形流(にんぎょうながし)除厄儀式</span>
+         <span class="metaItem">．用釣的鯛魚御神籤，紅色是招福一年安鯛、粉紅<br>&nbsp;&nbsp;&nbsp;&nbsp;色是良緣あい鯛，另有季節或特定活動限定款</span>
+       </p>
 
 <div class="gallery gallery-alignLeft">
   <div class="galleryRow" role="list" style="margin-top:10px;">
@@ -1536,7 +1535,6 @@ setInterval(renderLive, 10000);
     <div class="gItem"><img src="Day3/10.jpg" alt=""></div>
     <div class="gItem"><img src="Day3/11.jpg" alt=""></div>
     <div class="gItem"><img src="Day3/12.jpg" alt=""></div>
-    <div class="gItem"><img src="Day3/13.jpg" alt=""></div>
   </div>
 </div>
        </div>
