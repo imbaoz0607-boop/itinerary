@@ -291,6 +291,12 @@
   color: #4d463f !important;
 }
 
+/* ⭐ 新增樣式：移除指定連結的底線與顏色 */
+.meta.alignFix div a.plain-link {
+  color: #4d463f !important;
+  text-decoration: none !important;
+}
+
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
@@ -1154,13 +1160,13 @@
               <span class="chev">⌄</span>
             </summary>
 
-            <!-- ⭐ 修正：將原本的條列清單改為對齊樣式的 div，字型大小與行距完美一致 -->
+            <!-- ⭐ 修正：補回不見的點點「．」，並將周遊券連結改為純黑色、無底線 -->
             <div class="infoContent">
               <div class="meta alignFix" style="margin-top: 0 !important;">
-                <div>大井町搭乘臨海線⭢池袋站，刷卡出JR的剪票口⭢旁邊東武線剪票口刷卡進站(認準藍色東武鐵道TOBU標示)</div>
-                <div>周遊券內容︰池袋⮂川越電車車票、小江戶名勝巡遊巴士(小江戸名所めぐり班）、特約商家優惠</div>
-                <div>周遊券無法搭乘小江戶巡迴巴士(小江戸巡回バス)</div>
-                <div><a href="https://tobu-japantrip-tickets.com/traffic-tickets/2002/purchase" target="_blank" rel="noopener" style="color:#3b6cff; text-decoration:underline; font-weight:700;">川越優惠周遊券升級版/1200円</a></div>
+                <div>．大井町搭乘臨海線⭢池袋站，刷卡出JR的剪票口⭢旁邊東武線剪票口刷卡進站(認準藍色東武鐵道TOBU標示)</div>
+                <div>．周遊券內容︰池袋⮂川越電車車票、小江戶名勝巡遊巴士(小江戸名所めぐり班）、特約商家優惠</div>
+                <div>．周遊券無法搭乘小江戶巡迴巴士(小江戸巡回バス)</div>
+                <div>．<a class="plain-link" href="https://tobu-japantrip-tickets.com/traffic-tickets/2002/purchase" target="_blank" rel="noopener">川越優惠周遊券升級版/1200円</a></div>
               </div>
             </div>
           </details>
@@ -1226,7 +1232,7 @@
     <option value="川越駅西口">川越駅西口</option>
     <option value="本川越駅">本川越駅</option>
     <option value="蓮馨寺北">蓮馨寺北</option>
-    <option value="蔵的街">蔵の街</option>
+    <option value="蔵の街">蔵の街</option>
     <option value="大手門前">大手門前（C01/C02）</option>
     <option value="市役所">市役所（C01/C02）</option>
     <option value="小江戸蔵里">小江戸蔵里</option>
