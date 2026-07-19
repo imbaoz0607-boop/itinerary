@@ -275,19 +275,23 @@
   line-height: 1.6 !important;
 }
 
-/* 關鍵：讓換行後文字對齊第一個字（不是對齊．） */
-/* 每一行項目獨立處理，換行後與第一個字對齊 */
+/* ⭐ 完全版：換行對齊第一個字（手機穩定版） */
 .meta.alignFix{
   padding:0;
-  text-indent:0;
 }
 
 .meta.alignFix .metaItem{
   display:block;
-  padding-left:1em;
-  text-indent:-1em;
-} }
- 
+  padding-left:1.2em;
+  position:relative;
+}
+
+.meta.alignFix .metaItem::before{
+  content:"．";
+  position:absolute;
+  left:0;
+  top:0;
+} 
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
@@ -1284,7 +1288,7 @@ const meisho = [
   },
   {
     "川越駅東口(3番)":"14:00", "喜多院前":"14:08", "成田山前":"14:09", "松江町二丁目":"14:11", "大手町":"14:12", "やまぶき會館前":"14:14", 
-    "博物館_乘車":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札校辻":"14:23", "一番街":"14:24", 
+    "博物館_乘車":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札の辻":"14:23", "一番街":"14:24", 
     "仲町":"14:25", "妙昌寺入口":"14:27", "川越市駅":"14:30"
   },
   {
@@ -1379,7 +1383,7 @@ function getMappedStop(lineName, selectValue) {
   if (lineName === 'c01') {
     if (base === '成田山前') return '喜多院';
     if (base === '博物館_乘車') return '博物館_乘車';
-    if (base === 'Aぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (base === 'あぐれっしゅ_乘車' || base === 'あぐれっしゅ川越') return 'Aぐれっしゅ_乘車';
     if (base === '川越氷川神社') return '氷川神社前';
     if (base === '札の辻') return '大手門前';
     if (base === '一番街') return '大手門前';
@@ -1391,7 +1395,7 @@ function getMappedStop(lineName, selectValue) {
 
   if (lineName === 'c02') {
     if (base === '博物館_乘車') return '博物館_乘車';
-    if (base === 'Aぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
+    if (base === 'あぐれっしゅ_乘車' || base === 'あぐれっしゅ川越') return 'Aぐれっしゅ_乘車';
     if (base === '川越氷川神社') return '氷川神社前';
     if (base === '札の辻') return '大手門前';
     if (base === '一番街') return '大手門前';
@@ -1901,7 +1905,6 @@ setInterval(renderLive, 10000);
       const x = e.pageX;
       const walk = (x - startX);
       row.scrollLeft = scrollLeft - walk;
-
       const now = Date.now();
       const dx = x - lastX;
       const dt = now - lastTime || 1;
