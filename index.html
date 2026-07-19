@@ -275,19 +275,20 @@
   line-height: 1.6 !important;
 }
 
-/* 關鍵：讓換行後文字對齊第一個字（不是對齊．） */
-/* 每一行項目獨立處理，換行後與第一個字對齊 */
 .meta.alignFix{
-  padding:0;
-  text-indent:0;
+  margin:4px 0 0 0 !important;
 }
 
 .meta.alignFix .metaItem{
   display:block;
-  padding-left:1em;
-  text-indent:-1em;
-} }
- 
+  line-height:inherit;
+  margin:0;
+}
+
+.meta.alignFix .indent{
+  display:inline-block;
+  padding-left:1.45em;
+} 
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
@@ -1522,12 +1523,37 @@ setInterval(renderLive, 10000);
     冰川神社
   </a>
 </p>
-       <p class="meta alignFix">．冰川神社建於西元541年，據說是在河流發現了發光物體，被稱為冰川神光，進而建造了神社
+      <p class="meta alignFix">
+
+<span class="metaItem">
+．冰川神社建於西元541年，據說是在河流發現了<br>
+<span class="indent">發光物體，被稱為冰川神光，進而建造了神社</span>
+</span>
+
+<span class="metaItem">
 ．高15m的明神形鳥居是日本最大的木製鳥居之一
+</span>
+
+<span class="metaItem">
 ．投幣後用木頭鏟子撈出來地瓜御神籤
-．每年6月底至9月中旬會舉行祈求良緣的川越風鈴祭(縁むすび風鈴）
-．將特製的白色人形紙籤當作替身，以轉移穢氣著名的人形流(にんぎょうながし)除厄儀式
-．用釣的鯛魚御神籤，紅色是招福一年安鯛、粉紅色是良縁あい鯛，另有季節或特定活動限定款</p>
+</span>
+
+<span class="metaItem">
+．每年6月底至9月中旬會舉行祈求良緣的川越風鈴<br>
+<span class="indent">祭(縁むすび風鈴）</span>
+</span>
+
+<span class="metaItem">
+．將特製的白色人形紙籤當作替身，以轉移穢氣著<br>
+<span class="indent">名的人形流(にんぎょうながし)除厄儀式</span>
+</span>
+
+<span class="metaItem">
+．用釣的鯛魚御神籤，紅色是招福一年安鯛、粉紅<br>
+<span class="indent">色是良縁あい鯛，另有季節或特定活動限定款</span>
+</span>
+
+</p>
 
 <div class="gallery gallery-alignLeft">
   <div class="galleryRow" role="list" style="margin-top:10px;">
