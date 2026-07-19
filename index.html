@@ -189,6 +189,25 @@
   font-size: 21px;
   line-height: 1.3;
  }
+.mapBtn{
+  display:inline-flex;
+  align-items:center;
+  margin-left:8px;
+  padding:3px 10px;
+  font-size:13px;
+  font-weight:600;
+  color:#3b6cff;
+  text-decoration:none;
+  border:1px solid #cfe0ff;
+  border-radius:999px;
+  background:#f7fbff;
+  vertical-align:middle;
+  transition:.2s;
+}
+
+.mapBtn:hover{
+  background:#edf5ff;
+}
  .dayDate {
   font-size: 17px;
   font-weight: 800;
@@ -275,28 +294,19 @@
   line-height: 1.6 !important;
 }
 
-/* ⭐ 完美處理全形「．」首行突出、次行縮排對齊，並修正行距與巴士一致 */
-.meta.alignFix {
-  padding: 0 !important;
-  margin: 4px 0 0 0 !important;
-  white-space: normal !important;
+/* 關鍵：讓換行後文字對齊第一個字（不是對齊．） */
+/* 每一行項目獨立處理，換行後與第一個字對齊 */
+.meta.alignFix{
+  padding:0;
+  text-indent:0;
 }
 
-.meta.alignFix div {
-  padding-left: 1em !important;     /* 留下一整個全形字的寬度空間 */
-  text-indent: -1em !important;    /* 讓第一行往左突回一個字寬，使點點突出去 */
-  margin-bottom: 4px !important;   /* 項目與項目的間距 */
-  font-size: 14px !important;
-  line-height: 1.35 !important;    /* 調回原本緊密好看的行距 */
-  color: #4d463f !important;
-}
-
-/* ⭐ 新增樣式：移除指定連結的底線與顏色 */
-.meta.alignFix div a.plain-link {
-  color: #4d463f !important;
-  text-decoration: none !important;
-}
-
+.meta.alignFix .metaItem{
+  display:block;
+  padding-left:1em;
+  text-indent:-1em;
+} }
+ 
  .notes {
   margin: 6px 0 0;
   padding-left: 1.2em;
@@ -677,7 +687,6 @@
   justify-content: center;
   box-shadow: var(--shadow);
  }
- .lbNav { display: none; }
  .lbCaption {
   position: absolute;
   bottom: 20px;
@@ -779,13 +788,6 @@
    white-space: pre-line !important;
   }
 
-  /* ⭐ RWD 修正：同步將縮排項目行距調為 1.35，與巴士資訊行距保持一模一樣 */
-  .meta.alignFix div {
-    font-size: 13px !important;
-    line-height: 1.35 !important;
-    margin-bottom: 4px !important;
-  }
-
   #day1 .tRow:nth-child(3) .place p.meta {
    font-size: 10px !important;
   }
@@ -838,6 +840,7 @@
    width: 60vw;
    max-width: none;
   }
+  .lbNav { display: none; }
  }
  </style>
 </head>
@@ -1123,9 +1126,18 @@
    <section class="card daySection pagePanel" id="day3">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
-      <div class="dayIndex">3</div>
-      <h2 class="dayTitle">川越一日遊</h2>
-     </div>
+  <div class="dayIndex">3</div>
+
+  <h2 class="dayTitle">
+    川越一日遊
+    <a class="mapBtn"
+       href="Day3/川越觀光地圖.png"
+       target="_blank"
+       rel="noopener">
+      🗺️ 觀光地圖
+    </a>
+  </h2>
+</div>
      <div class="dayDate">9/28(一)</div>
     </div>
     <div class="dayBody">
@@ -1134,7 +1146,8 @@
       <div class="tRow">
        <div class="time">09:41</div>
        <div class="place">
-        <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通運轉JR埼京線・川越線(直達不換車)
+         <p class="placeTitle">大井町 ⭢ 川越</p>
+         <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通運轉JR埼京線・川越線(直達不換車)
 ⏱️乘車約75分鐘｜票價1250円(可刷交通卡)</p>
        </div>
       </div>
@@ -1161,14 +1174,20 @@
               <span class="chev">⌄</span>
             </summary>
 
-            <!-- ⭐ 修正：補回不見的點點「．」，並將周遊券連結改為純黑色、無底線 -->
             <div class="infoContent">
-              <div class="meta alignFix" style="margin-top: 0 !important;">
-                <div>．大井町搭乘臨海線⭢池袋站，刷卡出JR的剪票口⭢旁邊東武線剪票口刷卡進站(認準藍色東武鐵道TOBU標示)</div>
-                <div>．周遊券內容︰池袋⮂川越電車車票、小江戶名勝巡遊巴士(小江戸名所めぐり班）、特約商家優惠</div>
-                <div>．周遊券無法搭乘小江戶巡迴巴士(小江戸巡回バス)</div>
-                <div>．<a class="plain-link" href="https://tobu-japantrip-tickets.com/traffic-tickets/2002/purchase" target="_blank" rel="noopener">川越優惠周遊券升級版/1200円</a></div>
-              </div>
+              <ul class="notes">
+                <li>大井町搭乘臨海線⭢池袋站，刷卡出JR的剪票口⭢旁邊東武線剪票口刷卡進站(認準藍色東武鐵道TOBU標示)</li>
+                <li>周遊券內容︰池袋⮂川越電車車票、小江戶名勝巡遊巴士(小江戸名所めぐり班）、特約商家優惠</li>
+                <li>周遊券無法搭乘小江戶巡迴巴士(小江戸巡回バス)</li>
+                <li>
+                  <a href="https://tobu-japantrip-tickets.com/traffic-tickets/2002/purchase"
+                     target="_blank"
+                     rel="noopener"
+                     style="color:inherit; text-decoration:none;">
+                    川越優惠周遊券升級版/1200円
+                  </a>
+                </li>
+              </ul>
             </div>
           </details>
         </div>
@@ -1178,11 +1197,15 @@
        <div class="time">10:54</div>
        <div class="place">
         <p class="placeTitle">抵達川越</p>
-        <p class="meta">📍川越駅觀光案內所可購買1日乘車券<br>🚌小江戶巡迴巴士(小江戸巡回バス)順、逆向<br>1日票600円／單次220円➞西口2號公車站
-🎫小江戶名勝巡遊巴士(小江戸名所めぐりバス)<br>1日票500円／單程220～240円➞東口3號公車站</p>
+        <p class="meta">📍川越駅觀光案內所可購買(乘車地點不同須注意)
+🚌<a href="https://eaglebus.group/co-edo/" style="color:inherit; text-decoration:none;">小江戶巡迴巴士(小江戸巡回バス)順、逆向</a>
+1日票 600円／單次 220円
+🎫<a href="https://www.tobu-bus.com/pc/area/koedo.html" style="color:inherit; text-decoration:none;">小江戶名勝巡遊巴士(小江戸名所めぐりバス)</a>
+1日票 500円／單程約 220～240円</p>
        </div>
       </div>
 
+      <!-- ⭐ 修正：樣式套用為 tRow-alignLeft 與 gallery-alignLeft，左右完美緊貼邊框 -->
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
@@ -1200,6 +1223,7 @@
         <div class="time"></div>
         <div class="place">
           <details class="infoBox" >
+            <!-- ⭐ 修正：將標題改為「🚌 巴士即時搭乘資訊 」 -->
             <summary>
               <span class="summaryText">🚌 巴士即時搭乘資訊 </span>
               <span class="chev">⌄</span>
@@ -1248,7 +1272,7 @@
     <option value="博物館_乘車">博物館前（名勝）/ 博物館・美術館前（C01/C02）</option>
     <option value="あぐれっしゅ_乘車">あぐれっしゅ川越（C01/C02）</option>
     <option value="川越氷川神社" selected>川越氷川神社（名勝）/ 氷川神社前（C01/C02）</option>
-    <option value="札的辻">札的辻（名勝/C01/C02 共同站）</option>
+    <option value="札の辻">札的辻（名勝/C01/C02 共同站）</option>
     <option value="一番街">一番街（名勝/C01/C02 共同站）</option>
     <option value="川越市駅">川越市駅（名勝/C01/C02 共同站）</option>
   </optgroup>
@@ -1264,7 +1288,7 @@
 const meisho = [
   {
     "川越駅東口(3番)":"10:00", "喜多院前":"10:08", "成田山前":"10:09", "松江町二丁目":"10:11", "大手町":"10:12", "やまぶき會館前":"10:14", 
-    "博物館_乘車":"10:18", "川越氷川神社":"10:20", "裁判所前":"10:21", "川越市役所前":"10:22", "札的辻":"10:23", "一番街":"10:24", 
+    "博物館_乘車":"10:18", "川越氷川神社":"10:20", "裁判所前":"10:21", "川越市役所前":"10:22", "札の辻":"10:23", "一番街":"10:24", 
     "仲町":"10:25", "妙昌寺入口":"10:27", "川越市駅":"10:30"
   },
   {
@@ -1283,12 +1307,12 @@ const meisho = [
   },
   {
     "川越駅東口(3番)":"13:20", "喜多院前":"13:28", "成田山前":"13:29", "松江町二丁目":"13:31", "大手町":"13:32", "やまぶき會館前":"13:34", 
-    "博物館_乘車":"13:38", "川越氷川神社":"13:40", "裁判所前":"13:41", "川越市役所前":"13:42", "札的辻":"13:43", "一番街":"14:44", 
+    "博物館_乘車":"13:38", "川越氷川神社":"13:40", "裁判所前":"13:41", "川越市役所前":"13:42", "札的辻":"13:43", "一番街":"13:44", 
     "仲町":"13:45", "妙昌寺入口":"13:47", "川越市駅":"13:50"
   },
   {
     "川越駅東口(3番)":"14:00", "喜多院前":"14:08", "成田山前":"14:09", "松江町二丁目":"14:11", "大手町":"14:12", "やまぶき會館前":"14:14", 
-    "博物館_乘車":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札的辻":"14:23", "一番街":"14:24", 
+    "博物館_乘車":"14:18", "川越氷川神社":"14:20", "裁判所前":"14:21", "川越市役所前":"14:22", "札校辻":"14:23", "一番街":"14:24", 
     "仲町":"14:25", "妙昌寺入口":"14:27", "川越市駅":"14:30"
   },
   {
@@ -1333,35 +1357,35 @@ const c01 = [
 // ===== 3. C02（橘線巡迴）（已刪除所有降車專用與無用站點） =====
 const c02 = [
   {
-    "川越駅西口":"09:45", "本川越駅":"09:51", "蓮馨寺北":"09:53", "蔵的街":"09:57", "大手門前":"09:58", "市役所":"09:59", 
+    "川越駅西口":"09:45", "本川越駅":"09:51", "蓮馨寺北":"09:53", "蔵の街":"09:57", "大手門前":"09:58", "市役所":"09:59", 
     "氷川神社前":"10:06", "菓子屋横丁":"10:11"
   },
   {
-    "川越駅西口":"10:35", "本川越駅":"10:41", "蓮馨寺北":"10:43", "蔵的街":"10:47", "大手門前":"10:48", "市役所":"10:49", 
+    "川越駅西口":"10:35", "本川越駅":"10:41", "蓮馨寺北":"10:43", "蔵の街":"10:47", "大手門前":"10:48", "市役所":"10:49", 
     "氷川神社前":"10:56", "菓子屋横丁":"11:01"
   },
   {
-    "川越駅西口":"11:25", "本川越駅":"11:31", "蓮馨寺北":"11:33", "蔵的街":"11:37", "大手門前":"11:38", "市役所":"11:39"
+    "川越駅西口":"11:25", "本川越駅":"11:31", "蓮馨寺北":"11:33", "蔵の街":"11:37", "大手門前":"11:38", "市役所":"11:39"
   },
   {
-    "川越駅西口":"12:05", "本川越駅":"12:11", "蓮馨寺北":"12:13", "蔵的街":"12:17", "大手門前":"12:18", "市役所":"12:19", 
+    "川越駅西口":"12:05", "本川越駅":"12:11", "蓮馨寺北":"12:13", "蔵の街":"12:17", "大手門前":"12:18", "市役所":"12:19", 
     "Aぐれっしゅ_乘車":"12:47", "博物館_乘車":"12:49"
   },
   {
-    "川越駅西口":"13:20", "本川越駅":"13:26", "蓮馨寺北":"13:28", "蔵的街":"13:32", "大手門前":"13:33", "市役所":"13:34", 
+    "川越駅西口":"13:20", "本川越駅":"13:26", "蓮馨寺北":"13:28", "蔵の街":"13:32", "大手門前":"13:33", "市役所":"13:34", 
     "氷川神社前":"13:41", "菓子屋横丁":"13:46"
   },
   {
-    "川越駅西口":"14:15", "本川越駅":"14:21", "蓮馨寺北":"14:23", "蔵的街":"14:27", "大手門前":"14:28", "市役所":"14:29", 
+    "川越駅西口":"14:15", "本川越駅":"14:21", "蓮馨寺北":"14:23", "蔵の街":"14:27", "大手門前":"14:28", "市役所":"14:29", 
     "氷川神社前":"14:36", "菓子屋横丁":"14:41"
   },
   {
-    "川越駅西口":"15:05", "本川越駅":"15:11", "蓮馨寺北":"15:13", "蔵的街":"15:17", "大手門前":"15:18", "市役所":"15:19", 
+    "川越駅西口":"15:05", "本川越駅":"15:11", "蓮馨寺北":"15:13", "蔵の街":"15:17", "大手門前":"15:18", "市役所":"15:19", 
     "Aぐれっしゅ_乘車":"16:06", "博物館_乘車":"16:08"
   },
   {
-    "川越駅西口":"16:35", "本川越駅":"16:41", "蓮馨寺北":"16:43", "蔵的街":"16:47", "大手門前":"16:48", "市役所":"16:49", 
-    "氷川神社前":"16:56", "菓子屋remove橫丁":"17:01"
+    "川越駅西口":"16:35", "本川越駅":"16:41", "蓮馨寺北":"16:43", "蔵の街":"16:47", "大手門前":"16:48", "市役所":"16:49", 
+    "氷川神社前":"16:56", "菓子屋横丁":"17:01"
   }
 ];
 
@@ -1373,7 +1397,7 @@ function getMappedStop(lineName, selectValue) {
     if (base === '成田山前') return '成田山前';
     if (base === '博物館_乘車') return '博物館_乘車';
     if (base === '川越氷川神社') return '川越氷川神社';
-    if (base === '札的辻') return '札の辻';
+    if (base === '札の辻') return '札の辻';
     if (base === '一番街') return '一番街';
     if (base === '川越市駅') return '川越市駅';
     if (base === '市役所') return '川越市役所前';
@@ -1383,9 +1407,9 @@ function getMappedStop(lineName, selectValue) {
   if (lineName === 'c01') {
     if (base === '成田山前') return '喜多院';
     if (base === '博物館_乘車') return '博物館_乘車';
-    if (base === 'あぐれっしゅ_乘車' || base === 'あぐれっしゅ川越') return 'Aぐれっしゅ_乘車';
+    if (base === 'Aぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
     if (base === '川越氷川神社') return '氷川神社前';
-    if (base === '札的辻') return '大手門前';
+    if (base === '札の辻') return '大手門前';
     if (base === '一番街') return '大手門前';
     if (base === '川越市駅') return '川越市駅';
     if (base === '市役所') return '市役所';
@@ -1395,9 +1419,9 @@ function getMappedStop(lineName, selectValue) {
 
   if (lineName === 'c02') {
     if (base === '博物館_乘車') return '博物館_乘車';
-    if (base === 'あぐれっしゅ_乘車' || base === 'あぐれっしゅ川越') return 'Aぐれっしゅ_乘車';
+    if (base === 'Aぐれっしゅ_乘車') return 'あぐれっしゅ_乘車';
     if (base === '川越氷川神社') return '氷川神社前';
-    if (base === '札的辻') return '大手門前';
+    if (base === '札の辻') return '大手門前';
     if (base === '一番街') return '大手門前';
     if (base === '市役所') return '市役所';
     if (base === '大手門前') return '大手門前';
@@ -1515,44 +1539,35 @@ setInterval(renderLive, 10000);
         </div>
       </div>
 
-      <!-- ⭐ 冰川神社 文字說明區 -->
       <div class="tRow">
        <div class="time">11:10 - 12:00</div>
        <div class="place">
-        <p class="placeTitle">
-          <a href="https://www.kawagoehikawa.jp/kisetsu/"
-             target="_blank"
-             rel="noopener noreferrer"
-             style="color:inherit;text-decoration:none;">
-            冰川神社
-          </a>
-        </p>
-        <div class="meta alignFix">
-          <div>．冰川神社建於西元541年，據說是在河流發現了發光物體，被稱為冰川神光，進而建造了神社</div>
-          <div>．高15m的明神形鳥居是日本最大的木製鳥居之一</div>
-          <div>．投幣後用木頭鏟子撈出來地瓜御神籤</div>
-          <div>．每年6月底至9月中旬會舉行祈求良緣的川越風鈴祭(縁むすび風鈴）</div>
-          <div>．將特製的白色人形紙籤當作替身，以轉移穢氣著名的人形流(にんぎょうながし)除厄儀式</div>
-          <div>．用釣的鯛魚御神籤，紅色是招福一年安鯛、粉紅色是良縁あい鯛，另有季節或特定活動限定款</div>
-        </div>
-       </div>
-      </div>
+<p class="placeTitle">
+  <a href="https://www.kawagoehikawa.jp/kisetsu/"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="color:inherit;text-decoration:none;">
+    冰川神社
+  </a>
+</p>
+       <p class="meta alignFix">．冰川神社建於西元541年，據說是在河流發現了發光物體，被稱為冰川神光，進而建造了神社
+．高15m的明神形鳥居是日本最大的木製鳥居之一
+．投幣後用木頭鏟子撈出來地瓜御神籤
+．每年6月底至9月中旬會舉行祈求良緣的川越風鈴祭(縁むすび風鈴）
+．將特製的白色人形紙籤當作替身，以轉移穢氣著名的人形流(にんぎょうながし)除厄儀式
+．用釣的鯛魚御神籤，紅色是招福一年安鯛、粉紅色是良縁あい鯛，另有季節或特定活動限定款</p>
 
-      <!-- ⭐ 冰川神社 Gallery 區 -->
-      <div class="tRow tRow-alignLeft">
-        <div class="time"></div>
-        <div class="place">
-          <div class="gallery gallery-alignLeft">
-            <div class="galleryRow" role="list" style="margin-top:2px;">
-              <div class="gItem"><img src="Day3/08.jpg" alt=""></div>
-              <div class="gItem"><img src="Day3/09.jpg" alt=""></div>
-              <div class="gItem"><img src="Day3/10.jpg" alt=""></div>
-              <div class="gItem"><img src="Day3/11.jpg" alt=""></div>
-              <div class="gItem"><img src="Day3/12.jpg" alt=""></div>
-              <div class="gItem"><img src="Day3/13.jpg" alt=""></div>
-            </div>
-          </div>
-        </div>
+<div class="gallery gallery-alignLeft">
+  <div class="galleryRow" role="list" style="margin-top:10px;">
+    <div class="gItem"><img src="Day3/08.jpg" alt=""></div>
+    <div class="gItem"><img src="Day3/09.jpg" alt=""></div>
+    <div class="gItem"><img src="Day3/10.jpg" alt=""></div>
+    <div class="gItem"><img src="Day3/11.jpg" alt=""></div>
+    <div class="gItem"><img src="Day3/12.jpg" alt=""></div>
+    <div class="gItem"><img src="Day3/13.jpg" alt=""></div>
+  </div>
+</div>
+       </div>
       </div>
 
       <div class="tRow">
@@ -1914,6 +1929,7 @@ setInterval(renderLive, 10000);
       const x = e.pageX;
       const walk = (x - startX);
       row.scrollLeft = scrollLeft - walk;
+
       const now = Date.now();
       const dx = x - lastX;
       const dt = now - lastTime || 1;
