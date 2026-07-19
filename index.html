@@ -275,7 +275,7 @@
   line-height: 1.6 !important;
 }
 
-/* ⭐ 修正版：完美處理全形「．」首行突出、次行縮排對齊 */
+/* ⭐ 修正版：完美處理全形「．」首行突出、次行縮排對齊，並修正行距與巴士一致 */
 .meta.alignFix {
   padding: 0 !important;
   margin: 4px 0 0 0 !important;
@@ -285,9 +285,9 @@
 .meta.alignFix div {
   padding-left: 1em !important;     /* 留下一整個全形字的寬度空間 */
   text-indent: -1em !important;    /* 讓第一行往左突回一個字寬，使點點突出去 */
-  margin-bottom: 6px !important;   /* 項目與項目的間距 */
+  margin-bottom: 4px !important;   /* 項目與項目的間距 */
   font-size: 14px !important;
-  line-height: 1.6 !important;
+  line-height: 1.35 !important;    /* 調回原本緊密好看的行距 */
   color: #4d463f !important;
 }
 
@@ -772,11 +772,11 @@
    white-space: pre-line !important;
   }
 
-  /* ⭐ RWD 修正：讓手機版縮排區塊寬度正確、大小對齊 13px、並拉高行距 */
+  /* ⭐ RWD 修正：同步將縮排項目行距調為 1.35，與巴士資訊行距保持一模一樣 */
   .meta.alignFix div {
     font-size: 13px !important;
-    line-height: 1.5 !important;
-    margin-bottom: 6px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 4px !important;
   }
 
   #day1 .tRow:nth-child(3) .place p.meta {
@@ -1532,7 +1532,7 @@ setInterval(renderLive, 10000);
     冰川神社
   </a>
 </p>
-       <!-- ⭐ 已套用正確的手機版 RWD 首行縮排、兼顧行距與文字切齊效果 -->
+       <!-- ⭐ 已將行距調為 1.35，與巴士資訊字體大小與密度完美一致 -->
        <div class="meta alignFix">
          <div>．冰川神社建於西元541年，據說是在河流發現了發光物體，被稱為冰川神光，進而建造了神社</div>
          <div>．高15m的明神形鳥居是日本最大的木製鳥居之一</div>
@@ -1643,7 +1643,7 @@ setInterval(renderLive, 10000);
     <div class="dayBody">
      <div class="timeline"></div>
     </div>
-  </section>
+   </section>
 
    <section class="card daySection pagePanel" id="day8">
     <div class="dayCardHeader">
@@ -1745,7 +1745,7 @@ setInterval(renderLive, 10000);
   let isDragging = false;
   let touchMode = 'none';
   function getDist(touches){
-    return Math.hypot(touches[0].clientX - touches[1].clientX, e.touches[0].clientY - touches[1].clientY);
+    return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
   }
 
   function applyTransform(animate = false){
