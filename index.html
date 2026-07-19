@@ -275,12 +275,12 @@
   line-height: 1.6 !important;
 }
 
-/* 關鍵：讓換行後文字對齊第一個字（不是對齊．） */
-/* 每一行項目獨立處理，換行後與第一個字對齊 */
+/* ⭐ 完美處理全形「．」首行突出、次行縮排對齊，並修正行距與巴士一致 */
 .meta.alignFix {
   padding: 0 !important;
   margin: 4px 0 0 0 !important;
   white-space: normal !important;
+  text-indent: 0 !important;
 }
 
 .meta.alignFix div {
@@ -292,7 +292,13 @@
   color: #4d463f !important;
 }
 
-/* ⭐ 新增專屬地圖樣式：精緻小字、藍色、無底線、貼近符號 */
+/* ⭐ 移除指定連結的底線與顏色 */
+.meta.alignFix div a.plain-link {
+  color: #4d463f !important;
+  text-decoration: none !important;
+}
+
+/* ⭐ 優化專屬地圖按鈕樣式：精緻小字、藍色、無底線、貼近符號 */
 .mapLink {
   font-size: 13px !important;
   color: #3b6cff !important;
@@ -684,6 +690,7 @@
   justify-content: center;
   box-shadow: var(--shadow);
  }
+ .lbNav { display: none; }
  .lbCaption {
   position: absolute;
   bottom: 20px;
@@ -785,7 +792,7 @@
    white-space: pre-line !important;
   }
 
-  /* RWD 修正：同步將縮排項目行距調為 1.35，與巴士資訊行距保持一模一樣 */
+  /* RWD 修正：同步將縮排項目行距調為 1.35 */
   .meta.alignFix div {
     font-size: 13px !important;
     line-height: 1.35 !important;
@@ -844,7 +851,6 @@
    width: 60vw;
    max-width: none;
   }
-  .lbNav { display: none; }
  }
  </style>
 </head>
@@ -1131,16 +1137,9 @@
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">3</div>
-      <!-- ⭐ 修正：將地圖連結優化，加入專屬 class 達成縮小、無底線、藍色與貼近符號的效果 -->
-川越一日遊
-    <a class="mapBtn"
-       href="Day3/川越觀光地圖.png"
-       target="_blank"
-       rel="noopener">
-      🗺️ 地圖
-    </a>
-  </h2>
-</div>
+      <!-- ⭐ 修正：將地圖按鈕優化，滿足縮小、無底線、藍色與貼近標題的需求 -->
+      <h2 class="dayTitle">川越一日遊<a href="你的地圖網址" class="mapLink">🗺️地圖</a></h2>
+     </div>
      <div class="dayDate">9/28(一)</div>
     </div>
     <div class="dayBody">
@@ -1149,9 +1148,9 @@
       <div class="tRow">
        <div class="time">09:41</div>
        <div class="place">
-         <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通運轉JR埼京線・川越線(直達不換車)
-⏱️乘車約75分鐘｜票價1250円(可刷交通卡)</p>
-
+         <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通運轉JR埼京線・川越線(直達不換車)<br>⏱️乘車約75分鐘｜票價1250円(可刷交通卡)</p>
+       </div>
+      </div>
 
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
