@@ -299,15 +299,27 @@
 }
 
 /* ⭐ 優化專屬地圖按鈕樣式：精緻小字、藍色、無底線、貼近符號 */
-.mapLink {
-  font-size: 13px !important;
-  color: #3b6cff !important;
-  text-decoration: none !important;
-  margin-left: 4px !important;
-  font-weight: normal !important;
+/* ⭐ 地圖按鈕（完全移除底線） */
+.mapBtn {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 2px !important;
+  gap: 4px !important;
+  margin-left: 6px !important;
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+.mapBtn:link,
+.mapBtn:visited,
+.mapBtn:hover,
+.mapBtn:active {
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+.mapBtn span {
+  font-size: 13px !important;
+  text-decoration: none !important;
 }
  
  .notes {
@@ -542,7 +554,12 @@
   color: #3b6cff !important;
   text-decoration: underline !important;
   font-weight: 700 !important;
- }
+}
+
+/* ⭐ 例外：巴士圖示連結不要底線 */
+details.infoBox > summary .transportIcon {
+  text-decoration: none !important;
+}
  .infoContent details.infoBox .infoContent {
   padding: 0 0 8px 0;
  }
@@ -968,7 +985,7 @@
                <div class="infoContent">
                  <ul class="notes">
                    <li>乘車地點:第3航廈1樓10號公車站</li>
-                   <li style="line-height: 1.5;">下車地點:大井町トラックス21番(原大井町駅西口3番)<span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;"></span></li>
+                   <li style="line-height: 1.5;">下車地點:大井町トラックス21番(原位置 西口3番)<span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;"></span></li>
                    <li>單程票價:成人800円</li>
                  </ul>
                  <table>
