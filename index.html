@@ -275,7 +275,8 @@
   line-height: 1.6 !important;
 }
 
-/* ⭐ 完美處理全形「．」首行突出、次行縮排對齊，並修正行距與巴士一致 */
+/* 關鍵：讓換行後文字對齊第一個字（不是對齊．） */
+/* 每一行項目獨立處理，換行後與第一個字對齊 */
 .meta.alignFix {
   padding: 0 !important;
   margin: 4px 0 0 0 !important;
@@ -299,21 +300,22 @@
 }
 
 /* ⭐ 優化專屬地圖按鈕樣式：精緻小字、藍色、無底線、貼近符號 */
-/* ⭐ 地圖按鈕（完全移除底線） */
 .mapBtn {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 4px !important;
+  gap: 2px !important;
   margin-left: 6px !important;
-  color: #000 !important;
+  color: #3b6cff !important;
   text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: normal !important;
 }
 
 .mapBtn:link,
 .mapBtn:visited,
 .mapBtn:hover,
 .mapBtn:active {
-  color: #000 !important;
+  color: #3b6cff !important;
   text-decoration: none !important;
 }
 
@@ -554,9 +556,9 @@
   color: #3b6cff !important;
   text-decoration: underline !important;
   font-weight: 700 !important;
-}
+ }
 
-/* ⭐ 例外：巴士圖示連結不要底線 */
+/* 例外：巴士圖示連結不要底線 */
 details.infoBox > summary .transportIcon {
   text-decoration: none !important;
 }
@@ -1163,10 +1165,11 @@ details.infoBox > summary .transportIcon {
     <div class="dayHeaderMain">
   <div class="dayIndex">3</div>
 
+  <!-- ⭐ 修正：更新連結網址為特定外部觀光地圖網址，並套用精緻藍色無底線樣式 -->
   <h2 class="dayTitle">
     川越一日遊
     <a class="mapBtn"
-       href="Day3/imageskawagoe-map.png"
+       href="https://platinumaps.jp/d/koedokawagoe"
        target="_blank"
        rel="noopener">
       <span class="mapIcon">🗺️</span>
