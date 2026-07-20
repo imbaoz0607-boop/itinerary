@@ -1165,13 +1165,11 @@ details.infoBox > summary .transportIcon {
     <div class="dayHeaderMain">
   <div class="dayIndex">3</div>
 
-  <!-- ⭐ 修正：加入 ?openExternalBrowser=1 參數，點擊時強制跳出內建瀏覽器並用 Google/系統預設 Chrome 開啟 -->
+  <!-- ⭐ 修正：使用 googlechromes:// 協議，從 Safari 點擊時強制呼叫 Google Chrome 開啟 -->
   <h2 class="dayTitle">
     川越一日遊
     <a class="mapBtn"
-       href="https://platinumaps.jp/d/koedokawagoe?openExternalBrowser=1"
-       target="_blank"
-       rel="noopener">
+       href="googlechromes://platinumaps.jp/d/koedokawagoe">
       <span class="mapIcon">🗺️</span>
       <span>地圖</span>
     </a>
