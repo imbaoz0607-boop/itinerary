@@ -869,6 +869,12 @@ details.infoBox > summary .transportIcon {
    max-width: none;
   }
  }
+   .no-break{
+    display:inline-block;
+    white-space:nowrap;
+    word-break:keep-all;
+    overflow-wrap:normal;
+}
  </style>
 </head>
 <body>
@@ -985,8 +991,9 @@ details.infoBox > summary .transportIcon {
                <div class="infoContent">
                  <ul class="notes">
                    <li>乘車地點:第3航廈1樓10號公車站</li>
-                   <li style="line-height: 1.5;">下車地點:大井町トラックス21番(原位置 西口3番)<span style="padding-left: 5em; color: var(--muted); font-size: 0.95em;"></span></li>
-                   <li>單程票價:成人800円</li>
+                  <li class="bus-stop-line">
+  下車地點:<span class="no-break">大井町トラックス21番(原位置 西口3番)</span>
+</li>
                  </ul>
                  <table>
                    <thead>
