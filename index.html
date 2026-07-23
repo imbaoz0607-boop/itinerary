@@ -305,6 +305,7 @@
   text-decoration: none !important;
   font-size: 13px !important;
   font-weight: normal !important;
+  cursor: pointer;
  }
 
  .mapBtn:link,
@@ -1154,8 +1155,8 @@
       <div class="dayIndex">3</div>
       <h2 class="dayTitle">
         川越
-        <!-- ⭐ 使用 googlechromes:// 協議，強制開啟 Chrome -->
-        <a class="mapBtn" href="googlechromes://platinumaps.jp/d/koedokawagoe">
+        <!-- ⭐ 使用 openChromeMap 函式自動喚起 Chrome -->
+        <a class="mapBtn" onclick="openChromeMap('https://platinumaps.jp/d/koedokawagoe')">
           <span class="mapIcon">🗺️</span>
           <span>數位地圖</span>
         </a>
@@ -1748,6 +1749,23 @@ setInterval(renderLive, 10000);
  </div>
 
  <script>
+ // ⭐ 開啟 Chrome 的相容函式
+ function openChromeMap(url) {
+   var ua = navigator.userAgent || navigator.vendor || window.opera;
+   if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+     // iOS 裝置：使用 googlechromes:// 喚醒 Chrome
+     var chromeUrl = url.replace(/^https:\/\//, 'googlechromes://').replace(/^http:\/\//, 'googlechrome://');
+     window.location.href = chromeUrl;
+   } else if (/android/i.test(ua)) {
+     // Android 裝置：使用 intent 強制呼叫 Chrome
+     var cleanUrl = url.replace(/^https?:\/\//, '');
+     window.location.href = 'intent://' + cleanUrl + '#Intent;scheme=https;package=com.android.chrome;end';
+   } else {
+     // 電腦或非行動裝置：直接新頁籤開啟
+     window.open(url, '_blank');
+   }
+ }
+
  (function(){
   document.querySelectorAll('.galleryRow img').forEach(img => {
     img.removeAttribute('onclick');
