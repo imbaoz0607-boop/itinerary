@@ -1,3 +1,82 @@
+
+和 Gemini 的對話
+Day1乘機場巴士的時刻表, 抵達時間的部分,是用了粗體嗎?幫我做成跟左邊出發的時間一致
+
+檢查 Day 1 機場巴士時刻表相關的 CSS 與 HTML 程式碼後，發現狀況如下：  
+TXT
+
+🔍 現況分析
+CSS 樣式設定：在 .infoContent td:last-child 有設定 font-weight: 600;，導致表格右側欄位（抵達時間）預設會被套用半粗體效果。  
+TXT
++ 1
+
+左側（出發時間）：為普通字體（font-weight: 400 或預設值）。  
+TXT
+
+🛠️ 修正方式
+若要讓「抵達時間」與左邊「出發時間」的字體粗細保持完全一致，可以選擇以下其中一種修改方式：
+
+方案 A：移除 CSS 中的粗體效果（推薦，一勞永逸）
+在 <style> 中找到 .infoContent td:last-child 並修改為：
+
+CSS
+.infoContent td:last-child {
+  font-weight: normal; /* 將原本的 600 改為 normal */
+}
+方案 B：直接在 HTML 表格中指定樣式
+若不想更動全局 CSS，也可以直接在 Day 1 機場巴士表格的 <td> 標籤加入 style="font-weight: normal;"：  
+TXT
+
+HTML
+<table>
+  <thead>
+    <tr>
+      <th>出發（T3）</th>
+      <th>抵達（大井町）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>14:05</td><td style="font-weight: normal;">14:57</td></tr>
+    <tr><td>15:05</td><td style="font-weight: normal;">15:54</td></tr>
+    <tr><td>16:05</td><td style="font-weight: normal;">16:57</td></tr>
+    <tr><td>16:50</td><td style="font-weight: normal;">17:42</td></tr>
+    <tr><td>17:40</td><td style="font-weight: normal;">18:32</td></tr>
+  </tbody>
+</table>
+修改後即可讓兩欄時間的字體樣式完全同步！
+
+給我可以直接覆蓋使用的完整HTML檔案
+
+Your HTML file is ready
+「HTML」圖示
+0722編輯中
+ HTML 
+開啟
+
+已經為您修正 HTML 檔案中的 CSS 樣式。  
+TXT
+
+🛠️ 修正說明：
+將原本 CSS 中的：
+
+CSS
+.infoContent td:last-child {
+  font-weight: 600;
+}
+修改為：
+
+CSS
+.infoContent td:last-child {
+  font-weight: normal;
+}
+現在 Day 1 機場巴士時刻表中的「抵達（大井町）」時間欄位已經與左側的「出發（T3）」時間欄位保持相同的正常字體粗細。您可以直接下載上面的 HTML 檔案並覆蓋使用！  
+TXT
+
+
+
+
+Gemini 是 AI，有時可能會出錯。
+
 <!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -235,7 +314,9 @@
   padding: 2px 0;
   width: 100%;
  }
- .tRow:first-child { padding-top: 0; }
+ .tRow:first-child {
+  padding-top: 0;
+ }
  .time {
   width: 90px;
   min-width: 90px;
@@ -260,7 +341,9 @@
   line-height: 1.25 !important; 
  }
 
- .placeTitle { margin-bottom: 0 !important; }
+ .placeTitle {
+  margin-bottom: 0 !important;
+ }
 
  .meta {
   margin: 4px 0 0 0 !important;
@@ -279,11 +362,11 @@
  }
 
  .meta.alignFix div {
-  padding-left: 1.2em !important;     
-  text-indent: -1.2em !important;    
+  padding-left: 1em !important;     
+  text-indent: -1em !important;    
   margin-bottom: 4px !important;   
   font-size: 14px !important;
-  line-height: 1.35 !important;
+  line-height: 1.35 !important;    
   color: #4d463f !important;
  }
 
@@ -334,10 +417,14 @@
   color: #4d463f !important;
  }
 
- .notes li { margin-bottom: 4px; }
+ .notes li {
+  margin-bottom: 4px;
+ }
  .notes li + li { margin-top: 3px; }
 
- .gallery { margin-top: -2px; }
+ .gallery {
+  margin-top: -2px;
+ }
  .galleryTitle {
   padding-left: 0;
   margin: 0 0 6px;
@@ -378,7 +465,9 @@
   object-fit: cover;
   transition: box-shadow 0.2s ease;
  }
- .gItem img:hover { box-shadow: 0 8px 20px rgba(0,0,0,.12); }
+ .gItem img:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+ }
 
  .gItem[data-caption]::after {
   content: attr(data-caption);
@@ -429,7 +518,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 10px 0; 
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -507,8 +596,12 @@
   background: #f4f6fb;
   font-weight: 600;
  }
- .infoContent td:last-child { font-weight: 600; }
- .infoContent tr:hover td { background: #fafbff; }
+ .infoContent td:last-child {
+  font-weight: normal;
+ }
+ .infoContent tr:hover td {
+  background: #fafbff;
+ }
 
  .infoContent details.infoBox {
   margin-left: 0;
@@ -527,8 +620,12 @@
   font-weight: 700 !important;
  }
 
- details.infoBox > summary .transportIcon { text-decoration: none !important; }
- .infoContent details.infoBox .infoContent { padding: 0 0 8px 0; }
+ details.infoBox > summary .transportIcon {
+  text-decoration: none !important;
+ }
+ .infoContent details.infoBox .infoContent {
+  padding: 0 0 8px 0;
+ }
 
  .dinner-list {
   list-style: none;
@@ -544,7 +641,9 @@
   border-bottom: 1px dashed var(--line);
   font-size: 14px; 
  }
- .dinner-list li:last-child { border-bottom: none; }
+ .dinner-list li:last-child {
+  border-bottom: none;
+ }
  .dinner-list li > div {
   flex: 1; 
   min-width: 0;
@@ -567,8 +666,9 @@
   flex-shrink: 0;
  }
 
+ /* ⭐ 關鍵修改：桌機與手機皆實現 100% 滿版、貼緊兩側邊框 */
  .tRow-alignLeft {
-  display: block !important;
+  display: block !important; 
   width: 100% !important;
   padding: 0 !important;
  }
@@ -610,6 +710,7 @@
  .busRow:last-child { border-bottom: none; }
  .busRow strong { color: #3b6cff; font-size: 15px; }
  .busHint { font-size: 12px; color: #888; margin-top: 6px; text-align: center; padding: 10px 0; }
+ .busMetaInfo { font-size: 11px; color: #e67e22; margin-top: 2px; font-weight: normal; }
  .busNextLabel {
   font-size: 12px;
   color: #777;
@@ -628,7 +729,6 @@
   justify-content: center;
   padding: 0;
   z-index: 9999;
-  touch-action: none;
  }
  .lbModal.open { display: flex; }
  .lbBackdrop {
@@ -721,7 +821,9 @@
    grid-template-columns: repeat(2, minmax(0, 1fr));
    gap: 6px;
   }
-  .heroFlightCard { padding: 8px 6px !important; }
+  .heroFlightCard {
+   padding: 8px 6px !important;  
+  }
   .tabShell { border-radius: 18px; }
   .topTabs {
    gap: 6px;
@@ -777,7 +879,9 @@
    position: relative !important;
    top: 0px !important;
   }
-  .place { flex: 1 !important; }
+  .place {
+   flex: 1 !important;
+  }
   .place p,
   .placeTitle {
    font-size: 15px !important;
@@ -797,7 +901,9 @@
     margin-bottom: 4px !important;
   }
 
-  #day1 .tRow:nth-child(3) .place p.meta { font-size: 10px !important; }
+  #day1 .tRow:nth-child(3) .place p.meta {
+   font-size: 10px !important;
+  }
 
   .notes,
   .dinner-list li {
@@ -805,18 +911,28 @@
    color: var(--text) !important;
   }
 
-  .heroFlightList { font-size: 14px !important; }
+  .heroFlightList {
+   font-size: 14px !important;
+  }
   
-  details.infoBox > summary .summaryText { font-size: 15px !important; }
+  details.infoBox > summary .summaryText {
+   font-size: 15px !important;
+  }
   
   details.infoBox {
    width: 100% !important;
    border-radius: 0 !important;
    background: transparent !important;
   }
-  details.infoBox > summary { padding: 10px 0 !important; }
-  .infoContent { padding: 0 0 12px 0 !important; }
-  .infoContent details.infoBox { width: 100% !important; }
+  details.infoBox > summary {
+   padding: 10px 0 !important;
+  }
+  .infoContent {
+   padding: 0 0 12px 0 !important;
+  }
+  .infoContent details.infoBox {
+   width: 100% !important;
+  }
   
   .gItem {
    width: 60vw;
@@ -900,7 +1016,6 @@
      </div>
      <div class="dayDate">9/26(六)</div>
     </div>
-    
     <div class="dayBody">
      <div class="timeline">
       
@@ -951,7 +1066,6 @@
                    </li>
                    <li>單程票價:成人800円</li>
                  </ul>
-     
                  <table>
                    <thead>
                      <tr>
@@ -1120,7 +1234,7 @@
       <div class="dayIndex">3</div>
       <h2 class="dayTitle">
         川越
-        <a class="mapBtn" href="googlechromes://platinumaps.jp/d/koedokawagoe" target="_blank" rel="noopener">
+        <a class="mapBtn" href="https://platinumaps.jp/d/koedokawagoe" target="_blank" rel="noopener">
           <span class="mapIcon">🗺️</span>
           <span>數位地圖</span>
         </a>
@@ -1205,7 +1319,7 @@
         <div class="place">
           <details class="infoBox">
             <summary>
-              <span class="summaryText">🚌 巴士即時搭乘資訊</span>
+              <span class="summaryText">🚌 巴士即時搭乘資訊 </span>
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
@@ -1363,6 +1477,7 @@ const c02 = [
 // ===== 4. 精確站名同義與映射關係 =====
 function getMappedStop(lineName, selectValue) {
   const base = selectValue.replace(/（.*?）/g, '');
+
   if (lineName === 'meisho') {
     if (base === '成田山前') return '成田山前';
     if (base === '博物館_乘車') return '博物館_乘車';
@@ -1371,7 +1486,7 @@ function getMappedStop(lineName, selectValue) {
     if (base === '一番街') return '一番街';
     if (base === '川越市駅') return '川越市駅';
     if (base === '市役所') return '川越市役所前';
-    return base;
+    return base; 
   } 
   
   if (lineName === 'c01') {
@@ -1435,15 +1550,16 @@ function getUpcomingBuses(data, mappedStop, nowMin) {
 
 function renderLive(){
   const el = document.getElementById('busLive');
-  if (!el) return;
   const selectVal = document.getElementById('busStop').value;
   const now = new Date();
   const nowMin = now.getHours()*60 + now.getMinutes();
+  
   const lines = [
     { name: '🚌 小江戶名勝巡遊巴士', key: 'meisho', data: meisho },
     { name: '🟣 巡迴巴士 C01 (紫線)', key: 'c01', data: c01 },
     { name: '🟠 巡迴巴士 C02 (橘線)', key: 'c02', data: c02 }
   ];
+
   let activeLinesHtml = [];
 
   lines.forEach(line => {
@@ -1513,7 +1629,10 @@ setInterval(renderLive, 10000);
        <div class="time">11:10 - 12:00</div>
        <div class="place">
         <p class="placeTitle">
-          <a href="https://www.kawagoehikawa.jp/kisetsu/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">
+          <a href="https://www.kawagoehikawa.jp/kisetsu/"
+             target="_blank"
+             rel="noopener noreferrer"
+             style="color:inherit;text-decoration:none;">
             冰川神社
           </a>
         </p>
@@ -1722,7 +1841,6 @@ setInterval(renderLive, 10000);
   const nextBtn = document.getElementById('lbNext');
   let currentIndex = -1;
   let currentGroup = [];
-
   function openLightbox(img){
     const row = img.closest('.galleryRow');
     currentGroup = Array.from(row.querySelectorAll('img'));
@@ -1760,11 +1878,11 @@ setInterval(renderLive, 10000);
   let startX = 0, startY = 0;
   let currentX = 0, currentY = 0;
   let translateX = 0, translateY = 0;
-  let lastTranslateX = 0, lastTranslateY = 0;
+  let lastTranslateX = 0;
+  let lastTranslateY = 0;
   let lastTap = 0;
   let isDragging = false;
   let touchMode = 'none';
-
   function getDist(touches){
     return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
   }
@@ -1794,7 +1912,6 @@ setInterval(renderLive, 10000);
       lastScale = scale;
     }
   }, {passive: false});
-
   modalInner.addEventListener('touchmove', (e)=>{
     if (touchMode === 'pinch' && e.touches.length === 2) {
       e.preventDefault();
@@ -1820,7 +1937,6 @@ setInterval(renderLive, 10000);
       }
     }
   }, {passive: false});
-
   modalInner.addEventListener('touchend', (e)=>{
     if (touchMode === 'pan' && isDragging) {
       isDragging = false;
@@ -1854,7 +1970,6 @@ setInterval(renderLive, 10000);
     lastTap = now;
     touchMode = 'none';
   });
-
   document.querySelectorAll('.timeline').forEach(timeline => {
    let dragItem = null;
    
@@ -1896,7 +2011,6 @@ setInterval(renderLive, 10000);
     handle.addEventListener('mouseleave', () => row.draggable = false);
    });
   });
-
   document.querySelectorAll('.galleryRow').forEach(row => {
     let isDown = false;
     let startX;
@@ -1947,7 +2061,6 @@ setInterval(renderLive, 10000);
       lastX = x;
       lastTime = now;
     });
-
     row.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault();
@@ -1972,7 +2085,6 @@ setInterval(renderLive, 10000);
       });
     });
   });
-
   document.querySelectorAll('a[href^="http"]').forEach(link => {
    link.setAttribute('target', '_blank');
    link.setAttribute('rel', 'noopener');
@@ -1981,3 +2093,5 @@ setInterval(renderLive, 10000);
  </script>
 </body>
 </html>
+0722編輯中.html
+目前顯示的是「0722編輯中.html」。
