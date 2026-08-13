@@ -953,29 +953,108 @@
  }
 
 
- /* 行程文字說明與緊接其後的 Gallery 緊貼 */
- .timeline > .tRow:has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
-   padding-bottom: 0 !important;
-   margin-bottom: 0 !important;
+ /* 收合層：膠囊按鈕式
+    控制鈕左右緊貼 timeline 內框，但不超出邊框 */
+ details.infoBox {
+   width: 100% !important;
+   max-width: 100% !important;
+   margin: 4px 0 !important;
+   border: 0 !important;
+   border-radius: 0 !important;
+   background: transparent !important;
+   box-shadow: none !important;
+   overflow: visible !important;
  }
- .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
-   padding-top: 0 !important;
-   margin-top: -8px !important; /* 抵消 timeline 的 8px gap */
+
+ details.infoBox > summary {
+   width: 100% !important;
+   max-width: 100% !important;
+   min-height: 34px;
+   margin: 0 !important;
+   padding: 5px 10px !important;
+   border: 1px solid #d8dce5 !important;
+   border-radius: 999px !important;
+   background: #f7f7f9 !important;
+   box-shadow: none !important;
+   display: flex !important;
+   align-items: center !important;
+   justify-content: space-between !important;
+   gap: 8px !important;
+   overflow: hidden;
  }
- .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) .gallery,
- .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) .galleryRow {
-   margin-top: 0 !important;
-   padding-top: 0 !important;
+
+ details.infoBox > summary .summaryText {
+   min-width: 0;
+   font-weight: 700;
+ }
+
+ details.infoBox > summary .chev {
+   flex: 0 0 auto;
+   padding: 0 !important;
+   margin-left: auto;
+   color: var(--muted);
+ }
+
+ details.infoBox[open] > summary {
+   margin-bottom: 6px !important;
+   background: #f7f7f9 !important;
+ }
+
+ /* 收合後內容仍維持原本滿寬 */
+ details.infoBox > .infoContent {
+   width: 100%;
+   max-width: 100%;
+   padding-left: 0 !important;
+   padding-right: 0 !important;
+ }
+
+ /* 巢狀收合層同樣使用滿寬膠囊，不額外向右縮造成不齊 */
+ .infoContent details.infoBox {
+   width: 100% !important;
+   max-width: 100% !important;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+   padding-left: 0 !important;
+ }
+
+ .infoContent details.infoBox > summary {
+   width: 100% !important;
+   max-width: 100% !important;
+   padding: 5px 10px !important;
+   border: 1px solid #d8dce5 !important;
+   border-radius: 999px !important;
+   background: #f7f7f9 !important;
+ }
+
+ /* tRow-alignLeft 本身已是 timeline 內框可用寬度；
+    不使用負 margin，避免按鈕超出左右邊框 */
+ .tRow-alignLeft details.infoBox,
+ .tRow-alignLeft details.infoBox > summary {
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+   width: 100% !important;
+   max-width: 100% !important;
  }
 
  @media (max-width: 640px) {
-   .timeline > .tRow:has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
-     padding-bottom: 0 !important;
-     margin-bottom: 0 !important;
+   details.infoBox {
+     width: 100% !important;
+     max-width: 100% !important;
+     margin: 3px 0 !important;
+     border-radius: 0 !important;
+     background: transparent !important;
    }
-   .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
-     padding-top: 0 !important;
-     margin-top: -8px !important;
+
+   details.infoBox > summary {
+     width: 100% !important;
+     max-width: 100% !important;
+     min-height: 32px;
+     padding: 4px 9px !important;
+     border-radius: 999px !important;
+   }
+
+   details.infoBox > summary .summaryText {
+     font-size: 14px !important;
    }
  }
 
