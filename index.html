@@ -979,6 +979,51 @@
    }
  }
 
+
+ /* 收合層樣式4：極簡標題＋右側箭頭 */
+ details.infoBox {
+   margin-top: 6px !important;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+   border: none !important;
+   border-radius: 0 !important;
+   background: transparent !important;
+   box-shadow: none !important;
+   overflow: visible !important;
+   width: 100% !important;
+ }
+ details.infoBox > summary {
+   border: none !important;
+   outline: none !important;
+   box-shadow: none !important;
+   background: transparent !important;
+   padding: 7px 0 !important;
+   margin: 0 !important;
+ }
+ details.infoBox > summary .summaryText {
+   font-weight: 700;
+ }
+ details.infoBox > summary .chev {
+   padding-right: 2px !important;
+   color: var(--muted);
+ }
+ details.infoBox[open] > summary {
+   margin-bottom: 2px !important;
+ }
+ .infoContent details.infoBox {
+   border: none !important;
+   background: transparent !important;
+   margin-top: 2px !important;
+   padding-left: 8px;
+ }
+ .infoContent details.infoBox > summary {
+   padding: 6px 0 !important;
+ }
+ @media (max-width: 640px) {
+   details.infoBox { margin-top: 4px !important; }
+   details.infoBox > summary { padding: 7px 0 !important; }
+ }
+
 </style>
 </head>
 <body>
