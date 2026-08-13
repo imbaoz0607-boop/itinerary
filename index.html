@@ -952,6 +952,33 @@
    }
  }
 
+
+ /* 行程文字說明與緊接其後的 Gallery 緊貼 */
+ .timeline > .tRow:has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
+   padding-bottom: 0 !important;
+   margin-bottom: 0 !important;
+ }
+ .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
+   padding-top: 0 !important;
+   margin-top: -8px !important; /* 抵消 timeline 的 8px gap */
+ }
+ .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) .gallery,
+ .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) .galleryRow {
+   margin-top: 0 !important;
+   padding-top: 0 !important;
+ }
+
+ @media (max-width: 640px) {
+   .timeline > .tRow:has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
+     padding-bottom: 0 !important;
+     margin-bottom: 0 !important;
+   }
+   .timeline > .tRow + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
+     padding-top: 0 !important;
+     margin-top: -8px !important;
+   }
+ }
+
 </style>
 </head>
 <body>
