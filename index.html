@@ -877,6 +877,79 @@
    font-weight: 700 !important;
  }
 
+
+ /* Day3 午餐 & 咖啡：手機版整齊對齊 */
+ .foodCafeList {
+   margin-top: 4px;
+ }
+ .foodCafeSectionTitle {
+   padding: 0 !important;
+   text-indent: 0 !important;
+   margin: 10px 0 6px !important;
+   font-size: 14px !important;
+   line-height: 1.35 !important;
+   font-weight: 700;
+   color: var(--text) !important;
+ }
+ .foodCafeItem {
+   display: grid;
+   grid-template-columns: 2.1em minmax(0, 1fr);
+   column-gap: 4px;
+   padding: 0 !important;
+   text-indent: 0 !important;
+   margin: 0 0 7px !important;
+   font-size: 14px !important;
+   line-height: 1.4 !important;
+   color: #4d463f !important;
+ }
+ .foodCafeNo {
+   text-align: right;
+   white-space: nowrap;
+ }
+ .foodCafeText {
+   min-width: 0;
+ }
+ .foodCafeName {
+   display: block;
+ }
+ .foodCafeDesc {
+   display: block;
+   padding-left: 1.35em;
+   margin-top: 1px;
+ }
+ .foodCafeMap {
+   margin-top: 14px;
+ }
+ .foodCafeMap iframe {
+   display: block;
+   width: 100%;
+   height: 72vh;
+   min-height: 520px;
+   border: 1px solid var(--line);
+   border-radius: 12px;
+   background: #fff;
+ }
+
+ @media (max-width: 640px) {
+   .foodCafeItem {
+     grid-template-columns: 2.15em minmax(0, 1fr);
+     column-gap: 3px;
+     font-size: 13px !important;
+     line-height: 1.45 !important;
+     margin-bottom: 8px !important;
+   }
+   .foodCafeSectionTitle {
+     font-size: 13px !important;
+     margin: 10px 0 7px !important;
+   }
+   .foodCafeDesc {
+     padding-left: 1.35em;
+   }
+   .foodCafeMap iframe {
+     min-height: 500px;
+   }
+ }
+
 </style>
 </head>
 <body>
@@ -1634,26 +1707,58 @@ setInterval(renderLive, 10000);
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
-              <div class="meta alignFix">
-                <div><strong>🍴 午餐</strong></div>
-                <div>1.小川菊｜鰻魚飯<br>　老字號鰻魚店一到川越優先抽號碼牌。</div>
-                <div>2.林屋｜鰻魚飯<br>　藏造老街一帶的傳統老屋店面。</div>
-                <div>3.小江戶 OHANA｜親子丼・玉子料理<br>　以雞蛋料理聞名，招牌為滑嫩濃郁的親子丼。</div>
-                <div>4.川越 幸壽司｜壽司・日本料理<br>　明治11年創業的老字號，主打江戶前壽司與日本料理。</div>
-                <div>5.寿庵 蔵のまち店｜茶蕎麥麵<br>　老字號蕎麥麵店，特色是使用河越抹茶製作的綠色茶蕎麥麵。</div>
-                <div>6.風凛｜壽司・海鮮<br>　川越老街巷弄中，主打壽司、海鮮與日式套餐。</div>
-                <div style="margin-top:10px;"><strong>☕ 咖啡 &amp; 休息</strong></div>
-                <div>7.川越 Art Cafe Elevato｜Cafe &amp; Bar<br>　位於藏造老街上帶有大正浪漫氛圍的復古建築咖啡館。</div>
-                <div>8.Starbucks 川越鐘つき通り店｜咖啡<br>　位於時之鐘附近，融入川越藏造街景的特色星巴克．設有日式庭園與戶外座位。</div>
-                <div>9.Shimano Coffee 大正館｜復古喫茶<br>　以自家烘焙咖啡為特色，充滿昭和復古氛圍老字號喫茶店。</div>
-                <div>10. 1901 TEA SALON｜紅茶・甜點<br>　以紅茶為主的 Tea Salon，可搭配甜點悠閒休息。</div>
+              <div class="foodCafeList">
+                <div class="foodCafeSectionTitle">🍴 午餐</div>
+
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">1.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">小川菊｜鰻魚飯</span><span class="foodCafeDesc">老字號鰻魚店一到川越優先抽號碼牌。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">2.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">林屋｜鰻魚飯</span><span class="foodCafeDesc">藏造老街一帶的傳統老屋店面。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">3.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">小江戶 OHANA｜親子丼・玉子料理</span><span class="foodCafeDesc">以雞蛋料理聞名，招牌為滑嫩濃郁的親子丼。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">4.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">川越 幸壽司｜壽司・日本料理</span><span class="foodCafeDesc">明治11年創業的老字號，主打江戶前壽司與日本料理。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">5.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">寿庵 蔵のまち店｜茶蕎麥麵</span><span class="foodCafeDesc">老字號蕎麥麵店，特色是使用河越抹茶製作的綠色茶蕎麥麵。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">6.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">風凛｜壽司・海鮮</span><span class="foodCafeDesc">川越老街巷弄中，主打壽司、海鮮與日式套餐。</span></span>
+                </div>
+
+                <div class="foodCafeSectionTitle">☕ 咖啡 &amp; 休息</div>
+
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">7.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">川越 Art Cafe Elevato｜Cafe &amp; Bar</span><span class="foodCafeDesc">位於藏造老街上帶有大正浪漫氛圍的復古建築咖啡館。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">8.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">Starbucks 川越鐘つき通り店｜咖啡</span><span class="foodCafeDesc">位於時之鐘附近，融入川越藏造街景的特色星巴克．設有日式庭園與戶外座位。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">9.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">Shimano Coffee 大正館｜復古喫茶</span><span class="foodCafeDesc">以自家烘焙咖啡為特色，充滿昭和復古氛圍老字號喫茶店。</span></span>
+                </div>
+                <div class="foodCafeItem">
+                  <span class="foodCafeNo">10.</span>
+                  <span class="foodCafeText"><span class="foodCafeName">1901 TEA SALON｜紅茶・甜點</span><span class="foodCafeDesc">以紅茶為主的 Tea Salon，可搭配甜點悠閒休息。</span></span>
+                </div>
               </div>
 
-              <div style="margin-top:14px;">
+              <div class="foodCafeMap">
                 <iframe
-                  src="Day3/午餐&咖啡.pdf"
-                  title="午餐 & 咖啡地圖"
-                  style="width:100%; height:72vh; min-height:520px; border:1px solid var(--line); border-radius:12px; background:#fff;"
+                  src="Day3/午餐&amp;咖啡.pdf"
+                  title="午餐 &amp; 咖啡地圖"
                 ></iframe>
               </div>
             </div>
