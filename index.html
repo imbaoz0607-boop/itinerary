@@ -410,19 +410,19 @@
   overflow: hidden;
  }
 
- /* 緊貼邊框的卡片式收合層 */
  details.infoBox {
   margin-top: 10px;
   margin-left: 0;
   margin-right: 0;
-  border: 1px solid rgba(227, 230, 238, 0.6);
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  padding: 0 14px;
+  border-top: 1px solid var(--line);
+  border-bottom: 0; 
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  background: #fcfaf7;
   overflow: hidden;
   width: 100%;
-}
+ }
  
  details.no-border-box {
   border: none !important;
@@ -440,7 +440,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 12px 14px; 
+  padding: 10px 0; 
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -477,7 +477,7 @@
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 14px 12px 14px; 
+  padding: 0 0 12px 0; 
   color: #4d463f;
  }
  .btnRow {
@@ -525,21 +525,14 @@
   background: #fafbff;
  }
 
- /* 巢狀內的子收合層也改為滿版左右貼齊，並調整內部左右邊距 */
  .infoContent details.infoBox {
-  margin-top: 10px;
-  margin-left: -14px !important;
-  margin-right: -14px !important;
-  width: calc(100% + 28px) !important;
-  border-radius: 10px;
-  border: 1px solid rgba(227, 230, 238, 0.6);
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  padding: 0 12px;
+  margin-left: 0;
+  margin-right: 0;
+  background: transparent;
+  border-top: none;
  }
- 
  .infoContent details.infoBox > summary {
-  padding: 10px 10px;
+  padding: 8px 0;
   font-weight: 700;
   color: var(--text);
  }
@@ -553,7 +546,7 @@
   text-decoration: none !important;
  }
  .infoContent details.infoBox .infoContent {
-  padding: 0 10px 10px 10px !important;
+  padding: 0 0 8px 0;
  }
 
  .dinner-list {
@@ -595,12 +588,9 @@
   flex-shrink: 0;
  }
 
- /* 讓置左行（包含gallery與收合層）向左右擴展，緊貼時間軸邊框但不超出 */
  .tRow-alignLeft {
   display: block !important; 
-  width: calc(100% + 20px) !important;
-  margin-left: -10px !important;
-  margin-right: -10px !important;
+  width: 100% !important;
   padding: 0 !important;
  }
  .tRow-alignLeft .time {
@@ -793,6 +783,15 @@
   }
   .dayBody { padding: 8px 4px !important; }
   
+  
+  .tRow-alignLeft {
+   display: block !important;
+   width: calc(100% + 20px) !important;
+   margin-left: -10px !important;
+   margin-right: -10px !important;
+   padding: 0 !important;
+  }
+
   .tRow { 
    display: flex !important;
    flex-direction: row !important;
@@ -800,6 +799,15 @@
    gap: 8px !important; 
    padding: 6px 2px !important;
    width: 100% !important;
+  }
+  
+  /* 確保手機版時 tRow-alignLeft 能夠向左右擴展，緊貼時間軸邊框 */
+  .tRow.tRow-alignList, .tRow-alignLeft {
+   display: block !important;
+   width: calc(100% + 20px) !important;
+   margin-left: -10px !important;
+   margin-right: -10px !important;
+   padding: 0 !important;
   }
   .time { 
    width: 58px !important;
