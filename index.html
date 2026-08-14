@@ -410,7 +410,7 @@
   overflow: hidden;
  }
 
- /* ⭐ 緊貼邊框的卡片式收合層 */
+ /* 緊貼邊框的卡片式收合層 */
  details.infoBox {
   margin-top: 10px;
   margin-left: 0;
@@ -525,41 +525,23 @@
   background: #fafbff;
  }
 
+ /* 巢狀內的子收合層也改為滿版左右貼齊，並調整內部左右邊距 */
  .infoContent details.infoBox {
   margin-top: 10px;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: -14px !important;
+  margin-right: -14px !important;
+  width: calc(100% + 28px) !important;
+  border-radius: 10px;
   border: 1px solid rgba(227, 230, 238, 0.6);
-  border-radius: 12px;
   background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  padding: 0 14px;
-  overflow: hidden;
-  width: 100%;
-}
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  padding: 0 12px;
+ }
  
- details.no-border-box {
-  border: none !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
- }
- details.no-border-box > summary {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
- }
-
- details.infoBox > summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 12px 14px; 
+ .infoContent details.infoBox > summary {
+  padding: 10px 10px;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  color: var(--text);
  }
  .infoContent details.infoBox > summary a {
   color: #3b6cff !important;
@@ -571,7 +553,7 @@
   text-decoration: none !important;
  }
  .infoContent details.infoBox .infoContent {
-  padding: 0 0 8px 0;
+  padding: 0 10px 10px 10px !important;
  }
 
  .dinner-list {
@@ -613,7 +595,7 @@
   flex-shrink: 0;
  }
 
- /* ⭐ 讓置左行（包含gallery與收合層）向左右擴展，緊貼時間軸邊框但不超出 */
+ /* 讓置左行（包含gallery與收合層）向左右擴展，緊貼時間軸邊框但不超出 */
  .tRow-alignLeft {
   display: block !important; 
   width: calc(100% + 20px) !important;
@@ -868,47 +850,8 @@
    font-size: 15px !important;
   }
   
-  details.infoBox {
-  margin-top: 10px;
-  margin-left: 0;
-  margin-right: 0;
-  border: 1px solid rgba(227, 230, 238, 0.6);
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  padding: 0 14px;
-  overflow: hidden;
-  width: 100%;
-}
- 
- details.no-border-box {
-  border: none !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
- }
- details.no-border-box > summary {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
- }
-
- details.infoBox > summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 12px 14px; 
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
- }
   .infoContent {
    padding: 0 14px 12px 14px !important;
-  }
-  .infoContent details.infoBox {
-   width: 100% !important;
   }
   
   .gItem {
