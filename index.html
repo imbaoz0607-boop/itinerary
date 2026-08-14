@@ -410,19 +410,19 @@
   overflow: hidden;
  }
 
+ /* ⭐ 作法二：精緻卡片化陰影與獨立圓角 */
  details.infoBox {
-  margin-top: 10px;
+  margin-top: 12px;
   margin-left: 0;
   margin-right: 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 0; 
-  border-left: 0;
-  border-right: 0;
-  border-radius: 0;
-  background: #fcfaf7;
+  border: 1px solid rgba(227, 230, 238, 0.6);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  padding: 0 14px;
   overflow: hidden;
   width: 100%;
- }
+}
  
  details.no-border-box {
   border: none !important;
@@ -440,7 +440,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 10px 0; 
+  padding: 12px 0;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -526,15 +526,40 @@
  }
 
  .infoContent details.infoBox {
+  margin-top: 12px;
   margin-left: 0;
   margin-right: 0;
-  background: transparent;
-  border-top: none;
+  border: 1px solid rgba(227, 230, 238, 0.6);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  padding: 0 14px;
+  overflow: hidden;
+  width: 100%;
+}
+ 
+ details.no-border-box {
+  border: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
  }
- .infoContent details.infoBox > summary {
-  padding: 8px 0;
+ details.no-border-box > summary {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+ }
+
+ details.infoBox > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 0;
   font-weight: 700;
-  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
  }
  .infoContent details.infoBox > summary a {
   color: #3b6cff !important;
@@ -841,13 +866,41 @@
   }
   
   details.infoBox {
-   width: 100% !important;
-   border-radius: 0 !important;
-   background: transparent !important;
-  }
-  details.infoBox > summary {
-   padding: 10px 0 !important;
-  }
+  margin-top: 12px;
+  margin-left: 0;
+  margin-right: 0;
+  border: 1px solid rgba(227, 230, 238, 0.6);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  padding: 0 14px;
+  overflow: hidden;
+  width: 100%;
+}
+ 
+ details.no-border-box {
+  border: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+ }
+ details.no-border-box > summary {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+ }
+
+ details.infoBox > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+ }
   .infoContent {
    padding: 0 0 12px 0 !important;
   }
