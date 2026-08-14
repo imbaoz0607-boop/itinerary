@@ -414,11 +414,12 @@
   margin-top: 10px;
   margin-left: 0;
   margin-right: 0;
-  border: 1px solid rgba(227, 230, 238, 0.6);
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  padding: 0 14px;
+  border-top: 1px solid var(--line);
+  border-bottom: 0; 
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  background: #fcfaf7;
   overflow: hidden;
   width: 100%;
  }
@@ -439,7 +440,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 12px 14px; 
+  padding: 10px 0; 
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -476,7 +477,7 @@
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 14px 12px 14px; 
+  padding: 0 0 12px 0; 
   color: #4d463f;
  }
  .btnRow {
@@ -524,21 +525,14 @@
   background: #fafbff;
  }
 
- /* 巢狀內的子收合層也改為滿版左右貼齊，抵銷雙重內距 */
  .infoContent details.infoBox {
-  margin-top: 10px;
-  margin-left: -28px !important;
-  margin-right: -28px !important;
-  width: calc(100% + 56px) !important;
-  border-radius: 10px;
-  border: 1px solid rgba(227, 230, 238, 0.6);
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  padding: 0 12px;
+  margin-left: 0;
+  margin-right: 0;
+  background: transparent;
+  border-top: none;
  }
- 
  .infoContent details.infoBox > summary {
-  padding: 10px 10px;
+  padding: 8px 0;
   font-weight: 700;
   color: var(--text);
  }
@@ -552,7 +546,7 @@
   text-decoration: none !important;
  }
  .infoContent details.infoBox .infoContent {
-  padding: 0 10px 10px 10px !important;
+  padding: 0 0 8px 0;
  }
 
  .dinner-list {
@@ -789,15 +783,6 @@
   }
   .dayBody { padding: 8px 4px !important; }
   
-  
-  .tRow-alignLeft {
-   display: block !important;
-   width: calc(100% + 20px) !important;
-   margin-left: -10px !important;
-   margin-right: -10px !important;
-   padding: 0 !important;
-  }
-
   .tRow { 
    display: flex !important;
    flex-direction: row !important;
@@ -805,15 +790,6 @@
    gap: 8px !important; 
    padding: 6px 2px !important;
    width: 100% !important;
-  }
-  
-  /* 確保手機版時 tRow-alignLeft 能夠向左右擴展，緊貼時間軸邊框 */
-  .tRow.tRow-alignList, .tRow-alignLeft {
-   display: block !important;
-   width: calc(100% + 20px) !important;
-   margin-left: -10px !important;
-   margin-right: -10px !important;
-   padding: 0 !important;
   }
   .time { 
    width: 58px !important;
@@ -864,27 +840,19 @@
    font-size: 15px !important;
   }
   
-  /* 確保手機版時 details.infoBox 保持卡片樣式並正確貼齊 */
   details.infoBox {
    width: 100% !important;
-   border-radius: 12px !important;
-   background: #ffffff !important;
-   border: 1px solid rgba(227, 230, 238, 0.6) !important;
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
-   padding: 0 14px !important;
+   border-radius: 0 !important;
+   background: transparent !important;
   }
   details.infoBox > summary {
-   padding: 12px 14px !important;
+   padding: 10px 0 !important;
   }
   .infoContent {
-   padding: 0 14px 12px 14px !important;
+   padding: 0 0 12px 0 !important;
   }
   .infoContent details.infoBox {
-   width: calc(100% + 56px) !important;
-   margin-left: -28px !important;
-   margin-right: -28px !important;
-   border-radius: 10px !important;
-   padding: 0 12px !important;
+   width: 100% !important;
   }
   
   .gItem {
