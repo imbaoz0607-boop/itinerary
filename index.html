@@ -414,12 +414,11 @@
   margin-top: 10px;
   margin-left: 0;
   margin-right: 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 0; 
-  border-left: 0;
-  border-right: 0;
-  border-radius: 0;
-  background: #fcfaf7;
+  border: 1px solid rgba(227, 230, 238, 0.6);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  padding: 0 14px;
   overflow: hidden;
   width: 100%;
  }
@@ -440,7 +439,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 10px 0; 
+  padding: 12px 14px; 
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -477,7 +476,7 @@
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 0 12px 0; 
+  padding: 0 14px 12px 14px; 
   color: #4d463f;
  }
  .btnRow {
@@ -525,14 +524,21 @@
   background: #fafbff;
  }
 
+ /* 巢狀內的子收合層也改為滿版左右貼齊，並調整內部左右邊距 */
  .infoContent details.infoBox {
-  margin-left: 0;
-  margin-right: 0;
-  background: transparent;
-  border-top: none;
+  margin-top: 10px;
+  margin-left: -14px !important;
+  margin-right: -14px !important;
+  width: calc(100% + 28px) !important;
+  border-radius: 10px;
+  border: 1px solid rgba(227, 230, 238, 0.6);
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  padding: 0 12px;
  }
+ 
  .infoContent details.infoBox > summary {
-  padding: 8px 0;
+  padding: 10px 10px;
   font-weight: 700;
   color: var(--text);
  }
@@ -546,7 +552,7 @@
   text-decoration: none !important;
  }
  .infoContent details.infoBox .infoContent {
-  padding: 0 0 8px 0;
+  padding: 0 10px 10px 10px !important;
  }
 
  .dinner-list {
@@ -1856,7 +1862,7 @@ setInterval(renderLive, 10000);
        <div class="place">
         <p class="placeTitle"><a href="https://www.kawagoekumano.jp/" target="_blank" rel="noopener" style="color:#000; font-weight:700; text-decoration:none;">川越熊野神社</a></p>
         <div class="meta alignFix">
-          <div>．川越熊野神社建立在室町時代天正18年(西元1590年)，和歌山熊野本宮大社的分祀。</div>
+          <div>．川越熊野神社建立在室町時代天正18年(西元1590年),和歌山熊野本宮大社的分祀。</div>
           <div>．神社境內右手邊➞用御神水洗錢的錢洗弁財天。</div>
           <div>．白蛇神社兩側白蛇神，依願望撫摸不同部位。</div>
           <div>．罕見的套圈圈測運勢，參拜加祐稻荷神後投入10円以上的塞錢，有3次套圈圈測運勢機會。</div>
