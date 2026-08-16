@@ -989,6 +989,25 @@
    }
  }
 
+
+ /* 行程文字說明＋緊接下方 Gallery：縮短兩者垂直間距 */
+ .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
+   padding-bottom: 0 !important;
+ }
+ .tRow:not(.tRow-alignLeft) + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
+   margin-top: -6px !important;
+   padding-top: 0 !important;
+ }
+ @media (max-width: 640px) {
+   .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
+     padding-bottom: 0 !important;
+   }
+   .tRow:not(.tRow-alignLeft) + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
+     margin-top: -8px !important;
+     padding-top: 0 !important;
+   }
+ }
+
 </style>
 </head>
 <body>
