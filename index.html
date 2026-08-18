@@ -417,11 +417,12 @@
   margin-top: 10px;
   margin-left: 0;
   margin-right: 0;
-  border: 1px solid rgba(227, 230, 238, 0.6);
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  padding: 0 !important;
+  border-top: 1px solid var(--line);
+  border-bottom: 0; 
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  background: #fcfaf7;
   overflow: hidden;
   width: 100%;
  }
@@ -442,7 +443,7 @@
  details.infoBox > summary {
   list-style: none;
   cursor: pointer;
-  padding: 12px 14px !important; 
+  padding: 10px 0; 
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -479,7 +480,7 @@
  }
  details[open] .chev { transform: rotate(180deg); }
  .infoContent {
-  padding: 0 14px 12px 14px !important; 
+  padding: 0 0 12px 0; 
   color: #4d463f;
  }
  .btnRow {
@@ -803,6 +804,7 @@
    width: 100% !important;
   }
   
+  /* 確保手機版時 tRow-alignLeft 能夠向左右擴展，緊貼時間軸邊框 */
   .tRow.tRow-alignList, .tRow-alignLeft {
    display: block !important;
    width: calc(100% + 20px) !important;
@@ -859,13 +861,14 @@
    font-size: 15px !important;
   }
   
+  /* 確保手機版時 details.infoBox 保持卡片樣式並正確貼齊 */
   details.infoBox {
    width: 100% !important;
    border-radius: 12px !important;
    background: #ffffff !important;
    border: 1px solid rgba(227, 230, 238, 0.6) !important;
    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
-   padding: 0 !important;
+   padding: 0 14px !important;
   }
   details.infoBox > summary {
    padding: 12px 14px !important;
@@ -874,17 +877,11 @@
    padding: 0 14px 12px 14px !important;
   }
   .infoContent details.infoBox {
-   width: calc(100% + 28px) !important;
-   margin-left: -14px !important;
-   margin-right: -14px !important;
+   width: calc(100% + 56px) !important;
+   margin-left: -28px !important;
+   margin-right: -28px !important;
    border-radius: 10px !important;
-   padding: 0 !important;
-  }
-  .infoContent details.infoBox > summary {
-   padding: 10px 12px !important;
-  }
-  .infoContent details.infoBox .infoContent {
-   padding: 0 12px 10px 12px !important;
+   padding: 0 12px !important;
   }
   
   .gItem {
@@ -984,25 +981,6 @@
    }
  }
 
-
- /* 行程文字說明＋緊接下方 Gallery：縮短兩者垂直間距 */
- .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
-   padding-bottom: 0 !important;
- }
- .tRow:not(.tRow-alignLeft) + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
-   margin-top: -6px !important;
-   padding-top: 0 !important;
- }
- @media (max-width: 640px) {
-   .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft) {
-     padding-bottom: 0 !important;
-   }
-   .tRow:not(.tRow-alignLeft) + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
-     margin-top: -8px !important;
-     padding-top: 0 !important;
-   }
- }
-
 </style>
 </head>
 <body>
@@ -1066,7 +1044,7 @@
     </div>
    </section>
    
-   <section class="card daySection pagePanel" id="day1">
+   <section class="card daySection pagePanel active" id="day1">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">1</div>
@@ -1785,7 +1763,7 @@ setInterval(renderLive, 10000);
                 </div>
                 <div class="foodCafeItem">
                   <span class="foodCafeNo">6.</span>
-                  <span class="foodCafeText"><span class="foodCafeName">F凛｜壽司・海鮮</span><span class="foodCafeDesc">川越老街巷弄中，主打壽司、海鮮與日式套餐。</span></span>
+                  <span class="foodCafeText"><span class="foodCafeName">風凛｜壽司・海鮮</span><span class="foodCafeDesc">川越老街巷弄中，主打壽司、海鮮與日式套餐。</span></span>
                 </div>
 
                 <div class="foodCafeSectionTitle">☕ 咖啡 </div>
@@ -1903,6 +1881,7 @@ setInterval(renderLive, 10000);
               <div class="gItem"><img src="Day3/33.jpg" alt="撫で蛇様 白蛇神社"></div>
               <div class="gItem"><img src="Day3/34.jpg" alt="運試し輪投げ 套圈圈"></div>
               <div class="gItem"><img src="Day3/35.jpg" alt="八咫烏 三足神鳥"></div>
+              <div class="gItem"><img src="Day3/36.jpg" alt="繁體中文的神籤"></div>
               <div class="gItem"><img src="Day3/37.jpg" alt="足踏み健康ロード 健康步道"></div>
             </div>
           </div>
@@ -1921,7 +1900,7 @@ setInterval(renderLive, 10000);
     </div>
    </section>
 
-   <section class="card daySection pagePanel" id="day4">
+     <section class="card daySection pagePanel" id="day4">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">4</div>
@@ -1930,7 +1909,17 @@ setInterval(renderLive, 10000);
      <div class="dayDate">9/29(二)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline"></div>
+     <div class="timeline">
+      
+      <div class="tRow">
+       <div class="time">10:00</div>
+       <div class="place">
+         <p class="placeTitle">空白行程標題</p>
+         <p class="meta">在此填寫行程說明或備忘</p>
+       </div>
+      </div>
+
+     </div>
     </div>
    </section>
 
@@ -2065,11 +2054,11 @@ setInterval(renderLive, 10000);
     modalCaption.style.display = captionText ? 'block' : 'none';
   }
 
-  nextImage = function(){
+  function nextImage(){
     showImage((currentIndex+1)%currentGroup.length);
   }
 
-  prevImage = function(){
+  function prevImage(){
     showImage((currentIndex-1+currentGroup.length)%currentGroup.length);
   }
 
