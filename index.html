@@ -1008,6 +1008,11 @@
    }
  }
 
+
+ /* 午餐 & 咖啡 PDF：保留內嵌預覽，雙擊後另開完整 PDF */
+ .pdfDoubleOpen { position:relative; cursor:zoom-in; user-select:none; }
+ .pdfDoubleOpenHint { position:absolute; right:10px; bottom:10px; padding:5px 9px; border-radius:999px; background:rgba(255,255,255,.92); border:1px solid var(--line); font-size:12px; font-weight:700; color:#000; pointer-events:none; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+
 </style>
 </head>
 <body>
@@ -1813,11 +1818,9 @@ setInterval(renderLive, 10000);
                 </div>
               </div>
 
-              <div class="foodCafeMap">
-                <iframe
-                  src="Day3/午餐&amp;咖啡.pdf"
-                  title="午餐 &amp; 咖啡地圖"
-                ></iframe>
+              <div class="foodCafeMap pdfDoubleOpen" ondblclick="window.open('Day3/午餐&amp;咖啡.pdf', '_blank', 'noopener')" title="雙擊開啟完整 PDF 地圖">
+                <iframe src="Day3/午餐&amp;咖啡.pdf" title="午餐 &amp; 咖啡地圖" style="pointer-events:none;"></iframe>
+                <div class="pdfDoubleOpenHint">雙擊地圖開啟完整 PDF</div>
               </div>
             </div>
           </details>
