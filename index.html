@@ -1027,6 +1027,35 @@
    text-decoration: none !important;
  }
 
+
+/* Day1 交通資訊內的兩個子收合層：僅以線條分隔；外層「交通資訊」維持原樣 */
+#day1 .tRow.eRow .infoContent > details.infoBox {
+  margin: 0 !important;
+  width: 100% !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#day1 .tRow.eRow .infoContent > details.infoBox:first-child {
+  border-top: 1px solid var(--line) !important;
+}
+
+#day1 .tRow.eRow .infoContent > details.infoBox > summary {
+  padding: 12px 8px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#day1 .tRow.eRow .infoContent > details.infoBox > .infoContent {
+  padding: 0 8px 10px 8px !important;
+}
+
 </style>
 </head>
 <body>
