@@ -1078,6 +1078,40 @@
   text-decoration: none !important;
 }
 
+
+/* Day3 地圖連結：比照標題後方 tenki.jp｜日本氣象廳 的小型文字連結樣式 */
+#day3 .dayMapLinks {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 400;
+}
+#day3 .dayMapLinks .mapBtn {
+  display: inline !important;
+  margin-left: 0 !important;
+  padding: 0 !important;
+  color: #000 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: inherit !important;
+  text-decoration: underline !important;
+  text-underline-offset: 1px;
+}
+#day3 .dayMapLinks .mapBtn span {
+  color: #000 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-decoration: underline !important;
+}
+#day3 .dayMapLinks .mapDivider {
+  margin: 0 4px;
+  color: #000;
+  font-size: 13px;
+  font-weight: 400;
+}
+
 </style>
 </head>
 <body>
@@ -1367,12 +1401,7 @@
       <div class="dayIndex">3</div>
       <h2 class="dayTitle">
         川越
-        <a class="mapBtn" onclick="openChromeMap('https://platinumaps.jp/d/koedokawagoe')">
-          <span>數位地圖</span>
-        </a>
-        <a class="mapBtn" href="Day3/觀光地圖.pdf" target="_blank" rel="noopener">
-          <span>觀光地圖</span>
-        </a>
+        <span class="dayMapLinks"><a class="mapBtn" onclick="openChromeMap('https://platinumaps.jp/d/koedokawagoe')"><span>數位地圖</span></a><span class="mapDivider">｜</span><a class="mapBtn" href="Day3/觀光地圖.pdf" target="_blank" rel="noopener"><span>觀光地圖</span></a></span>
       </h2>
      </div>
      <div class="dayDate">9/28(一)</div>
