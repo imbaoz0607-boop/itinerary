@@ -1065,6 +1065,19 @@
   transform: rotate(180deg) !important;
 }
 
+
+/* Day3 標題地圖連結：兩者統一黑字、粗體、無底線 */
+#day3 .dayTitle .mapBtn,
+#day3 .dayTitle .mapBtn:link,
+#day3 .dayTitle .mapBtn:visited,
+#day3 .dayTitle .mapBtn:hover,
+#day3 .dayTitle .mapBtn:active,
+#day3 .dayTitle .mapBtn span {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -1355,12 +1368,10 @@
       <h2 class="dayTitle">
         川越
         <a class="mapBtn" onclick="openChromeMap('https://platinumaps.jp/d/koedokawagoe')">
-          <span class="mapIcon">🗺️</span>
           <span>數位地圖</span>
         </a>
         <a class="mapBtn" href="Day3/觀光地圖.pdf" target="_blank" rel="noopener">
-          <span class="mapIcon">🗺️</span>
-          <span>PDF觀光地圖</span>
+          <span>觀光地圖</span>
         </a>
       </h2>
      </div>
