@@ -1140,6 +1140,40 @@
   #memoPanel .memoBody { padding:8px 10px 16px !important; }
 }
 
+
+/* Memo 兩個 PDF 地圖：統一內嵌顯示區尺寸 */
+#memoPanel .memoBox .pdfEmbedWrap {
+  width: 100% !important;
+  height: 620px !important;
+  min-height: 620px !important;
+  overflow: hidden !important;
+}
+#memoPanel .memoBox .pdfEmbed {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 620px !important;
+  border: 0 !important;
+}
+#memoPanel .memoBox .pdfOpenBtn {
+  display: flex !important;
+  width: 100% !important;
+  min-height: 42px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 640px) {
+  #memoPanel .memoBox .pdfEmbedWrap {
+    height: 620px !important;
+    min-height: 620px !important;
+  }
+  #memoPanel .memoBox .pdfEmbed {
+    height: 100% !important;
+    min-height: 620px !important;
+  }
+}
+
 </style>
 </head>
 <body>
