@@ -1112,6 +1112,34 @@
   font-weight: 400;
 }
 
+
+/* Memo 頁面：比照福岡行程樣式 */
+#memoPanel .memoHeader { padding-top:20px; padding-bottom:12px; }
+#memoPanel .memoIndex {
+  width:42px; min-width:42px; height:42px;
+  border-radius:14px; font-size:17px;
+}
+#memoPanel .memoBody { padding:8px 18px 22px; }
+#memoPanel .memoBoxes { display:flex; flex-direction:column; gap:10px; }
+#memoPanel .memoBox {
+  margin:0 !important;
+  width:100% !important;
+  border-radius:16px !important;
+  box-shadow:none !important;
+}
+#memoPanel .memoBox > summary {
+  min-height:52px;
+  padding:13px 16px !important;
+}
+#memoPanel .memoBox > summary .summaryText {
+  font-size:16px;
+  font-weight:700;
+}
+@media (max-width:640px) {
+  #memoPanel .memoHeader { padding:14px 10px 8px !important; }
+  #memoPanel .memoBody { padding:8px 10px 16px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1142,7 +1170,8 @@
   </section>
   <section class="tabShell">
    <nav class="topTabs" aria-label="行程頁籤">
-    <a class="tabBtn active" data-target="day1">Day 1</a>
+    <a class="tabBtn active" data-target="memoPanel">Memo</a>
+    <a class="tabBtn" data-target="day1">Day 1</a>
     <a class="tabBtn" data-target="day2">Day 2</a>
     <a class="tabBtn" data-target="day3">Day 3</a>
     <a class="tabBtn" data-target="day4">Day 4</a>
@@ -1150,32 +1179,41 @@
     <a class="tabBtn" data-target="day6">Day 6</a>
     <a class="tabBtn" data-target="day7">Day 7</a>
     <a class="tabBtn" data-target="day8">Day 8</a>
-    <a class="tabBtn" data-target="memoPanel">Memo</a>
    </nav>
    <div class="tabsDivider"></div>
    
-   <section class="card pagePanel" id="memoPanel">
-    <div class="dayCardHeader">
+   <section class="card pagePanel active" id="memoPanel">
+    <div class="dayCardHeader memoHeader">
      <div class="dayHeaderMain">
-      <div class="dayIndex">M</div>
+      <div class="dayIndex memoIndex">★</div>
       <h2 class="dayTitle">Memo</h2>
      </div>
-     <div class="dayDate">Travel Notes</div>
     </div>
-    <div class="dayBody">
-     <div class="timeline">
-      <div class="tRow">
-       <div class="time">Memo</div>
-       <div class="place">
-         <p class="placeTitle">請把這次旅行的重要備忘填在這裡</p>
-         <p class="meta">例如票券、餐廳預約、購物清單、天氣提醒、重要地址。</p>
+    <div class="dayBody memoBody">
+     <div class="memoBoxes">
+      <details class="infoBox memoBox">
+       <summary>
+        <span class="summaryText">🚗 租車資訊</span>
+        <span class="chev">⌄</span>
+       </summary>
+       <div class="infoContent">
+        <ul class="notes"><li>。</li></ul>
        </div>
-      </div>
+      </details>
+      <details class="infoBox memoBox">
+       <summary>
+        <span class="summaryText">🚗 駕駛用日文會話</span>
+        <span class="chev">⌄</span>
+       </summary>
+       <div class="infoContent">
+        <ul class="notes"><li>。</li></ul>
+       </div>
+      </details>
      </div>
     </div>
    </section>
-   
-   <section class="card daySection pagePanel active" id="day1">
+
+   <section class="card daySection pagePanel" id="day1">
     <div class="dayCardHeader">
      <div class="dayHeaderMain">
       <div class="dayIndex">1</div>
