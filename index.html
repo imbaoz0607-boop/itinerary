@@ -1193,6 +1193,41 @@
 #day4 .meta.alignFix.day4TransferNotes,
 #day4 .meta.alignFix.day4TransferNotes div { font-size:14px !important; font-weight:400 !important; color:#4d463f !important; }
 @media(max-width:640px){ #day4 .day4TransferMain, #day4 .meta.alignFix.day4TransferNotes, #day4 .meta.alignFix.day4TransferNotes div { font-size:13px !important; font-weight:400 !important; } }
+
+
+/* 僅 Memo 頁：收合層改為線條式 */
+#memoPanel .memoBoxes { gap:0 !important; }
+#memoPanel details.infoBox.memoBox {
+  margin:0 !important;
+  width:100% !important;
+  border:0 !important;
+  border-bottom:1px solid var(--line) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+#memoPanel details.infoBox.memoBox:first-child {
+  border-top:1px solid var(--line) !important;
+}
+#memoPanel details.infoBox.memoBox > summary {
+  min-height:0 !important;
+  padding:12px 8px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+#memoPanel details.infoBox.memoBox > .infoContent {
+  padding:0 8px 10px 8px !important;
+}
+#memoPanel details.infoBox.memoBox > summary .chev {
+  transform:none !important;
+}
+#memoPanel details.infoBox.memoBox[open] > summary .chev {
+  transform:rotate(180deg) !important;
+}
+
 </style>
 </head>
 <body>
@@ -1245,6 +1280,14 @@
     <div class="dayBody memoBody">
      <div class="memoBoxes">
       <details class="infoBox memoBox">
+        <summary>
+         <span class="summaryText">富士回遊取票</span>
+         <span class="chev">⌄</span>
+        </summary>
+        <div class="infoContent">
+        </div>
+       </details>
+       <details class="infoBox memoBox">
        <summary>
         <span class="summaryText">東京地鐵圖</span>
         <span class="chev">⌄</span>
