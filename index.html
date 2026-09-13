@@ -1240,37 +1240,6 @@
   transform:rotate(180deg) !important;
 }
 
-
-/* Day4 EATo LUMINE：比照 Memo 頁的橫線式收合層 */
-#day4 details.eatoLumineBox {
-  margin: 0 !important;
-  width: 100% !important;
-  border: 0 !important;
-  border-top: 1px solid var(--line) !important;
-  border-bottom: 1px solid var(--line) !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-}
-#day4 details.eatoLumineBox > summary {
-  min-height: 0 !important;
-  padding: 12px 8px !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-#day4 details.eatoLumineBox > .infoContent {
-  padding: 0 8px 10px 8px !important;
-}
-#day4 details.eatoLumineBox > summary .chev {
-  transform: none !important;
-}
-#day4 details.eatoLumineBox[open] > summary .chev {
-  transform: rotate(180deg) !important;
-}
-
 </style>
 </head>
 <body>
@@ -2281,7 +2250,7 @@ setInterval(renderLive, 10000);
       <div class="tRow eRow tRow-alignLeft">
        <div class="time"></div>
        <div class="place">
-        <details class="infoBox eatoLumineBox">
+        <details class="infoBox">
          <summary>
           <span class="summaryText">EATo LUMINE</span>
           <span class="chev">⌄</span>
@@ -2309,7 +2278,7 @@ setInterval(renderLive, 10000);
        <div class="place">
         <details class="infoBox">
          <summary>
-          <span class="summaryText"><a href="https://bus.fujikyu.co.jp/fujitour/kawaguchiko/#timetable" target="_blank" rel="noopener" style="font-weight:700;text-decoration:none;">河口湖周遊巴士</a></span>
+          <span class="summaryText"><a href="https://bus.fujikyu.co.jp/fujitour/kawaguchiko/#timetable" target="_blank" rel="noopener" style="color:#000 !important;font-weight:700 !important;text-decoration:none !important;">河口湖周遊巴士</a></span>
           <span class="chev">⌄</span>
          </summary>
          <div class="infoContent">
