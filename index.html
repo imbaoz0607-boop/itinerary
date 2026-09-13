@@ -1240,6 +1240,37 @@
   transform:rotate(180deg) !important;
 }
 
+
+/* Day4 EATo LUMINE：比照 Memo 頁的橫線式收合層 */
+#day4 details.eatoLumineBox {
+  margin: 0 !important;
+  width: 100% !important;
+  border: 0 !important;
+  border-top: 1px solid var(--line) !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+#day4 details.eatoLumineBox > summary {
+  min-height: 0 !important;
+  padding: 12px 8px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#day4 details.eatoLumineBox > .infoContent {
+  padding: 0 8px 10px 8px !important;
+}
+#day4 details.eatoLumineBox > summary .chev {
+  transform: none !important;
+}
+#day4 details.eatoLumineBox[open] > summary .chev {
+  transform: rotate(180deg) !important;
+}
+
 </style>
 </head>
 <body>
@@ -2250,7 +2281,7 @@ setInterval(renderLive, 10000);
       <div class="tRow eRow tRow-alignLeft">
        <div class="time"></div>
        <div class="place">
-        <details class="infoBox">
+        <details class="infoBox eatoLumineBox">
          <summary>
           <span class="summaryText">EATo LUMINE</span>
           <span class="chev">⌄</span>
@@ -2277,8 +2308,18 @@ setInterval(renderLive, 10000);
        <div class="time"></div>
        <div class="place">
         <details class="infoBox">
-         <summary><span class="summaryText">交通資訊</span><span class="chev">⌄</span></summary>
-         <div class="infoContent"></div>
+         <summary>
+          <span class="summaryText"><a href="https://bus.fujikyu.co.jp/fujitour/kawaguchiko/#timetable" target="_blank" rel="noopener" style="font-weight:700;text-decoration:none;">河口湖周遊巴士</a></span>
+          <span class="chev">⌄</span>
+         </summary>
+         <div class="infoContent">
+          <div class="meta alignFix" style="margin-top:4px !important;">
+           <div>🔴 紅線河口湖周遊巴士：行駛於河口湖車站與大石公園之間，約15分鐘一班。</div>
+           <div>🟢 綠線西湖周遊巴士：前往西湖療癒之里根場、富岳風穴、鳴澤冰穴等自然景點，約30分鐘一班。</div>
+           <div>🔵 藍線鳴澤・精進湖・本栖湖周遊巴士：班次少，每日僅往返5班。</div>
+           <div>票價：一日券1,500円、二日券2,000円，可在網路上、河口湖站巴士售票處及在巴士上購買。單程費用依里程計費(180 円起，🔴河口湖站坐到終點大石公園單程570円) 。</div>
+          </div>
+         </div>
         </details>
        </div>
       </div>
