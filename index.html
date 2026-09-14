@@ -1297,6 +1297,111 @@
   }
 }
 
+
+/* ===== 全站所有收合層：統一為目前確認的線條式版型 =====
+   桌機：只留底線
+   手機：左右各收進 10px、只留底線、⌄ 垂直對齊
+*/
+details.infoBox,
+#memoPanel details.infoBox.memoBox,
+#day1 details.infoBox.day1BottomLineBox,
+.infoContent details.infoBox {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+/* 取消 Memo 與舊有子收合層的第一條上框線 */
+#memoPanel details.infoBox.memoBox:first-child,
+#day1 .tRow.eRow .infoContent > details.infoBox:first-child {
+  border-top: 0 !important;
+}
+
+/* 標題列統一 */
+details.infoBox > summary,
+#memoPanel details.infoBox.memoBox > summary,
+#day1 details.infoBox.day1BottomLineBox > summary,
+.infoContent details.infoBox > summary {
+  width: 100% !important;
+  min-height: 0 !important;
+  padding: 12px 8px !important;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 展開內容維持乾淨內距 */
+details.infoBox > .infoContent,
+#memoPanel details.infoBox.memoBox > .infoContent,
+#day1 details.infoBox.day1BottomLineBox > .infoContent,
+.infoContent details.infoBox > .infoContent {
+  padding: 0 8px 10px 8px !important;
+}
+
+/* 所有箭頭採同一規則 */
+details.infoBox > summary .chev {
+  margin-left: auto !important;
+  padding-right: 0 !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  flex: 0 0 16px !important;
+  transform: none !important;
+}
+details.infoBox[open] > summary .chev {
+  transform: rotate(180deg) !important;
+}
+
+/* 手機版：比照你確認的 Day1 樣式，整條線左右收進 */
+@media (max-width: 640px) {
+  details.infoBox,
+  #memoPanel details.infoBox.memoBox,
+  #day1 details.infoBox.day1BottomLineBox,
+  .infoContent details.infoBox {
+    width: calc(100% - 20px) !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+
+  details.infoBox > summary {
+    width: 100% !important;
+    padding: 12px 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  details.infoBox > summary .chev {
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    text-align: center !important;
+    line-height: 1 !important;
+    flex: 0 0 16px !important;
+  }
+
+  /* 巢狀收合層不要再使用舊版向外撐寬設定 */
+  .infoContent details.infoBox {
+    width: calc(100% - 20px) !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+}
+
 </style>
 </head>
 <body>
