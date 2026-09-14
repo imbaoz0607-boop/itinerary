@@ -1402,6 +1402,64 @@ details.infoBox[open] > summary .chev {
   }
 }
 
+
+/* ===== 修正：手機版所有收合層底線真正左右內縮 ===== */
+@media (max-width: 640px) {
+
+  details.infoBox,
+  #memoPanel details.infoBox.memoBox,
+  #day1 details.infoBox.day1BottomLineBox,
+  .infoContent details.infoBox {
+    position: relative !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  /* 用獨立底線，左右各縮 10px，不再受 details 寬度影響 */
+  details.infoBox::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 0 !important;
+    height: 1px !important;
+    background: var(--line) !important;
+    pointer-events: none !important;
+  }
+
+  details.infoBox > summary {
+    width: 100% !important;
+    padding: 12px 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  details.infoBox > .infoContent {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  /* 所有箭頭固定同一條右側垂直線 */
+  details.infoBox > summary .chev {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    flex: 0 0 16px !important;
+    text-align: center !important;
+    line-height: 1 !important;
+  }
+
+  /* 巢狀收合層取消舊版向外撐寬 */
+  .infoContent details.infoBox {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
 </style>
 </head>
 <body>
