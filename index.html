@@ -1359,6 +1359,66 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   }
 }
 
+
+/* ===== Day1 外層「交通資訊」：改成與喜歡的線條式相同 ===== */
+#day1 .tRow.eRow.tRow-alignLeft > .place > details.infoBox {
+  margin: 0 !important;
+  width: 100% !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#day1 .tRow.eRow.tRow-alignLeft > .place > details.infoBox > summary {
+  min-height: 0 !important;
+  padding: 12px 8px !important;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#day1 .tRow.eRow.tRow-alignLeft > .place > details.infoBox > summary .chev {
+  transform: none !important;
+}
+
+#day1 .tRow.eRow.tRow-alignLeft > .place > details.infoBox[open] > summary .chev {
+  transform: rotate(180deg) !important;
+}
+
+@media (max-width: 640px) {
+  #day1 .tRow.eRow.tRow-alignLeft > .place > details.infoBox {
+    width: calc(100% - 20px) !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  #day1 .tRow.eRow.tRow-alignLeft > .place > details.infoBox > summary {
+    width: 100% !important;
+    padding: 12px 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  #day1 .tRow.eRow.tRow-alignLeft > .place > details.infoBox > summary .chev {
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    text-align: center !important;
+    line-height: 1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1493,7 +1553,7 @@ details.infoBox.preferredLineBox[open] > summary .chev {
       <div class="tRow eRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox" preferredLineBox">
+          <details class="infoBox preferredLineBox">
            <summary>
              <span class="summaryText">交通資訊</span>
              <span class="chev">⌄</span>
