@@ -1297,6 +1297,68 @@
   }
 }
 
+
+/* ===== 剩餘收合層：比照已確認正確的 Day1 線條式版型 =====
+   已正確的 Memo、Day1 OIMACHI TRACKS餐飲／Memo、Day1交通資訊子層不動
+*/
+details.infoBox.preferredLineBox {
+  margin: 0 !important;
+  width: 100% !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+details.infoBox.preferredLineBox > summary {
+  min-height: 0 !important;
+  padding: 12px 8px !important;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+details.infoBox.preferredLineBox > .infoContent {
+  padding: 0 8px 10px 8px !important;
+}
+
+details.infoBox.preferredLineBox > summary .chev {
+  transform: none !important;
+}
+
+details.infoBox.preferredLineBox[open] > summary .chev {
+  transform: rotate(180deg) !important;
+}
+
+/* 手機版：完全複製 Day1 已確認正確的左右長度與箭頭位置 */
+@media (max-width: 640px) {
+  details.infoBox.preferredLineBox {
+    width: calc(100% - 20px) !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+
+  details.infoBox.preferredLineBox > summary {
+    width: 100% !important;
+    padding: 12px 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  details.infoBox.preferredLineBox > summary .chev {
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    text-align: center !important;
+    line-height: 1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1664,7 +1726,7 @@
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox">
+          <details class="infoBox preferredLineBox">
             <summary>
               <span class="summaryText">池袋換乘東武東上線(較快抵達/費用更省)</span>
               <span class="chev">⌄</span>
@@ -1709,7 +1771,7 @@
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox">
+          <details class="infoBox preferredLineBox">
             <summary>
               <span class="summaryText">🚌 巴士即時搭乘資訊 </span>
               <span class="chev">⌄</span>
@@ -2088,7 +2150,7 @@ setInterval(renderLive, 10000);
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox">
+          <details class="infoBox preferredLineBox">
             <summary>
               <span class="summaryText">🍽️ 午餐 &amp; 咖啡</span>
               <span class="chev">⌄</span>
@@ -2307,7 +2369,7 @@ setInterval(renderLive, 10000);
       <div class="tRow eRow tRow-alignLeft">
        <div class="time"></div>
        <div class="place">
-        <details class="infoBox">
+        <details class="infoBox preferredLineBox">
          <summary>
           <span class="summaryText"><a href="https://www.lumine.ne.jp/eato-lumine/restaurant/?category=type04" target="_blank" rel="noopener" style="color:#000 !important;font-weight:700 !important;text-decoration:none !important;">🍴EATo LUMINE</a></span>
           <span class="chev">⌄</span>
@@ -2333,7 +2395,7 @@ setInterval(renderLive, 10000);
       <div class="tRow eRow tRow-alignLeft">
        <div class="time"></div>
        <div class="place">
-        <details class="infoBox">
+        <details class="infoBox preferredLineBox">
          <summary>
           <span class="summaryText"><a href="https://bus.fujikyu.co.jp/fujitour/kawaguchiko/#timetable" target="_blank" rel="noopener" style="color:#000 !important;font-weight:700 !important;text-decoration:none !important;">河口湖周遊巴士</a></span>
           <span class="chev">⌄</span>
