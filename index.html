@@ -1240,6 +1240,39 @@
   transform:rotate(180deg) !important;
 }
 
+
+/* Day1「OIMACHI TRACKS餐飲」與「Memo」：比照 Memo 頁收合層的線條式樣式 */
+#day1 details.infoBox.day1LineBox {
+  margin:0 !important;
+  width:100% !important;
+  border:0 !important;
+  border-bottom:1px solid var(--line) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+#day1 details.infoBox.day1LineBox:first-of-type {
+  border-top:1px solid var(--line) !important;
+}
+#day1 details.infoBox.day1LineBox > summary {
+  min-height:0 !important;
+  padding:12px 8px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+#day1 details.infoBox.day1LineBox > .infoContent {
+  padding:0 8px 10px 8px !important;
+}
+#day1 details.infoBox.day1LineBox > summary .chev {
+  transform:none !important;
+}
+#day1 details.infoBox.day1LineBox[open] > summary .chev {
+  transform:rotate(180deg) !important;
+}
+
 </style>
 </head>
 <body>
@@ -1466,7 +1499,7 @@
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox"> 
+          <details class="infoBox day1LineBox"> 
             <summary>
               <span class="summaryText">🍽️OIMACHI TRACKS餐飲</span>
               <span class="chev">⌄</span>
@@ -1535,7 +1568,7 @@
       <div class="tRow tRow-alignLeft">
         <div class="time"></div>
         <div class="place">
-          <details class="infoBox">
+          <details class="infoBox day1LineBox">
             <summary>
               <span class="summaryText">📝Memo</span>
               <span class="chev">⌄</span>
