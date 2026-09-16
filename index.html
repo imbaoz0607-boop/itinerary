@@ -1420,11 +1420,14 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 }
 
 
-/* 手機版：行程頁所有收合層標題左緣，對齊一般行程內容欄 */
+
+
+/* ===== 手機版：所有行程頁收合層標題左緣改為對齊「時間欄」 ===== */
 @media (max-width: 640px) {
   .daySection:not(#memoPanel) details.infoBox > summary {
-    padding-left: 68px !important;
+    padding-left: 0 !important;
   }
+
   .daySection:not(#memoPanel) details.infoBox > summary .chev {
     margin-left: auto !important;
   }
