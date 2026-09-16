@@ -1441,6 +1441,26 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   }
 }
 
+
+/* Day4 河口湖周遊巴士：內文點號對齊一般行程的說明欄 */
+#day4 .day4BusNotes {
+  margin-left: 100px !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#day4 .day4BusNotes > div {
+  padding-left: 1em !important;
+  text-indent: -1em !important;
+  margin-left: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #day4 .day4BusNotes {
+    margin-left: 66px !important; /* 58px 時間欄 + 8px gap */
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2497,7 +2517,7 @@ setInterval(renderLive, 10000);
           <span class="chev">⌄</span>
          </summary>
          <div class="infoContent">
-          <ul class="notes" style="list-style:none; padding-left:0; margin-top:4px;">
+          <ul class="notes day4BusNotes" style="list-style:none; padding-left:0; margin-top:4px;">
            <div>．有🔴紅線、🟢綠線、🔵藍線三條路線，本次➞🔴紅線河口湖周遊巴士：行駛於河口湖駅與大石公園之間，約15分鐘一班。</div>
            <div>．票價：一日券1,500円、二日券2,000円，可在網路上、河口湖站巴士售票處及在巴士上購買。單程費用依里程計費(180 円起，河口湖站坐到終點大石公園單程570円) 。</div>
            <div>．從後門上車，前門下車；使用IC卡上、下車皆要感應；現金記得抽整理卷，下車時將整理卷跟車資一起放入運賃箱。</div>
