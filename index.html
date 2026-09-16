@@ -1511,24 +1511,6 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 }
 
 
-/* Day3：行程文字說明與緊接 Gallery 的間距再縮短；只影響 Day3 */
-#day3 .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft) .meta {
-  margin-bottom: 0 !important;
-}
-#day3 .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft) .meta.alignFix div:last-child {
-  margin-bottom: 0 !important;
-}
-#day3 .tRow:not(.tRow-alignLeft) + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
-  margin-top: -10px !important;
-  padding-top: 0 !important;
-}
-@media (max-width: 640px) {
-  #day3 .tRow:not(.tRow-alignLeft) + .tRow.tRow-alignLeft:has(.gallery-alignLeft) {
-    margin-top: -12px !important;
-    padding-top: 0 !important;
-  }
-}
-
 </style>
 </head>
 <body>
