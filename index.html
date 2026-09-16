@@ -1463,6 +1463,35 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   }
 }
 
+
+/* Day1 Memo 飯店資訊：內容往左一列，增加右側可用寬度 */
+#day1 details.infoBox.day1BottomLineBox[open] > .infoContent {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#day1 details.infoBox.day1BottomLineBox[open] > .infoContent > .notes {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  width: 100% !important;
+}
+
+@media (max-width: 640px) {
+  #day1 details.infoBox.day1BottomLineBox[open] > .infoContent {
+    margin-left: -8px !important;
+    width: calc(100% + 16px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #day1 details.infoBox.day1BottomLineBox[open] > .infoContent > .notes {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+}
+
 </style>
 </head>
 <body>
