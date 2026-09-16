@@ -1511,6 +1511,13 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 }
 
 
+
+/* Day3：所有「行程文字 → Gallery」比照 09:41 大井町➞川越的緊密間距 */
+#day3 .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft)
+  .meta.alignFix > div:last-child {
+  margin-bottom: 0 !important;
+}
+
 </style>
 </head>
 <body>
@@ -1525,7 +1532,7 @@ details.infoBox.preferredLineBox[open] > summary .chev {
      <h2 class="heroFlightTitle">✈️去09/26(六) 華航CI220</h2>
      <ul class="heroFlightList">
       <li>⏰ <strong>預計 06:30</strong> 抵達機場</li>
-      <li>🛫 <strong>9:00</strong> 松山機場 T1</li>
+      <li>🛫 <strong>09:00</strong> 松山機場 T1</li>
       <li>🛬 <strong>13:10</strong> 羽田機場 T3</li>
      </ul>
     </div>
@@ -1911,7 +1918,7 @@ details.infoBox.preferredLineBox[open] > summary .chev {
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-            <div class="galleryRow" role="list" style="margin-top:8px;">
+            <div class="galleryRow" role="list">
               <div class="gItem" data-caption="小江戶巡迴巴士"><img src="Day3/05.jpg" alt="巡迴巴士外觀1"></div>
               <div class="gItem" data-caption="小江戶巡迴巴士"><img src="Day3/06.jpg" alt="巡迴巴士外觀2"></div>
               <div class="gItem" data-caption="小江戶名勝巡遊巴士"><img src="Day3/07.jpg" alt="名勝巡遊巴士"></div>
@@ -2257,7 +2264,7 @@ setInterval(renderLive, 10000);
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-            <div class="galleryRow" role="list" style="margin-top:2px;">
+            <div class="galleryRow" role="list">
               <div class="gItem"><img src="Day3/08.jpg" alt=""></div>
               <div class="gItem"><img src="Day3/09.jpg" alt=""></div>
               <div class="gItem"><img src="Day3/10.jpg" alt=""></div>
@@ -2287,7 +2294,7 @@ setInterval(renderLive, 10000);
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-            <div class="galleryRow" role="list" style="margin-top:2px;">
+            <div class="galleryRow" role="list">
               <div class="gItem"><img src="Day3/14.jpg" alt=""></div>
               <div class="gItem"><img src="Day3/15.jpg" alt=""></div>
               <div class="gItem"><img src="Day3/16.jpg" alt=""></div>
@@ -2387,7 +2394,7 @@ setInterval(renderLive, 10000);
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-            <div class="galleryRow" role="list" style="margin-top:2px;">
+            <div class="galleryRow" role="list">
               <div class="gItem"><img src="Day3/20.jpg" alt="藏造老街"></div>
               <div class="gItem"><img src="Day3/21.jpg" alt="時之鐘"></div>
               <div class="gItem"><img src="Day3/22.jpg" alt="川越星巴克"></div>
@@ -2413,7 +2420,7 @@ setInterval(renderLive, 10000);
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-            <div class="galleryRow" role="list" style="margin-top:2px;">
+            <div class="galleryRow" role="list">
   <div class="gItem"><img src="Day3/23.jpg" alt="春季鯉魚旗"></div>
   <div class="gItem"><img src="Day3/24.jpg" alt="融合西方與東洋風格的街景"></div>
   <div class="gItem"><img src="Day3/25.jpg" alt=" Shimano Coffee大正館(シマノコーヒー大正館)日式甜點與咖啡"></div>
@@ -2448,7 +2455,7 @@ setInterval(renderLive, 10000);
         <div class="time"></div>
         <div class="place">
           <div class="gallery gallery-alignLeft">
-            <div class="galleryRow" role="list" style="margin-top:2px;">
+            <div class="galleryRow" role="list">
               <div class="gItem"><img src="Day3/30.jpg" alt="川越熊野神社 本殿"></div>
               <div class="gItem"><img src="Day3/31.jpg" alt="川越熊野神社 境內圖"></div>
               <div class="gItem"><img src="Day3/32.jpg" alt="錢洗弁財天 洗錢"></div>
