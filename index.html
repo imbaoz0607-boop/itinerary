@@ -1545,6 +1545,20 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   }
 }
 
+
+/* Day4 秋季限定活動 Gallery：緊接內文、限制在收合內容邊界內 */
+#day4 .day4AutumnGallery {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 2px 0 0 !important;
+  overflow: hidden !important;
+}
+#day4 .day4AutumnGallery .galleryRow {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 </style>
 </head>
 <body>
@@ -2664,7 +2678,16 @@ setInterval(renderLive, 10000);
             <div>．<strong>森林演奏會與營火酒吧　營火酒吧：7:00PM - 9:30PM　森林演奏會：7:30PM - 8:00PM / 9:00PM - 9:30PM</strong><br><span>在秋日漫漫長夜，圍繞著搖曳的篝火，聆聽樂器聲在寂靜森林中迴響，盡情享受夜晚時光。我們也誠摯推薦您品嚐以蘋果生薑糖漿為基底的秋季限定特調雞尾酒(付費)。</span></div>
            </div>
           </div>
-         </details>
+         
+          <div class="gallery day4AutumnGallery">
+           <div class="galleryRow" role="list">
+            <div class="gItem" role="listitem" data-caption="戶外甜點時光"><img src="Day4/40.jpg" alt="戶外甜點時光"></div>
+            <div class="gItem" role="listitem" data-caption="森林探索步行"><img src="Day4/41.jpg" alt="森林探索步行"></div>
+            <div class="gItem" role="listitem" data-caption="芬芳森林的蒸餾"><img src="Day4/42.jpg" alt="芬芳森林的蒸餾"></div>
+            <div class="gItem" role="listitem" data-caption="森林演奏會與營火酒吧"><img src="Day4/43.jpg" alt="森林演奏會與營火酒吧"></div>
+           </div>
+          </div>
+</details>
         </div>
        </div>
 
