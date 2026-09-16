@@ -1492,6 +1492,35 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   }
 }
 
+
+/* Day1 Memo 飯店資訊：三行左緣完全對齊 */
+#day1 .day1HotelInfo {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  text-indent: 0 !important;
+}
+
+#day1 .day1HotelInfo > span {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+}
+
+#day1 .day1HotelInfo > a,
+#day1 .day1HotelInfo > span > a {
+  margin-left: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #day1 .day1HotelInfo {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1793,10 +1822,10 @@ details.infoBox.preferredLineBox[open] > summary .chev {
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
-              <div class="notes">
+              <div class="notes day1HotelInfo">
                 飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a><br>
-                <span style="display:block;">140-0005 東京都品川區廣町2-1-3</span>
-                <span style="display:block;">TEL : +81-3-6903-1122 JR大井町站TRACKS口直通</span>
+                <span>140-0005 東京都品川區廣町2-1-3</span>
+                <span>TEL : <a href="tel:+81369031122">+81-3-6903-1122</a> JR大井町站TRACKS口直通</span>
               </div>
             </div>
           </details>
