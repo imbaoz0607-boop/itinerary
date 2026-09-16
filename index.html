@@ -1495,6 +1495,21 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   }
 }
 
+
+/* Day3 行程：主要標題維持原樣，下一行說明比照 Day4 小字 */
+#day3 .tRow:not(.tRow-alignLeft) .place > .meta {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  color: #4d463f !important;
+}
+@media (max-width: 640px) {
+  #day3 .tRow:not(.tRow-alignLeft) .place > .meta {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1840,7 +1855,8 @@ details.infoBox.preferredLineBox[open] > summary .chev {
       <div class="tRow">
        <div class="time">09:41</div>
        <div class="place">
-         <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通JR埼京線・川越線平日  下り(直達)<br>⏱️乘車約75分鐘｜票價1250円(可刷交通卡)</p>
+         <p class="placeTitle">大井町➞川越</p>
+         <p class="meta"><a href="https://www.twr.co.jp/chtw/tabid/264/Default.aspx" style="color:#000; text-decoration:none;">🚇臨海線</a>直通JR埼京線・川越線平日 下り(直達)<br>⏱️乘車約75分鐘｜票價1250円(可刷交通卡)</p>
        </div>
       </div>
 
@@ -1881,6 +1897,7 @@ details.infoBox.preferredLineBox[open] > summary .chev {
       <div class="tRow">
        <div class="time">10:54</div>
        <div class="place">
+       <p class="placeTitle">抵達川越駅</p>
        <p class="meta">📍川越駅觀光案內所可購買1日券
 🚌<a href="https://eaglebus.group/co-edo/" style="color:inherit; text-decoration:none;">小江戶巡迴巴士(小江戸巡回バス)順、逆向</a>
 1日票600円／單次220円➞西口2號公車站
