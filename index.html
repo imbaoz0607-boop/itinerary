@@ -1440,6 +1440,31 @@ details.infoBox.preferredLineBox[open] > summary .chev {
     padding-left: 0 !important;
   }
 }
+
+
+/* Day4 河口湖周遊巴士：內文點號從「時間欄」左緣開始，續行文字凸排對齊 */
+#day4 .day4BusNotes {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#day4 .day4BusNotes > div {
+  padding-left: 1em !important;
+  text-indent: -1em !important;
+  margin-left: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #day4 .day4BusNotes {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+
+
 /* Day1 Memo 飯店資訊：三行共用同一左緣，並保留完整單行寬度 */
 #day1 .day1HotelInfo {
   margin: 0 !important;
@@ -1491,6 +1516,33 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 #day3 .tRow:not(.tRow-alignLeft):has(+ .tRow.tRow-alignLeft .gallery-alignLeft)
   .meta.alignFix > div:last-child {
   margin-bottom: 0 !important;
+}
+
+
+/* Day4 秋季限定活動：延續既有線條式收合層，內文採緊密凸排 */
+#day4 .day4AutumnNotes {
+  margin-top: 2px !important;
+}
+#day4 .day4AutumnNotes > div {
+  padding-left: 1em !important;
+  text-indent: -1em !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.55 !important;
+}
+#day4 .day4AutumnNotes > div:last-child {
+  margin-bottom: 0 !important;
+}
+#day4 .day4AutumnNotes > div > span {
+  display: inline-block;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+  margin-top: 2px;
+}
+@media (max-width: 640px) {
+  #day4 .day4AutumnNotes,
+  #day4 .day4AutumnNotes > div {
+    font-size: 13px !important;
+  }
 }
 
 </style>
@@ -2596,6 +2648,47 @@ setInterval(renderLive, 10000);
        </div>
       </div>
 
+       <div class="tRow eRow tRow-alignLeft">
+        <div class="time"></div>
+        <div class="place">
+         <details class="infoBox preferredLineBox day4AutumnBox">
+          <summary>
+           <span class="summaryText">秋季限定活動</span>
+           <span class="chev">⌄</span>
+          </summary>
+          <div class="infoContent">
+           <div class="meta alignFix day4AutumnNotes">
+            <div>．<strong>戶外甜點時光　2:30 PM - 5:00 PM</strong><br><span>品嚐選用山梨秋季珍饈——葡萄所精心製作的精緻一口甜點，搭配以豪邁露營風格、於焚火上現煮的香氣濃郁野地咖啡，享受最道地的露營體驗。</span></div>
+            <div>．<strong>森林探索步行　集合時間 4:10 PM、4:30 PM</strong><br><span>與豪華露營嚮導一同漫步於隨著季節更迭而漸層上色的森林。秋日清晨的清新空氣，讓您更容易發現動物的足跡與蘑菇，盡享尋找微小生物的樂趣。</span></div>
+            <div>．<strong>芬芳森林的蒸餾　4:00PM - 5:00PM</strong><br><span>此活動將在日落時分，秋風拂來、宜人舒適的時刻舉行。挑選您喜愛的香氣帶回房間，讓秋日森林的芬芳伴您度過寧靜的夜晚。</span></div>
+            <div>．<strong>森林演奏會與營火酒吧　營火酒吧：7:00PM - 9:30PM　森林演奏會：7:30PM - 8:00PM / 9:00PM - 9:30PM</strong><br><span>在秋日漫漫長夜，圍繞著搖曳的篝火，聆聽樂器聲在寂靜森林中迴響，盡情享受夜晚時光。我們也誠摯推薦您品嚐以蘋果生薑糖漿為基底的秋季限定特調雞尾酒(付費)。</span></div>
+           </div>
+          </div>
+         </details>
+        </div>
+       </div>
+
+
+      <div class="tRow eRow tRow-alignLeft">
+       <div class="time"></div>
+       <div class="place">
+        <details class="infoBox preferredLineBox">
+         <summary>
+          <span class="summaryText"><a href="https://bus.fujikyu.co.jp/fujitour/kawaguchiko/#timetable" target="_blank" rel="noopener" style="color:#000 !important;font-weight:700 !important;text-decoration:none !important;">河口湖周遊巴士</a></span>
+          <span class="chev">⌄</span>
+         </summary>
+         <div class="infoContent">
+          <ul class="notes day4BusNotes" style="list-style:none; padding-left:0; margin-top:4px;">
+           <div>．有🔴紅、🟢綠、🔵藍三條路線，本次➞🔴紅線：行駛於河口湖駅與大石公園之間，約15分鐘一班。</div>
+           <div>．票價：一日1,500円、二日2,000円，可在網路上、河口湖站巴士售票處及在巴士上購買。單程費用依里程計費(180 円起，河口湖站到大石公園單程570円) 。</div>
+           <div>．後門上車前門下車；使用IC卡上下車皆要感應；現金抽整理卷，下車時將整理卷跟車資一起放入運賃箱。</div>
+          </ul>
+         </div>
+         </div>
+        </details>
+       </div>
+      </div>
+
       <div class="tRow">
        <div class="time"></div>
        <div class="place">
@@ -2612,6 +2705,7 @@ setInterval(renderLive, 10000);
         </div>
        </div>
       </div>
+
 
 
      </div>
