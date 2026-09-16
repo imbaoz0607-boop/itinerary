@@ -1464,58 +1464,32 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 }
 
 
-/* Day1 Memo 飯店資訊：內容往左一列，增加右側可用寬度 */
-#day1 details.infoBox.day1BottomLineBox[open] > .infoContent {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
 
-#day1 details.infoBox.day1BottomLineBox[open] > .infoContent > .notes {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 0 !important;
+/* Day1 Memo 飯店資訊：三行共用同一左緣，並保留完整單行寬度 */
+#day1 .day1HotelInfo {
+  margin: 0 !important;
+  padding: 0 !important;
   width: 100% !important;
+  text-indent: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #4d463f !important;
 }
-
+#day1 .day1HotelInfo > div {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+}
 @media (max-width: 640px) {
-  #day1 details.infoBox.day1BottomLineBox[open] > .infoContent {
-    margin-left: -8px !important;
-    width: calc(100% + 16px) !important;
+  #day1 details.day1BottomLineBox > .infoContent {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-
-  #day1 details.infoBox.day1BottomLineBox[open] > .infoContent > .notes {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-  }
-}
-
-
-/* Day1 Memo 飯店資訊：三行左緣完全對齊 */
-#day1 .day1HotelInfo {
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  text-indent: 0 !important;
-}
-
-#day1 .day1HotelInfo > span {
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  text-indent: 0 !important;
-}
-
-#day1 .day1HotelInfo > a,
-#day1 .day1HotelInfo > span > a {
-  margin-left: 0 !important;
-}
-
-@media (max-width: 640px) {
   #day1 .day1HotelInfo {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
     font-size: 13px !important;
     white-space: nowrap !important;
   }
@@ -1822,10 +1796,10 @@ details.infoBox.preferredLineBox[open] > summary .chev {
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
-              <div class="notes day1HotelInfo">
-                飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/">🔗官網</a><br>
-                <span>140-0005 東京都品川區廣町2-1-3</span>
-                <span>TEL : <a href="tel:+81369031122">+81-3-6903-1122</a> JR大井町站TRACKS口直通</span>
+              <div class="day1HotelInfo">
+                <div>飯店資訊<a href="https://oimachi-tracks.hotel-metropolitan.com/tw/" target="_blank" rel="noopener">🔗官網</a></div>
+                <div><a href="https://maps.google.com/?q=140-0005+東京都品川区広町2-1-3" target="_blank" rel="noopener">140-0005</a> 東京都品川區廣町2-1-3</div>
+                <div>TEL：<a href="tel:+81369031122">+81-3-6903-1122</a> JR大井町站TRACKS口直通</div>
               </div>
             </div>
           </details>
