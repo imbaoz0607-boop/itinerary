@@ -1442,9 +1442,9 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 }
 
 
-/* Day4 河口湖周遊巴士：內文點號對齊一般行程的說明欄 */
+/* Day4 河口湖周遊巴士：內文點號從「時間欄」左緣開始，續行文字凸排對齊 */
 #day4 .day4BusNotes {
-  margin-left: 100px !important;
+  margin-left: 0 !important;
   margin-right: 0 !important;
   padding-left: 0 !important;
 }
@@ -1457,7 +1457,9 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 
 @media (max-width: 640px) {
   #day4 .day4BusNotes {
-    margin-left: 66px !important; /* 58px 時間欄 + 8px gap */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
   }
 }
 
