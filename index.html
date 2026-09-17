@@ -1684,14 +1684,65 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 }
 
 
-/* Day1 NEWoMan高輪 LUFTBAUM：新增說明沿用黑色粗體 */
-#day1 .newomanSectionDesc,
-#day1 .newomanLoopsDesc {
-  color: #000 !important;
-  font-weight: 700 !important;
+
+/* Day1 NEWoMan高輪：LUFTBAUM／LOOPS 指定版面 */
+#day1 .newomanLuftbaumBlock {
+  margin-top: 10px !important;
 }
-#day1 .newomanItemNoFloor {
+#day1 .newomanLuftbaumHead {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  color: var(--text) !important;
+}
+#day1 .newomanLuftbaumTitle {
+  font-weight: 700 !important;
+  min-width: 0 !important;
+}
+#day1 .newomanLuftbaumOpen {
+  margin-left: 8px !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: #4d463f !important;
+  white-space: nowrap !important;
+}
+#day1 .newomanLuftbaumFloor {
+  margin-left: auto !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#day1 .newomanLuftbaumDesc {
+  margin: 2px 0 5px !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  font-weight: 400 !important;
+  color: #4d463f !important;
+}
+#day1 .newomanLuftbaumBlock .newomanItemNoFloor {
   grid-template-columns: 1em minmax(0, 1fr) !important;
+}
+#day1 .newomanLuftbaumBlock .newomanLoopsHours {
+  display: block !important;
+  margin-top: 1px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  font-weight: 400 !important;
+  color: #4d463f !important;
+}
+@media (max-width: 640px) {
+  #day1 .newomanLuftbaumHead,
+  #day1 .newomanLuftbaumDesc {
+    font-size: 13px !important;
+  }
+  #day1 .newomanLuftbaumOpen,
+  #day1 .newomanLuftbaumBlock .newomanLoopsHours {
+    font-size: 11px !important;
+  }
 }
 
 </style>
@@ -1999,7 +2050,7 @@ details.infoBox.preferredLineBox[open] > summary .chev {
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
-              <p class="newomanIntro">大井町➞高輪gateway站(京濱東北線)出站即抵抵達</p>
+              <p class="newomanIntro">大井町➞高輪gateway站(京濱東北線)出站即抵達</p>
 
               <div class="newomanSectionTitle">South</div>
               <div class="newomanList">
@@ -2044,11 +2095,19 @@ details.infoBox.preferredLineBox[open] > summary .chev {
                 </div>
               </div>
 
-              <div class="newomanSectionTitle">LUFTBAUM <span class="newomanSectionDesc">位於 28F (8:00~24:00)的免費空中花園與半室外展望空間，種植超過 500 棵真實植物，白天可眺望遠方富士山，晚上能俯瞰東京灣與彩虹大橋夜景。</span></div>
-              <div class="newomanList">
-                <div class="newomanItem newomanItemNoFloor">
-                  <span class="newomanDot">．</span>
-                  <span class="newomanName"><a href="https://lit.link/loops_tgw" target="_blank" rel="noopener">LOOPS</a> <span class="newomanLoopsDesc">Lunch 11:00-15:00／Cafe&amp;Tea 15:00-17:00／Dinner&amp;Bar 17:00-23:00　白天是咖啡喫茶，晚上變身酒吧</span></span>
+              <div class="newomanLuftbaumBlock">
+                <div class="newomanLuftbaumHead">
+                  <span class="newomanLuftbaumTitle">LUFTBAUM <span class="newomanLuftbaumOpen">OPEN 8:00~24:00</span></span>
+                  <span class="newomanLuftbaumFloor">28F</span>
+                </div>
+                <div class="newomanLuftbaumDesc">免費空中花園與半室外展望空間，種植超過 500 棵真實植物，白天可眺望遠方富士山，晚上能俯瞰東京灣與彩虹大橋夜景。</div>
+                <div class="newomanList">
+                  <div class="newomanItem newomanItemNoFloor">
+                    <span class="newomanDot">．</span>
+                    <span class="newomanName"><a href="https://lit.link/loops_tgw" target="_blank" rel="noopener">LOOPS</a>　白天是咖啡喫茶，晚上變身酒吧
+                      <span class="newomanLoopsHours">Lunch 11:00-15:00／Cafe&amp;Tea 15:00-17:00／Dinner&amp;Bar 17:00-23:00</span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
