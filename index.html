@@ -1539,6 +1539,23 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
+
+/* Day5 河口湖周遊巴士：收合層標題與時間欄左緣對齊 */
+#day5 .day5BusRow > .place {
+  overflow: visible !important;
+}
+#day5 .day5BusRow details.preferredLineBox {
+  width: calc(100% + 100px) !important;
+  margin-left: -100px !important;
+}
+@media (max-width: 640px) {
+  #day5 .day5BusRow details.preferredLineBox {
+    width: calc(100% + 66px) !important;
+    margin-left: -66px !important;
+    margin-right: 0 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2708,7 +2725,7 @@ setInterval(renderLive, 10000);
     </div>
     <div class="dayBody">
      <div class="timeline">
-       <div class="tRow eRow tRow-alignLeft">
+       <div class="tRow eRow day5BusRow">
         <div class="time"></div>
         <div class="place">
          <details class="infoBox preferredLineBox">
