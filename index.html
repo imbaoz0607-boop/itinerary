@@ -1557,21 +1557,39 @@ details.infoBox.preferredLineBox[open] > summary .chev {
 }
 
 
-/* Day5 河口湖周遊巴士：每項點號固定，換行文字與第一行文字對齊 */
+
+
+
+/* Day5 河口湖周遊巴士：點號與文字分欄，續行永遠對齊文字起點 */
 #day5 .day5BusNotes {
   list-style: none !important;
   margin: 4px 0 0 !important;
   padding: 0 !important;
 }
-#day5 .day5BusNotes > div {
-  position: relative !important;
-  margin: 0 0 4px 0 !important;
-  padding-left: 1.15em !important;
+#day5 .day5BusNotes > .day5BusItem {
+  display: grid !important;
+  grid-template-columns: 1em minmax(0, 1fr) !important;
+  column-gap: 0 !important;
+  align-items: start !important;
+  margin: 0 0 6px 0 !important;
+  padding: 0 !important;
   text-indent: 0 !important;
   line-height: 1.6 !important;
 }
-#day5 .day5BusNotes > div::first-letter {
-  margin-left: -1.15em;
+#day5 .day5BusNotes > .day5BusItem:last-child {
+  margin-bottom: 0 !important;
+}
+#day5 .day5BusDot {
+  display: block !important;
+  width: 1em !important;
+  white-space: nowrap !important;
+}
+#day5 .day5BusText {
+  display: block !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
 }
 
 </style>
@@ -2746,7 +2764,7 @@ setInterval(renderLive, 10000);
        <div class="tRow">
         <div class="time">08:10</div>
         <div class="place">
-         <p class="placeTitle">客房內用木盒早餐Morning BOX</p>
+         <p class="placeTitle">早：客房內用Morning BOX</p>
         </div>
        </div>
        <div class="tRow eRow day5BusRow">
@@ -2759,9 +2777,9 @@ setInterval(renderLive, 10000);
           </summary>
           <div class="infoContent">
            <ul class="notes day5BusNotes" style="list-style:none; padding-left:0; margin-top:4px;">
-            <div>．有🔴紅、🟢綠、🔵藍三條路線，本次➞🔴紅線：行駛於河口湖駅與大石公園之間，約15分鐘一班。</div>
-            <div>．票價：一日1,500円、二日2,000円，可在網路上、河口湖站巴士售票處購買，一日券可在巴士車內購買。單程費用依里程計費(180 円起，河口湖站到大石公園單程570円) 。</div>
-            <div>．後門上車前門下車；使用IC卡上下車皆要感應；現金抽整理券，下車時將整理券跟車資一起放入運賃箱。</div>
+            <div class="day5BusItem"><span class="day5BusDot">．</span><span class="day5BusText">有🔴紅、🟢綠、🔵藍三條路線，本次➞🔴紅線：行駛於河口湖駅與大石公園之間，約15分鐘一班。</span></div>
+            <div class="day5BusItem"><span class="day5BusDot">．</span><span class="day5BusText">票價：一日1,500円、二日2,000円，可在網路上、河口湖站巴士售票處購買，一日券可在巴士車內購買。單程費用依里程計費(180 円起，河口湖站到大石公園單程570円) 。</span></div>
+            <div class="day5BusItem"><span class="day5BusDot">．</span><span class="day5BusText">後門上車前門下車；使用IC卡上下車皆要感應；現金抽整理券，下車時將整理券跟車資一起放入運賃箱。</span></div>
            </ul>
           </div>
          </details>
