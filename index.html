@@ -1592,6 +1592,73 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   text-indent: 0 !important;
 }
 
+
+/* Day1 NEWoMan高輪：店名左側、樓層貼齊右側，續行保持整齊 */
+#day1 .newomanIntro {
+  margin: 0 0 10px !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: #4d463f !important;
+  font-weight: 400 !important;
+}
+#day1 .newomanSectionTitle {
+  margin: 10px 0 4px !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+}
+#day1 .newomanList {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#day1 .newomanItem {
+  display: grid !important;
+  grid-template-columns: 1em minmax(0, 1fr) auto !important;
+  column-gap: 0 !important;
+  align-items: start !important;
+  margin: 0 !important;
+  padding: 7px 0 !important;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  color: #4d463f !important;
+}
+#day1 .newomanItem:last-child {
+  border-bottom: 0 !important;
+}
+#day1 .newomanDot {
+  display: block !important;
+  width: 1em !important;
+}
+#day1 .newomanName {
+  min-width: 0 !important;
+}
+#day1 .newomanFloor {
+  padding-left: 12px !important;
+  white-space: nowrap !important;
+  font-weight: 700 !important;
+  color: var(--accent) !important;
+  text-align: right !important;
+}
+#day1 .newomanItem a,
+#day1 .newomanItem a:link,
+#day1 .newomanItem a:visited,
+#day1 .newomanItem a:hover,
+#day1 .newomanItem a:active {
+  color: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: none !important;
+}
+@media (max-width: 640px) {
+  #day1 .newomanIntro,
+  #day1 .newomanSectionTitle,
+  #day1 .newomanItem {
+    font-size: 13px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1893,11 +1960,63 @@ details.infoBox.preferredLineBox[open] > summary .chev {
         <div class="place">
           <details class="infoBox day1BottomLineBox">
             <summary>
-              <span class="summaryText">📝Memo</span>
+              <span class="summaryText"><a href="https://www.newoman.jp/takanawa/" target="_blank" rel="noopener" style="text-decoration:none;">NEWoMan高輪</a></span>
               <span class="chev">⌄</span>
             </summary>
             <div class="infoContent">
+              <p class="newomanIntro">大井町TRACKS大都會大飯店➞高輪gateway站(京濱東北線)出站即抵抵達</p>
 
+              <div class="newomanSectionTitle">South</div>
+              <div class="newomanList">
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName"><a href="https://corporate.seijoishii.com/" target="_blank" rel="noopener">成城石井超級市場</a></span>
+                  <span class="newomanFloor">1F</span>
+                </div>
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName">HARBS</span>
+                  <span class="newomanFloor">3F</span>
+                </div>
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName">@cosme STORE</span>
+                  <span class="newomanFloor">4F</span>
+                </div>
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName"><a href="https://www.nakagawa-masashichi.jp/shop/default.aspx" target="_blank" rel="noopener">中川政七商店</a>、<a href="https://www.hightide.co.jp/store/" target="_blank" rel="noopener">HIGHTIDE STORE</a></span>
+                  <span class="newomanFloor">5F</span>
+                </div>
+              </div>
+
+              <div class="newomanSectionTitle">North</div>
+              <div class="newomanList">
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName"><a href="https://www.kayanoya.com/shop/" target="_blank" rel="noopener">茅乃舍</a></span>
+                  <span class="newomanFloor">1F</span>
+                </div>
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName">MARGARET HOWELL、and wander、A.P.C.</span>
+                  <span class="newomanFloor">3F</span>
+                </div>
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName">UNITED ARROWS、Polo Ralph Lauren、BEAMS CULTUART</span>
+                  <span class="newomanFloor">4F</span>
+                </div>
+              </div>
+
+              <div class="newomanSectionTitle">LUFTBAUM</div>
+              <div class="newomanList">
+                <div class="newomanItem">
+                  <span class="newomanDot">．</span>
+                  <span class="newomanName"><a href="https://lit.link/loops_tgw" target="_blank" rel="noopener">LOOPS</a></span>
+                  <span class="newomanFloor">28F</span>
+                </div>
+              </div>
             </div>
           </details>
         </div>
