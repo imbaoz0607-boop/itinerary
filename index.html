@@ -1556,6 +1556,24 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   }
 }
 
+
+/* Day5 河口湖周遊巴士：每項點號固定，換行文字與第一行文字對齊 */
+#day5 .day5BusNotes {
+  list-style: none !important;
+  margin: 4px 0 0 !important;
+  padding: 0 !important;
+}
+#day5 .day5BusNotes > div {
+  position: relative !important;
+  margin: 0 0 4px 0 !important;
+  padding-left: 1.15em !important;
+  text-indent: 0 !important;
+  line-height: 1.6 !important;
+}
+#day5 .day5BusNotes > div::first-letter {
+  margin-left: -1.15em;
+}
+
 </style>
 </head>
 <body>
