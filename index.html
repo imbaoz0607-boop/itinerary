@@ -1832,6 +1832,25 @@ details.infoBox.preferredLineBox[open] > summary .chev {
   line-height: 1.2 !important;
 }
 
+
+/* Day7：Google My Maps */
+#day7 .day7MyMap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+#day7 .day7MyMap iframe {
+  display: block;
+  width: 100%;
+  height: 620px;
+  border: 0;
+}
+@media (max-width: 640px) {
+  #day7 .day7MyMap iframe {
+    height: 560px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3197,7 +3216,11 @@ setInterval(renderLive, 10000);
      <div class="dayDate">10/02(五)</div>
     </div>
     <div class="dayBody">
-     <div class="timeline"></div>
+     <div class="timeline">
+      <div class="day7MyMap">
+       <iframe src="https://www.google.com/maps/d/embed?mid=13in_e2s2C_OOkD_eZSi9iyst4Zv3cUw" title="Day7 Google My Maps" loading="lazy" allowfullscreen></iframe>
+      </div>
+     </div>
     </div>
    </section>
 
